@@ -1,0 +1,1098 @@
+ACTOR PigCop {
+	Health 100
+	Radius 30
+	Height 56
+	Speed 15
+	PainChance 32
+	Scale 0.8
+	MONSTER
+	+FLOORCLIP
+    +NOTDMATCH
+    +NOICEDEATH
+    +THRUGHOST
+	+MISSILEMORE
+	SeeSound "pigcop/sight"
+	PainSound "pigcop/pain"
+	DeathSound "pigcop/death"
+	ActiveSound "pigcop/roam"
+	AttackSound ""
+	Obituary "%o was shotgunned by a Pig Cop."
+    DamageFactor "Mace", 1.1
+    DamageFactor "DragonClaw", 1.5
+    PainChance "MightyBoot", 255
+	Dropitem "Clip2"
+	Decal BulletChip
+	States {
+		Spawn:
+			PIGC A 1 A_Look
+			Loop
+		See:
+			PIGC ABCD 5 A_Chase
+			Loop
+		Missile:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			PIGC E 5 A_FaceTarget
+			PIGC EEE 5 
+			PIGC E 0 A_PlaySound("duke/mossberg", CHAN_WEAPON)
+			TNT1 A 0 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-10,10),8)
+			TNT1 A 0 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-10,10),8)
+			TNT1 A 0 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-10,10),8)
+			TNT1 A 0 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-10,10),8)
+			TNT1 A 0 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-10,10),8)
+			TNT1 A 0 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-10,10),8)
+			PIGC F 10 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-10,10),8)
+			PIGC G 5
+			PIGC G 10 A_CPosRefire
+			Goto See
+		Pain:
+			PIGC K 3
+			PIGC K 3 A_Pain
+			Goto See
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			PIGC K 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			PIGC K 16 A_Pain
+			Goto See
+		Death.DukeDamage:
+		Death.DukePistol:
+			TNT1 A 0 A_Jump(218,"Death")
+			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
+			goto Death
+		Death.MightyBoot:
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_Jump(64,"Death")
+			TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
+			goto Death
+		Death.DukeExplosive:
+			TNT1 A 0 A_JumpIfHealthLower(-3,"DukeGibStart")
+			goto Death.DukeDamage
+		DukeGibStart:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_SpawnDebris("DukeGibs1")
+			TNT1 A 0 A_SpawnDebris("DukeGibs2")
+			TNT1 A 0 A_SpawnDebris("DukeGibs3")
+			TNT1 A 0 A_SpawnDebris("DukeGibs4")
+			TNT1 A 0 A_SpawnDebris("DukeGibs5")
+			TNT1 A 0 A_SpawnDebris("DukeGibs6")
+			TNT1 A 0 A_PlaySound("duke/enemygib")
+			TNT1 A 0 A_Jump(96,"XDeath")
+			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
+		Death:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			PIGC K 5 A_Scream
+			PIGC L 5 A_NoBlocking
+			PIGC MNOP 5
+			PIGC P -1
+			stop
+		XDeath:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			Stop
+		Death.ZorchPistol:
+		Death.Zorch:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			PIGC F 0 A_Stop
+			TNT1 A 0 A_ChangeFlag("DONTGIB",1)
+			TNT1 A 0 A_PlaySoundEx("chex/zorch","soundslot5",0,0)
+			PIGC F 3 A_SpawnItem("ZorchEffectSmall")
+			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
+			PIGC F 3 A_SetTranslucent(0.9,0)
+			PIGC F 0 A_Scream
+			PIGC F 3 A_SetTranslucent(0.8,0)
+			PIGC F 0 A_NoBlocking
+			PIGC F 3 A_SetTranslucent(0.7,0)
+			PIGC F 3 A_SetTranslucent(0.6,0)
+			PIGC F 3 A_SetTranslucent(0.5,0)
+			PIGC F 3 A_SetTranslucent(0.4,0)
+			PIGC F 3 A_SetTranslucent(0.3,0)
+			PIGC F 3 A_SetTranslucent(0.2,0)
+			PIGC F 3 A_SetTranslucent(0.1,0)
+			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A -1
+			stop
+		Death.DukeIce:
+			TNT1 A 0 A_PlaySound("duke/enemyfreeze")
+			TNT1 A 0 A_GiveInventory("FreezethrowerWeakness")
+			TNT1 A 0 A_Jump(218,"Ice")
+			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
+		Ice:
+		Death.HexenIce:
+		Death.Ice:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
+			TNT1 A 0 A_NoBlocking
+			//TNT1 A 0 A_SpawnItem("GuardFrozen")
+			PIGC O 0 A_GenericFreezeDeath
+			PIGC O 70 A_UnsetSolid
+			PIGC O 0 A_IceGuyDie
+			PIGC O 1 A_IceGuyDie
+			TNT1 A -1
+			stop
+		Raise:
+			PIGC NMLKJ 5
+			Goto See
+		ZorchRaise:
+			TNT1 A 1 A_UnsetShootable
+			TNT1 A 1 A_SpawnItem("SpawnFire2")
+			TNT1 A 0 A_PlaySound("archvile/resummon")
+			TNT1 A 1 A_TakeInventory("EnemyZorched",1)
+			TNT1 A 0 A_SetTranslucent(0.1,0)
+			PIGC A 3 A_SetTranslucent(0.2,0)
+			PIGC A 3 A_SetTranslucent(0.3,0)
+			PIGC A 3 A_SetTranslucent(0.4,0)
+			PIGC A 3 A_SetTranslucent(0.5,0)
+			PIGC A 3 A_SetTranslucent(0.6,0)
+			PIGC A 3 A_SetTranslucent(0.7,0)
+			PIGC A 3 A_SetTranslucent(0.8,0)
+			PIGC A 3 A_SetTranslucent(0.9,0)
+			PIGC A 3 A_SetTranslucent(1,0)
+			PIGC A 1 A_SetShootable
+			Goto See
+	}
+}
+
+ACTOR AssaultEnforcer
+{
+	Health 100
+	Radius 30
+	Height 56
+	Mass 150
+	Speed 35
+	Scale 0.8
+	PainChance 32
+	MONSTER
+	+FLOORCLIP
+    +NOTDMATCH
+    +NOICEDEATH
+    +THRUGHOST
+    +NOTARGET
+    +NOINFIGHTING
+	+MISSILEMORE
+	+DONTMORPH
+	SeeSound "assaultenf/sight"
+	PainSound "assaultenf/pain"
+	DeathSound "assaultenf/death"
+	ActiveSound "assaultenf/roam"
+	AttackSound "duke/chaingun"
+	Obituary "%o was shot by an Assault Enforcer."
+    DamageFactor "Mace", 1.1
+    DamageFactor "DragonClaw", 1.5
+	Decal BulletChip
+	States {
+		Spawn:
+			ASEN A 1 A_Look
+			Loop
+		See:
+			ASEN AABBCCDD 5 A_Chase
+			TNT1 A 0 A_Jump (5, "Poop")
+			Loop
+		Poop:
+			ASEN L 20
+			TNT1 A 0 A_PlaySound("assaultenf/turd", CHAN_AUTO)
+			TNT1 A 0 A_SpawnItemEX ("DukeTurd", 0 , -30, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+			goto See
+		Missile:
+			ASEN E 2 A_FaceTarget
+			ASEN F 2 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("duke/chaingun", CHAN_WEAPON)
+			ASEN E 2 A_FaceTarget
+			ASEN F 2 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("duke/chaingun", CHAN_WEAPON)
+			ASEN E 2 A_FaceTarget
+			ASEN F 2 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("duke/chaingun", CHAN_WEAPON)
+			ASEN E 2 A_FaceTarget
+			ASEN F 2 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("duke/chaingun", CHAN_WEAPON)
+			ASEN E 2 A_FaceTarget
+			ASEN F 2 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("duke/chaingun", CHAN_WEAPON)
+			ASEN E 2 A_FaceTarget
+			ASEN F 2 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("duke/chaingun", CHAN_WEAPON)
+			ASEN E 2 A_FaceTarget
+			ASEN F 2 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("duke/chaingun", CHAN_WEAPON)
+			ASEN E 2 A_FaceTarget
+			ASEN F 2 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("duke/chaingun", CHAN_WEAPON)
+			ASEN E 2 A_FaceTarget
+			ASEN F 2 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("duke/chaingun", CHAN_WEAPON)
+			ASEN E 2 A_FaceTarget
+			ASEN F 2 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("duke/chaingun", CHAN_WEAPON)
+			ASEN E 2 A_FaceTarget
+			ASEN F 2 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("duke/chaingun", CHAN_WEAPON)
+			ASEN E 2 A_FaceTarget
+			ASEN F 2 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("duke/chaingun", CHAN_WEAPON)
+			ASEN E 2 A_FaceTarget
+			ASEN E 1 A_Jump (40, "See")
+			Goto Missile+1
+		Pain:
+			ASEN I 3
+			ASEN I 3 A_Pain
+			Goto See
+		Death.DukeDamage:
+		Death.MightyBoot:
+		Death.DukeExplosive:
+		Death.DukeIce:
+		Death.DukePistol:
+			TNT1 A 0 A_GiveToTarget("DukeBossKillTaunt",1)
+		Death:
+		XDeath:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			ASEN M 8 A_Scream
+			ASEN NO 8
+			ASEN P 8 A_NoBlocking
+			ASEN QR 8
+			ASEN R -1
+			Stop
+		Death.ZorchPistol:
+		Death.Zorch:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			ASEN D 0 A_Stop
+			TNT1 A 0 A_ChangeFlag("DONTGIB",1)
+			TNT1 A 0 A_PlaySoundEx("chex/zorch","soundslot5",0,0)
+			ASEN D 3 A_SpawnItem("ZorchEffectSmall")
+			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
+			ASEN D 3 A_SetTranslucent(0.9,0)
+			ASEN D 0 A_Scream
+			ASEN D 3 A_SetTranslucent(0.8,0)
+			ASEN D 0 A_NoBlocking
+			ASEN D 3 A_SetTranslucent(0.7,0)
+			ASEN D 3 A_SetTranslucent(0.6,0)
+			ASEN D 3 A_SetTranslucent(0.5,0)
+			ASEN D 3 A_SetTranslucent(0.4,0)
+			ASEN D 3 A_SetTranslucent(0.3,0)
+			ASEN D 3 A_SetTranslucent(0.2,0)
+			ASEN D 3 A_SetTranslucent(0.1,0)
+			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A -1
+			stop
+	}
+}
+
+ACTOR AssaultCommander {
+	Health 350
+	Radius 20
+	Height 56
+	Mass 400
+	Speed 20
+	PainChance 30
+	Scale 0.8
+	MONSTER
+	+FLOORCLIP
+    +NOTDMATCH
+    +NOICEDEATH
+    +THRUGHOST
+	+MISSILEMORE
+	+NOGRAVITY
+	+FLOAT
+	SeeSound ""
+	PainSound "assaultcom/pain"
+	DeathSound "assaultcom/death"
+	ActiveSound "assaultcom/roam"
+	AttackSound "assaultcom/attack"
+	Obituary "%o was blown to bits by an Assault Commander."
+    DamageFactor "Mace", 1.1
+    DamageFactor "DragonClaw", 1.5
+    PainChance "MightyBoot", 255
+	States {
+		Spawn:
+			ASCO A 2 A_Look
+			Loop
+		See:
+			ASCO AABBCC 5 A_Chase
+			Loop
+		Missile:
+			ASCO E 5 A_FaceTarget
+			TNT1 A 0 A_PlaySound("assaultcom/attack", CHAN_WEAPON)
+			ASCO EEEEEEE 5 A_FaceTarget
+			ASCO E 0 Bright A_CustomMissile("ACommanderRocket",20,0,0,8)
+			ASCO EEE 5 A_FaceTarget
+			Goto See
+		Pain:
+			ASCO D 3
+			ASCO D 3 A_Pain
+			Goto See
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			ASCO D 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			ASCO D 16 A_Pain
+			Goto See
+		Death.DukeDamage:
+		Death.DukePistol:
+			TNT1 A 0 A_Jump(218,"Death")
+			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
+			goto Death
+		Death.MightyBoot:
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_Jump(64,"Death")
+			TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
+			goto Death
+		Death.DukeExplosive:
+			TNT1 A 0 A_JumpIfHealthLower(-3,"DukeGibStart")
+		DukeGibStart:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_SpawnDebris("DukeGibs1")
+			TNT1 A 0 A_SpawnDebris("DukeGibs2")
+			TNT1 A 0 A_SpawnDebris("DukeGibs3")
+			TNT1 A 0 A_SpawnDebris("DukeGibs4")
+			TNT1 A 0 A_SpawnDebris("DukeGibs5")
+			TNT1 A 0 A_SpawnDebris("DukeGibs6")
+			TNT1 A 0 A_PlaySound("duke/enemygib")
+			TNT1 A 0 A_Jump(256,"XDeath")
+			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
+		Death:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			ASCO G 5 A_Scream
+			ASCO HIJKLMN 5 A_NoBlocking
+			ASCO N -1
+			Stop
+		XDeath:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			Stop
+		Death.ZorchPistol:
+		Death.Zorch:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			ASCO F 0 A_Stop
+			TNT1 A 0 A_ChangeFlag("DONTGIB",1)
+			TNT1 A 0 A_PlaySoundEx("chex/zorch","soundslot5",0,0)
+			ASCO F 3 A_SpawnItem("ZorchEffectSmall")
+			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
+			ASCO F 3 A_SetTranslucent(0.9,0)
+			ASCO F 0 A_Scream
+			ASCO F 3 A_SetTranslucent(0.8,0)
+			ASCO F 0 A_NoBlocking
+			ASCO F 3 A_SetTranslucent(0.7,0)
+			ASCO F 3 A_SetTranslucent(0.6,0)
+			ASCO F 3 A_SetTranslucent(0.5,0)
+			ASCO F 3 A_SetTranslucent(0.4,0)
+			ASCO F 3 A_SetTranslucent(0.3,0)
+			ASCO F 3 A_SetTranslucent(0.2,0)
+			ASCO F 3 A_SetTranslucent(0.1,0)
+			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A -1
+			stop
+		Death.DukeIce:
+			TNT1 A 0 A_PlaySound("duke/enemyfreeze")
+			TNT1 A 0 A_GiveInventory("FreezethrowerWeakness")
+			TNT1 A 0 A_Jump(218,"Ice")
+			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
+		Ice:
+		Death.HexenIce:
+		Death.Ice:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
+			TNT1 A 0 A_NoBlocking
+			//TNT1 A 0 A_SpawnItem("FakeHitlerFrozen")
+			ASCO L 0 A_GenericFreezeDeath
+			ASCO L 70 A_UnsetSolid
+			ASCO L 0 A_IceGuyDie
+			ASCO L 1 A_IceGuyDie
+			TNT1 A -1
+			stop
+		Raise:
+			ASCO NMLKJ 5
+			Goto See
+		ZorchRaise:
+			TNT1 A 1 A_UnsetShootable
+			TNT1 A 1 A_SpawnItem("SpawnFire2")
+			TNT1 A 0 A_PlaySound("archvile/resummon")
+			TNT1 A 1 A_TakeInventory("EnemyZorched",1)
+			TNT1 A 0 A_SetTranslucent(0.1,0)
+			ASCO A 3 A_SetTranslucent(0.2,0)
+			ASCO A 3 A_SetTranslucent(0.3,0)
+			ASCO A 3 A_SetTranslucent(0.4,0)
+			ASCO A 3 A_SetTranslucent(0.5,0)
+			ASCO A 3 A_SetTranslucent(0.6,0)
+			ASCO A 3 A_SetTranslucent(0.7,0)
+			ASCO A 3 A_SetTranslucent(0.8,0)
+			ASCO A 3 A_SetTranslucent(0.9,0)
+			ASCO A 3 A_SetTranslucent(1,0)
+			ASCO A 1 A_SetShootable
+			Goto See
+	}
+}
+
+ACTOR Battlelord {
+	Health 4500
+	Radius 60
+	Height 110
+	Mass 1200
+	Speed 35
+	PainChance 32
+	Scale 1.5
+	MONSTER
+	+FLOORCLIP
+    +NOTDMATCH
+    +NOICEDEATH
+    +THRUGHOST
+	+BOSS
+	+DONTGIB
+    +NOTARGET
+    +NOINFIGHTING
+	+MISSILEMORE
+	+DONTMORPH
+	+BOSSDEATH
+	SeeSound "battlelord/sight"
+	PainSound "battlelord/pain"
+	DeathSound "battlelord/death"
+	ActiveSound "battlelord/roam"
+	AttackSound "duke/chaingun"
+	Obituary "%o was shot by the Battlelord."
+    DamageFactor "Mace", 1.1
+    DamageFactor "DragonClaw", 1.5
+	Decal BulletChip
+	States {
+		Spawn:
+			BTLO A 1 A_Look
+			Loop
+		See:
+			TNT1 A 0 A_JumpIfInventory("DukeBossSee",1,"See2")
+			TNT1 A 0 A_GiveInventory("DukeBossSee",1)
+			TNT1 A 0 A_GiveToTarget("DukeBossSightTaunt")
+		See2:
+			BTLO AABBCCDD 5 A_Chase
+			Loop
+		Missile:
+			//TNT1 A 0 A_TakeInventory("BattleLordChaingunToken",12)
+			//TNT1 A 0 A_TakeInventory("BattleLordMortarToken",4)
+			TNT1 A 0 A_JumpIfCloser(100,"Stomp")
+			TNT1 A 0 A_JumpIfCloser(512,"Chaingun")
+			TNT1 A 0 A_Jump(128,"Chaingun")
+			Goto Mortar
+		Chaingun:
+			BTLO E 2 A_FaceTarget
+			//TNT1 A 0 A_JumpIfInventory("BattleLordChaingunToken",12,"See2")
+			//TNT1 A 0 A_GiveInventory("BattleLordChaingunToken",1)
+			TNT1 A 0 A_PlaySound("duke/chaingun", CHAN_WEAPON)
+			BTLO F 2 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),CMF_CHECKTARGETDEAD)
+			BTLO E 2 A_FaceTarget
+			TNT1 A 0 A_PlaySound("duke/chaingun", CHAN_WEAPON)
+			BTLO F 2 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),CMF_CHECKTARGETDEAD)
+			BTLO E 2 A_FaceTarget
+			TNT1 A 0 A_PlaySound("duke/chaingun", CHAN_WEAPON)
+			BTLO F 2 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),CMF_CHECKTARGETDEAD)
+			BTLO E 2 A_FaceTarget
+			TNT1 A 0 A_PlaySound("duke/chaingun", CHAN_WEAPON)
+			BTLO F 2 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),CMF_CHECKTARGETDEAD)
+			BTLO E 2 A_FaceTarget
+			TNT1 A 0 A_PlaySound("duke/chaingun", CHAN_WEAPON)
+			BTLO F 2 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),CMF_CHECKTARGETDEAD)
+			BTLO E 2 A_FaceTarget
+			TNT1 A 0 A_PlaySound("duke/chaingun", CHAN_WEAPON)
+			BTLO F 2 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),CMF_CHECKTARGETDEAD)
+			BTLO E 2 A_FaceTarget
+			TNT1 A 0 A_PlaySound("duke/chaingun", CHAN_WEAPON)
+			BTLO F 2 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),CMF_CHECKTARGETDEAD)
+			BTLO E 2 A_FaceTarget
+			TNT1 A 0 A_PlaySound("duke/chaingun", CHAN_WEAPON)
+			BTLO F 2 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),CMF_CHECKTARGETDEAD)
+			BTLO E 2 A_FaceTarget
+			TNT1 A 0 A_PlaySound("duke/chaingun", CHAN_WEAPON)
+			BTLO F 2 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),CMF_CHECKTARGETDEAD)
+			BTLO E 2 A_FaceTarget
+			TNT1 A 0 A_PlaySound("duke/chaingun", CHAN_WEAPON)
+			BTLO F 2 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),CMF_CHECKTARGETDEAD)
+			BTLO E 2 A_FaceTarget
+			TNT1 A 0 A_PlaySound("duke/chaingun", CHAN_WEAPON)
+			BTLO F 2 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),CMF_CHECKTARGETDEAD)
+			BTLO E 2 A_FaceTarget
+			TNT1 A 0 A_PlaySound("duke/chaingun", CHAN_WEAPON)
+			BTLO F 2 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),CMF_CHECKTARGETDEAD)
+			BTLO E 2 A_FaceTarget
+			TNT1 A 0 A_PlaySound("duke/chaingun", CHAN_WEAPON)
+			BTLO F 2 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),CMF_CHECKTARGETDEAD)
+			BTLO E 2 A_FaceTarget
+			TNT1 A 0 A_PlaySound("duke/chaingun", CHAN_WEAPON)
+			BTLO F 2 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),CMF_CHECKTARGETDEAD)
+			BTLO E 2 A_FaceTarget
+			TNT1 A 0 A_PlaySound("duke/chaingun", CHAN_WEAPON)
+			BTLO F 2 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),CMF_CHECKTARGETDEAD)
+			BTLO E 2 A_FaceTarget
+			TNT1 A 0 A_PlaySound("duke/chaingun", CHAN_WEAPON)
+			BTLO F 2 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),CMF_CHECKTARGETDEAD)
+			BTLO E 2 A_FaceTarget
+			TNT1 A 0 A_PlaySound("duke/chaingun", CHAN_WEAPON)
+			BTLO F 2 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),CMF_CHECKTARGETDEAD)
+			BTLO E 2 A_FaceTarget
+			TNT1 A 0 A_PlaySound("duke/chaingun", CHAN_WEAPON)
+			BTLO F 2 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),CMF_CHECKTARGETDEAD)
+			BTLO E 2 A_FaceTarget
+			TNT1 A 0 A_PlaySound("duke/chaingun", CHAN_WEAPON)
+			BTLO F 2 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),CMF_CHECKTARGETDEAD)
+			BTLO E 2 A_FaceTarget
+			TNT1 A 0 A_PlaySound("duke/chaingun", CHAN_WEAPON)
+			BTLO F 2 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),CMF_CHECKTARGETDEAD)
+			BTLO E 2 A_FaceTarget
+			TNT1 A 0 A_PlaySound("duke/chaingun", CHAN_WEAPON)
+			BTLO F 2 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),CMF_CHECKTARGETDEAD)
+			BTLO E 2 A_FaceTarget
+			TNT1 A 0 A_PlaySound("duke/chaingun", CHAN_WEAPON)
+			BTLO F 2 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),CMF_CHECKTARGETDEAD)
+			BTLO E 2 A_FaceTarget
+			TNT1 A 0 A_PlaySound("duke/chaingun", CHAN_WEAPON)
+			BTLO F 2 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),CMF_CHECKTARGETDEAD)
+			BTLO E 2 A_FaceTarget
+			TNT1 A 0 A_PlaySound("duke/chaingun", CHAN_WEAPON)
+			BTLO F 2 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),CMF_CHECKTARGETDEAD)
+			BTLO E 2 A_FaceTarget
+			//Loop
+			Goto See2
+		Mortar:
+			BTLO E 2 A_FaceTarget
+			//TNT1 A 0 A_JumpIfInventory("BattleLordMortarToken",4,"See2")
+			//TNT1 A 0 A_GiveInventory("BattleLordMortarToken",1)
+			TNT1 A 0 A_PlaySound("duke/rocketfire", CHAN_WEAPON)
+			TNT1 A 0 A_JumpIfCloser(768,"Mortar1")
+			TNT1 A 0 A_JumpIfCloser(1024,"Mortar2")
+			Goto Mortar3
+		Mortar1:
+			BTLO G 2 Bright A_CustomMissile("BattleLordMortar1",32,0,random(-7,7),CMF_CHECKTARGETDEAD|CMF_AIMDIRECTION,random(10,20))
+			BTLO HHHHHHHHHH 2 A_FaceTarget
+			TNT1 A 0 A_Jump(128,"See2")
+			Goto Mortar
+		Mortar2:
+			BTLO G 2 Bright A_CustomMissile("BattleLordMortar2",32,0,random(-7,7),CMF_CHECKTARGETDEAD|CMF_AIMDIRECTION,random(10,20))
+			BTLO HHHHHHHHHH 2 A_FaceTarget
+			TNT1 A 0 A_Jump(128,"See2")
+			Goto Mortar
+		Mortar3:
+			BTLO G 2 Bright A_CustomMissile("BattleLordMortar3",32,0,random(-7,7),CMF_CHECKTARGETDEAD|CMF_AIMDIRECTION,random(10,20))
+			BTLO HHHHHHHHHH 2 A_FaceTarget
+			TNT1 A 0 A_Jump(128,"See2")
+			Goto Mortar
+		Stomp:
+			TNT1 A 0 A_Explode(1000,100,0,0)
+			Goto See2
+		Pain:
+			BTLO I 3
+			BTLO I 3 A_Pain
+			Goto See2
+		Death.DukeDamage:
+		Death.MightyBoot:
+		Death.DukeExplosive:
+		Death.DukeIce:
+		Death.DukePistol:
+			TNT1 A 0 A_GiveToTarget("DukeBossKillTaunt",1)
+		Death:
+		XDeath:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			BTLO I 10 A_Scream
+			BTLO JK 10
+			BTLO L 10 A_NoBlocking
+			BTLO MN 10
+			BTLO N -1 A_BossDeath
+			Stop
+		Death.ZorchPistol:
+		Death.Zorch:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			BTLO D 0 A_Stop
+			TNT1 A 0 A_ChangeFlag("DONTGIB",1)
+			TNT1 A 0 A_PlaySoundEx("chex/zorch","soundslot5",0,0)
+			BTLO D 3 A_SpawnItem("ZorchEffectSmall")
+			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
+			BTLO D 3 A_SetTranslucent(0.9,0)
+			BTLO D 0 A_Scream
+			BTLO D 3 A_SetTranslucent(0.8,0)
+			BTLO D 0 A_NoBlocking
+			BTLO D 3 A_SetTranslucent(0.7,0)
+			BTLO D 3 A_SetTranslucent(0.6,0)
+			BTLO D 3 A_SetTranslucent(0.5,0)
+			BTLO D 3 A_SetTranslucent(0.4,0)
+			BTLO D 3 A_SetTranslucent(0.3,0)
+			BTLO D 3 A_SetTranslucent(0.2,0)
+			BTLO D 3 A_SetTranslucent(0.1,0)
+			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A -1 A_BossDeath
+			stop
+	}
+}
+
+ACTOR BattleLordChaingunToken : CustomInventory { Inventory.MaxAmount 12 }
+ACTOR BattleLordMortarToken : CustomInventory { Inventory.MaxAmount 4 }
+
+ACTOR BattleLordMortar {
+	Height 4
+	Radius 2
+	Speed 8
+	damage (10)
+	Gravity 0.6
+	PROJECTILE
+	+DOOMBOUNCE //+HERETICBOUNCE
+	//+BOUNCEONFLOORS
+	-NOGRAVITY
+	+DONTFALL
+	BounceFactor 0.9
+	BounceCount 10
+	SeeSound "duke/pipebomb"
+    Decal Scorch
+	Obituary "%o was mortared by the Battlelord."
+	States {
+		Spawn:
+			BLMR ABCD 2 A_SpawnItemEx("BattleLordMortarAfterImage",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			Loop
+		Death:
+			TNT1 A 0 A_Explode(128, 128)
+			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0, 0, ATTN_NONE)
+			TNT1 A 0 A_SpawnItemEx("RPGExplosion")
+			stop
+	}
+}
+
+ACTOR BattleLordMortarAfterImage {
+	+NOINTERACTION
+	+CLIENTSIDEONLY
+	States {
+		Spawn:
+			TNT1 A 0
+			BLMR ABCD 2 A_FadeOut
+			Loop
+	}
+}
+
+ACTOR BattleLordMortar1 : BattleLordMortar { Speed 26 }
+ACTOR BattleLordMortar2 : BattleLordMortar { Speed 32 }
+ACTOR BattleLordMortar3 : BattleLordMortar { Speed 38 }
+
+ACTOR MiniBattlelord : Battlelord
+{
+	Health 1000
+	Scale 0.8
+}
+
+ACTOR Overlord {
+	Health 4500
+	Radius 60
+	Height 110
+	Mass 1200
+	Speed 35
+	PainChance 32
+	Scale 1.1
+	MONSTER
+	+BOSS
+	+FLOORCLIP
+    +NOTDMATCH
+    +NOICEDEATH
+    +THRUGHOST
+	+MISSILEMORE
+	SeeSound ""
+	PainSound "overlord/pain"
+	DeathSound "overlord/death"
+	ActiveSound "overlord/roam"
+	AttackSound ""
+	Obituary "%o was stomped on by the Overlord."
+    DamageFactor "Mace", 1.1
+    DamageFactor "DragonClaw", 1.5
+    PainChance "MightyBoot", 255
+	States {
+		Spawn:
+			OVRL A 2 A_Look
+			Loop
+		See:
+			TNT1 A 0 A_JumpIfInventory("DukeBossSee",1,"See2")
+			TNT1 A 0 A_GiveInventory("DukeBossSee",1)
+			TNT1 A 0 A_GiveToTarget("DukeBossSightTaunt")
+		See2:
+			OVRL AABBCCDD 5 A_Chase
+			Loop
+		Missile:
+			TNT1 A 0 A_JumpIfCloser(100,"Stomp")
+			OVRL EEEEFFFFGGGG 3 A_FaceTarget
+			Goto Spam
+		Spam:
+			OVRL GGG 2 A_FaceTarget
+			OVRL H 4 Bright A_CustomMissile("OverlordRocket",100,15,0,8)
+			OVRL H 2 A_FaceTarget
+			OVRL GGG 2 A_FaceTarget
+			OVRL H 4 Bright A_CustomMissile("OverlordRocket",100,-15,0,8)
+			OVRL H 1 A_Jump (60, "See2")
+			Goto Spam
+		Stomp:
+			TNT1 A 0 A_Explode(1000,100,0,0)
+			Goto See2
+		Pain:
+			TNT1 A 0 A_Pain
+			Goto See2
+		Death.DukeDamage:
+		Death.DukePistol:
+			TNT1 A 0 A_GiveToTarget("DukeBossKillTaunt",1)
+		Death.MightyBoot:
+		Death.DukeExplosive:
+		Death:
+		XDeath:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			OVRL I 8 A_Scream
+			OVRL JKLMNOPQR 8 A_NoBlocking
+			OVRL R 20
+			OVRL R -1 A_BossDeath
+			Stop
+		Death.ZorchPistol:
+		Death.Zorch:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			OVRL F 0 A_Stop
+			TNT1 A 0 A_ChangeFlag("DONTGIB",1)
+			TNT1 A 0 A_PlaySoundEx("chex/zorch","soundslot5",0,0)
+			OVRL F 3 A_SpawnItem("ZorchEffectSmall")
+			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
+			OVRL F 3 A_SetTranslucent(0.9,0)
+			OVRL F 0 A_Scream
+			OVRL F 3 A_SetTranslucent(0.8,0)
+			OVRL F 0 A_NoBlocking
+			OVRL F 3 A_SetTranslucent(0.7,0)
+			OVRL F 3 A_SetTranslucent(0.6,0)
+			OVRL F 3 A_SetTranslucent(0.5,0)
+			OVRL F 3 A_SetTranslucent(0.4,0)
+			OVRL F 3 A_SetTranslucent(0.3,0)
+			OVRL F 3 A_SetTranslucent(0.2,0)
+			OVRL F 3 A_SetTranslucent(0.1,0)
+			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A -1 A_BossDeath
+			stop
+		Death.DukeIce:
+			TNT1 A 0 A_PlaySound("duke/enemyfreeze")
+			TNT1 A 0 A_GiveInventory("FreezethrowerWeakness")
+			TNT1 A 0 A_Jump(218,"Ice")
+			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
+		Ice:
+		Death.HexenIce:
+		Death.Ice:
+		TNT1 A 0
+	}
+}
+
+ACTOR CycloidEmperor {
+	Health 4500
+	Radius 60
+	Height 110
+	Mass 1200
+	Speed 35
+	PainChance 32
+	Scale 1.1
+	MONSTER
+	+BOSS
+	+FLOORCLIP
+    +NOTDMATCH
+    +NOICEDEATH
+    +THRUGHOST
+	+MISSILEMORE
+	SeeSound ""
+	PainSound "cycloid/pain"
+	DeathSound "cycloid/death"
+	ActiveSound "cycloid/roam"
+	AttackSound "cycloid/attack"
+	Obituary "%o was stomped on by the Cycloid Emperor."
+    DamageFactor "Mace", 1.1
+    DamageFactor "DragonClaw", 1.5
+    PainChance "MightyBoot", 255
+	States {
+		Spawn:
+			CYEM A 2 A_Look
+			Loop
+		See:
+			TNT1 A 0 A_JumpIfInventory("DukeBossSee",1,"See2")
+			TNT1 A 0 A_GiveInventory("DukeBossSee",1)
+			TNT1 A 0 A_GiveToTarget("DukeBossSightTaunt")
+		See2:
+			CYEM AABBCCDD 5 A_Chase
+			Loop
+		Missile:
+			TNT1 A 0 A_TakeInventory("CycloidEmperorRocketToken",5)
+			TNT1 A 0 A_TakeInventory("CycloidEmperorEnergyToken",12)
+			TNT1 A 0 A_JumpIfCloser(100,"Stomp")
+			TNT1 A 0 A_PlaySound("cycloid/attack", CHAN_WEAPON)
+			TNT1 A 0 A_JumpIfCloser(768, "EnergyAtk")
+			goto RocketAtk
+		RocketAtk:
+			//TNT1 A 0 A_JumpIfInventory("CycloidEmperorRocketToken",5,"RocketAtkContinue")
+			CYEM EEEEE 1 A_FaceTarget
+			//TNT1 A 0 A_GiveInventory("CycloidEmperorRocketToken",1)
+			CYEM F 3 Bright A_CustomMissile("CyEmperorRocket",40,0,random(-16,16),8)
+			CYEM FF 1 A_FaceTarget
+			CYEM EEEEE 1 A_FaceTarget
+			CYEM F 3 Bright A_CustomMissile("CyEmperorRocket",40,0,random(-16,16),8)
+			CYEM FF 1 A_FaceTarget
+			CYEM EEEEE 1 A_FaceTarget
+			CYEM F 3 Bright A_CustomMissile("CyEmperorRocket",40,0,random(-16,16),8)
+			CYEM FF 1 A_FaceTarget
+			CYEM EEEEE 1 A_FaceTarget
+			CYEM F 3 Bright A_CustomMissile("CyEmperorRocket",40,0,random(-16,16),8)
+			CYEM FF 1 A_FaceTarget
+			CYEM EEEEE 1 A_FaceTarget
+			CYEM F 3 Bright A_CustomMissile("CyEmperorRocket",40,0,random(-16,16),8)
+			CYEM FF 1 A_FaceTarget
+			//Loop
+		//RocketAtkContinue:
+			TNT1 A 0 A_Jump(150,"See2")
+			Goto RocketAtk
+		EnergyAtk:
+			//TNT1 A 0 A_JumpIfInventory("CycloidEmperorEnergyToken",12,"See2")
+			CYEM GGGGGGGGGG 2 A_FaceTarget
+			TNT1 A 0 A_PlaySound("octabrain/attack", CHAN_WEAPON)
+			//TNT1 A 0 A_GiveInventory("CycloidEmperorEnergyToken",1)
+			CYEM H 2 Bright A_CustomMissile("OctabrainProjectile",80,0,random(-16,16),8)
+			CYEM H 2 A_FaceTarget
+			CYEM H 2 Bright A_CustomMissile("OctabrainProjectile",80,0,random(-16,16),8)
+			CYEM H 2 A_FaceTarget
+			CYEM H 2 Bright A_CustomMissile("OctabrainProjectile",80,0,random(-16,16),8)
+			CYEM H 2 A_FaceTarget
+			CYEM H 2 Bright A_CustomMissile("OctabrainProjectile",80,0,random(-16,16),8)
+			CYEM H 2 A_FaceTarget
+			CYEM H 2 Bright A_CustomMissile("OctabrainProjectile",80,0,random(-16,16),8)
+			CYEM H 2 A_FaceTarget
+			CYEM H 2 Bright A_CustomMissile("OctabrainProjectile",80,0,random(-16,16),8)
+			CYEM H 2 A_FaceTarget
+			CYEM H 2 Bright A_CustomMissile("OctabrainProjectile",80,0,random(-16,16),8)
+			CYEM H 2 A_FaceTarget
+			CYEM H 2 Bright A_CustomMissile("OctabrainProjectile",80,0,random(-16,16),8)
+			CYEM H 2 A_FaceTarget
+			CYEM H 2 Bright A_CustomMissile("OctabrainProjectile",80,0,random(-16,16),8)
+			CYEM H 2 A_FaceTarget
+			CYEM H 2 Bright A_CustomMissile("OctabrainProjectile",80,0,random(-16,16),8)
+			CYEM H 2 A_FaceTarget
+			CYEM H 2 Bright A_CustomMissile("OctabrainProjectile",80,0,random(-16,16),8)
+			CYEM H 2 A_FaceTarget
+			CYEM H 2 Bright A_CustomMissile("OctabrainProjectile",80,0,random(-16,16),8)
+			CYEM H 2 A_FaceTarget
+			goto See2
+		Stomp:
+			TNT1 A 0 A_Explode(1000,100,0,0)
+			Goto See2
+		Pain:
+			CYEM I 2
+			TNT1 A 0 A_Pain
+			Goto See2
+		Death.DukeDamage:
+		Death.DukePistol:
+			TNT1 A 0 A_GiveToTarget("DukeBossKillTaunt",1)
+		Death.MightyBoot:
+		Death.DukeExplosive:
+		Death:
+		XDeath:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			CYEM I 10 A_Scream
+			CYEM JKLMNOPQ 10 A_NoBlocking
+			CYEM Q 20 A_BossDeath
+			CYEM Q -1
+			Stop
+		Death.ZorchPistol:
+		Death.Zorch:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			CYEM F 0 A_Stop
+			TNT1 A 0 A_ChangeFlag("DONTGIB",1)
+			TNT1 A 0 A_PlaySoundEx("chex/zorch","soundslot5",0,0)
+			CYEM F 3 A_SpawnItem("ZorchEffectSmall")
+			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
+			CYEM F 3 A_SetTranslucent(0.9,0)
+			CYEM F 0 A_Scream
+			CYEM F 3 A_SetTranslucent(0.8,0)
+			CYEM F 0 A_NoBlocking
+			CYEM F 3 A_SetTranslucent(0.7,0)
+			CYEM F 3 A_SetTranslucent(0.6,0)
+			CYEM F 3 A_SetTranslucent(0.5,0)
+			CYEM F 3 A_SetTranslucent(0.4,0)
+			CYEM F 3 A_SetTranslucent(0.3,0)
+			CYEM F 3 A_SetTranslucent(0.2,0)
+			CYEM F 3 A_SetTranslucent(0.1,0)
+			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A -1 A_BossDeath
+			stop
+	}
+}
+
+ACTOR CycloidEmperorRocketToken : CustomInventory { Inventory.MaxAmount 5 }
+ACTOR CycloidEmperorEnergyToken : CustomInventory { Inventory.MaxAmount 12 }
+
+ACTOR AlienQueen
+{
+	Health 6000
+	Radius 80
+	Height 110
+	Mass 1200
+	Speed 35
+	PainChance 16
+	Scale 1.1
+	MONSTER
+	+BOSS
+	+FLOORCLIP
+    +NOTDMATCH
+    +NOICEDEATH
+    +THRUGHOST
+	SeeSound ""
+	PainSound "queen/pain"
+	DeathSound "queen/death"
+	ActiveSound "queen/roam"
+	AttackSound "queen/attack"
+	Obituary "%o was shocked to death by the Alien Queen."
+    DamageFactor "Mace", 1.1
+    DamageFactor "DragonClaw", 1.5
+    PainChance "MightyBoot", 255
+	States
+	{
+		Spawn:
+			QUEE A 2 A_Look
+			Loop
+		See:
+			TNT1 A 0 A_JumpIfInventory("DukeBossSee",1,"See2")
+			TNT1 A 0 A_GiveInventory("DukeBossSee",1)
+			TNT1 A 0 A_GiveToTarget("DukeBossSightTaunt")
+		See2:
+			QUEE AABBCCDD 5 A_Chase
+			Loop
+		Missile:
+			TNT1 A 0 A_TakeInventory("QueenAttackToken",5)
+			TNT1 A 0 A_JumpIfCloser(100,"Stomp")
+			TNT1 A 0 A_Jump (150, "Birth")
+			TNT1 A 0 A_PlaySound("queen/attack", CHAN_WEAPON)
+		Attack:
+			//TNT1 A 0 A_JumpIfInventory("QueenAttackToken",5,"See")
+			QUEE EEEEE 2 A_FaceTarget
+		//AttackLoop:
+			//TNT1 A 0 A_JumpIfInventory("QueenAttackToken",5,"See")
+			//TNT1 A 0 A_GiveInventory("QueenAttackToken",1)
+			QUEE F 1 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			QUEE FF 2
+			QUEE GGGGG 1 A_FaceTarget
+			QUEE F 1 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			QUEE FF 2
+			QUEE GGGGG 1 A_FaceTarget
+			QUEE F 1 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			QUEE FF 2
+			QUEE GGGGG 1 A_FaceTarget
+			QUEE F 1 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			QUEE FF 2
+			QUEE GGGGG 1 A_FaceTarget
+			QUEE F 1 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			QUEE FF 2
+			QUEE GGGGG 1 A_FaceTarget
+			Goto See2
+		Stomp:
+			TNT1 A 0 A_Explode(1000,100,0,0)
+			Goto See2
+		Birth:
+			TNT1 A 0 A_PlaySound("queen/birth", CHAN_WEAPON)
+			QUEE HI 40
+			QUEE J 40 A_SpawnItemEx("DoomImp3",0,-128,0)
+			goto See2
+		Pain:
+			QUEE K 2
+			TNT1 A 0 A_Pain
+			Goto See2
+			Death.DukeDamage:
+		Death.DukePistol:
+			TNT1 A 0 A_GiveToTarget("DukeBossKillTaunt",1)
+		Death.MightyBoot:
+		Death.DukeExplosive:
+		Death:
+		XDeath:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			QUEE K 10 A_Scream
+			QUEE LMNOPQRST 10 A_NoBlocking
+			QUEE T 20
+			QUEE T -1 A_BossDeath
+			Stop
+		Death.ZorchPistol:
+		Death.Zorch:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			QUEE F 0 A_Stop
+			TNT1 A 0 A_ChangeFlag("DONTGIB",1)
+			TNT1 A 0 A_PlaySoundEx("chex/zorch","soundslot5",0,0)
+			QUEE F 3 A_SpawnItem("ZorchEffectSmall")
+			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
+			QUEE F 3 A_SetTranslucent(0.9,0)
+			QUEE F 0 A_Scream
+			QUEE F 3 A_SetTranslucent(0.8,0)
+			QUEE F 0 A_NoBlocking
+			QUEE F 3 A_SetTranslucent(0.7,0)
+			QUEE F 3 A_SetTranslucent(0.6,0)
+			QUEE F 3 A_SetTranslucent(0.5,0)
+			QUEE F 3 A_SetTranslucent(0.4,0)
+			QUEE F 3 A_SetTranslucent(0.3,0)
+			QUEE F 3 A_SetTranslucent(0.2,0)
+			QUEE F 3 A_SetTranslucent(0.1,0)
+			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A -1
+			stop
+	}
+}
+
+ACTOR QueenAttackToken : CustomInventory { Inventory.MaxAmount 5 }
+
+ACTOR DukeTurd
+{
+	Height 2
+	Radius 2
+	+NOINTERACTION
+	States
+	{
+		Spawn:
+			TURD A -1
+			Stop
+	}
+}
+
+//Duke Projectiles
+
+ACTOR OctabrainProjectile {
+	Radius 16
+	Height 12
+	Speed 20
+	Damage (38)
+	Scale 0.5
+	Projectile
+	+FORCERADIUSDMG
+	Obituary "%o was brainshocked by an Octabrain"
+	Decal Scorch
+	States {
+		Spawn:
+			OCPR ABCDEFGHIJKLMNOPQRST 3
+			Goto Death
+		Death:
+			Stop
+	}
+}
+
+actor ACommanderRocket
+{
+	Radius 12
+	Height 8
+	Speed 30
+	Damage (80)
+	Projectile
+	Obituary "%o was blown to bits by an Assault Commander"
+	Scale 0.4
+	Decal Scorch
+	+FORCERADIUSDMG
+	
+	States
+	{
+		Spawn:
+			RPGX A 1 bright
+			loop
+		
+		Death:
+		TNT1 A 0 A_Explode(128, 128)
+		TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0, 0, ATTN_NONE)
+		TNT1 A 1 A_SpawnItemEx("RPGExplosion",0,0,0,0,0,0,0,160)
+		stop
+		
+	}
+}
+
+actor OverlordRocket : ACommanderRocket
+{
+	Obituary "%o was destroyed by the Overlord"
+}
+
+actor CyEmperorRocket : ACommanderRocket
+{
+	Obituary "The Cycloid Emperor's rockets took care of %o"
+}
+	

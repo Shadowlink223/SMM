@@ -1,0 +1,738 @@
+//==============================================================================
+// DOOM
+//==============================================================================
+
+ACTOR ZombiemanReplacer : RandomSpawner replaces Zombieman {
+	dropitem "Zombieman3" 255 2
+	dropitem "Mummy3" 255 2
+	dropitem "Ettin2" 255 2
+	dropitem "FlemoidusCommonus3" 255 2
+	dropitem "WolfGuard" 255 2
+}
+
+ACTOR ShotGunGuyReplacer : RandomSpawner replaces ShotGunGuy {
+	dropitem "ShotGunGuy3" 255 2
+	dropitem "MummyLeader3" 255 2
+	//dropitem "Serpent2" 255 2
+	dropitem "FlemoidusBipedicus3" 255 2
+	dropitem "WolfOfficer" 255 2
+	dropitem "PigCop" 255 2
+}
+
+ACTOR DoomImpReplacer : RandomSpawner replaces DoomImp {
+	dropitem "DoomImp3" 255 2
+	dropitem "HereticImp3" 255 2
+	dropitem "Bishop2" 255 2
+	dropitem "ArmoredFlemoidusBipedicus2" 255 2
+	dropitem "WolfGuard" 255 2
+}
+
+ACTOR ChaingunGuyReplacer : RandomSpawner replaces ChaingunGuy {
+	dropitem "ChaingunGuy3" 255 2
+	dropitem "HereticImp3" 255 2
+	//dropitem "SerpentLeader2" 255 2
+	dropitem "ArmoredFlemoidusBipedicus2" 255 2
+	dropitem "WolfSS" 255 2
+	dropitem "AssaultEnforcer" 255 2
+}
+
+ACTOR DemonReplacer : RandomSpawner replaces Demon {
+	dropitem "DoomDemon3" 255 2
+	dropitem "Knight3" 255 2
+	dropitem "Centaur2" 255 2
+	dropitem "FlemoidusStridicus2" 255 2
+	dropitem "WolfDog" 255 2
+}
+
+ACTOR SpectreReplacer : RandomSpawner replaces Spectre {
+	dropitem "Spectre3" 255 6
+	dropitem "KnightGhost3" 255 2
+	dropitem "MummyGhost3" 255 2
+	dropitem "MummyLeaderGhost3" 255 2
+	dropitem "CentaurLeader2" 255 6
+	dropitem "FlemoidusCycloptisCommonus2" 255 3
+	dropitem "Larva2" 255 3
+	dropitem "WolfDog" 255 6
+}
+
+ACTOR HellKnightReplacer : RandomSpawner replaces HellKnight {
+	dropitem "HellKnight3" 255 2
+	dropitem "Clink3" 255 2
+	dropitem "Demon1B" 255 2
+	dropitem "Quadrumpus2" 255 2
+	dropitem "WolfMutant" 255 2
+}
+
+ACTOR BaronOfHellReplacer : RandomSpawner replaces BaronOfHell {
+	dropitem "BaronOfHell3" 255 3
+	dropitem "Beast3" 255 3
+	dropitem "Demon2B" 255 3
+	//dropitem "FlemoidusMaximus2" 255 3
+	dropitem "HansGrosse" 255 1
+	dropitem "GretelGrosse" 255 1
+	dropitem "TransGrosse" 255 1
+	dropitem "MiniBattlelord" 255 1
+}
+
+ACTOR ArachnotronReplacer : RandomSpawner replaces Arachnotron {
+	dropitem "Arachnotron3" 255 2
+	dropitem "Clink3" 255 2
+	dropitem "CentaurLeader2" 255 2
+	dropitem "Flembrane2" 255 2
+	dropitem "OttoGiftmacher" 255 2
+}
+
+ACTOR FatsoReplacer : RandomSpawner replaces Fatso {
+	dropitem "Fatso3" 255 2
+	dropitem "Beast3" 255 2
+	dropitem "IceGuy2" 255 2
+	dropitem "Flembrane2" 255 2
+	dropitem "OttoGiftmacher" 255 2
+}
+
+ACTOR LostSoulReplacer : RandomSpawner replaces LostSoul {
+	dropitem "LostSoul2" 255 2
+	dropitem "HereticImpLeader3" 255 2
+	dropitem "FireDemon2" 255 2
+	dropitem "FlemMine2" 255 2
+}
+
+ACTOR PainElementalReplacer : RandomSpawner replaces PainElemental {
+	dropitem "PainElemental3" 255 2
+	dropitem "IronLich3" 255 2
+	dropitem "WraithBuried2" 255 2
+	dropitem "SuperCycloptis2" 255 2
+	dropitem "FakeHitler" 255 2
+	dropitem "AssaultCommander" 255 2
+}
+
+ACTOR CacodemonReplacer : RandomSpawner replaces Cacodemon {
+	dropitem "Cacodemon3" 255 2
+	dropitem "Wizard3" 255 2
+	dropitem "Wraith2" 255 2
+	dropitem "SuperCycloptis2" 255 2
+	dropitem "FakeHitler" 255 2
+	dropitem "AssaultCommander" 255 2
+}
+
+ACTOR RevenantReplacer : RandomSpawner replaces Revenant {
+	dropitem "Revenant3" 255 2
+	dropitem "Snake3" 255 2
+	dropitem "FireDemon2" 255 2
+	dropitem "Quadrumpus2" 255 2
+	dropitem "WolfMutant" 255 2
+}
+
+ACTOR ArchvileReplacer : RandomSpawner replaces Archvile {
+	dropitem "Archvile3" 255 2
+	dropitem "Ironlich3" 255 2
+	dropitem "WraithBuried2" 255 2
+	dropitem "FlemoidusMaximus2" 255 2
+}
+
+ACTOR CyberDemonReplacer : RandomSpawner replaces CyberDemon {
+	dropitem "CyberDemon3" 255 6
+	dropitem "Minotaur3" 255 6
+	dropitem "Heresiarch2" 255 6
+	dropitem "Snotfolus2" 255 6
+	dropitem "ClericBoss2" 255 2
+	dropitem "MageBoss2" 255 2
+	dropitem "FighterBoss2" 255 2
+	dropitem "DoctorSchabbs" 255 2
+	dropitem "AngelOfDeath" 255 2
+	dropitem "Overlord" 255 2
+	dropitem "CycloidEmperor" 255 2
+}
+
+ACTOR SpiderMastermindReplacer : RandomSpawner replaces SpiderMastermind {
+	dropitem "SpiderMastermind3" 255 12
+	dropitem "Sorcerer5" 255 12
+	dropitem "Korax3" 255 12
+	dropitem "Flembomination2" 255 12
+	dropitem "ClericBoss2" 255 4
+	dropitem "MageBoss2" 255 4
+	dropitem "FighterBoss2" 255 4
+	dropitem "GeneralFettgesicht" 255 3
+	dropitem "BarnacleWilhelm" 255 3
+	dropitem "MechaHitler" 255 2
+	dropitem "Ubermutant" 255 3
+	dropitem "DeathKnight" 255 3
+	dropitem "Battlelord" 255 3
+}
+
+ACTOR WolfensteinSSReplacer : RandomSpawner replaces WolfensteinSS {
+	dropitem "WolfSS" 255 2
+	dropitem "Chicken2" 255 2
+	dropitem "Pig2" 255 2
+	dropitem "FlemMine2" 255 2
+}
+
+//Invasion
+
+ACTOR NewImpSpot : CustomMonsterInvasionSpot replaces ImpSpot
+{
+	dropitem "DoomImp3" 255 2
+	dropitem "HereticImp3" 255 2
+	dropitem "Bishop2" 255 2
+	dropitem "ArmoredFlemoidusBipedicus2" 255 2
+	dropitem "WolfGuard" 255 2
+}
+
+ACTOR NewDemonSpot : CustomMonsterInvasionSpot replaces DemonSpot
+{
+	dropitem "DoomDemon3" 255 2
+	dropitem "Knight3" 255 2
+	dropitem "Centaur2" 255 2
+	dropitem "FlemoidusStridicus2" 255 2
+	dropitem "WolfDog" 255 2
+}
+
+ACTOR NewSpectreSpot : CustomMonsterInvasionSpot replaces SpectreSpot
+{
+	dropitem "Spectre3" 255 6
+	dropitem "KnightGhost3" 255 2
+	dropitem "MummyGhost3" 255 2
+	dropitem "MummyLeaderGhost3" 255 2
+	dropitem "CentaurLeader2" 255 6
+	dropitem "FlemoidusCycloptisCommonus2" 255 3
+	dropitem "Larva2" 255 3
+	dropitem "WolfDog" 255 6
+}
+
+ACTOR NewZombieManSpot : CustomMonsterInvasionSpot replaces ZombieManSpot
+{
+	dropitem "Zombieman3" 255 2
+	dropitem "Mummy3" 255 2
+	dropitem "Ettin2" 255 2
+	dropitem "FlemoidusCommonus3" 255 2
+	dropitem "WolfGuard" 255 2
+}
+
+ACTOR NewShotgunGuySpot : CustomMonsterInvasionSpot replaces ShotgunGuySpot
+{
+	dropitem "ShotGunGuy3" 255 2
+	dropitem "MummyLeader3" 255 2
+	//dropitem "Serpent2" 255 2
+	dropitem "FlemoidusBipedicus3" 255 2
+	dropitem "WolfOfficer" 255 2
+	dropitem "PigCop"
+}
+
+ACTOR NewChaingunGuySpot : CustomMonsterInvasionSpot replaces ChaingunGuySpot
+{
+	dropitem "ChaingunGuy3" 255 2
+	dropitem "HereticImp3" 255 2
+	//dropitem "SerpentLeader2" 255 2
+	dropitem "ArmoredFlemoidusBipedicus2" 255 2
+	dropitem "WolfSS" 255 2
+	dropitem "AssaultEnforcer" 255 2
+}
+
+ACTOR NewCacodemonSpot : CustomMonsterInvasionSpot replaces CacodemonSpot
+{
+	dropitem "Cacodemon3" 255 2
+	dropitem "Wizard3" 255 2
+	dropitem "Wraith2" 255 2
+	dropitem "SuperCycloptis2" 255 2
+	dropitem "FakeHitler" 255 2
+	dropitem "AssaultCommander" 255 2
+}
+
+ACTOR NewRevenantSpot : CustomMonsterInvasionSpot replaces RevenantSpot
+{
+	dropitem "Revenant3" 255 2
+	dropitem "Snake3" 255 2
+	dropitem "FireDemon2" 255 2
+	dropitem "Quadrumpus2" 255 2
+	dropitem "WolfMutant" 255 2
+	dropitem "AssaultCommander" 255 2
+}
+
+ACTOR NewFatsoSpot : CustomMonsterInvasionSpot replaces FatsoSpot
+{
+	dropitem "Fatso3" 255 2
+	dropitem "Beast3" 255 2
+	dropitem "IceGuy2" 255 2
+	//dropitem "Flembrane2" 255 2
+	dropitem "OttoGiftmacher" 255 2
+}
+
+ACTOR NewArachnotronSpot : CustomMonsterInvasionSpot replaces ArachnotronSpot
+{
+	dropitem "Arachnotron3" 255 2
+	dropitem "Clink3" 255 2
+	dropitem "CentaurLeader2" 255 2
+	//dropitem "Flembrane2" 255 2
+	dropitem "OttoGiftmacher" 255 2
+}
+
+ACTOR NewHellKnightSpot : CustomMonsterInvasionSpot replaces HellKnightSpot
+{
+	dropitem "HellKnight3" 255 2
+	dropitem "Clink3" 255 2
+	dropitem "Demon1B" 255 2
+	dropitem "Quadrumpus2" 255 2
+	dropitem "WolfMutant" 255 2
+}
+
+ACTOR NewBaronOfHellSpot : CustomMonsterInvasionSpot replaces BaronOfHellSpot
+{
+	dropitem "BaronOfHell3" 255 3
+	dropitem "Beast3" 255 3
+	dropitem "Demon2B" 255 3
+	//dropitem "FlemoidusMaximus2" 255 3
+	dropitem "HansGrosse" 255 1
+	dropitem "GretelGrosse" 255 1
+	dropitem "TransGrosse" 255 1
+	dropitem "MiniBattlelord" 255 1
+}
+
+ACTOR NewLostSoulSpot : CustomMonsterInvasionSpot replaces LostSoulSpot
+{
+	dropitem "LostSoul2" 255 2
+	dropitem "HereticImpLeader3" 255 2
+	dropitem "FireDemon2" 255 2
+	dropitem "FlemMine2" 255 2
+}
+
+ACTOR NewPainElementalSpot : CustomMonsterInvasionSpot replaces PainElementalSpot
+{
+	dropitem "PainElemental3" 255 2
+	dropitem "IronLich3" 255 2
+	dropitem "WraithBuried2" 255 2
+	dropitem "SuperCycloptis2" 255 2
+	dropitem "FakeHitler" 255 2
+}
+
+ACTOR NewCyberdemonSpot : CustomMonsterInvasionSpot replaces CyberdemonSpot
+{
+	dropitem "CyberDemon3" 255 6
+	dropitem "Minotaur3" 255 6
+	dropitem "Heresiarch2" 255 6
+	dropitem "Snotfolus2" 255 6
+	dropitem "ClericBoss2" 255 2
+	dropitem "MageBoss2" 255 2
+	dropitem "FighterBoss2" 255 2
+	dropitem "DoctorSchabbs" 255 2
+	dropitem "AngelOfDeath" 255 2
+	dropitem "DevilIncarnate" 255 1
+	dropitem "Overlord" 255 6
+	dropitem "CycloidEmperor" 255 6
+}
+
+ACTOR NewSpiderMastermindSpot : CustomMonsterInvasionSpot replaces SpiderMastermindSpot
+{
+	dropitem "SpiderMastermind3" 255 24
+	dropitem "Sorcerer5" 255 24
+	dropitem "Korax3" 255 12
+	dropitem "Flembomination2" 255 24
+	dropitem "ClericBoss2" 255 8
+	dropitem "MageBoss2" 255 8
+	dropitem "FighterBoss2" 255 8
+	dropitem "GeneralFettgesicht" 255 6
+	dropitem "BarnacleWilhelm" 255 6
+	dropitem "Ubermutant" 255 6
+	dropitem "DeathKnight" 255 6
+	dropitem "MechaHitler" 255 6
+	dropitem "Robot" 255 1
+	dropitem "Battlelord" 255 6
+}
+
+ACTOR NewArchvileSpot : CustomMonsterInvasionSpot replaces ArchvileSpot
+{
+	dropitem "Archvile3" 255 2
+	dropitem "Ironlich3" 255 2
+	dropitem "WraithBuried2" 255 2
+	dropitem "FlemoidusMaximus2" 255 2
+}
+
+ACTOR NewWolfensteinSSSpot : CustomMonsterInvasionSpot replaces WolfensteinSSSpot
+{
+	dropitem "WolfSS" 255 2
+	dropitem "Chicken2" 255 2
+	dropitem "Pig2" 255 2
+	dropitem "FlemMine2" 255 2
+}
+
+//Skulltag
+
+ACTOR NewDarkImpSpot : CustomMonsterInvasionSpot replaces DarkImpSpot
+{
+	dropitem "DarkImp" 255 2
+	dropitem "SODGuard" 255 2
+}
+
+ACTOR NewBloodDemonSpot : CustomMonsterInvasionSpot replaces BloodDemonSpot
+{
+	dropitem "BloodDemon" 255 2
+	dropitem "SODDog" 255 2
+}
+
+ACTOR NewSuperShotgunGuySpot : CustomMonsterInvasionSpot replaces SuperShotgunGuySpot
+{
+	dropitem "SuperShotGunGuy" 255 2
+	dropitem "SODOfficer" 255 2
+}
+ACTOR NewCacolanternSpot : CustomMonsterInvasionSpot replaces CacolanternSpot
+{
+	dropitem "Cacolantern" 255 19
+	dropitem "SODBat" 255 1
+}
+
+ACTOR NewAbaddonSpot : CustomMonsterInvasionSpot replaces AbaddonSpot
+{
+	dropitem "Abaddon" 255 19
+	dropitem "SODBat" 255 1
+}
+
+ACTOR NewHectebusSpot : CustomMonsterInvasionSpot replaces HectebusSpot
+{
+	dropitem "Hectebus" 255 199
+	dropitem "ProfessorQuarkblitz" 255 1
+}
+
+ACTOR NewBelphegorSpot : CustomMonsterInvasionSpot replaces BelphegorSpot
+{
+	dropitem "Belphegor" 255 199
+	dropitem "SubmarineWilly" 255 1
+}
+
+//==============================================================================
+// HERETIC
+//==============================================================================
+
+ACTOR HereticImpReplacer : RandomSpawner replaces HereticImp {
+	dropitem "LostSoul2" 255 1
+	dropitem "HereticImp3" 255 1
+	dropitem "Bishop2" 255 1
+	dropitem "FlemMine2" 255 1
+}
+
+ACTOR HereticImpLeaderReplacer : RandomSpawner replaces HereticImpLeader {
+	dropitem "LostSoul2" 255 1
+	dropitem "HereticImpLeader3" 255 1
+	dropitem "FireDemon2" 255 1
+	dropitem "FlemMine2" 255 1
+}
+
+ACTOR WizardReplacer : RandomSpawner replaces Wizard {
+	dropitem "Cacodemon3" 255 2
+	dropitem "Wizard3" 255 2
+	dropitem "Wraith2" 255 2
+	dropitem "SuperCycloptis2" 255 2
+	dropitem "FakeHitler" 255 2
+}
+
+ACTOR MummyReplacer : RandomSpawner replaces Mummy {
+	dropitem "Zombieman3" 255 2
+	dropitem "DoomImp3" 255 2
+	dropitem "Mummy3" 255 2
+	dropitem "Ettin2" 255 2
+	dropitem "FlemoidusCommonus3" 255 2
+	dropitem "WolfGuard" 255 2
+}
+
+ACTOR MummyGhostReplacer : RandomSpawner replaces MummyGhost {
+	dropitem "Spectre3" 255 6
+	dropitem "KnightGhost3" 255 2
+	dropitem "MummyGhost3" 255 2
+	dropitem "CentaurLeader2" 255 6
+	dropitem "FlemoidusCycloptisCommonus2" 255 3
+	dropitem "Larva2" 255 3
+	dropitem "WolfDog" 255 6
+}
+
+ACTOR MummyLeaderReplacer : RandomSpawner replaces MummyLeader {
+	dropitem "ShotGunGuy3" 255 2
+	dropitem "MummyLeader3" 255 2
+	dropitem "Serpent2" 255 2
+	dropitem "FlemoidusBipedicus3" 255 2
+	dropitem "WolfOfficer" 255 2
+}
+
+ACTOR MummyLeaderGhostReplacer : RandomSpawner replaces MummyLeaderGhost {
+	dropitem "ChaingunGuy3" 255 2
+	dropitem "MummyLeaderGhost3" 255 2
+	dropitem "SerpentLeader2" 255 2
+	dropitem "ArmoredFlemoidusBipedicus2" 255 2
+	dropitem "WolfSS" 255 2
+}
+
+ACTOR KnightReplacer : RandomSpawner replaces Knight {
+	dropitem "DoomDemon3" 255 2
+	dropitem "Knight3" 255 2
+	dropitem "Centaur2" 255 2
+	dropitem "FlemoidusStridicus2" 255 2
+	dropitem "WolfDog" 255 2
+}
+
+ACTOR KnightGhostReplacer : RandomSpawner replaces KnightGhost {
+	dropitem "Spectre3" 255 6
+	dropitem "KnightGhost3" 255 2
+	dropitem "CentaurLeader2" 255 6
+	dropitem "FlemoidusCycloptisCommonus2" 255 3
+	dropitem "Larva2" 255 3
+	dropitem "WolfDog" 255 6
+}
+
+ACTOR IronlichReplacer : RandomSpawner replaces Ironlich {
+	dropitem "PainElemental3" 255 2
+	dropitem "Archvile3" 255 2
+	dropitem "IronLich3" 255 2
+	dropitem "WraithBuried2" 255 2
+	dropitem "SuperCycloptis2" 255 2
+	dropitem "FakeHitler" 255 2
+}
+
+ACTOR ClinkReplacer : RandomSpawner replaces Clink {
+	dropitem "HellKnight3" 255 2
+	dropitem "Clink3" 255 2
+	dropitem "Demon1B" 255 2
+	dropitem "Quadrumpus2" 255 2
+	dropitem "WolfMutant" 255 2
+}
+
+ACTOR BeastReplacer : RandomSpawner replaces Beast {
+	dropitem "BaronOfHell3" 255 4
+	dropitem "Arachnotron3" 255 4
+	dropitem "Fatso3" 255 4
+	dropitem "Beast3" 255 6
+	dropitem "Clink3" 255 6
+	dropitem "Demon2B" 255 4
+	dropitem "CentaurLeader2" 255 4
+	dropitem "IceGuy2" 255 4
+	dropitem "FlemoidusMaximus2" 255 6
+	dropitem "Flembrane2" 255 6
+	dropitem "HansGrosse" 255 3
+	dropitem "GretelGrosse" 255 3
+	dropitem "TransGrosse" 255 3
+	dropitem "OttoGiftmacher" 255 3
+}
+
+ACTOR SnakeReplacer : RandomSpawner replaces Snake {
+	dropitem "Revenant3" 255 2
+	dropitem "Snake3" 255 2
+	dropitem "FireDemon2" 255 2
+	dropitem "Quadrumpus2" 255 2
+	dropitem "WolfMutant" 255 2
+}
+
+ACTOR MinotaurReplacer : RandomSpawner replaces Minotaur  {
+	dropitem "CyberDemon3" 255 6
+	dropitem "Minotaur3" 255 6
+	dropitem "Heresiarch2" 255 6
+	dropitem "Snotfolus2" 255 6
+	dropitem "ClericBoss2" 255 2
+	dropitem "MageBoss2" 255 2
+	dropitem "FighterBoss2" 255 2
+	dropitem "MechaHitler" 255 2
+	dropitem "DoctorSchabbs" 255 2
+	dropitem "AngelOfDeath" 255 2
+}
+
+ACTOR Sorcerer1Replacer : RandomSpawner replaces Sorcerer1 {
+	dropitem "SpiderMastermind3" 255 12
+	dropitem "Sorcerer5" 255 12
+	dropitem "Korax3" 255 12
+	dropitem "Flembomination2" 255 12
+	dropitem "ClericBoss2" 255 4
+	dropitem "MageBoss2" 255 4
+	dropitem "FighterBoss2" 255 4
+	dropitem "GeneralFettgesicht" 255 3
+	dropitem "BarnacleWilhelm" 255 3
+	dropitem "Ubermutant" 255 3
+	dropitem "DeathKnight" 255 3
+}
+
+ACTOR ChickenReplacer : RandomSpawner replaces Chicken {
+	dropitem "WolfSS" 255 2
+	dropitem "Chicken2" 255 2
+	dropitem "Pig2" 255 2
+	dropitem "FlemMine2" 255 2
+}
+
+//==============================================================================
+// HEXEN
+//==============================================================================
+
+ACTOR BishopReplacer : RandomSpawner replaces Bishop {
+	dropitem "DoomImp3" 255 2
+	dropitem "HereticImp3" 255 2
+	dropitem "Bishop2" 255 2
+	dropitem "ArmoredFlemoidusBipedicus2" 255 2
+	dropitem "WolfGuard" 255 2
+}
+
+ACTOR CentaurReplacer : RandomSpawner replaces Centaur {
+	dropitem "DoomDemon3" 255 2
+	dropitem "Knight3" 255 2
+	dropitem "Centaur2" 255 2
+	dropitem "FlemoidusStridicus2" 255 2
+	dropitem "WolfDog" 255 2
+}
+
+ACTOR CentaurLeaderReplacer : RandomSpawner replaces CentaurLeader {
+	dropitem "Spectre3" 255 6
+	dropitem "KnightGhost3" 255 2
+	dropitem "MummyGhost3" 255 2
+	dropitem "MummyLeaderGhost3" 255 2
+	dropitem "CentaurLeader2" 255 6
+	dropitem "FlemoidusCycloptisCommonus2" 255 3
+	dropitem "Larva2" 255 3
+	dropitem "WolfDog" 255 6
+}
+
+ACTOR Demon1Replacer : RandomSpawner replaces Demon1 {
+	dropitem "HellKnight3" 255 2
+	dropitem "Revenant3" 255 2
+	dropitem "Snake3" 255 2
+	dropitem "Clink3" 255 2
+	dropitem "Demon1B" 255 2
+	dropitem "Quadrumpus2" 255 2
+	dropitem "WolfMutant" 255 2
+}
+
+ACTOR Demon2Replacer : RandomSpawner replaces Demon2 {
+	dropitem "BaronOfHell3" 255 3
+	dropitem "Revenant3" 255 2
+	dropitem "Snake3" 255 2
+	dropitem "Beast3" 255 3
+	dropitem "Demon2B" 255 3
+	dropitem "FlemoidusMaximus2" 255 3
+	dropitem "HansGrosse" 255 1
+	dropitem "GretelGrosse" 255 1
+	dropitem "TransGrosse" 255 1
+}
+
+ACTOR EttinReplacer : RandomSpawner replaces Ettin {
+	dropitem "Zombieman3" 255 2
+	dropitem "Mummy3" 255 2
+	dropitem "Ettin2" 255 2
+	dropitem "FlemoidusCommonus3" 255 2
+	dropitem "WolfGuard" 255 2
+}
+
+ACTOR FireDemonReplacer : RandomSpawner replaces FireDemon {
+	dropitem "LostSoul2" 255 2
+	dropitem "HereticImpLeader3" 255 2
+	dropitem "FireDemon2" 255 2
+	dropitem "FlemMine2" 255 2
+}
+
+ACTOR IceGuyReplacer : RandomSpawner replaces IceGuy {
+	dropitem "Fatso3" 255 2
+	dropitem "Beast3" 255 2
+	dropitem "IceGuy2" 255 2
+	dropitem "Flembrane2" 255 2
+	dropitem "OttoGiftmacher" 255 2
+}
+
+ACTOR SerpentReplacer : RandomSpawner replaces Serpent {
+	dropitem "ShotGunGuy3" 255 2
+	dropitem "MummyLeader3" 255 2
+	dropitem "Serpent2" 255 2
+	dropitem "FlemoidusBipedicus3" 255 2
+	dropitem "WolfOfficer" 255 2
+}
+
+ACTOR SerpentLeaderReplacer : RandomSpawner replaces SerpentLeader {
+	dropitem "ChaingunGuy3" 255 2
+	dropitem "HereticImp3" 255 2
+	dropitem "SerpentLeader2" 255 2
+	dropitem "ArmoredFlemoidusBipedicus2" 255 2
+	dropitem "WolfSS" 255 2
+}
+
+ACTOR WraithReplacer : RandomSpawner replaces Wraith {
+	dropitem "Cacodemon3" 255 2
+	dropitem "PainElemental3" 255 2
+	dropitem "Wizard3" 255 2
+	dropitem "Wraith2" 255 2
+	dropitem "SuperCycloptis2" 255 2
+	dropitem "FakeHitler" 255 2
+}
+
+ACTOR WraithBuriedReplacer : RandomSpawner replaces WraithBuried {
+	dropitem "Cacodemon3" 255 2
+	dropitem "PainElemental3" 255 2
+	dropitem "Archvile3" 255 2
+	dropitem "Wizard3" 255 2
+	dropitem "Ironlich3" 255 2
+	dropitem "WraithBuried2" 255 2
+	dropitem "FlemoidusMaximus2" 255 2
+	dropitem "SuperCycloptis2" 255 2
+	dropitem "FakeHitler" 255 2
+}
+
+ACTOR ClericBossReplacer : RandomSpawner replaces ClericBoss {
+	dropitem "CyberDemon3" 255 6
+	dropitem "Minotaur3" 255 6
+	dropitem "Heresiarch2" 255 6
+	dropitem "Snotfolus2" 255 6
+	dropitem "ClericBoss2" 255 2
+	dropitem "MageBoss2" 255 2
+	dropitem "FighterBoss2" 255 2
+	dropitem "MechaHitler" 255 2
+	dropitem "DoctorSchabbs" 255 2
+	dropitem "AngelOfDeath" 255 2
+}
+
+ACTOR FighterBossReplacer : RandomSpawner replaces FighterBoss {
+	dropitem "CyberDemon3" 255 6
+	dropitem "Minotaur3" 255 6
+	dropitem "Heresiarch2" 255 6
+	dropitem "Snotfolus2" 255 6
+	dropitem "ClericBoss2" 255 2
+	dropitem "MageBoss2" 255 2
+	dropitem "FighterBoss2" 255 2
+	dropitem "MechaHitler" 255 2
+	dropitem "DoctorSchabbs" 255 2
+	dropitem "AngelOfDeath" 255 2
+}
+
+ACTOR MageBossReplacer : RandomSpawner replaces MageBoss {
+	dropitem "CyberDemon3" 255 6
+	dropitem "Minotaur3" 255 6
+	dropitem "Heresiarch2" 255 6
+	dropitem "Snotfolus2" 255 6
+	dropitem "ClericBoss2" 255 2
+	dropitem "MageBoss2" 255 2
+	dropitem "FighterBoss2" 255 2
+	dropitem "MechaHitler" 255 2
+	dropitem "DoctorSchabbs" 255 2
+	dropitem "AngelOfDeath" 255 2
+}
+
+ACTOR HeresiarchReplacer : RandomSpawner replaces Heresiarch {
+	dropitem "CyberDemon3" 255 6
+	dropitem "Minotaur3" 255 6
+	dropitem "Heresiarch2" 255 6
+	dropitem "Snotfolus2" 255 6
+	dropitem "ClericBoss2" 255 2
+	dropitem "MageBoss2" 255 2
+	dropitem "FighterBoss2" 255 2
+	dropitem "MechaHitler" 255 2
+	dropitem "DoctorSchabbs" 255 2
+	dropitem "AngelOfDeath" 255 2
+}
+
+ACTOR KoraxReplacer : RandomSpawner replaces Korax {
+	dropitem "SpiderMastermind3" 255 12
+	dropitem "Sorcerer5" 255 12
+	dropitem "Korax3" 255 12
+	dropitem "Flembomination2" 255 12
+	dropitem "ClericBoss2" 255 4
+	dropitem "MageBoss2" 255 4
+	dropitem "FighterBoss2" 255 4
+	dropitem "GeneralFettgesicht" 255 3
+	dropitem "BarnacleWilhelm" 255 3
+	dropitem "Ubermutant" 255 3
+	dropitem "DeathKnight" 255 3
+}
+
+ACTOR PigReplacer : RandomSpawner replaces Pig {
+	dropitem "WolfSS" 255 2
+	dropitem "Chicken2" 255 2
+	dropitem "Pig2" 255 2
+	dropitem "FlemMine2" 255 2
+}
