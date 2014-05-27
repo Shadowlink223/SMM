@@ -375,25 +375,25 @@ ACTOR NewSuperShotgunGuySpot : CustomMonsterInvasionSpot replaces SuperShotgunGu
 }
 ACTOR NewCacolanternSpot : CustomMonsterInvasionSpot replaces CacolanternSpot
 {
-	dropitem "Cacolantern" 255 19
+	dropitem "Cacolantern" 255 199
 	dropitem "SODBat" 255 1
 }
 
 ACTOR NewAbaddonSpot : CustomMonsterInvasionSpot replaces AbaddonSpot
 {
-	dropitem "Abaddon" 255 19
+	dropitem "Abaddon" 255 199
 	dropitem "SODBat" 255 1
 }
 
 ACTOR NewHectebusSpot : CustomMonsterInvasionSpot replaces HectebusSpot
 {
-	dropitem "Hectebus" 255 199
+	dropitem "Hectebus" 255 19999
 	dropitem "ProfessorQuarkblitz" 255 1
 }
 
 ACTOR NewBelphegorSpot : CustomMonsterInvasionSpot replaces BelphegorSpot
 {
-	dropitem "Belphegor" 255 199
+	dropitem "Belphegor" 255 19999
 	dropitem "SubmarineWilly" 255 1
 }
 
