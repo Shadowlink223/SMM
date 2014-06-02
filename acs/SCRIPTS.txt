@@ -1,0 +1,39 @@
+#library "SMMACS"
+#include "zcommon.acs"
+
+Script 205 OPEN 
+{
+
+	if (!GetCVar("smm_doom"))
+	{ConsoleCommand("set smm_doom 1");
+	Consolecommand ("archivecvar smm_doom");}
+	
+	if (!GetCVar("smm_heretic"))
+	{ConsoleCommand("set smm_heretic 1");
+	Consolecommand ("archivecvar smm_heretic");}
+	
+	if (!GetCVar("smm_hexen"))
+	{ConsoleCommand("set smm_hexen 1");
+	Consolecommand ("archivecvar smm_hexen");}
+	
+	if (!GetCVar("smm_chex"))
+	{ConsoleCommand("set smm_chex 1");
+	Consolecommand ("archivecvar smm_chex");}
+	
+	if (!GetCVar("smm_wolf3d"))
+	{ConsoleCommand("set smm_wolf3d 1");
+	Consolecommand ("archivecvar smm_wolf3d");}
+	
+	if (!GetCVar("smm_duke3d"))
+	{ConsoleCommand("set smm_duke3d 0");
+	Consolecommand ("archivecvar smm_duke3d");}
+	
+	if (!GetCVar("smm_marathon"))
+	{ConsoleCommand("set smm_marathon 0");
+	Consolecommand ("archivecvar smm_marathon");}
+	
+	if (!GetCVar("smm_quake"))
+	{ConsoleCommand("set smm_quake 0");
+	Consolecommand ("archivecvar smm_quake");}
+	
+}

@@ -892,3 +892,11 @@ queen/roam				bqroam2a
 queen/birth				bqegg1a
 queen/pain				bqpain2a
 queen/death				bqdie1a
+
+$random prodrone/attack { prodrone/attack1 prodrone/attack2 }
+prodrone/attack1		blrip1a
+prodrone/attack2		blrip2a
+prodrone/roam			blroam2a
+prodrone/spit			blspit1a
+prodrone/death			bldie3a
+prodrone/pain			blpain1b

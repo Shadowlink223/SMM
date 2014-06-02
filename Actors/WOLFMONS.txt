@@ -29,13 +29,40 @@ ACTOR WolfGuard {
 			WGRD BBCCDDEE 2 A_Chase
 			Loop
 		Missile:
-			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
-			WGRD G 10 A_FaceTarget
-			WGRD H 10 A_FaceTarget
+			TNT1 A 0 A_ChangeFlag(NOPAIN,0)
+			WGRD GH 10 A_FaceTarget
 			WGRD I 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
-			WGRD I 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-10,10),8)
+			TNT1 A 0 A_JumpIfCloser (256, "Bullet1")
+			TNT1 A 0 A_JumpIfCloser (512, "Bullet2")
+			TNT1 A 0 A_JumpIfCloser (768, "Bullet3")
+			TNT1 A 0 A_JumpIfCloser (1024, "Bullet4")
+			TNT1 A 0 A_JumpIfCloser (1280, "Bullet5")
+			TNT1 A 0 A_JumpIfCloser (1536, "Bullet6")
+			Goto Bullet7
+		Bullet1:
+			WGRD I 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-10,10),8)
+			Goto MissileEnd
+		Bullet2:
+			WGRD I 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-12,12),8)
+			Goto MissileEnd
+		Bullet3:
+			WGRD I 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-14,14),8)
+			Goto MissileEnd
+		Bullet4:
+			WGRD I 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-16,16),8)
+			Goto MissileEnd
+		Bullet5:
+			WGRD I 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-18,18),8)
+			Goto MissileEnd
+		Bullet6:
+			WGRD I 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-20,20),8)
+			Goto MissileEnd
+		Bullet7:
+			WGRD I 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-22,22),8)
+			Goto MissileEnd
+		MissileEnd:
 			WGRD H 10
-			WGRD G 10 A_CPosRefire
+			WGRD G 10
 			Goto See
 		Pain:
 			WGRD F 3
@@ -178,19 +205,107 @@ ACTOR WolfSS {
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			WSCH G 10 A_FaceTarget
 			WSCH H 10 A_FaceTarget
-			WSCH I 4 bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			TNT1 A 0 A_JumpIfCloser (256, "Bullet1")
+			TNT1 A 0 A_JumpIfCloser (512, "Bullet2")
+			TNT1 A 0 A_JumpIfCloser (768, "Bullet3")
+			TNT1 A 0 A_JumpIfCloser (1024, "Bullet4")
+			TNT1 A 0 A_JumpIfCloser (1280, "Bullet5")
+			TNT1 A 0 A_JumpIfCloser (1536, "Bullet6")
+			Goto Bullet7
+		Bullet1:
+			TNT1 A 0 A_PlaySound("ss/fire")
+			WSCH I 4 bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			WSCH H 4 A_FaceTarget
 			TNT1 A 0 A_PlaySound("ss/fire")
-			WSCH I 4 bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			WSCH I 4 bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			WSCH H 4 A_FaceTarget
 			TNT1 A 0 A_PlaySound("ss/fire")
-			WSCH I 4 bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			WSCH I 4 bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			WSCH H 4 A_FaceTarget
 			TNT1 A 0 A_PlaySound("ss/fire")
-			WSCH I 4 bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			WSCH I 4 bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
+			Goto MissileEnd
+		Bullet2:
 			TNT1 A 0 A_PlaySound("ss/fire")
-			WSCH H 1 A_CPosRefire
-			goto Missile+2
+			WSCH I 4 bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-9,9),8)
+			WSCH H 4 A_FaceTarget
+			TNT1 A 0 A_PlaySound("ss/fire")
+			WSCH I 4 bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-9,9),8)
+			WSCH H 4 A_FaceTarget
+			TNT1 A 0 A_PlaySound("ss/fire")
+			WSCH I 4 bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-9,9),8)
+			WSCH H 4 A_FaceTarget
+			TNT1 A 0 A_PlaySound("ss/fire")
+			WSCH I 4 bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-9,9),8)
+			Goto MissileEnd
+		Bullet3:
+			TNT1 A 0 A_PlaySound("ss/fire")
+			WSCH I 4 bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-11,11),8)
+			WSCH H 4 A_FaceTarget
+			TNT1 A 0 A_PlaySound("ss/fire")
+			WSCH I 4 bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-11,11),8)
+			WSCH H 4 A_FaceTarget
+			TNT1 A 0 A_PlaySound("ss/fire")
+			WSCH I 4 bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-11,11),8)
+			WSCH H 4 A_FaceTarget
+			TNT1 A 0 A_PlaySound("ss/fire")
+			WSCH I 4 bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-11,11),8)
+			Goto MissileEnd
+		Bullet4:
+			TNT1 A 0 A_PlaySound("ss/fire")
+			WSCH I 4 bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-13,13),8)
+			WSCH H 4 A_FaceTarget
+			TNT1 A 0 A_PlaySound("ss/fire")
+			WSCH I 4 bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-13,13),8)
+			WSCH H 4 A_FaceTarget
+			TNT1 A 0 A_PlaySound("ss/fire")
+			WSCH I 4 bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-13,13),8)
+			WSCH H 4 A_FaceTarget
+			TNT1 A 0 A_PlaySound("ss/fire")
+			WSCH I 4 bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-13,13),8)
+			Goto MissileEnd
+		Bullet5:
+			TNT1 A 0 A_PlaySound("ss/fire")
+			WSCH I 4 bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-15,15),8)
+			WSCH H 4 A_FaceTarget
+			TNT1 A 0 A_PlaySound("ss/fire")
+			WSCH I 4 bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-15,15),8)
+			WSCH H 4 A_FaceTarget
+			TNT1 A 0 A_PlaySound("ss/fire")
+			WSCH I 4 bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-15,15),8)
+			WSCH H 4 A_FaceTarget
+			TNT1 A 0 A_PlaySound("ss/fire")
+			WSCH I 4 bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-15,15),8)
+			Goto MissileEnd
+		Bullet6:
+			TNT1 A 0 A_PlaySound("ss/fire")
+			WSCH I 4 bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-17,17),8)
+			WSCH H 4 A_FaceTarget
+			TNT1 A 0 A_PlaySound("ss/fire")
+			WSCH I 4 bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-17,17),8)
+			WSCH H 4 A_FaceTarget
+			TNT1 A 0 A_PlaySound("ss/fire")
+			WSCH I 4 bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-17,17),8)
+			WSCH H 4 A_FaceTarget
+			TNT1 A 0 A_PlaySound("ss/fire")
+			WSCH I 4 bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-17,17),8)
+			Goto MissileEnd
+		Bullet7:
+			TNT1 A 0 A_PlaySound("ss/fire")
+			WSCH I 4 bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-19,19),8)
+			WSCH H 4 A_FaceTarget
+			TNT1 A 0 A_PlaySound("ss/fire")
+			WSCH I 4 bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-19,19),8)
+			WSCH H 4 A_FaceTarget
+			TNT1 A 0 A_PlaySound("ss/fire")
+			WSCH I 4 bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-19,19),8)
+			WSCH H 4 A_FaceTarget
+			TNT1 A 0 A_PlaySound("ss/fire")
+			WSCH I 4 bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-19,19),8)
+			Goto MissileEnd
+		MissileEnd:
+			WSCH G 10
+			goto See
 		Pain:
 			WSCH F 3
 			WSCH F 3 A_Pain
@@ -332,10 +447,44 @@ ACTOR WolfOfficer {
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			WOFF G 5 A_FaceTarget
 			WOFF H 5 A_FaceTarget
+			TNT1 A 0 A_JumpIfCloser (256, "Bullet1")
+			TNT1 A 0 A_JumpIfCloser (512, "Bullet2")
+			TNT1 A 0 A_JumpIfCloser (768, "Bullet3")
+			TNT1 A 0 A_JumpIfCloser (1024, "Bullet4")
+			TNT1 A 0 A_JumpIfCloser (1280, "Bullet5")
+			TNT1 A 0 A_JumpIfCloser (1536, "Bullet6")
+			Goto Bullet7
+		Bullet1:
 			WOFF I 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
-			WOFF I 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-10,10),8)
+			WOFF I 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-10,10),8)
+			Goto MissileEnd
+		Bullet2:
+			WOFF I 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WOFF I 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-12,12),8)
+			Goto MissileEnd
+		Bullet3:
+			WOFF I 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WOFF I 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-14,14),8)
+			Goto MissileEnd
+		Bullet4:
+			WOFF I 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WOFF I 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-16,16),8)
+			Goto MissileEnd
+		Bullet5:
+			WOFF I 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WOFF I 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-18,18),8)
+			Goto MissileEnd
+		Bullet6:
+			WOFF I 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WOFF I 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-20,20),8)
+			Goto MissileEnd
+		Bullet7:
+			WOFF I 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WOFF I 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-22,22),8)
+			Goto MissileEnd
+		MissileEnd:
 			WOFF H 5
-			WOFF G 5 A_CPosRefire
+			WOFF G 5
 			Goto See
 		Pain:
 			WOFF F 3
@@ -489,7 +638,7 @@ ACTOR WolfDog {
 		Melee:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			WDOG EF 6 A_FaceTarget
-			WDOG G 6 A_CustomMeleeAttack(random(1,15),"dog/bite")
+			WDOG G 6 A_CustomMeleeAttack(random(1,16),"dog/bite")
 			Goto See
 		Pain:
 			WDOG F 3
@@ -629,15 +778,67 @@ ACTOR WolfMutant {
 		Missile:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			WMUT G 10 A_FaceTarget
+			TNT1 A 0 A_JumpIfCloser (256, "Bullet1")
+			TNT1 A 0 A_JumpIfCloser (512, "Bullet2")
+			TNT1 A 0 A_JumpIfCloser (768, "Bullet3")
+			TNT1 A 0 A_JumpIfCloser (1024, "Bullet4")
+			TNT1 A 0 A_JumpIfCloser (1280, "Bullet5")
+			TNT1 A 0 A_JumpIfCloser (1536, "Bullet6")
+			Goto Bullet7
+		Bullet1:
 			TNT1 A 0 A_PlaySound("nazi/fire")
-			WMUT H 4 bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			WMUT H 4 bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			WMUT I 10 A_FaceTarget
 			TNT1 A 0 A_PlaySound("nazi/fire")
-			WMUT J 4 bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			WMUT J 4 bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
+			Goto MissileEnd
+		Bullet2:
+			TNT1 A 0 A_PlaySound("nazi/fire")
+			WMUT H 4 bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			WMUT I 10 A_FaceTarget
+			TNT1 A 0 A_PlaySound("nazi/fire")
+			WMUT J 4 bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			Goto MissileEnd
+		Bullet3:
+			TNT1 A 0 A_PlaySound("nazi/fire")
+			WMUT H 4 bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			WMUT I 10 A_FaceTarget
+			TNT1 A 0 A_PlaySound("nazi/fire")
+			WMUT J 4 bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			Goto MissileEnd
+		Bullet4:
+			TNT1 A 0 A_PlaySound("nazi/fire")
+			WMUT H 4 bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			WMUT I 10 A_FaceTarget
+			TNT1 A 0 A_PlaySound("nazi/fire")
+			WMUT J 4 bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			Goto MissileEnd
+		Bullet5:
+			TNT1 A 0 A_PlaySound("nazi/fire")
+			WMUT H 4 bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			WMUT I 10 A_FaceTarget
+			TNT1 A 0 A_PlaySound("nazi/fire")
+			WMUT J 4 bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			Goto MissileEnd
+		Bullet6:
+			TNT1 A 0 A_PlaySound("nazi/fire")
+			WMUT H 4 bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			WMUT I 10 A_FaceTarget
+			TNT1 A 0 A_PlaySound("nazi/fire")
+			WMUT J 4 bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			Goto MissileEnd
+		Bullet7:
+			TNT1 A 0 A_PlaySound("nazi/fire")
+			WMUT H 4 bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			WMUT I 10 A_FaceTarget
+			TNT1 A 0 A_PlaySound("nazi/fire")
+			WMUT J 4 bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			Goto MissileEnd
+		MissileEnd:
 			TNT1 A 0 A_JumpIfCloser(80,1)
 			Goto See
 			TNT1 A 0
-			Loop
+			Goto Missile
 		Pain:
 			WMUT F 3
 			WMUT F 3 A_Pain
@@ -925,7 +1126,7 @@ ACTOR FakeHitlerBall {
 	Height 8
 	Speed 10
 	FastSpeed 20
-	Damage 3
+	Damage (random (1, 32))
 	Projectile
 	+RANDOMIZE
 	SeeSound "fakehitler/fire"
@@ -976,18 +1177,112 @@ ACTOR HansGrosse {
 		Missile:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			WHAN E 10 A_FaceTarget
-			WHAN F 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			TNT1 A 0 A_JumpIfCloser (256, "Bullet1")
+			TNT1 A 0 A_JumpIfCloser (512, "Bullet2")
+			TNT1 A 0 A_JumpIfCloser (768, "Bullet3")
+			TNT1 A 0 A_JumpIfCloser (1024, "Bullet4")
+			TNT1 A 0 A_JumpIfCloser (1280, "Bullet5")
+			TNT1 A 0 A_JumpIfCloser (1536, "Bullet6")
+			Goto Bullet7
+		Bullet1:
+			WHAN F 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
-			WHAN G 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			WHAN G 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
-			WHAN F 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			WHAN F 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
-			WHAN G 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			WHAN G 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
-			WHAN F 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			WHAN F 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
-			WHAN G 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			WHAN G 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet2:
+			WHAN F 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			WHAN G 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			WHAN F 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			WHAN G 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			WHAN F 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			WHAN G 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet3:
+			WHAN F 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			WHAN G 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			WHAN F 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			WHAN G 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			WHAN F 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			WHAN G 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet4:
+			WHAN F 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			WHAN G 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			WHAN F 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			WHAN G 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			WHAN F 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			WHAN G 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet5:
+			WHAN F 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			WHAN G 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			WHAN F 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			WHAN G 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			WHAN F 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			WHAN G 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet6:
+			WHAN F 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			WHAN G 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			WHAN F 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			WHAN G 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			WHAN F 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			WHAN G 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet7:
+			WHAN F 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			WHAN G 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			WHAN F 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			WHAN G 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			WHAN F 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			WHAN G 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		MissileEnd:
 			WHAN E 10
 			Goto See
 		Pain:
@@ -1132,18 +1427,112 @@ ACTOR GretelGrosse {
 		Missile:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			WGRT E 10 A_FaceTarget
-			WGRT F 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			TNT1 A 0 A_JumpIfCloser (256, "Bullet1")
+			TNT1 A 0 A_JumpIfCloser (512, "Bullet2")
+			TNT1 A 0 A_JumpIfCloser (768, "Bullet3")
+			TNT1 A 0 A_JumpIfCloser (1024, "Bullet4")
+			TNT1 A 0 A_JumpIfCloser (1280, "Bullet5")
+			TNT1 A 0 A_JumpIfCloser (1536, "Bullet6")
+			Goto Bullet7
+		Bullet1:
+			WGRT F 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
-			WGRT G 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			WGRT G 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
-			WGRT F 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			WGRT F 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
-			WGRT G 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			WGRT G 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
-			WGRT F 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			WGRT F 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
-			WGRT G 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			WGRT G 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet2:
+			WGRT F 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WGRT G 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WGRT F 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WGRT G 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WGRT F 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WGRT G 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet3:
+			WGRT F 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WGRT G 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WGRT F 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WGRT G 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WGRT F 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WGRT G 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet4:
+			WGRT F 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WGRT G 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WGRT F 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WGRT G 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WGRT F 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WGRT G 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet5:
+			WGRT F 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WGRT G 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WGRT F 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WGRT G 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WGRT F 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WGRT G 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet6:
+			WGRT F 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WGRT G 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WGRT F 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WGRT G 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WGRT F 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WGRT G 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet7:
+			WGRT F 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WGRT G 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WGRT F 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WGRT G 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WGRT F 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WGRT G 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		MissileEnd:
 			WGRT E 10
 			Goto See
 		Pain:
@@ -1402,7 +1791,7 @@ ACTOR OttoWolfRocket {
 	Radius 8
 	Height 6
 	Speed 20
-	Damage 5
+	Damage (30 + random (1, 32))
 	Projectile
 	+FORCERADIUSDMG
 	SeeSound "wolfen/missilefire"
@@ -1468,14 +1857,84 @@ ACTOR GeneralFettgesicht {
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			WFET E 10 A_FaceTarget
 			WFET F 4 Bright A_CustomMissile("FettWolfRocket",32,16,0,8)
-			WFET G 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			TNT1 A 0 A_JumpIfCloser (256, "Bullet1")
+			TNT1 A 0 A_JumpIfCloser (512, "Bullet2")
+			TNT1 A 0 A_JumpIfCloser (768, "Bullet3")
+			TNT1 A 0 A_JumpIfCloser (1024, "Bullet4")
+			TNT1 A 0 A_JumpIfCloser (1280, "Bullet5")
+			TNT1 A 0 A_JumpIfCloser (1536, "Bullet6")
+			Goto Bullet7
+		Bullet1:
+			WFET G 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("wolfen/missilefire", CHAN_WEAPON)
-			WFET H 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			WFET H 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("wolfen/missilefire", CHAN_WEAPON)
-			WFET G 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			WFET G 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("wolfen/missilefire", CHAN_WEAPON)
-			WFET H 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			WFET H 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("wolfen/missilefire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet2:
+			WFET G 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("wolfen/missilefire", CHAN_WEAPON)
+			WFET H 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("wolfen/missilefire", CHAN_WEAPON)
+			WFET G 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("wolfen/missilefire", CHAN_WEAPON)
+			WFET H 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("wolfen/missilefire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet3:
+			WFET G 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("wolfen/missilefire", CHAN_WEAPON)
+			WFET H 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("wolfen/missilefire", CHAN_WEAPON)
+			WFET G 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("wolfen/missilefire", CHAN_WEAPON)
+			WFET H 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("wolfen/missilefire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet4:
+			WFET G 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("wolfen/missilefire", CHAN_WEAPON)
+			WFET H 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("wolfen/missilefire", CHAN_WEAPON)
+			WFET G 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("wolfen/missilefire", CHAN_WEAPON)
+			WFET H 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("wolfen/missilefire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet5:
+			WFET G 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("wolfen/missilefire", CHAN_WEAPON)
+			WFET H 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("wolfen/missilefire", CHAN_WEAPON)
+			WFET G 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("wolfen/missilefire", CHAN_WEAPON)
+			WFET H 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("wolfen/missilefire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet6:
+			WFET G 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("wolfen/missilefire", CHAN_WEAPON)
+			WFET H 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("wolfen/missilefire", CHAN_WEAPON)
+			WFET G 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("wolfen/missilefire", CHAN_WEAPON)
+			WFET H 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("wolfen/missilefire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet7:
+			WFET G 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("wolfen/missilefire", CHAN_WEAPON)
+			WFET H 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("wolfen/missilefire", CHAN_WEAPON)
+			WFET G 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("wolfen/missilefire", CHAN_WEAPON)
+			WFET H 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("wolfen/missilefire", CHAN_WEAPON)
+			Goto MissileEnd
+		MissileEnd:
 			WFET E 10
 			Goto See
 		Pain:
@@ -1622,7 +2081,7 @@ ACTOR WolfSyringe {
 	Radius 8
 	Height 6
 	Speed 15
-	Damage (20 + random(0,31))
+	Damage (20 + random(0,32))
 	Projectile
 	+FORCERADIUSDMG
 	SeeSound "schabbs/throw"
@@ -1683,20 +2142,126 @@ ACTOR MechaHitler {
 		Missile:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			WMAH E 10 A_FaceTarget
-			TNT1 A 0 A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
-			WMAH F 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			TNT1 A 0 A_JumpIfCloser (256, "Bullet1")
+			TNT1 A 0 A_JumpIfCloser (512, "Bullet2")
+			TNT1 A 0 A_JumpIfCloser (768, "Bullet3")
+			TNT1 A 0 A_JumpIfCloser (1024, "Bullet4")
+			TNT1 A 0 A_JumpIfCloser (1280, "Bullet5")
+			TNT1 A 0 A_JumpIfCloser (1536, "Bullet6")
+			Goto Bullet7
+		Bullet1:
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
+			WMAH F 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
-			WMAH G 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			WMAH G 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
-			TNT1 A 0 A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
-			WMAH F 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
+			WMAH F 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
-			TNT1 A 0 A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
-			WMAH G 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
+			WMAH G 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
-			TNT1 A 0 A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
-			WMAH F 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
+			WMAH F 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet2:
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			WMAH F 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			WMAH G 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			WMAH F 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			WMAH G 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			WMAH F 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet3:
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			WMAH F 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			WMAH G 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			WMAH F 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			WMAH G 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			WMAH F 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet4:
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			WMAH F 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			WMAH G 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			WMAH F 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			WMAH G 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			WMAH F 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet5:
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			WMAH F 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			WMAH G 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			WMAH F 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			WMAH G 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			WMAH F 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet6:
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			WMAH F 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			WMAH G 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			WMAH F 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			WMAH G 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			WMAH F 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet7:
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			WMAH F 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			WMAH G 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			WMAH F 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			WMAH G 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			WMAH F 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		MissileEnd:
 			WMAH E 10
 			Goto See
 		Pain:
@@ -1775,16 +2340,98 @@ ACTOR Hitler {
 		Missile:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			WADO E 10 A_FaceTarget
-			WADO F 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			TNT1 A 0 A_JumpIfCloser (256, "Bullet1")
+			TNT1 A 0 A_JumpIfCloser (512, "Bullet2")
+			TNT1 A 0 A_JumpIfCloser (768, "Bullet3")
+			TNT1 A 0 A_JumpIfCloser (1024, "Bullet4")
+			TNT1 A 0 A_JumpIfCloser (1280, "Bullet5")
+			TNT1 A 0 A_JumpIfCloser (1536, "Bullet6")
+			Goto Bullet7
+		Bullet1:
+			WADO F 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
-			WADO G 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			WADO G 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
-			WADO F 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			WADO F 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
-			WADO G 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			WADO G 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
-			WADO F 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			WADO F 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet2:
+			WADO F 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			WADO G 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			WADO F 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			WADO G 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			WADO F 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet3:
+			WADO F 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			WADO G 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			WADO F 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			WADO G 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			WADO F 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet4:
+			WADO F 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			WADO G 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			WADO F 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			WADO G 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			WADO F 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet5:
+			WADO F 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			WADO G 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			WADO F 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			WADO G 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			WADO F 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet6:
+			WADO F 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			WADO G 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			WADO F 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			WADO G 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			WADO F 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet7:
+			WADO F 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			WADO G 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			WADO F 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			WADO G 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			WADO F 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("boss/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		MissileEnd:
 			WADO E 10
 			Goto See
 		Pain:
@@ -1868,18 +2515,112 @@ ACTOR TransGrosse {
 		Missile:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			WTRA E 10 A_FaceTarget
-			WTRA F 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			TNT1 A 0 A_JumpIfCloser (256, "Bullet1")
+			TNT1 A 0 A_JumpIfCloser (512, "Bullet2")
+			TNT1 A 0 A_JumpIfCloser (768, "Bullet3")
+			TNT1 A 0 A_JumpIfCloser (1024, "Bullet4")
+			TNT1 A 0 A_JumpIfCloser (1280, "Bullet5")
+			TNT1 A 0 A_JumpIfCloser (1536, "Bullet6")
+			Goto Bullet7
+		Bullet1:
+			WTRA F 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
-			WTRA G 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			WTRA G 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
-			WTRA F 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			WTRA F 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
-			WTRA G 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			WTRA G 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
-			WTRA F 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			WTRA F 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
-			WTRA G 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			WTRA G 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet2:
+			WTRA F 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WTRA G 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WTRA F 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WTRA G 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WTRA F 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WTRA G 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet3:
+			WTRA F 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WTRA G 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WTRA F 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WTRA G 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WTRA F 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WTRA G 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet4:
+			WTRA F 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WTRA G 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WTRA F 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WTRA G 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WTRA F 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WTRA G 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet5:
+			WTRA F 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WTRA G 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WTRA F 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WTRA G 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WTRA F 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WTRA G 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet6:
+			WTRA F 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WTRA G 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WTRA F 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WTRA G 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WTRA F 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WTRA G 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet7:
+			WTRA F 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WTRA G 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WTRA F 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WTRA G 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WTRA F 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WTRA G 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		MissileEnd:
 			WTRA E 10
 			Goto See
 		Pain:
@@ -2036,15 +2777,91 @@ ACTOR BarnacleWilhelm {
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			WBAR E 10 A_FaceTarget
 			WBAR F 4 Bright A_CustomMissile("BarnacleWolfRocket",32,16,0,8)
+			TNT1 A 0 A_JumpIfCloser (256, "Bullet1")
+			TNT1 A 0 A_JumpIfCloser (512, "Bullet2")
+			TNT1 A 0 A_JumpIfCloser (768, "Bullet3")
+			TNT1 A 0 A_JumpIfCloser (1024, "Bullet4")
+			TNT1 A 0 A_JumpIfCloser (1280, "Bullet5")
+			TNT1 A 0 A_JumpIfCloser (1536, "Bullet6")
+			Goto Bullet7
+		Bullet1:
 			TNT1 A 0 A_PlaySound("wolfen/missilefire", CHAN_WEAPON)
-			WBAR G 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			WBAR G 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
-			WBAR H 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			WBAR H 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
-			WBAR G 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			WBAR G 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
-			WBAR H 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			WBAR H 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet2:
+			TNT1 A 0 A_PlaySound("wolfen/missilefire", CHAN_WEAPON)
+			WBAR G 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WBAR H 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WBAR G 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WBAR H 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet3:
+			TNT1 A 0 A_PlaySound("wolfen/missilefire", CHAN_WEAPON)
+			WBAR G 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WBAR H 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WBAR G 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WBAR H 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet4:
+			TNT1 A 0 A_PlaySound("wolfen/missilefire", CHAN_WEAPON)
+			WBAR G 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WBAR H 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WBAR G 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WBAR H 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet5:
+			TNT1 A 0 A_PlaySound("wolfen/missilefire", CHAN_WEAPON)
+			WBAR G 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WBAR H 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WBAR G 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WBAR H 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet6:
+			TNT1 A 0 A_PlaySound("wolfen/missilefire", CHAN_WEAPON)
+			WBAR G 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WBAR H 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WBAR G 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WBAR H 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet7:
+			TNT1 A 0 A_PlaySound("wolfen/missilefire", CHAN_WEAPON)
+			WBAR G 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WBAR H 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WBAR G 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WBAR H 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		MissileEnd:
 			WBAR E 10
 			Goto See
 		Pain:
@@ -2137,16 +2954,98 @@ ACTOR Ubermutant {
 		Missile:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			WUBR E 10 A_FaceTarget
-			WUBR F 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			TNT1 A 0 A_JumpIfCloser (256, "Bullet1")
+			TNT1 A 0 A_JumpIfCloser (512, "Bullet2")
+			TNT1 A 0 A_JumpIfCloser (768, "Bullet3")
+			TNT1 A 0 A_JumpIfCloser (1024, "Bullet4")
+			TNT1 A 0 A_JumpIfCloser (1280, "Bullet5")
+			TNT1 A 0 A_JumpIfCloser (1536, "Bullet6")
+			Goto Bullet7
+		Bullet1:
+			WUBR F 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
-			WUBR G 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			WUBR G 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
-			WUBR H 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			WUBR H 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
-			WUBR G 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			WUBR G 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
-			WUBR F 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			WUBR F 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet2:
+			WUBR F 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WUBR G 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WUBR H 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WUBR G 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WUBR F 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet3:
+			WUBR F 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WUBR G 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WUBR H 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WUBR G 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WUBR F 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet4:
+			WUBR F 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WUBR G 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WUBR H 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WUBR G 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WUBR F 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet5:
+			WUBR F 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WUBR G 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WUBR H 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WUBR G 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WUBR F 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet6:
+			WUBR F 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WUBR G 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WUBR H 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WUBR G 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WUBR F 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet7:
+			WUBR F 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WUBR G 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WUBR H 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WUBR G 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			WUBR F 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		MissileEnd:
 			WUBR E 10
 			Goto See
 		Pain:
@@ -2241,20 +3140,126 @@ ACTOR DeathKnight {
 		Missile:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			WDKN E 10 A_FaceTarget
-			TNT1 A 0 A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
-			TNT1 A 0 A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			TNT1 A 0 A_JumpIfCloser (256, "Bullet1")
+			TNT1 A 0 A_JumpIfCloser (512, "Bullet2")
+			TNT1 A 0 A_JumpIfCloser (768, "Bullet3")
+			TNT1 A 0 A_JumpIfCloser (1024, "Bullet4")
+			TNT1 A 0 A_JumpIfCloser (1280, "Bullet5")
+			TNT1 A 0 A_JumpIfCloser (1536, "Bullet6")
+			Goto Bullet7
+		Bullet1:
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			WDKN F 4 Bright A_CustomMissile("KnightWolfRocket",58,10,0,8)
 			TNT1 A 0 A_PlaySound("deathknight/missile", CHAN_WEAPON)
-			TNT1 A 0 A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
-			WDKN H 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
+			WDKN H 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
-			TNT1 A 0 A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
-			TNT1 A 0 A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			WDKN G 4 Bright A_CustomMissile("KnightWolfRocket",58,-10,0,8)
 			TNT1 A 0 A_PlaySound("deathknight/missile", CHAN_WEAPON)
-			TNT1 A 0 A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
-			WDKN H 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
+			WDKN H 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet2:
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			WDKN F 4 Bright A_CustomMissile("KnightWolfRocket",58,10,0,8)
+			TNT1 A 0 A_PlaySound("deathknight/missile", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			WDKN H 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			WDKN G 4 Bright A_CustomMissile("KnightWolfRocket",58,-10,0,8)
+			TNT1 A 0 A_PlaySound("deathknight/missile", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			WDKN H 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet3:
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			WDKN F 4 Bright A_CustomMissile("KnightWolfRocket",58,10,0,8)
+			TNT1 A 0 A_PlaySound("deathknight/missile", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			WDKN H 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			WDKN G 4 Bright A_CustomMissile("KnightWolfRocket",58,-10,0,8)
+			TNT1 A 0 A_PlaySound("deathknight/missile", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			WDKN H 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet4:
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			WDKN F 4 Bright A_CustomMissile("KnightWolfRocket",58,10,0,8)
+			TNT1 A 0 A_PlaySound("deathknight/missile", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			WDKN H 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			WDKN G 4 Bright A_CustomMissile("KnightWolfRocket",58,-10,0,8)
+			TNT1 A 0 A_PlaySound("deathknight/missile", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			WDKN H 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet5:
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			WDKN F 4 Bright A_CustomMissile("KnightWolfRocket",58,10,0,8)
+			TNT1 A 0 A_PlaySound("deathknight/missile", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			WDKN H 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			WDKN G 4 Bright A_CustomMissile("KnightWolfRocket",58,-10,0,8)
+			TNT1 A 0 A_PlaySound("deathknight/missile", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			WDKN H 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet6:
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			WDKN F 4 Bright A_CustomMissile("KnightWolfRocket",58,10,0,8)
+			TNT1 A 0 A_PlaySound("deathknight/missile", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			WDKN H 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			WDKN G 4 Bright A_CustomMissile("KnightWolfRocket",58,-10,0,8)
+			TNT1 A 0 A_PlaySound("deathknight/missile", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			WDKN H 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet7:
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			WDKN F 4 Bright A_CustomMissile("KnightWolfRocket",58,10,0,8)
+			TNT1 A 0 A_PlaySound("deathknight/missile", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			WDKN H 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			WDKN G 4 Bright A_CustomMissile("KnightWolfRocket",58,-10,0,8)
+			TNT1 A 0 A_PlaySound("deathknight/missile", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			WDKN H 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		MissileEnd:
 			WDKN E 10
 			Goto See
 		Pain:
@@ -2431,7 +3436,7 @@ ACTOR AngelBlast {
 	Radius 8
 	Height 6
 	Speed 15
-	Damage 30
+	Damage (random (0, 32))
 	Projectile
 	+RANDOMIZE
 	SeeSound "angel/fire"
@@ -2488,10 +3493,44 @@ ACTOR SODGuard {
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			SGRD G 5 A_FaceTarget
 			SGRD H 5 A_FaceTarget
+			TNT1 A 0 A_JumpIfCloser (256, "Bullet1")
+			TNT1 A 0 A_JumpIfCloser (512, "Bullet2")
+			TNT1 A 0 A_JumpIfCloser (768, "Bullet3")
+			TNT1 A 0 A_JumpIfCloser (1024, "Bullet4")
+			TNT1 A 0 A_JumpIfCloser (1280, "Bullet5")
+			TNT1 A 0 A_JumpIfCloser (1536, "Bullet6")
+			Goto Bullet7
+		Bullet1:
 			SGRD I 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
-			SGRD I 2 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-10,10),8)
+			SGRD I 2 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-10,10),8)
+			Goto MissileEnd
+		Bullet2:
+			SGRD I 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SGRD I 2 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-10,10),8)
+			Goto MissileEnd
+		Bullet3:
+			SGRD I 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SGRD I 2 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-10,10),8)
+			Goto MissileEnd
+		Bullet4:
+			SGRD I 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SGRD I 2 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-10,10),8)
+			Goto MissileEnd
+		Bullet5:
+			SGRD I 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SGRD I 2 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-10,10),8)
+			Goto MissileEnd
+		Bullet6:
+			SGRD I 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SGRD I 2 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-10,10),8)
+			Goto MissileEnd
+		Bullet7:
+			SGRD I 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SGRD I 2 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-10,10),8)
+			Goto MissileEnd
+		MissileEnd:
 			SGRD H 5
-			SGRD G 5 A_CPosRefire
+			SGRD G 5
 			Goto See
 		Pain:
 			SGRD F 3
@@ -2634,19 +3673,107 @@ ACTOR SODSS {
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			SSSO G 5 A_FaceTarget
 			SSSO H 5 A_FaceTarget
-			SSSO I 2 bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			TNT1 A 0 A_JumpIfCloser (256, "Bullet1")
+			TNT1 A 0 A_JumpIfCloser (512, "Bullet2")
+			TNT1 A 0 A_JumpIfCloser (768, "Bullet3")
+			TNT1 A 0 A_JumpIfCloser (1024, "Bullet4")
+			TNT1 A 0 A_JumpIfCloser (1280, "Bullet5")
+			TNT1 A 0 A_JumpIfCloser (1536, "Bullet6")
+			Goto Bullet7
+		Bullet1:
+			SSSO I 2 bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			SSSO H 2 A_FaceTarget
 			TNT1 A 0 A_PlaySound("sodss/fire")
-			SSSO I 2 bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			SSSO I 2 bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			SSSO H 2 A_FaceTarget
 			TNT1 A 0 A_PlaySound("sodss/fire")
-			SSSO I 2 bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			SSSO I 2 bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			SSSO H 2 A_FaceTarget
 			TNT1 A 0 A_PlaySound("sodss/fire")
-			SSSO I 2 bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			SSSO I 2 bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("sodss/fire")
-			SSSO H 1 A_CPosRefire
-			goto Missile+2
+			Goto MissileEnd
+		Bullet2:
+			SSSO I 2 bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			SSSO H 2 A_FaceTarget
+			TNT1 A 0 A_PlaySound("sodss/fire")
+			SSSO I 2 bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			SSSO H 2 A_FaceTarget
+			TNT1 A 0 A_PlaySound("sodss/fire")
+			SSSO I 2 bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			SSSO H 2 A_FaceTarget
+			TNT1 A 0 A_PlaySound("sodss/fire")
+			SSSO I 2 bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("sodss/fire")
+			Goto MissileEnd
+		Bullet3:
+			SSSO I 2 bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			SSSO H 2 A_FaceTarget
+			TNT1 A 0 A_PlaySound("sodss/fire")
+			SSSO I 2 bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			SSSO H 2 A_FaceTarget
+			TNT1 A 0 A_PlaySound("sodss/fire")
+			SSSO I 2 bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			SSSO H 2 A_FaceTarget
+			TNT1 A 0 A_PlaySound("sodss/fire")
+			SSSO I 2 bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("sodss/fire")
+			Goto MissileEnd
+		Bullet4:
+			SSSO I 2 bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			SSSO H 2 A_FaceTarget
+			TNT1 A 0 A_PlaySound("sodss/fire")
+			SSSO I 2 bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			SSSO H 2 A_FaceTarget
+			TNT1 A 0 A_PlaySound("sodss/fire")
+			SSSO I 2 bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			SSSO H 2 A_FaceTarget
+			TNT1 A 0 A_PlaySound("sodss/fire")
+			SSSO I 2 bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("sodss/fire")
+			Goto MissileEnd
+		Bullet5:
+			SSSO I 2 bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			SSSO H 2 A_FaceTarget
+			TNT1 A 0 A_PlaySound("sodss/fire")
+			SSSO I 2 bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			SSSO H 2 A_FaceTarget
+			TNT1 A 0 A_PlaySound("sodss/fire")
+			SSSO I 2 bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			SSSO H 2 A_FaceTarget
+			TNT1 A 0 A_PlaySound("sodss/fire")
+			SSSO I 2 bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("sodss/fire")
+			Goto MissileEnd
+		Bullet6:
+			SSSO I 2 bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			SSSO H 2 A_FaceTarget
+			TNT1 A 0 A_PlaySound("sodss/fire")
+			SSSO I 2 bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			SSSO H 2 A_FaceTarget
+			TNT1 A 0 A_PlaySound("sodss/fire")
+			SSSO I 2 bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			SSSO H 2 A_FaceTarget
+			TNT1 A 0 A_PlaySound("sodss/fire")
+			SSSO I 2 bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("sodss/fire")
+			Goto MissileEnd
+		Bullet7:
+			SSSO I 2 bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			SSSO H 2 A_FaceTarget
+			TNT1 A 0 A_PlaySound("sodss/fire")
+			SSSO I 2 bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			SSSO H 2 A_FaceTarget
+			TNT1 A 0 A_PlaySound("sodss/fire")
+			SSSO I 2 bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			SSSO H 2 A_FaceTarget
+			TNT1 A 0 A_PlaySound("sodss/fire")
+			SSSO I 2 bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("sodss/fire")
+			Goto MissileEnd
+		MissileEnd:
+			SSSO H 1 
+			Goto See
 		Pain:
 			SSSO F 3
 			SSSO F 3 A_Pain
@@ -2788,10 +3915,44 @@ ACTOR SODOfficer {
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			SOFF G 3 A_FaceTarget
 			SOFF H 3 A_FaceTarget
+			TNT1 A 0 A_JumpIfCloser (256, "Bullet1")
+			TNT1 A 0 A_JumpIfCloser (512, "Bullet2")
+			TNT1 A 0 A_JumpIfCloser (768, "Bullet3")
+			TNT1 A 0 A_JumpIfCloser (1024, "Bullet4")
+			TNT1 A 0 A_JumpIfCloser (1280, "Bullet5")
+			TNT1 A 0 A_JumpIfCloser (1536, "Bullet6")
+			Goto Bullet7
+		Bullet1:
 			SOFF I 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
-			SOFF I 2 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-10,10),8)
+			SOFF I 2 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-10,10),8)
+			Goto MissileEnd
+		Bullet2:
+			SOFF I 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SOFF I 2 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-10,10),8)
+			Goto MissileEnd
+		Bullet3:
+			SOFF I 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SOFF I 2 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-10,10),8)
+			Goto MissileEnd
+		Bullet4:
+			SOFF I 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SOFF I 2 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-10,10),8)
+			Goto MissileEnd
+		Bullet5:
+			SOFF I 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SOFF I 2 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-10,10),8)
+			Goto MissileEnd
+		Bullet6:
+			SOFF I 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SOFF I 2 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-10,10),8)
+			Goto MissileEnd
+		Bullet7:
+			SOFF I 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SOFF I 2 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-10,10),8)
+			Goto MissileEnd
+		MissileEnd:
 			SOFF H 3
-			SOFF G 5 A_CPosRefire
+			SOFF G 5 
 			Goto See
 		Pain:
 			SOFF F 3
@@ -2945,7 +4106,7 @@ ACTOR SODDog {
 		Melee:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			SDOG EF 3 A_FaceTarget
-			SDOG G 3 A_CustomMeleeAttack(random(1,15),"sdog/bite")
+			SDOG G 3 A_CustomMeleeAttack(random(1,16),"sdog/bite")
 			Goto See
 		Pain:
 			SDOG F 3
@@ -3087,15 +4248,67 @@ ACTOR SODBat {
 		Missile:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			SBAT G 5 A_FaceTarget
+			TNT1 A 0 A_JumpIfCloser (256, "Bullet1")
+			TNT1 A 0 A_JumpIfCloser (512, "Bullet2")
+			TNT1 A 0 A_JumpIfCloser (768, "Bullet3")
+			TNT1 A 0 A_JumpIfCloser (1024, "Bullet4")
+			TNT1 A 0 A_JumpIfCloser (1280, "Bullet5")
+			TNT1 A 0 A_JumpIfCloser (1536, "Bullet6")
+			Goto Bullet7
+		Bullet1:
 			TNT1 A 0 A_PlaySound("nazi/fire")
-			SBAT H 2 bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			SBAT H 2 bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			SBAT I 5 A_FaceTarget
 			TNT1 A 0 A_PlaySound("nazi/fire")
-			SBAT J 2 bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			SBAT J 2 bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
+			Goto MissileEnd
+		Bullet2:
+			TNT1 A 0 A_PlaySound("nazi/fire")
+			SBAT H 2 bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			SBAT I 5 A_FaceTarget
+			TNT1 A 0 A_PlaySound("nazi/fire")
+			SBAT J 2 bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			Goto MissileEnd
+		Bullet3:
+			TNT1 A 0 A_PlaySound("nazi/fire")
+			SBAT H 2 bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			SBAT I 5 A_FaceTarget
+			TNT1 A 0 A_PlaySound("nazi/fire")
+			SBAT J 2 bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			Goto MissileEnd
+		Bullet4:
+			TNT1 A 0 A_PlaySound("nazi/fire")
+			SBAT H 2 bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			SBAT I 5 A_FaceTarget
+			TNT1 A 0 A_PlaySound("nazi/fire")
+			SBAT J 2 bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			Goto MissileEnd
+		Bullet5:
+			TNT1 A 0 A_PlaySound("nazi/fire")
+			SBAT H 2 bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			SBAT I 5 A_FaceTarget
+			TNT1 A 0 A_PlaySound("nazi/fire")
+			SBAT J 2 bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			Goto MissileEnd
+		Bullet6:
+			TNT1 A 0 A_PlaySound("nazi/fire")
+			SBAT H 2 bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			SBAT I 5 A_FaceTarget
+			TNT1 A 0 A_PlaySound("nazi/fire")
+			SBAT J 2 bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			Goto MissileEnd
+		Bullet7:
+			TNT1 A 0 A_PlaySound("nazi/fire")
+			SBAT H 2 bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			SBAT I 5 A_FaceTarget
+			TNT1 A 0 A_PlaySound("nazi/fire")
+			SBAT J 2 bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			Goto MissileEnd
+		MissileEnd:
 			TNT1 A 0 A_JumpIfCloser(80,1)
 			Goto See
 			TNT1 A 0
-			Loop
+			Goto Missile
 		Pain:
 			SBAT F 3
 			SBAT F 3 A_Pain
@@ -3241,30 +4454,196 @@ ACTOR SubmarineWilly {
 		Missile:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			SUBW E 10 A_FaceTarget
-			SUBW F 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			TNT1 A 0 A_JumpIfCloser (256, "Bullet1")
+			TNT1 A 0 A_JumpIfCloser (512, "Bullet2")
+			TNT1 A 0 A_JumpIfCloser (768, "Bullet3")
+			TNT1 A 0 A_JumpIfCloser (1024, "Bullet4")
+			TNT1 A 0 A_JumpIfCloser (1280, "Bullet5")
+			TNT1 A 0 A_JumpIfCloser (1536, "Bullet6")
+			Goto Bullet7
+		Bullet1:
+			SUBW F 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
-			SUBW G 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			SUBW G 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
-			SUBW F 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			SUBW F 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
-			SUBW G 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			SUBW G 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
-			SUBW F 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			SUBW F 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
-			SUBW G 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			SUBW G 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
-			SUBW F 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			SUBW F 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
-			SUBW G 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			SUBW G 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
-			SUBW F 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			SUBW F 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
-			SUBW G 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			SUBW G 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
-			SUBW F 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			SUBW F 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
-			SUBW G 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			SUBW G 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet2:
+			SUBW F 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW G 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW F 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW G 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW F 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW G 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW F 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW G 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW F 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW G 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW F 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW G 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet3:
+			SUBW F 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW G 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW F 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW G 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW F 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW G 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW F 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW G 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW F 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW G 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW F 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW G 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet4:
+			SUBW F 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW G 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW F 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW G 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW F 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW G 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW F 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW G 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW F 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW G 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW F 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW G 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet5:
+			SUBW F 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW G 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW F 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW G 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW F 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW G 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW F 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW G 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW F 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW G 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW F 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW G 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet6:
+			SUBW F 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW G 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW F 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW G 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW F 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW G 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW F 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW G 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW F 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW G 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW F 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW G 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet7:
+			SUBW F 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW G 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW F 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW G 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW F 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW G 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW F 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW G 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW F 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW G 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW F 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			SUBW G 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		MissileEnd:
 			SUBW E 10
 			Goto See
 		Pain:
@@ -3420,26 +4799,168 @@ ACTOR ProfessorQuarkblitz {
 		Missile:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			PROQ E 10 A_FaceTarget
+			TNT1 A 0 A_JumpIfCloser (256, "Bullet1")
+			TNT1 A 0 A_JumpIfCloser (512, "Bullet2")
+			TNT1 A 0 A_JumpIfCloser (768, "Bullet3")
+			TNT1 A 0 A_JumpIfCloser (1024, "Bullet4")
+			TNT1 A 0 A_JumpIfCloser (1280, "Bullet5")
+			TNT1 A 0 A_JumpIfCloser (1536, "Bullet6")
+			Goto Bullet7
+		Bullet1:
 			PROQ F 4 Bright A_CustomMissile("BarnacleWolfRocket",32,16,0,8)
 			TNT1 A 0 A_PlaySound("wolfen/missilefire", CHAN_WEAPON)
-			PROQ G 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			PROQ G 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
-			PROQ H 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			PROQ H 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
-			PROQ G 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			PROQ G 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
-			PROQ H 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			PROQ H 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
 			PROQ F 4 Bright A_CustomMissile("BarnacleWolfRocket",32,16,0,8)
 			TNT1 A 0 A_PlaySound("wolfen/missilefire", CHAN_WEAPON)
-			PROQ G 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			PROQ G 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
-			PROQ H 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			PROQ H 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
-			PROQ G 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			PROQ G 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
-			PROQ H 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			PROQ H 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet2:
+			PROQ F 4 Bright A_CustomMissile("BarnacleWolfRocket",32,16,0,8)
+			TNT1 A 0 A_PlaySound("wolfen/missilefire", CHAN_WEAPON)
+			PROQ G 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			PROQ H 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			PROQ G 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			PROQ H 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			PROQ F 4 Bright A_CustomMissile("BarnacleWolfRocket",32,16,0,8)
+			TNT1 A 0 A_PlaySound("wolfen/missilefire", CHAN_WEAPON)
+			PROQ G 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			PROQ H 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			PROQ G 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			PROQ H 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet3:
+			PROQ F 4 Bright A_CustomMissile("BarnacleWolfRocket",32,16,0,8)
+			TNT1 A 0 A_PlaySound("wolfen/missilefire", CHAN_WEAPON)
+			PROQ G 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			PROQ H 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			PROQ G 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			PROQ H 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			PROQ F 4 Bright A_CustomMissile("BarnacleWolfRocket",32,16,0,8)
+			TNT1 A 0 A_PlaySound("wolfen/missilefire", CHAN_WEAPON)
+			PROQ G 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			PROQ H 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			PROQ G 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			PROQ H 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet4:
+			PROQ F 4 Bright A_CustomMissile("BarnacleWolfRocket",32,16,0,8)
+			TNT1 A 0 A_PlaySound("wolfen/missilefire", CHAN_WEAPON)
+			PROQ G 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			PROQ H 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			PROQ G 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			PROQ H 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			PROQ F 4 Bright A_CustomMissile("BarnacleWolfRocket",32,16,0,8)
+			TNT1 A 0 A_PlaySound("wolfen/missilefire", CHAN_WEAPON)
+			PROQ G 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			PROQ H 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			PROQ G 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			PROQ H 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet5:
+			PROQ F 4 Bright A_CustomMissile("BarnacleWolfRocket",32,16,0,8)
+			TNT1 A 0 A_PlaySound("wolfen/missilefire", CHAN_WEAPON)
+			PROQ G 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			PROQ H 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			PROQ G 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			PROQ H 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			PROQ F 4 Bright A_CustomMissile("BarnacleWolfRocket",32,16,0,8)
+			TNT1 A 0 A_PlaySound("wolfen/missilefire", CHAN_WEAPON)
+			PROQ G 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			PROQ H 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			PROQ G 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			PROQ H 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet6:
+			PROQ F 4 Bright A_CustomMissile("BarnacleWolfRocket",32,16,0,8)
+			TNT1 A 0 A_PlaySound("wolfen/missilefire", CHAN_WEAPON)
+			PROQ G 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			PROQ H 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			PROQ G 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			PROQ H 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			PROQ F 4 Bright A_CustomMissile("BarnacleWolfRocket",32,16,0,8)
+			TNT1 A 0 A_PlaySound("wolfen/missilefire", CHAN_WEAPON)
+			PROQ G 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			PROQ H 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			PROQ G 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			PROQ H 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet7:
+			PROQ F 4 Bright A_CustomMissile("BarnacleWolfRocket",32,16,0,8)
+			TNT1 A 0 A_PlaySound("wolfen/missilefire", CHAN_WEAPON)
+			PROQ G 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			PROQ H 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			PROQ G 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			PROQ H 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			PROQ F 4 Bright A_CustomMissile("BarnacleWolfRocket",32,16,0,8)
+			TNT1 A 0 A_PlaySound("wolfen/missilefire", CHAN_WEAPON)
+			PROQ G 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			PROQ H 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			PROQ G 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			PROQ H 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		MissileEnd:
 			PROQ E 10
 			Goto See
 		Pain:
@@ -3532,25 +5053,25 @@ ACTOR TheAxe {
 		Missile:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			TAXE E 10 A_FaceTarget
-			TAXE F 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			TAXE F 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
-			TAXE G 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			TAXE G 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
-			TAXE H 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			TAXE H 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
-			TAXE G 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			TAXE G 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
-			TAXE F 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			TAXE F 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
-			TAXE F 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			TAXE F 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
-			TAXE G 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			TAXE G 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
-			TAXE H 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			TAXE H 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
-			TAXE G 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			TAXE G 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
-			TAXE F 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			TAXE F 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
 			TAXE E 10
 			Goto See
@@ -3646,34 +5167,224 @@ ACTOR Robot {
 		Missile:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			ROBO E 10 A_FaceTarget
-			TNT1 A 0 A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
-			TNT1 A 0 A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			TNT1 A 0 A_JumpIfCloser (256, "Bullet1")
+			TNT1 A 0 A_JumpIfCloser (512, "Bullet2")
+			TNT1 A 0 A_JumpIfCloser (768, "Bullet3")
+			TNT1 A 0 A_JumpIfCloser (1024, "Bullet4")
+			TNT1 A 0 A_JumpIfCloser (1280, "Bullet5")
+			TNT1 A 0 A_JumpIfCloser (1536, "Bullet6")
+			Goto Bullet7
+		Bullet1:
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			ROBO F 4 Bright A_CustomMissile("KnightWolfRocket",58,10,0,8)
 			TNT1 A 0 A_PlaySound("deathknight/missile", CHAN_WEAPON)
-			TNT1 A 0 A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
-			ROBO H 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
+			ROBO H 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
-			TNT1 A 0 A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
-			TNT1 A 0 A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			ROBO G 4 Bright A_CustomMissile("KnightWolfRocket",58,-10,0,8)
 			TNT1 A 0 A_PlaySound("deathknight/missile", CHAN_WEAPON)
-			TNT1 A 0 A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
-			ROBO H 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
+			ROBO H 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
-			TNT1 A 0 A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
-			TNT1 A 0 A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			ROBO F 4 Bright A_CustomMissile("KnightWolfRocket",58,10,0,8)
 			TNT1 A 0 A_PlaySound("deathknight/missile", CHAN_WEAPON)
-			TNT1 A 0 A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
-			ROBO H 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
+			ROBO H 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
-			TNT1 A 0 A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
-			TNT1 A 0 A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			ROBO G 4 Bright A_CustomMissile("KnightWolfRocket",58,-10,0,8)
 			TNT1 A 0 A_PlaySound("deathknight/missile", CHAN_WEAPON)
-			TNT1 A 0 A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
-			ROBO H 4 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
+			ROBO H 4 Bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
 			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet2:
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			ROBO F 4 Bright A_CustomMissile("KnightWolfRocket",58,10,0,8)
+			TNT1 A 0 A_PlaySound("deathknight/missile", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			ROBO H 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			ROBO G 4 Bright A_CustomMissile("KnightWolfRocket",58,-10,0,8)
+			TNT1 A 0 A_PlaySound("deathknight/missile", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			ROBO H 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			ROBO F 4 Bright A_CustomMissile("KnightWolfRocket",58,10,0,8)
+			TNT1 A 0 A_PlaySound("deathknight/missile", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			ROBO H 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			ROBO G 4 Bright A_CustomMissile("KnightWolfRocket",58,-10,0,8)
+			TNT1 A 0 A_PlaySound("deathknight/missile", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			ROBO H 4 Bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet3:
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			ROBO F 4 Bright A_CustomMissile("KnightWolfRocket",58,10,0,8)
+			TNT1 A 0 A_PlaySound("deathknight/missile", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			ROBO H 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			ROBO G 4 Bright A_CustomMissile("KnightWolfRocket",58,-10,0,8)
+			TNT1 A 0 A_PlaySound("deathknight/missile", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			ROBO H 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			ROBO F 4 Bright A_CustomMissile("KnightWolfRocket",58,10,0,8)
+			TNT1 A 0 A_PlaySound("deathknight/missile", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			ROBO H 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			ROBO G 4 Bright A_CustomMissile("KnightWolfRocket",58,-10,0,8)
+			TNT1 A 0 A_PlaySound("deathknight/missile", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			ROBO H 4 Bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet4:
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			ROBO F 4 Bright A_CustomMissile("KnightWolfRocket",58,10,0,8)
+			TNT1 A 0 A_PlaySound("deathknight/missile", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			ROBO H 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			ROBO G 4 Bright A_CustomMissile("KnightWolfRocket",58,-10,0,8)
+			TNT1 A 0 A_PlaySound("deathknight/missile", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			ROBO H 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			ROBO F 4 Bright A_CustomMissile("KnightWolfRocket",58,10,0,8)
+			TNT1 A 0 A_PlaySound("deathknight/missile", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			ROBO H 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			ROBO G 4 Bright A_CustomMissile("KnightWolfRocket",58,-10,0,8)
+			TNT1 A 0 A_PlaySound("deathknight/missile", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			ROBO H 4 Bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet5:
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			ROBO F 4 Bright A_CustomMissile("KnightWolfRocket",58,10,0,8)
+			TNT1 A 0 A_PlaySound("deathknight/missile", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			ROBO H 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			ROBO G 4 Bright A_CustomMissile("KnightWolfRocket",58,-10,0,8)
+			TNT1 A 0 A_PlaySound("deathknight/missile", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			ROBO H 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			ROBO F 4 Bright A_CustomMissile("KnightWolfRocket",58,10,0,8)
+			TNT1 A 0 A_PlaySound("deathknight/missile", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			ROBO H 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			ROBO G 4 Bright A_CustomMissile("KnightWolfRocket",58,-10,0,8)
+			TNT1 A 0 A_PlaySound("deathknight/missile", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			ROBO H 4 Bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet6:
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			ROBO F 4 Bright A_CustomMissile("KnightWolfRocket",58,10,0,8)
+			TNT1 A 0 A_PlaySound("deathknight/missile", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			ROBO H 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			ROBO G 4 Bright A_CustomMissile("KnightWolfRocket",58,-10,0,8)
+			TNT1 A 0 A_PlaySound("deathknight/missile", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			ROBO H 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			ROBO F 4 Bright A_CustomMissile("KnightWolfRocket",58,10,0,8)
+			TNT1 A 0 A_PlaySound("deathknight/missile", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			ROBO H 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			ROBO G 4 Bright A_CustomMissile("KnightWolfRocket",58,-10,0,8)
+			TNT1 A 0 A_PlaySound("deathknight/missile", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			ROBO H 4 Bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		Bullet7:
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			ROBO F 4 Bright A_CustomMissile("KnightWolfRocket",58,10,0,8)
+			TNT1 A 0 A_PlaySound("deathknight/missile", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			ROBO H 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			ROBO G 4 Bright A_CustomMissile("KnightWolfRocket",58,-10,0,8)
+			TNT1 A 0 A_PlaySound("deathknight/missile", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			ROBO H 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			ROBO F 4 Bright A_CustomMissile("KnightWolfRocket",58,10,0,8)
+			TNT1 A 0 A_PlaySound("deathknight/missile", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			ROBO H 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			ROBO G 4 Bright A_CustomMissile("KnightWolfRocket",58,-10,0,8)
+			TNT1 A 0 A_PlaySound("deathknight/missile", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			ROBO H 4 Bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-7,7),8)
+			TNT1 A 0 A_PlaySound("nazi/fire", CHAN_WEAPON)
+			Goto MissileEnd
+		MissileEnd:
 			ROBO E 10
 			Goto See
 		Pain:
@@ -3904,3 +5615,22 @@ ACTOR SODGoldKey : WolfGoldKey
 			fail
 	}
 }
+
+actor WolfEnemyBulletD1 : DoomEnemyBullet
+{
+	Damage (Random (1, 64))
+	
+	States
+	{
+		Death:
+			TNT1 A 0
+			stop
+	}
+}
+
+actor WolfEnemyBulletD2 : WolfEnemyBulletD1 { Damage (Random (1, 32)) }
+actor WolfEnemyBulletD3 : WolfEnemyBulletD1 { Damage (Random (1, 16)) }
+actor WolfEnemyBulletD4 : WolfEnemyBulletD1 { Damage (Random (1, 8)) }
+actor WolfEnemyBulletD5 : WolfEnemyBulletD1 { Damage (Random (1, 4)) }
+actor WolfEnemyBulletD6 : WolfEnemyBulletD1 { Damage (Random (1, 2)) }
+actor WolfEnemyBulletD7 : WolfEnemyBulletD1 { Damage (1) }

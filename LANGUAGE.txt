@@ -1,0 +1,10 @@
+[enu default]
+
+OB_STRIDICUS = "%o was boogered by a stridicus.";
+OB_FLEMMINE = "%o was gooed by a flem mine.";
+OB_SUPERCYCLOPTIS = "%o was slimed by a super cycloptis.";
+OB_MAXIMUS = "%o was defeated by a Maximus.";
+OB_LARVA = "%o was gooed by a larva.";
+OB_QUADRUMPUS = "%o was slimed by a Quadrumpus.";
+OB_FLEMBOMINATION = "%o was defeated by the Flembomination.";
+OB_SNOTFOLUS = "%o was defeated by Lord Snotfolus.";

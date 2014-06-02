@@ -42,6 +42,7 @@ ACTOR DemonReplacer : RandomSpawner replaces Demon {
 	dropitem "Centaur2" 255 2
 	dropitem "FlemoidusStridicus2" 255 2
 	dropitem "WolfDog" 255 2
+	dropitem "ProtectorDrone" 255 2
 }
 
 ACTOR SpectreReplacer : RandomSpawner replaces Spectre {
