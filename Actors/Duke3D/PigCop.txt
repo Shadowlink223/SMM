@@ -1,0 +1,172 @@
+ACTOR PigCop 
+{
+	Health 100
+	Radius 30
+	Height 56
+	Speed 15
+	PainChance 32
+	Scale 0.8
+	MONSTER
+	+FLOORCLIP
+    +NOTDMATCH
+    +NOICEDEATH
+    +THRUGHOST
+	+MISSILEMORE
+	SeeSound "pigcop/sight"
+	PainSound "pigcop/pain"
+	DeathSound "pigcop/death"
+	ActiveSound "pigcop/roam"
+	AttackSound ""
+	Obituary "%o was shotgunned by a Pig Cop."
+    DamageFactor "Mace", 1.1
+    DamageFactor "DragonClaw", 1.5
+    PainChance "MightyBoot", 255
+	Dropitem "Clip2"
+	Decal BulletChip
+	States 
+	{
+		Spawn:
+			PIGC A 1 A_Look
+			Loop
+		See:
+			PIGC ABCD 5 A_Chase
+			Loop
+		Missile:
+			TNT1 A 0 A_Jump (64, "ProneShot")
+			Goto StandShot
+		StandShot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			PIGC E 5 A_FaceTarget
+			PIGC EEE 5 
+			PIGC E 0 A_PlaySound("duke/mossberg", CHAN_WEAPON)
+			TNT1 AAAAAAA 0 Bright A_CustomMissile("PigCopBullet",32,0,random(-10,10),8)
+			PIGC F 10 Bright
+			PIGC G 5 A_PlaySound("duke/mosspump2", CHAN_WEAPON)
+			PIGC G 10
+			PIGC E 5 A_FaceTarget
+			PIGC EEE 5 
+			PIGC E 0 A_PlaySound("duke/mossberg", CHAN_WEAPON)
+			TNT1 AAAAAAA 0 Bright A_CustomMissile("PigCopBullet",32,0,random(-10,10),8)
+			PIGC F 10 Bright
+			PIGC G 5 A_PlaySound("duke/mosspump2", CHAN_WEAPON)
+			PIGC G 10 A_CPosRefire
+			Goto See
+		ProneShot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			PIGC H 10 A_FaceTarget
+			PIGC IIII 5 A_FaceTarget
+			TNT1 AAAAAAA 0 Bright A_CustomMissile("PigProneBullet",32,0,random(-10,10),8)
+			PIGC J 10 Bright A_PlaySound("duke/mossberg", CHAN_WEAPON)
+			PIGC I 15 A_PlaySound("duke/mosspump2", CHAN_WEAPON)
+			TNT1 AAAAAAA 0 Bright A_CustomMissile("PigProneBullet",32,0,random(-10,10),8)
+			PIGC J 10 Bright A_PlaySound("duke/mossberg", CHAN_WEAPON)
+			PIGC I 5 A_PlaySound("duke/mosspump2", CHAN_WEAPON)
+			PIGC I 10 A_CPosRefire
+			Goto See
+		Pain:
+			PIGC K 3
+			PIGC K 3 A_Pain
+			Goto See
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			PIGC K 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			PIGC K 16 A_Pain
+			Goto See
+		Death.DukeDamage:
+		Death.DukePistol:
+			TNT1 A 0 A_Jump(218,"Death")
+			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
+			goto Death
+		Death.MightyBoot:
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_Jump(64,"Death")
+			TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
+			goto Death
+		Death.DukeExplosive:
+			TNT1 A 0 A_JumpIfHealthLower(-3,"DukeGibStart")
+			goto Death.DukeDamage
+		DukeGibStart:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_SpawnDebris("DukeGibs1")
+			TNT1 A 0 A_SpawnDebris("DukeGibs2")
+			TNT1 A 0 A_SpawnDebris("DukeGibs3")
+			TNT1 A 0 A_SpawnDebris("DukeGibs4")
+			TNT1 A 0 A_SpawnDebris("DukeGibs5")
+			TNT1 A 0 A_SpawnDebris("DukeGibs6")
+			TNT1 A 0 A_PlaySound("duke/enemygib")
+			TNT1 A 0 A_Jump(96,"XDeath")
+			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
+		Death:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			PIGC K 5 A_Scream
+			PIGC L 5 A_NoBlocking
+			PIGC MNOP 5
+			PIGC P -1
+			stop
+		XDeath:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			Stop
+		Death.ZorchPistol:
+		Death.Zorch:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			PIGC F 0 A_Stop
+			TNT1 A 0 A_ChangeFlag("DONTGIB",1)
+			TNT1 A 0 A_PlaySoundEx("chex/zorch","soundslot5",0,0)
+			PIGC F 3 A_SpawnItem("ZorchEffectSmall")
+			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
+			PIGC F 3 A_SetTranslucent(0.9,0)
+			PIGC F 0 A_Scream
+			PIGC F 3 A_SetTranslucent(0.8,0)
+			PIGC F 0 A_NoBlocking
+			PIGC F 3 A_SetTranslucent(0.7,0)
+			PIGC F 3 A_SetTranslucent(0.6,0)
+			PIGC F 3 A_SetTranslucent(0.5,0)
+			PIGC F 3 A_SetTranslucent(0.4,0)
+			PIGC F 3 A_SetTranslucent(0.3,0)
+			PIGC F 3 A_SetTranslucent(0.2,0)
+			PIGC F 3 A_SetTranslucent(0.1,0)
+			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A -1
+			stop
+		Death.DukeIce:
+			TNT1 A 0 A_PlaySound("duke/enemyfreeze")
+			TNT1 A 0 A_GiveInventory("FreezethrowerWeakness")
+			TNT1 A 0 A_Jump(218,"Ice")
+			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
+		Ice:
+		Death.HexenIce:
+		Death.Ice:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
+			TNT1 A 0 A_NoBlocking
+			//TNT1 A 0 A_SpawnItem("GuardFrozen")
+			PIGC O 0 A_GenericFreezeDeath
+			PIGC O 70 A_UnsetSolid
+			PIGC O 0 A_IceGuyDie
+			PIGC O 1 A_IceGuyDie
+			TNT1 A -1
+			stop
+		Raise:
+			PIGC NMLKJ 5
+			Goto See
+		ZorchRaise:
+			TNT1 A 1 A_UnsetShootable
+			TNT1 A 1 A_SpawnItem("SpawnFire2")
+			TNT1 A 0 A_PlaySound("archvile/resummon")
+			TNT1 A 1 A_TakeInventory("EnemyZorched",1)
+			TNT1 A 0 A_SetTranslucent(0.1,0)
+			PIGC A 3 A_SetTranslucent(0.2,0)
+			PIGC A 3 A_SetTranslucent(0.3,0)
+			PIGC A 3 A_SetTranslucent(0.4,0)
+			PIGC A 3 A_SetTranslucent(0.5,0)
+			PIGC A 3 A_SetTranslucent(0.6,0)
+			PIGC A 3 A_SetTranslucent(0.7,0)
+			PIGC A 3 A_SetTranslucent(0.8,0)
+			PIGC A 3 A_SetTranslucent(0.9,0)
+			PIGC A 3 A_SetTranslucent(1,0)
+			PIGC A 1 A_SetShootable	
+			Goto See
+	}
+}

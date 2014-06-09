@@ -1,0 +1,117 @@
+actor Quadrumpus2 : Quadrumpus replaces Quadrumpus
+{
+	SeeSound "cqimp/sight"
+	PainSound "cqimp/pain"
+	DeathSound "cqimp/death"
+	ActiveSound "cqimp/active"
+    Bloodcolor "Green"
+    States
+    {
+      Spawn:
+        QUAD AB 10 A_Look
+        Loop
+
+      See:
+        QUAD AABBCCDD 3 A_Chase
+        Loop
+
+      Melee:
+        QUAD EF 6 A_FaceTarget // Previously 8 each
+        QUAD G 6 A_CustomMeleeAttack(random[TROCpattack](1,8)*3, "imp/melee", "imp/melee", "flem")
+        Goto See
+
+      Missile:
+        TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+        QUAD EF 8 A_FaceTarget
+        QUAD G 0 A_CustomMissile("QuadrumpusBall", 27, -16)
+        QUAD G 0 A_CustomMissile("QuadrumpusBall", 37, -16)
+        QUAD G 0 A_CustomMissile("QuadrumpusBall", 37, 16)
+        QUAD G 6 A_CustomMissile("QuadrumpusBall", 27, 16)
+        Goto See
+
+      Pain:
+        QUAD A 2 A_SpawnDebris("FlemoidGib",1)
+        QUAD A 2 A_Pain
+        Goto See
+
+      Pain.ZorchPistol:
+
+      Pain.Zorch:
+        QUAD H 2
+        QUAD H 2 A_Pain
+        Goto See
+
+      Death.ZorchPistol:
+
+      Death.Zorch:
+        TNT1 A 0 A_GiveToTarget("KillCount",1)
+        QUAD I 8
+        QUAD J 8 A_Scream
+        QUAD K 6
+        QUAD L 6 A_NoBlocking
+        QUAD M -1
+        Stop
+
+      Death.DukeExplosive:
+
+      Death.DukeDamage:
+
+      Death.DukePistol:
+        TNT1 A 0 A_Jump(218,"Death")
+        TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
+        goto Death
+
+      Death.MightyBoot:
+        TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+        TNT1 A 0 A_Jump(64,"Death")
+        TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
+        goto Death
+
+      XDeath:
+      Death:
+        TNT1 A 0 A_GiveToTarget("KillCount",1)
+        TNT1 A 0 A_NoBlocking
+        TNT1 A 0 A_PlaySound("flemdie2")
+        TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("FlemoidGib",random(-1,1),random(-1,1),random(26,56),random(-2,2),random(-2,2),random(5,15))
+        TNT1 AA 0 A_CustomMissile("QuadrumpusArm1",32,0,random(-45,-135),2,random(0,90))
+        TNT1 AA 0 A_CustomMissile("QuadrumpusArm2",32,0,random(45,135),2,random(0,90))
+        //QUDD A 10
+        //QUDD ABC 7
+        //QUDD D -1
+		TNT1 A -1
+        stop
+
+      Raise:
+        QUAD MLKJI 8
+        Goto See
+
+      Death.DukeIce:
+        TNT1 A 0 A_PlaySound("duke/enemyfreeze")
+        TNT1 A 0 A_GiveInventory("FreezethrowerWeakness")
+        TNT1 A 0 A_Jump(218,"Ice")
+        TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
+        goto Ice
+
+      Ice:
+      Death.HexenIce:
+
+      Death.Ice:
+        TNT1 A 0 A_GiveToTarget("KillCount",1)
+        TNT1 A 0 A_NoBlocking
+        QUAD A 0 A_UnsetSolid
+        QUAD V 70 A_GenericFreezeDeath
+        QUAD A 0 A_IceGuyDie
+        QUAD V 1 A_IceGuyDie
+        TNT1 A -1
+        stop
+
+      Pain.MightyBoot:
+        TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+        TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+        QUAD A 2 A_FaceTarget
+        TNT1 A 0 A_Recoil(14)
+        TNT1 A 0 A_SpawnDebris("FlemoidGib",1)
+        QUAD A 16 A_Pain
+        Goto See
+    }
+}

@@ -1,0 +1,16 @@
+ACTOR ZombieMan3 : ZombieMan2
+{
+    //-NOICEDEATH
+	States
+	{
+		Death.Ice:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
+			//POSS G 0 A_GenericFreezeDeath
+			POSS V 70 A_UnsetSolid
+			POSS V 0 A_IceGuyDie
+			POSS V 1 A_IceGuyDie
+			TNT1 A -1
+			stop
+    }
+}

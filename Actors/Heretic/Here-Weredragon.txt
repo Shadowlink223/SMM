@@ -1,0 +1,15 @@
+ACTOR Beast3 : Beast2 
+{
+	States 
+	{
+		Death.Ice:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			//TNT1 A 0 A_NoBlocking
+			BEAS G 0 A_UnsetSolid
+			BEAS Z 70 A_GenericFreezeDeath
+			BEAS G 0 A_IceGuyDie
+			BEAS Z 1 A_IceGuyDie
+			TNT1 A -1
+			stop
+	}
+}

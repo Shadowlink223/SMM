@@ -1,0 +1,17 @@
+ACTOR Arachnotron3 : Arachnotron2 
+{
+    //-NOICEDEATH
+	States 
+	{
+		Death.Ice:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 A_NoBlocking
+			//TNT1 A 0 A_SpawnItem("ArachnotronFrozen")
+			//BSPI I 0 A_GenericFreezeDeath
+			BSPI Q 70 A_UnsetSolid
+			BSPI Q 0 A_IceGuyDie
+			BSPI Q 1 A_IceGuyDie
+			TNT1 A -1 A_BossDeath
+			stop
+    }
+}

@@ -1,0 +1,37 @@
+ACTOR PainElemental3 : PainElemental2 
+{
+    //-NOICEDEATH
+	States 
+	{
+	
+		Missile:
+		PAIN D 5 A_FaceTarget
+		PAIN E 5 A_FaceTarget
+		PAIN F 4 BRIGHT A_FaceTarget
+		PAIN F 1 BRIGHT A_PainAttack ("LostSoul2")
+		Goto See
+		
+		Death:
+		PAIN H 8 BRIGHT
+		PAIN I 8 BRIGHT A_Scream
+		PAIN JK 8 BRIGHT
+		PAIN L 8 BRIGHT A_PainDie ("LostSoul2")
+		PAIN M 8 BRIGHT
+		Stop
+		
+		Death.Ice:
+			TNT1 A 0 A_Gravity
+			TNT1 A 0 A_SetFloorClip
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_PainDie
+			//TNT1 A 0 A_SpawnItem("PainElementalFrozen")
+			PAIN N 0 A_GenericFreezeDeath
+			PAIN N 70 A_UnsetSolid
+			PAIN N 1 A_NoBlocking
+			PAIN N 0 A_IceGuyDie
+			PAIN N 1 A_IceGuyDie
+			TNT1 A -1
+			stop
+    }
+}

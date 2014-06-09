@@ -1,0 +1,122 @@
+ACTOR AngelOfDeath 
+{
+	Health 2000
+	Radius 40
+	Height 66
+	Speed 12
+	Mass 1000
+	PainChance 0
+	MONSTER
+	+FLOORCLIP
+    +NOTDMATCH
+    +NOICEDEATH
+    +THRUGHOST
+	+MISSILEMORE
+	+BOSS
+	+NORADIUSDMG
+	+DONTGIB
+    +NOTARGET
+    +NOINFIGHTING
+	+DONTMORPH
+	+BOSSDEATH
+	+LOOKALLAROUND
+	SeeSound "angel/sight"
+	PainSound ""
+	DeathSound "angel/death"
+	ActiveSound ""
+	AttackSound "boss/fire"
+	Obituary "%o was smited by the Angel of Death."
+    DamageFactor "Mace", 1.1
+    DamageFactor "DragonClaw", 1.5
+	Dropitem "cellpack"
+	Decal Scorch
+	States 
+	{
+		Spawn:
+			WADH A 1 A_Look
+			Loop
+		See:
+			TNT1 A 0 A_JumpIfInventory("DukeBossSee",1,"See2")
+			TNT1 A 0 A_GiveInventory("DukeBossSee",1)
+			TNT1 A 0 A_GiveToTarget("DukeBossSightTaunt")
+		See2:
+			WADH AABBCCDD 2 A_Chase
+			Loop
+		Missile:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			WADH E 6 A_FaceTarget
+		Blast:
+			WADH E 4 A_FaceTarget
+			WADH F 4 Bright A_CustomMissile("AngelBlast",32,16,0,8)
+			TNT1 A 0 A_PlaySound("angel/fire", CHAN_WEAPON)
+			TNT1 A 0 A_GiveInventory("OrbsFired",1)
+			TNT1 A 0 A_JumpIfInventory("OrbsFired",6,"Exhaust")
+			TNT1 A 0 A_Jump(128,1)
+			Goto Blast2
+			WADH E 10
+			Goto See2
+		Blast2:
+			WADH E 4 A_FaceTarget
+			WADH F 4 Bright A_CustomMissile("AngelBlast",32,16,0,8)
+			TNT1 A 0 A_PlaySound("angel/fire", CHAN_WEAPON)
+			TNT1 A 0 A_GiveInventory("OrbsFired",1)
+			TNT1 A 0 A_JumpIfInventory("OrbsFired",6,"Exhaust")
+			TNT1 A 0 A_Jump(128,1)
+			Goto Blast3
+			WADH E 10
+			Goto See2
+		Blast3:
+			WADH E 4 A_FaceTarget
+			WADH F 4 Bright A_CustomMissile("AngelBlast",32,16,0,8)
+			TNT1 A 0 A_PlaySound("angel/fire", CHAN_WEAPON)
+			TNT1 A 0 A_GiveInventory("OrbsFired",1)
+			TNT1 A 0 A_JumpIfInventory("OrbsFired",6,"Exhaust")
+			Goto See2
+		Exhaust:
+			WADH E 10 A_TakeInventory("OrbsFired",6)
+			WADH GHGHGHG 18
+			Goto See
+		Pain:
+			WADH D 3
+			WADH D 3 A_Pain
+			Goto See
+		Death.DukeDamage:
+		Death.MightyBoot:
+		Death.DukeExplosive:
+		Death.DukeIce:
+		Death.DukePistol:
+			TNT1 A 0 A_GiveToTarget("DukeBossKillTaunt",1)
+		Death:
+		XDeath:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			WADH A 70 A_Scream
+			WADH I 5
+			WADH J 5 A_PlaySoundEx("hitler/melt","soundslot5",0,0)
+			WADH K 5 A_NoBlocking
+			WADH LMNO 5
+			WADH P -1 A_BossDeath
+			Stop
+		Death.ZorchPistol:
+		Death.Zorch:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			WADH D 0 A_Stop
+			TNT1 A 0 A_ChangeFlag("DONTGIB",1)
+			TNT1 A 0 A_PlaySoundEx("chex/zorch","soundslot5",0,0)
+			WADH D 3 A_SpawnItem("ZorchEffectSmall")
+			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
+			WADH D 3 A_SetTranslucent(0.9,0)
+			WADH D 0 A_Scream
+			WADH D 3 A_SetTranslucent(0.8,0)
+			WADH D 0 A_NoBlocking
+			WADH D 3 A_SetTranslucent(0.7,0)
+			WADH D 3 A_SetTranslucent(0.6,0)
+			WADH D 3 A_SetTranslucent(0.5,0)
+			WADH D 3 A_SetTranslucent(0.4,0)
+			WADH D 3 A_SetTranslucent(0.3,0)
+			WADH D 3 A_SetTranslucent(0.2,0)
+			WADH D 3 A_SetTranslucent(0.1,0)
+			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A -1 A_BossDeath
+			stop
+	}
+}

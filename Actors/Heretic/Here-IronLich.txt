@@ -1,0 +1,19 @@
+ACTOR IronLich3 : IronLich2 
+{
+	States 
+	{
+		Death.Ice:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			//TNT1 A 0 A_NoBlocking
+			LICH A 0 A_PlaySoundEx("freeze/ironlich","soundslot6",0,0)
+			LICH A 0 A_UnsetSolid
+			LICH A 0 A_UnsetShootable
+			LICH J 140 A_GenericFreezeDeath
+			LICH A 0 A_PlaySoundEx("freeze/break","soundslot6",0,0)
+			LICH AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("IceChunk2",random(-1,1),random(-1,1),random(16,96),random(-2,2),random(-2,2),random(5,15))
+			LICH A 0 A_IceGuyDie
+			LICH J 1 A_IceGuyDie
+			TNT1 A -1 A_BossDeath
+			stop
+	}
+}

@@ -1,0 +1,93 @@
+ACTOR DoctorSchabbs
+{
+	Health 2400
+	Radius 40
+	Height 66
+	Speed 6
+	Mass 1000
+	PainChance 0
+	MONSTER
+	+FLOORCLIP
+    +NOTDMATCH
+    +NOICEDEATH
+    +THRUGHOST
+	+MISSILEMORE
+	+BOSS
+	+NORADIUSDMG
+	+DONTGIB
+    +NOTARGET
+    +NOINFIGHTING
+	+DONTMORPH
+	+BOSSDEATH
+	+LOOKALLAROUND
+	SeeSound "schabbs/sight"
+	PainSound ""
+	DeathSound "schabbs/death"
+	ActiveSound ""
+	AttackSound "schabbs/throw"
+	Obituary "%o was injected with Doctor Schabb's serum."
+    DamageFactor "Mace", 1.15
+    DamageFactor "DragonClaw", 1.6
+    DamageFactor "MarathonFusion", 2.0
+    DamageFactor "WMCNade", 0.75
+	States
+	{
+		Spawn:
+			WSCB A 1 A_Look
+			Loop
+		See:
+			TNT1 A 0 A_JumpIfInventory("DukeBossSee",1,"See2")
+			TNT1 A 0 A_GiveInventory("DukeBossSee",1)
+			TNT1 A 0 A_GiveToTarget("DukeBossSightTaunt")
+		See2:
+			WSCB AABBCCDD 2 A_Chase
+			Loop
+		Missile:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			WSCB E 10 A_FaceTarget
+			WSCB F 4 Bright A_CustomMissile("WolfSyringe",32,16,0,8)
+			WSCB E 10
+			Goto See
+		Pain:
+			WSCB D 3
+			WSCB D 3 A_Pain
+			Goto See
+		Death.DukeDamage:
+		Death.MightyBoot:
+		Death.DukeExplosive:
+		Death.DukeIce:
+		Death.DukePistol:
+			TNT1 A 0 A_GiveToTarget("DukeBossKillTaunt",1)
+		Death:
+		XDeath:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			WSCB A 70 A_Scream
+			WSCB G 5
+			WSCB H 5
+			WSCB I 5 A_NoBlocking
+			WSCB J -1 A_BossDeath
+			Stop
+		Death.ZorchPistol:
+		Death.Zorch:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			WSCB D 0 A_Stop
+			TNT1 A 0 A_ChangeFlag("DONTGIB",1)
+			TNT1 A 0 A_PlaySoundEx("chex/zorch","soundslot5",0,0)
+			WSCB D 3 A_SpawnItem("ZorchEffectSmall")
+			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
+			WSCB D 3 A_SetTranslucent(0.9,0)
+			WSCB D 0 A_Scream
+			WSCB D 3 A_SetTranslucent(0.8,0)
+			WSCB D 0 A_NoBlocking
+			WSCB D 3 A_SetTranslucent(0.7,0)
+			WSCB D 3 A_SetTranslucent(0.6,0)
+			WSCB D 3 A_SetTranslucent(0.5,0)
+			WSCB D 3 A_SetTranslucent(0.4,0)
+			WSCB D 3 A_SetTranslucent(0.3,0)
+			WSCB D 3 A_SetTranslucent(0.2,0)
+			WSCB D 3 A_SetTranslucent(0.1,0)
+			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A -1 A_BossDeath
+			stop
+	}
+}

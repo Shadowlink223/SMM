@@ -1,0 +1,203 @@
+ACTOR SODBat 
+{
+	Health 65
+	Radius 20
+	Height 56
+	Speed 6
+	PainChance 170
+	MONSTER
+	+FLOORCLIP
+    +NOTDMATCH
+    +NOICEDEATH
+    +THRUGHOST
+	+FLOAT
+	+NOGRAVITY
+	SeeSound ""
+	PainSound ""
+	DeathSound "bat/death"
+	ActiveSound ""
+	AttackSound "nazi/fire"
+	Obituary "%o was shot by a bat."
+    DamageFactor "Mace", 1.1
+    DamageFactor "DragonClaw", 1.5
+    PainChance "MightyBoot", 255
+	Dropitem "SODClip"
+	Decal BulletChip
+	States 
+	{
+		Spawn:
+			SBAT BBCCDDEE 2 A_Look
+			Loop
+		See:
+			SBAT BBCCDDEE 2 A_Chase
+			Loop
+		Missile:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			SBAT G 10 A_FaceTarget
+			TNT1 A 0 A_JumpIfCloser (256, "Bullet1")
+			TNT1 A 0 A_JumpIfCloser (512, "Bullet2")
+			TNT1 A 0 A_JumpIfCloser (768, "Bullet3")
+			TNT1 A 0 A_JumpIfCloser (1024, "Bullet4")
+			TNT1 A 0 A_JumpIfCloser (1280, "Bullet5")
+			TNT1 A 0 A_JumpIfCloser (1536, "Bullet6")
+			Goto Bullet7
+		Bullet1:
+			TNT1 A 0 A_PlaySound("nazi/fire")
+			SBAT H 4 bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-10,10),8)
+			SBAT I 10 A_FaceTarget
+			TNT1 A 0 A_PlaySound("nazi/fire")
+			SBAT J 4 bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-10,10),8)
+			Goto MissileEnd
+		Bullet2:
+			TNT1 A 0 A_PlaySound("nazi/fire")
+			SBAT H 4 bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-12,12),8)
+			SBAT I 10 A_FaceTarget
+			TNT1 A 0 A_PlaySound("nazi/fire")
+			SBAT J 4 bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-12,12),8)
+			Goto MissileEnd
+		Bullet3:
+			TNT1 A 0 A_PlaySound("nazi/fire")
+			SBAT H 4 bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-14,14),8)
+			SBAT I 10 A_FaceTarget
+			TNT1 A 0 A_PlaySound("nazi/fire")
+			SBAT J 4 bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-14,14),8)
+			Goto MissileEnd
+		Bullet4:
+			TNT1 A 0 A_PlaySound("nazi/fire")
+			SBAT H 4 bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-16,16),8)
+			SBAT I 10 A_FaceTarget
+			TNT1 A 0 A_PlaySound("nazi/fire")
+			SBAT J 4 bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-16,16),8)
+			Goto MissileEnd
+		Bullet5:
+			TNT1 A 0 A_PlaySound("nazi/fire")
+			SBAT H 4 bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-18,18),8)
+			SBAT I 10 A_FaceTarget
+			TNT1 A 0 A_PlaySound("nazi/fire")
+			SBAT J 4 bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-18,18),8)
+			Goto MissileEnd
+		Bullet6:
+			TNT1 A 0 A_PlaySound("nazi/fire")
+			SBAT H 4 bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-20,20),8)
+			SBAT I 10 A_FaceTarget
+			TNT1 A 0 A_PlaySound("nazi/fire")
+			SBAT J 4 bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-20,20),8)
+			Goto MissileEnd
+		Bullet7:
+			TNT1 A 0 A_PlaySound("nazi/fire")
+			SBAT H 4 bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-22,22),8)
+			SBAT I 10 A_FaceTarget
+			TNT1 A 0 A_PlaySound("nazi/fire")
+			SBAT J 4 bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-22,22),8)
+			Goto MissileEnd
+		MissileEnd:
+			TNT1 A 0 A_JumpIfCloser(80,1)
+			Goto See
+			TNT1 A 0
+			Goto Missile
+		Pain:
+			SBAT F 3
+			SBAT F 3 A_Pain
+			Goto See
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			SBAT F 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			SBAT F 16 A_Pain
+			Goto See
+		Death.DukeDamage:
+		Death.DukePistol:
+			TNT1 A 0 A_Jump(218,"Death")
+			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
+			goto Death
+		Death.MightyBoot:
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_Jump(64,"Death")
+			TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
+			goto Death
+		Death.DukeExplosive:
+			TNT1 A 0 A_JumpIfHealthLower(-3,"DukeGibStart")
+			goto Death.DukeDamage
+		DukeGibStart:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_SpawnDebris("DukeGibs1")
+			TNT1 A 0 A_SpawnDebris("DukeGibs2")
+			TNT1 A 0 A_SpawnDebris("DukeGibs3")
+			TNT1 A 0 A_SpawnDebris("DukeGibs4")
+			TNT1 A 0 A_SpawnDebris("DukeGibs5")
+			TNT1 A 0 A_SpawnDebris("DukeGibs6")
+			TNT1 A 0 A_PlaySound("duke/enemygib")
+			TNT1 A 0 A_Jump(96,"XDeath")
+			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
+		Death:
+		XDeath:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			SBAT K 5
+			SBAT L 5 A_Scream
+			SBAT M 5 A_NoBlocking
+			SBAT NO 5
+			SBAT P -1
+			Stop
+		Death.ZorchPistol:
+		Death.Zorch:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			SBAT F 0 A_Stop
+			TNT1 A 0 A_ChangeFlag("DONTGIB",1)
+			TNT1 A 0 A_PlaySoundEx("chex/zorch","soundslot5",0,0)
+			SBAT F 3 A_SpawnItem("ZorchEffectSmall")
+			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
+			SBAT F 3 A_SetTranslucent(0.9,0)
+			SBAT F 0 A_Scream
+			SBAT F 3 A_SetTranslucent(0.8,0)
+			SBAT F 0 A_NoBlocking
+			SBAT F 3 A_SetTranslucent(0.7,0)
+			SBAT F 3 A_SetTranslucent(0.6,0)
+			SBAT F 3 A_SetTranslucent(0.5,0)
+			SBAT F 3 A_SetTranslucent(0.4,0)
+			SBAT F 3 A_SetTranslucent(0.3,0)
+			SBAT F 3 A_SetTranslucent(0.2,0)
+			SBAT F 3 A_SetTranslucent(0.1,0)
+			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A -1
+			stop
+		Death.DukeIce:
+			TNT1 A 0 A_PlaySound("duke/enemyfreeze")
+			TNT1 A 0 A_GiveInventory("FreezethrowerWeakness")
+			TNT1 A 0 A_Jump(218,"Ice")
+			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
+		Ice:
+		Death.HexenIce:
+		Death.Ice:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
+			TNT1 A 0 A_NoBlocking
+			//TNT1 A 0 A_SpawnItem("MutantFrozen")
+			SBAT Q 0 A_GenericFreezeDeath
+			SBAT Q 70 A_UnsetSolid
+			SBAT Q 0 A_IceGuyDie
+			SBAT Q 1 A_IceGuyDie
+			TNT1 A -1
+			stop
+		Raise:
+			SBAT PONMLK 5
+			Goto See
+		ZorchRaise:
+			TNT1 A 1 A_UnsetShootable
+			TNT1 A 1 A_SpawnItem("SpawnFire2")
+			TNT1 A 0 A_PlaySound("archvile/resummon")
+			TNT1 A 1 A_TakeInventory("EnemyZorched",1)
+			TNT1 A 0 A_SetTranslucent(0.1,0)
+			SBAT A 3 A_SetTranslucent(0.2,0)
+			SBAT A 3 A_SetTranslucent(0.3,0)
+			SBAT A 3 A_SetTranslucent(0.4,0)
+			SBAT A 3 A_SetTranslucent(0.5,0)
+			SBAT A 3 A_SetTranslucent(0.6,0)
+			SBAT A 3 A_SetTranslucent(0.7,0)
+			SBAT A 3 A_SetTranslucent(0.8,0)
+			SBAT A 3 A_SetTranslucent(0.9,0)
+			SBAT A 3 A_SetTranslucent(1,0)
+			SBAT A 1 A_SetShootable
+			Goto See
+	}
+}

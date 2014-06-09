@@ -1,0 +1,187 @@
+//==============================================================================
+// DOOM
+//==============================================================================
+
+ACTOR ZombiemanReplacer : RandomSpawner replaces Zombieman {
+	dropitem "Zombieman3" 255 2 //Doom
+	dropitem "Mummy3" 255 2 //Heretic
+	dropitem "Ettin2" 255 2 //Hexen
+	dropitem "FlemoidusCommonus3" 255 2 //Chex Quest
+	dropitem "WolfGuard" 255 2 //Wolf3D
+	dropitem "SODGuard" 255 2 //Wolf3D
+}
+
+ACTOR ShotGunGuyReplacer : RandomSpawner replaces ShotGunGuy {
+	dropitem "ShotGunGuy3" 255 2 //Doom
+	dropitem "MummyLeader3" 255 2 //Heretic
+	dropitem "Ettin2" 255 2 //Hexen
+	dropitem "FlemoidusBipedicus3" 255 2 //Chex Quest
+	dropitem "WolfOfficer" 255 2 //Wolf3D
+	dropitem "SODOfficer" 255 2 //Wolf3D
+	dropitem "PigCop" 255 2 //Duke3D
+}
+
+ACTOR DoomImpReplacer : RandomSpawner replaces DoomImp {
+	dropitem "DoomImp3" 255 2 //Doom
+	dropitem "MummyLeader3" 255 2 //Heretic
+	dropitem "Bishop2" 255 2 //Hexen
+	dropitem "ArmoredFlemoidusBipedicus2" 255 2 //Chex Quest
+	dropitem "WolfOfficer" 255 2 //Wolf3D
+	dropitem "SODOfficer" 255 2 //Wolf3D
+}
+
+ACTOR ChaingunGuyReplacer : RandomSpawner replaces ChaingunGuy {
+	dropitem "ChaingunGuy3" 255 2 //Doom
+	dropitem "Knight3" 255 2 //Heretic
+	dropitem "Ettin2" 255 2 //Hexen
+	dropitem "ArmoredFlemoidusBipedicus2" 255 2 //Chex Quest
+	dropitem "WolfSS" 255 2 //Wolf3D
+	dropitem "SODSS" 255 2 //Wolf3D
+	dropitem "AssaultEnforcer" 255 2 //Duke3D
+}
+
+ACTOR DemonReplacer : RandomSpawner replaces Demon {
+	dropitem "DoomDemon3" 255 2 //Doom
+	dropitem "Knight3" 255 2 //Heretic
+	dropitem "Centaur2" 255 2 //Hexen
+	dropitem "FlemoidusStridicus2" 255 2 //Chex Quest
+	dropitem "WolfDog" 255 2 //Wolf3D
+	dropitem "SODDog" 255 2 //Wolf3D
+	dropitem "ProtectorDrone" 255 2 //Duke3D
+}
+
+ACTOR SpectreReplacer : RandomSpawner replaces Spectre {
+	dropitem "Spectre3" 255 6 //Doom
+	dropitem "KnightGhost3" 255 2 //Heretic
+	dropitem "MummyGhost3" 255 2 //Heretic
+	dropitem "MummyLeaderGhost3" 255 2 //Heretic
+	dropitem "CentaurLeader2" 255 6 //Hexen
+	dropitem "FlemoidusCycloptisCommonus2" 255 3 //Chex Quest
+	dropitem "Larva2" 255 3 //Chex Quest
+	dropitem "WolfDog" 255 6 //Wolf3D
+	dropitem "SODDog" 255 2 //Wolf3D
+	dropitem "ProtectorDrone" 255 2 //Duke3D
+}
+
+ACTOR HellKnightReplacer : RandomSpawner replaces HellKnight {
+	dropitem "HellKnight3" 255 2 //Doom
+	dropitem "Clink3" 255 2 //Heretic
+	dropitem "Demon1B" 255 2 //Hexen
+	dropitem "Quadrumpus2" 255 2 //Chex Quest
+	dropitem "WolfMutant" 255 2 //Wolf3D
+}
+
+ACTOR BaronOfHellReplacer : RandomSpawner replaces BaronOfHell {
+	dropitem "BaronOfHell3" 255 3 //Doom
+	dropitem "Beast3" 255 3 //Heretic
+	dropitem "Demon2B" 255 3 //Hexen
+	dropitem "Quadrumpus2" 255 2 //Chex Quest
+	dropitem "HansGrosse" 255 1 //Wolf3D
+	dropitem "GretelGrosse" 255 1 //Wolf3D
+	dropitem "TransGrosse" 255 1 //Wolf3D
+	dropitem "SubmarineWilly" 255 1 //Wolf3D
+	dropitem "MiniBattlelord" 255 1 //Duke3D
+}
+
+ACTOR ArachnotronReplacer : RandomSpawner replaces Arachnotron {
+	dropitem "Arachnotron3" 255 2 //Doom
+	dropitem "Clink3" 255 2 //Heretic
+	dropitem "CentaurLeader2" 255 2 //Hexen
+	dropitem "Flembrane2" 255 2 //Chex Quest
+	dropitem "OttoGiftmacher" 255 2 //Wolf3D
+}
+
+ACTOR FatsoReplacer : RandomSpawner replaces Fatso {
+	dropitem "Fatso3" 255 2 //Doom
+	dropitem "Beast3" 255 2 //Heretic
+	dropitem "IceGuy2" 255 2 //Hexen
+	dropitem "Flembrane2" 255 2 //Chex Quest
+	dropitem "OttoGiftmacher" 255 2 //Wolf3D
+}
+
+ACTOR LostSoulReplacer : RandomSpawner replaces LostSoul {
+	dropitem "LostSoul2" 255 2 //Doom
+	dropitem "HereticImpLeader3" 255 2 //Heretic
+	dropitem "FireDemon2" 255 2 //Hexen
+	dropitem "FlemMine2" 255 2 //Chex Quest
+	dropitem "SODBat" 255 2 //Wolf3D
+	//dropitem "SentryDrone" 255 2 //Duke3D
+}
+
+ACTOR PainElementalReplacer : RandomSpawner replaces PainElemental {
+	dropitem "PainElemental3" 255 2 //Doom
+	dropitem "IronLich3" 255 2 //Heretic
+	dropitem "WraithBuried2" 255 2 //Hexen
+	dropitem "SuperCycloptis2" 255 2 //Chex Quest
+	dropitem "FakeHitler" 255 2 //Wolf3D
+	dropitem "AssaultCommander" 255 2 //Duke3D
+}
+
+ACTOR CacodemonReplacer : RandomSpawner replaces Cacodemon {
+	dropitem "Cacodemon3" 255 2 //Doom
+	dropitem "Wizard3" 255 2 //Heretic
+	dropitem "Wraith2" 255 2 //Hexen
+	dropitem "SuperCycloptis2" 255 2 //Chex Quest
+	dropitem "FakeHitler" 255 2 //Wolf3D
+	dropitem "AssaultCommander" 255 2 //Duke3D
+}
+
+ACTOR RevenantReplacer : RandomSpawner replaces Revenant {
+	dropitem "Revenant3" 255 2 //Doom
+	dropitem "Snake3" 255 2 //Heretic
+	dropitem "FireDemon2" 255 2 //Hexen
+	dropitem "Quadrumpus2" 255 2 //Chex Quest
+	dropitem "WolfMutant" 255 2 //Wolf3D
+	dropitem "AssaultCommander" 255 2 //Duke3D
+}
+
+ACTOR ArchvileReplacer : RandomSpawner replaces Archvile {
+	dropitem "Archvile3" 255 2 //Doom
+	dropitem "Ironlich3" 255 2 //Heretic
+	dropitem "WraithBuried2" 255 2 //Hexen
+	dropitem "FlemoidusMaximus2" 255 2 //Chex Quest
+}
+
+ACTOR CyberDemonReplacer : RandomSpawner replaces CyberDemon {
+	dropitem "CyberDemon3" 255 24 //Doom
+	dropitem "Minotaur3" 255 18 //Heretic
+	dropitem "Heresiarch2" 255 8 //Hexen
+	dropitem "ClericBoss2" 255 1 //Hexen
+	dropitem "MageBoss2" 255 1 //Hexen
+	dropitem "FighterBoss2" 255 1 //Hexen
+	dropitem "Snotfolus2" 255 12 //Chex Quest
+	dropitem "DoctorSchabbs" 255 8 //Wolf3D
+	dropitem "AngelOfDeath" 255 8//Wolf3D
+	dropitem "DevilIncarnate" 255 8 //Wolf3D
+	dropitem "Overlord" 255 12 //Duke3D
+	dropitem "CycloidEmperor" 255 12 //Duke3D
+}
+
+ACTOR SpiderMastermindReplacer : RandomSpawner replaces SpiderMastermind {
+	dropitem "SpiderMastermind3" 255 36 //Doom
+	dropitem "Sorcerer5" 255 24 //Heretic
+	dropitem "Korax2" 255 12 //Hexen
+	dropitem "ClericBoss2" 255 1 //Hexen
+	dropitem "MageBoss2" 255 1 //Hexen
+	dropitem "FighterBoss2" 255 1 //Hexen
+	dropitem "Flembomination2" 255 24 //Chex Quest
+	dropitem "GeneralFettgesicht" 255 8 //Wolf3D
+	dropitem "BarnacleWilhelm" 255 8 //Wolf3D
+	dropitem "Ubermutant" 255 8 //Wolf3D
+	dropitem "DeathKnight" 255 8 //Wolf3D
+	dropitem "MechaHitler" 255 8 //Wolf3D
+	dropitem "Robot" 255 8 //Wolf3D
+	dropitem "ProfessorQuarkblitz" 255 8 //Wolf3D
+	dropitem "TheAxe" 255 8 //Wolf3D
+	dropitem "Battlelord" 255 16 //Duke3D
+	dropitem "AlienQueen" 255 16 //Duke3D
+}
+
+ACTOR WolfensteinSSReplacer : RandomSpawner replaces WolfensteinSS {
+	dropitem "Nazi2" 255 2 //Doom
+	dropitem "Chicken2" 255 2 //Heretic
+	dropitem "Pig2" 255 2 //Hexen
+	dropitem "FlemMine2" 255 2 //Chex Quest
+	dropitem "WolfSS" 255 2 //Wolf3D
+	dropitem "SODSS" 255 2 //Wolf3D
+}

@@ -1,0 +1,154 @@
+ACTOR WolfDog 
+{
+	Health 1
+	Radius 12
+	Height 28
+	Speed 12
+	PainChance 255
+	MONSTER
+	+FLOORCLIP
+    +NOTDMATCH
+    +NOICEDEATH
+    +THRUGHOST
+	SeeSound "dog/sight"
+	PainSound ""
+	DeathSound "dog/death"
+	ActiveSound "dog/sight"
+	AttackSound "dog/bite"
+	Obituary "%o was bitten by a dog."
+    DamageFactor "Mace", 1.1
+    DamageFactor "DragonClaw", 1.5
+    PainChance "MightyBoot", 255
+	States 
+	{
+		Spawn:
+			WDOG A 0 A_Look
+			WDOG A 1 A_Wander
+			WDOG A 0 A_Look
+			WDOG A 1 A_Wander
+			WDOG B 0 A_Look
+			WDOG B 1 A_Wander
+			WDOG B 0 A_Look
+			WDOG B 1 A_Wander
+			WDOG C 0 A_Look
+			WDOG C 1 A_Wander
+			WDOG C 0 A_Look
+			WDOG C 1 A_Wander
+			WDOG D 0 A_Look
+			WDOG D 1 A_Wander
+			WDOG D 0 A_Look
+			WDOG D 1 A_Wander
+			Loop
+		See:
+			WDOG AABBCCDD 3 A_Chase
+			Loop
+		Melee:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			WDOG EF 6 A_FaceTarget
+			WDOG G 6 A_CustomMeleeAttack(random(1,16),"dog/bite")
+			Goto See
+		Pain:
+			WDOG F 3
+			WDOG F 3 A_Pain
+			Goto See
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			WDOG H 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			WDOG H 16 A_Pain
+			Goto See
+		Death.DukeDamage:
+		Death.DukePistol:
+			TNT1 A 0 A_Jump(218,"Death")
+			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
+			goto Death
+		Death.MightyBoot:
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_Jump(64,"Death")
+			TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
+			goto Death
+		Death.DukeExplosive:
+			TNT1 A 0 A_JumpIfHealthLower(-3,"DukeGibStart")
+			goto Death.DukeDamage
+		DukeGibStart:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_SpawnDebris("DukeGibs1")
+			TNT1 A 0 A_SpawnDebris("DukeGibs2")
+			TNT1 A 0 A_SpawnDebris("DukeGibs3")
+			TNT1 A 0 A_SpawnDebris("DukeGibs4")
+			TNT1 A 0 A_SpawnDebris("DukeGibs5")
+			TNT1 A 0 A_SpawnDebris("DukeGibs6")
+			TNT1 A 0 A_PlaySound("duke/enemygib")
+			TNT1 A 0 A_Jump(96,"XDeath")
+			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
+		Death:
+		XDeath:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			WDOG H 5
+			WDOG I 5 A_Scream
+			WDOG J 5 A_NoBlocking
+			WDOG K -1
+			Stop
+		Death.ZorchPistol:
+		Death.Zorch:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			WDOG H 0 A_Stop
+			TNT1 A 0 A_ChangeFlag("DONTGIB",1)
+			TNT1 A 0 A_PlaySoundEx("chex/zorch","soundslot5",0,0)
+			WDOG H 3 A_SpawnItem("ZorchEffectSmall")
+			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
+			WDOG H 3 A_SetTranslucent(0.9,0)
+			WDOG H 0 A_Scream
+			WDOG H 3 A_SetTranslucent(0.8,0)
+			WDOG H 0 A_NoBlocking
+			WDOG H 3 A_SetTranslucent(0.7,0)
+			WDOG H 3 A_SetTranslucent(0.6,0)
+			WDOG H 3 A_SetTranslucent(0.5,0)
+			WDOG H 3 A_SetTranslucent(0.4,0)
+			WDOG H 3 A_SetTranslucent(0.3,0)
+			WDOG H 3 A_SetTranslucent(0.2,0)
+			WDOG H 3 A_SetTranslucent(0.1,0)
+			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A -1
+			stop
+		Death.DukeIce:
+			TNT1 A 0 A_PlaySound("duke/enemyfreeze")
+			TNT1 A 0 A_GiveInventory("FreezethrowerWeakness")
+			TNT1 A 0 A_Jump(218,"Ice")
+			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
+		Ice:
+		Death.HexenIce:
+		Death.Ice:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
+			TNT1 A 0 A_NoBlocking
+			//TNT1 A 0 A_SpawnItem("DogFrozen")
+			WDOG L 0 A_GenericFreezeDeath
+			WDOG L 70 A_UnsetSolid
+			WDOG L 0 A_IceGuyDie
+			WDOG L 1 A_IceGuyDie
+			TNT1 A -1
+			stop
+		Raise:
+			WDOG KJIH 5
+			Goto See
+		ZorchRaise:
+			TNT1 A 1 A_UnsetShootable
+			TNT1 A 1 A_SpawnItem("SpawnFire2")
+			TNT1 A 0 A_PlaySound("archvile/resummon")
+			TNT1 A 1 A_TakeInventory("EnemyZorched",1)
+			TNT1 A 0 A_SetTranslucent(0.1,0)
+			WDOG A 3 A_SetTranslucent(0.2,0)
+			WDOG A 3 A_SetTranslucent(0.3,0)
+			WDOG A 3 A_SetTranslucent(0.4,0)
+			WDOG A 3 A_SetTranslucent(0.5,0)
+			WDOG A 3 A_SetTranslucent(0.6,0)
+			WDOG A 3 A_SetTranslucent(0.7,0)
+			WDOG A 3 A_SetTranslucent(0.8,0)
+			WDOG A 3 A_SetTranslucent(0.9,0)
+			WDOG A 3 A_SetTranslucent(1,0)
+			WDOG A 1 A_SetShootable
+			Goto See
+	}
+}

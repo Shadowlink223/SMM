@@ -1,0 +1,110 @@
+actor FlemoidusStridicus2 : FlemoidusStridicus replaces FlemoidusStridicus
+{
+	SeeSound "cqdemon/sight"
+	AttackSound "cqdemon/melee"
+	PainSound "cqdemon/pain"
+	DeathSound "cqdemon/death"
+	ActiveSound "cqdemon/active"
+    Bloodcolor "Green"
+    States
+    {
+      Spawn:
+        SARC AB 10 A_Look
+        Loop
+
+      See:
+        SARC AABBCCDD 2 A_Chase
+        Loop
+
+      Melee: // Previously 8 frames each.
+        TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+        SARC EF 6 A_FaceTarget
+        SARC G 6 A_CustomMeleeAttack(random[SARCattack](1,10)*4, "", "", "Flem")
+        Goto See
+
+      Pain:
+        SARC A 2 A_SpawnDebris("FlemoidGib",1)
+        SARC A 2 A_Pain
+        Goto See
+
+      Pain.ZorchPistol:
+
+      Pain.Zorch:
+        SARC H 2
+        SARC H 2 A_Pain
+        Goto See
+
+      Death.ZorchPistol:
+
+      Death.Zorch:
+        TNT1 A 0 A_GiveToTarget("KillCount",1)
+        SARC I 8
+        SARC J 8 A_Scream
+        SARC K 4
+        SARC L 4 A_NoBlocking
+        SARC M 4
+        SARC N -1
+        Stop
+
+      Death.DukeExplosive:
+
+      Death.DukeDamage:
+
+      Death.DukePistol:
+        TNT1 A 0 A_Jump(218,"Death")
+        TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
+        goto Death
+
+      Death.MightyBoot:
+        TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+        TNT1 A 0 A_Jump(64,"Death")
+        TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
+        goto Death
+
+      XDeath:
+      Death:
+        TNT1 A 0 A_GiveToTarget("KillCount",1)
+        TNT1 A 0 A_NoBlocking
+        TNT1 A 0 A_PlaySound("flemdie2")
+        TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("FlemoidGib",random(-1,1),random(-1,1),random(46,56),random(-2,2),random(-2,2),random(5,15))
+        //STRD A 14
+        //STRD ABCDEF 7
+        //STRD G -1
+		TNT1 A -1
+        stop
+
+      Raise:
+        SARC N 5
+        SARC MLKJI 5
+        Goto See
+
+      Death.DukeIce:
+        TNT1 A 0 A_PlaySound("duke/enemyfreeze")
+        TNT1 A 0 A_GiveInventory("FreezethrowerWeakness")
+        TNT1 A 0 A_Jump(218,"Ice")
+        TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
+        goto Ice
+
+      Ice:
+      Death.HexenIce:
+
+      Death.Ice:
+        TNT1 A 0 A_GiveToTarget("KillCount",1)
+        TNT1 A 0 A_NoBlocking
+        SARC A 0 A_UnsetSolid
+        SARC O 70 A_GenericFreezeDeath
+        SARC A 0 A_IceGuyDie
+        SARC O 1 A_IceGuyDie
+        TNT1 A -1
+        stop
+
+      Pain.MightyBoot:
+        TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+        TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+        SARC A 2 A_FaceTarget
+        TNT1 A 0 A_Recoil(14)
+        TNT1 A 0 A_SpawnDebris("FlemoidGib",1)
+        SARC A 16 A_Pain
+        Goto See
+    }
+}

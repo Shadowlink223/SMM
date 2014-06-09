@@ -1,0 +1,112 @@
+ACTOR AlienQueen
+{
+	Health 6000
+	Radius 80
+	Height 110
+	Mass 1200
+	Speed 35
+	PainChance 16
+	Scale 1.1
+	MONSTER
+	+BOSS
+	+FLOORCLIP
+    +NOTDMATCH
+    +NOICEDEATH
+    +THRUGHOST
+	SeeSound ""
+	PainSound "queen/pain"
+	DeathSound "queen/death"
+	ActiveSound "queen/roam"
+	AttackSound "queen/attack"
+	Obituary "%o was shocked to death by the Alien Queen."
+    DamageFactor "Mace", 1.1
+    DamageFactor "DragonClaw", 1.5
+    PainChance "MightyBoot", 255
+	States
+	{
+		Spawn:
+			QUEE A 2 A_Look
+			Loop
+		See:
+			TNT1 A 0 A_JumpIfInventory("DukeBossSee",1,"See2")
+			TNT1 A 0 A_GiveInventory("DukeBossSee",1)
+			TNT1 A 0 A_GiveToTarget("DukeBossSightTaunt")
+		See2:
+			QUEE AABBCCDD 5 A_Chase
+			Loop
+		Missile:
+			TNT1 A 0 A_TakeInventory("QueenAttackToken",5)
+			TNT1 A 0 A_JumpIfCloser(100,"Stomp")
+			TNT1 A 0 A_Jump (150, "Birth")
+			TNT1 A 0 A_PlaySound("queen/attack", CHAN_WEAPON)
+		Attack:
+			//TNT1 A 0 A_JumpIfInventory("QueenAttackToken",5,"See")
+			QUEE EEEEE 2 A_FaceTarget
+		//AttackLoop:
+			//TNT1 A 0 A_JumpIfInventory("QueenAttackToken",5,"See")
+			//TNT1 A 0 A_GiveInventory("QueenAttackToken",1)
+			QUEE F 1 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			QUEE FF 2
+			QUEE GGGGG 1 A_FaceTarget
+			QUEE F 1 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			QUEE FF 2
+			QUEE GGGGG 1 A_FaceTarget
+			QUEE F 1 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			QUEE FF 2
+			QUEE GGGGG 1 A_FaceTarget
+			QUEE F 1 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			QUEE FF 2
+			QUEE GGGGG 1 A_FaceTarget
+			QUEE F 1 Bright A_CustomMissile("DoomEnemyBullet",32,0,random(-7,7),8)
+			QUEE FF 2
+			QUEE GGGGG 1 A_FaceTarget
+			Goto See2
+		Stomp:
+			TNT1 A 0 A_Explode(1000,100,0,0)
+			Goto See2
+		Birth:
+			TNT1 A 0 A_PlaySound("queen/birth", CHAN_WEAPON)
+			QUEE HI 40
+			QUEE J 40 A_SpawnItemEx("DoomImp3",0,-128,0)
+			goto See2
+		Pain:
+			QUEE K 2
+			TNT1 A 0 A_Pain
+			Goto See2
+			Death.DukeDamage:
+		Death.DukePistol:
+			TNT1 A 0 A_GiveToTarget("DukeBossKillTaunt",1)
+		Death.MightyBoot:
+		Death.DukeExplosive:
+		Death:
+		XDeath:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			QUEE K 10 A_Scream
+			QUEE LMNOPQRST 10 A_NoBlocking
+			QUEE T 20
+			QUEE T -1 A_BossDeath
+			Stop
+		Death.ZorchPistol:
+		Death.Zorch:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			QUEE F 0 A_Stop
+			TNT1 A 0 A_ChangeFlag("DONTGIB",1)
+			TNT1 A 0 A_PlaySoundEx("chex/zorch","soundslot5",0,0)
+			QUEE F 3 A_SpawnItem("ZorchEffectSmall")
+			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
+			QUEE F 3 A_SetTranslucent(0.9,0)
+			QUEE F 0 A_Scream
+			QUEE F 3 A_SetTranslucent(0.8,0)
+			QUEE F 0 A_NoBlocking
+			QUEE F 3 A_SetTranslucent(0.7,0)
+			QUEE F 3 A_SetTranslucent(0.6,0)
+			QUEE F 3 A_SetTranslucent(0.5,0)
+			QUEE F 3 A_SetTranslucent(0.4,0)
+			QUEE F 3 A_SetTranslucent(0.3,0)
+			QUEE F 3 A_SetTranslucent(0.2,0)
+			QUEE F 3 A_SetTranslucent(0.1,0)
+			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A -1
+			stop
+	}
+}

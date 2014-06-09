@@ -1,0 +1,15 @@
+ACTOR Clink3 : Clink2 
+{
+	States 
+	{
+		Death.Ice:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			//TNT1 A 0 A_NoBlocking
+			CLNK H 0 A_UnsetSolid
+			CLNK P 70 A_GenericFreezeDeath
+			CLNK H 0 A_IceGuyDie
+			CLNK P 1 A_IceGuyDie
+			TNT1 A -1
+			stop
+	}
+}

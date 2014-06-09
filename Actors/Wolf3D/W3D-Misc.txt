@@ -1,0 +1,185 @@
+ACTOR MainWolfRocket 
+{
+	Radius 8
+	Height 6
+	Speed 20
+	Damage (30 + random (1, 32))
+	Projectile
+	+FORCERADIUSDMG
+	SeeSound "wolfen/missilefire"
+	DeathSound "wolfen/missilexplod"
+	Decal Scorch
+	States 
+	{
+		Spawn:
+			WRKT A 3 A_SpawnItem("WolfRocketSmoke")
+			Loop
+		Death:
+			WEXP A 8 Bright A_Explode(32,32,0)
+			WEXP B 6 Bright
+			WEXP C 4 Bright
+			Stop
+	}
+}
+
+ACTOR BarnacleWolfRocket : MainWolfRocket { Obituary "%o was blown away by Barnacle Wilhelm's rocket." }
+ACTOR FettWolfRocket : MainWolfRocket { Obituary "%o was blown away by General Fettgesicht's rocket." }
+ACTOR OttoWolfRocket : MainWolfRocket { Obituary "%o was blown away by Otto Giftmacher's rocket." }
+ACTOR ProfessorWolfRocket : MainWolfRocket { Obituary "%o was blown away by Professor Quarkblitz's rocket." }
+
+ACTOR KnightWolfRocket : MainWolfRocket
+{
+	SeeSound "deathknight/missile"
+	Obituary "%o was blown away by the Death Knight's rocket."
+}
+
+ACTOR RobotWolfRocket : MainWolfRocket
+{
+	SeeSound "deathknight/missile"
+	Obituary "%o was blown away by the Robot's rocket."
+}
+
+ACTOR AngelBlast 
+{
+	Radius 8
+	Height 6
+	Speed 15
+	Damage (random (0, 32))
+	Projectile
+	+RANDOMIZE
+	SeeSound "angel/fire"
+	DeathSound "angel/fire"
+	Obituary "%o was smited by the Angel of Death."
+	Decal Scorch
+	States 
+	{
+		Spawn:
+			WADP ABCD 4 Bright
+			Loop
+		Death:
+			TNT1 A 1
+			Stop
+	}
+}
+
+ACTOR DevilBlast : AngelBlast { Obituary "%o was smited by the Devil Incarnate." }
+
+ACTOR OrbsFired : Inventory { Inventory.MaxAmount 6 }
+
+ACTOR WolfSyringe 
+{
+	Radius 8
+	Height 6
+	Speed 15
+	Damage (20 + random(0,32))
+	Projectile
+	+FORCERADIUSDMG
+	SeeSound "schabbs/throw"
+	DeathSound ""
+	Obituary "%o was injected with Doctor Schabb's serum."
+	States 
+	{
+		Spawn:
+			WSYR ABCD 3
+			Loop
+		Death:
+			TNT1 A 0
+			Stop
+	}
+}
+
+ACTOR FakeHitlerBall 
+{
+	Radius 6
+	Height 8
+	Speed 5
+	FastSpeed 20
+	Damage (random (1, 32))
+	Projectile
+	+RANDOMIZE
+	SeeSound "fakehitler/fire"
+	DeathSound "fakehitler/fire"
+	States 
+	{
+		Spawn:
+			WFHP AB 4 Bright
+			Loop
+		Death:
+			TNT1 A 1
+			Stop
+	}
+}
+
+ACTOR WolfClip : Clip2
+{
+	States
+	{
+	Spawn:
+		WMAG A -1
+		Stop
+	}
+}
+
+ACTOR SODClip : WolfClip
+{
+	States
+	{
+	Spawn:
+		SMAG A -1
+		Stop
+	}
+}
+
+ACTOR WolfGoldKey : CustomInventory
+{
+	Inventory.PickupMessage "Picked up a gold key, I wonder what it goes to."
+    Inventory.PickupSound "wolfkey/pickup"
+	States
+	{
+		Spawn:
+			WKEY A -1
+			Stop
+		
+		Pickup:
+			TNT1 A 0 A_JumpIfInventory("GoldKey",1,"PickupFail")
+			TNT1 A 0 A_GiveInventory("GoldKey",1)
+			stop
+		
+		PickupFail:
+			WKEY A 1
+			fail
+	}
+}
+
+ACTOR SODGoldKey : WolfGoldKey
+{
+	States
+	{
+		Spawn:
+			SKEY A -1
+			Stop
+			
+		PickupFail:
+			SKEY A 1
+			fail
+	}
+}
+
+actor WolfEnemyBulletD1 : DoomEnemyBullet
+{
+	Damage (Random (1, 64))
+	
+	States
+	{
+		Death:
+			TNT1 A 0
+			stop
+	}
+}
+
+actor WolfEnemyBulletD2 : WolfEnemyBulletD1 { Damage (Random (1, 32)) }
+actor WolfEnemyBulletD3 : WolfEnemyBulletD1 { Damage (Random (1, 16)) }
+actor WolfEnemyBulletD4 : WolfEnemyBulletD1 { Damage (Random (1, 8)) }
+actor WolfEnemyBulletD5 : WolfEnemyBulletD1 { Damage (Random (1, 4)) }
+actor WolfEnemyBulletD6 : WolfEnemyBulletD1 { Damage (Random (1, 2)) }
+actor WolfEnemyBulletD7 : WolfEnemyBulletD1 { Damage (1) }

@@ -1,0 +1,165 @@
+ACTOR FlemoidusMaximus2
+{
+	//Game Chex
+	//SpawnID 3
+	Health 2000
+	Radius 24
+	Height 64
+	Mass 1000
+	damagefactor "Flem", 0.0
+    damagefactor "Slime", 0.0 //in chex3.exe the slam now has slime damagetype
+    damagefactor "BFG", 0.75
+    damagefactor "BFGSpray", 0.75
+	DamageFactor "CorvusHellstaffTomed", 0.2
+	Speed 12
+	PainChance 20
+	Monster
+    MinMissileChance 60
+	+FLOORCLIP
+	+DONTGIB
+    +BOSS 
+    +MISSILEMORE
+	+MISSILEEVENMORE
+    +NORADIUSDMG
+	+DONTRIP
+    +DONTMORPH
+    +BOSSDEATH
+    +NOTARGET
+    +NOINFIGHTING
+    +BOSSDEATH
+    +NOTDMATCH
+    +NOICEDEATH
+	//+NOBLOODDECALS
+	SeeSound "cqbaron/sight"
+	PainSound "cqbaron/pain"
+	DeathSound "cqbaron/death"
+	ActiveSound "cqbaron/active"
+	Obituary "$OB_MAXIMUS"
+    Bloodcolor "Green"
+	States
+	{
+	  Spawn:
+		BOSC AB 10 A_Look 
+		Loop
+		
+	  See:
+		BOSC AABBCCDD 3 A_Chase
+		Loop
+		
+	  Melee:
+		BOSC EF 4 A_FaceTarget
+		BOSC G 4 A_CustomMeleeAttack(random[troopattack](1,8)*3, "spectre/melee", "spectre/melee", "flem")
+		FMAX IJ 4 A_FaceTarget
+		FMAX K 4 A_CustomMeleeAttack(random[troopattack](1,8)*3, "spectre/melee", "spectre/melee", "flem")
+		Goto See
+		
+	  Missile:
+		TNT1 A 0 A_Jump(202, "RapidFire")
+	ShotgunSlime:
+		BOSC E 4 A_FaceTarget
+	    BOSC F 4 A_FastChase
+	    TNT1 AAAAAA 0 A_CustomMissile("MaximusBall3",52,20,random(-15,15))
+	    BOSC GGE 3 A_FastChase
+        BOSC E 4 A_FaceTarget
+	    BOSC F 4 A_FastChase
+	    TNT1 AAAAAA 0 A_CustomMissile("MaximusBall3",52,20,random(-15,15))
+	    BOSC GGE 3 A_FastChase
+	    TERM A 0 A_Jump(82, "RapidFire")
+	    TNT1 A 0 A_jump(16, "MegaBall", "Grenade")
+        Goto See
+	RapidFire:
+		TNT1 A 0 A_Jump(124, "Grenade")
+        BOSC EF 1 A_Facetarget
+	    TNT1 A 0 A_CustomMissile("MaximusBall3",52,20,random(-5,5))
+	    BOSC G 1
+	    BOSC EF 1 A_Facetarget
+	    TNT1 A 0 A_CustomMissile("MaximusBall3",52,20,random(-5,5))
+	    BOSC G 1
+		TNT1 A 0 A_Jump(26, "ShotgunSlime")
+	    TNT1 A 0 A_Jump(16, "MegaBall", "Grenade")
+        BOSC E 1 A_Spidrefire
+        Goto RapidFire+1
+		
+	// Heavy attacks. These are only jumped to after a light attack.
+    MegaBall:
+        FMAX IJ 4 A_Facetarget
+	    TNT1 A 0 A_CustomMissile("SnotfolusBall3", 52, -20, 0, 0)
+	    FMAX KKII 2 A_FastChase
+	    FMAX IJ 4 A_Facetarget
+	    TNT1 A 0 A_CustomMissile("SnotfolusBall3", 52, -20, 0, 0)
+	    FMAX KKII 2 A_FastChase
+	    TNT1 A 0 A_Jump(62, "RapidFire", "Missile") // Chance to start all over again.
+        Goto See
+	Grenade:
+        TNT1 A 0 A_Jump(128, "MegaBall")
+        FMAX I 4 A_FastChase
+	    FMAX J 4 A_Facetarget
+	    TNT1 A 0 A_CustomMissile("SlimeGrenade2", 52, -20, 0, 0)
+	    FMAX KKII 2 A_FastChase
+	    FMAX J 4 A_Facetarget
+	    FMAX J 4 A_FastChase
+        FMAX K 8 A_CustomMissile("SlimeGrenade2", 52, -20, 0, 0)
+	    FMAX J 4 A_Facetarget
+	    FMAX J 4 A_FastChase
+	    TNT1 A 0 A_CustomMissile("SlimeGrenade2", 52, -20, 0, 0)
+	    FMAX KKII 2 A_FastChase
+        FMAX I 4 A_Facetarget
+	    FMAX J 4 A_FastChase
+        FMAX K 4 A_CustomMissile("SlimeGrenade2", 52, -20, 0, 0)
+		FMAX I 4 A_FaceTarget
+	    TNT1 A 0 A_Jump(62, "Missile", "MegaBall") // Chance to start all over again, or follow up with a MegaBall.
+		goto See
+	    
+	  Pain:
+		BOSC AAAA 0 A_SpawnDebris("FlemoidGib",1)
+        BOSC A 2 A_Pain
+		Goto See
+		
+	  Pain.Zorch:
+	  Pain.ZorchPistol:
+        BOSC H 1
+        BOSC H 1 A_Pain
+        Goto See
+		
+      Death.Zorch:
+	  Death.ZorchPistol:
+        //TNT1 A 0 A_GiveToTarget("KillCount",1)
+        BOSC I 8
+        BOSC J 8 A_Scream
+        BOSC K 8
+        BOSC L 8 A_NoBlocking
+		BOSC MN 8
+        BOSC O -1 A_BossDeath
+        Stop
+		
+      Death.DukeDamage:
+      Death.MightyBoot:
+      Death.DukeExplosive:
+      Death.DukeIce:
+      Death.DukePistol:
+        TNT1 A 0 A_GiveToTarget("DukeBossKillTaunt",1)
+	Death:
+	XDeath:
+		FMAX A 5 A_FaceTarget
+        TNT1 A 0 A_PlaySound("flemdie")
+        TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("FlemoidGib",random(-1,1),random(16,20),random(56,62),random(-2,2),random(-2,2),random(5,10))
+        TNT1 A 0 A_CustomMissile("MaximusArmRight",48,8,random(-45,-135),2,random(15,90))
+		FMAX B 15
+        TNT1 A 0 A_PlaySound("flemdie")
+        TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("FlemoidGib",random(-1,1),random(-16,-20),random(56,62),random(-2,2),random(-2,2),random(5,10))
+        TNT1 A 0 A_CustomMissile("MaximusArmLeft",48,-8,random(45,135),2,random(15,90))
+		FMAX C 20
+		TNT1 A 0 A_Pain
+		FMAX C 15
+        TNT1 A 0 A_PlaySound("flemdie2")
+        TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("FlemoidGib",random(-10,10),random(-10,10),random(36,46),random(-2,2),random(-2,2),random(5,25))
+        TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("FlemoidGib",random(-10,10),random(-10,10),random(36,46),random(-2,2),random(-2,2),random(5,20))
+		FMAX DEFG 5
+		FMAX H -1 A_BossDeath
+		stop
+		
+	  Raise:
+		BOSC ONMLKJI 8
+		Goto See
+	}
+}
