@@ -843,6 +843,7 @@ $random assaultcapt/roam { assaultcapt/roam1 assaultcapt/roam2 }
 assaultcapt/roam1		roam06
 assaultcapt/roam2		roam58
 assaultcapt/choking		chokn12
+assaultcapt/fire		gblasr01
 
 $random pigcop/roam { pigcop/roam1 pigcop/roam2 pigcop/roam3 }
 pigcop/roam1			pigrm
@@ -872,6 +873,12 @@ assaultcom/pain			commpn
 assaultcom/roam			commrm
 assaultcom/spin			commsp
 assaultcom/sight		commrg
+
+sentdrone/charge		snakata
+sentdrone/detonate		snakatb
+sentdrone/pain			snakpn
+sentdrone/sight			snakrg
+sentdrone/active		snakrm
 
 battlelord/death		bos1dy
 battlelord/pain			bos1pn

@@ -197,7 +197,7 @@ ACTOR Heresiarch2 : Heresiarch {
 	
 }*/
 
-ACTOR Korax3 : Korax2 {
+/*ACTOR Korax3 : Korax2 {
 	States {
       Spawn:
         TNT1 A 0 A_ChangeFlag("NODAMAGE",0)
@@ -205,7 +205,7 @@ ACTOR Korax3 : Korax2 {
         KORX A 1 A_Look
         wait
 	}
-}
+}*/
 
 /*ACTOR Pig2 : Pig {
 	
