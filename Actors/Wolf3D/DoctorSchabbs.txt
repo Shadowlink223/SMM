@@ -1,11 +1,13 @@
 ACTOR DoctorSchabbs
 {
 	Health 2400
-	Radius 40
-	Height 66
+	Radius 33
+	Height 70
 	Speed 6
 	Mass 1000
 	PainChance 0
+	Scale 1.1
+	Species Nazi
 	MONSTER
 	+FLOORCLIP
     +NOTDMATCH
@@ -40,13 +42,13 @@ ACTOR DoctorSchabbs
 			TNT1 A 0 A_GiveInventory("DukeBossSee",1)
 			TNT1 A 0 A_GiveToTarget("DukeBossSightTaunt")
 		See2:
-			WSCB AABBCCDD 2 A_Chase
+			WSCB AAABBCCCDD 2 A_Chase
 			Loop
 		Missile:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
-			WSCB E 10 A_FaceTarget
-			WSCB F 4 Bright A_CustomMissile("WolfSyringe",32,16,0,8)
-			WSCB E 10
+			WSCB EEEEE 3 A_FaceTarget
+			WSCB F 6
+			TNT1 A 0 A_CustomMissile("WolfSyringe",32,16,0,8)
 			Goto See
 		Pain:
 			WSCB D 3
@@ -61,12 +63,17 @@ ACTOR DoctorSchabbs
 		Death:
 		XDeath:
 			TNT1 A 0 A_GiveToTarget("KillCount",1)
-			WSCB A 70 A_Scream
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,2) == 1, "FastDeath")
+			WSCB A 66 A_Scream
 			WSCB G 5
 			WSCB H 5
 			WSCB I 5 A_NoBlocking
-			WSCB J -1 A_BossDeath
+			WSCB J 30
+			WSCB J -1 A_KillMaster
 			Stop
+		FastDeath:
+			WSCB A 5 A_Scream
+			Goto XDeath+3
 		Death.ZorchPistol:
 		Death.Zorch:
 			TNT1 A 0 A_GiveToTarget("KillCount",1)
@@ -87,7 +94,7 @@ ACTOR DoctorSchabbs
 			WSCB D 3 A_SetTranslucent(0.2,0)
 			WSCB D 3 A_SetTranslucent(0.1,0)
 			TNT1 A 1 A_SetTranslucent(1,0)
-			TNT1 A -1 A_BossDeath
+			TNT1 A -1 A_KillMaster
 			stop
 	}
 }

@@ -18,6 +18,36 @@ ACTOR FlemPuff : bulletpuff
 	}
 }
 
+ACTOR FlemoidGib2 : FlemoidGib replaces FlemoidGib
+{
+    states
+    {
+      Spawn:
+        TNT1 A 0
+        FLBL A 1 A_SpawnItem("FlemoidGibTrail",0,0,0,1)
+        FLBL A 1 
+        FLBL A 1 A_SpawnItem("FlemoidGibTrail",0,0,0,1)
+        FLBL A 1
+        FLBL B 1 A_SpawnItem("FlemoidGibTrail",0,0,0,1)
+        FLBL B 1
+        FLBL B 1 A_SpawnItem("FlemoidGibTrail",0,0,0,1)
+        FLBL B 1
+        FLBL C 1 A_SpawnItem("FlemoidGibTrail",0,0,0,1)
+        FLBL C 1
+        FLBL C 1 A_SpawnItem("FlemoidGibTrail",0,0,0,1)
+        FLBL C 1
+        FLBL D 1 A_SpawnItem("FlemoidGibTrail",0,0,0,1)
+        FLBL D 1
+        FLBL D 1 A_SpawnItem("FlemoidGibTrail",0,0,0,1)
+        FLBL D 1
+        loop
+
+      Crash:
+        TNT1 A 1
+        stop
+    }
+}
+
 actor BipedicusBall2 : BipedicusBallV3 replaces BipedicusBallV3
 {
 	SeeSound "cqimp/attack"

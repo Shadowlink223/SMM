@@ -1,11 +1,13 @@
 ACTOR OttoGiftmacher 
 {
 	Health 850
-	Radius 40
-	Height 66
+	Radius 26
+	Height 69
 	Speed 6
 	Mass 1000
 	PainChance 0
+	Scale 1.1
+	Species Nazi
 	MONSTER
 	+FLOORCLIP
     +NOTDMATCH
@@ -13,6 +15,7 @@ ACTOR OttoGiftmacher
     +THRUGHOST
 	+MISSILEMORE
 	+LOOKALLAROUND
+	+BOSSDEATH
 	SeeSound "otto/sight"
 	PainSound ""
 	DeathSound "otto/death"
@@ -22,7 +25,6 @@ ACTOR OttoGiftmacher
     DamageFactor "Mace", 1.1
     DamageFactor "DragonClaw", 1.5
     PainChance "MightyBoot", 255
-	Dropitem "rocketammo"
 	Dropitem "WolfGoldKey"
 	Decal Scorch
 	States 
@@ -31,13 +33,13 @@ ACTOR OttoGiftmacher
 			WOTT A 1 A_Look
 			Loop
 		See:
-			WOTT AABBCCDD 2 A_Chase
+			WOTT AAABBCCCDD 2 A_Chase
 			Loop
 		Missile:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
-			WOTT E 10 A_FaceTarget
-			WOTT F 4 Bright A_CustomMissile("OttoWolfRocket",32,16,0,8)
-			WOTT E 10
+			WOTT EEEEE 3 A_FaceTarget
+			WOTT F 5 Bright
+			TNT1 A 0 A_CustomMissile("OttoWolfRocket",32,16,0,8)
 			Goto See
 		Pain:
 			WOTT D 3
@@ -62,7 +64,6 @@ ACTOR OttoGiftmacher
 			goto Death
 		Death.DukeExplosive:
 			TNT1 A 0 A_JumpIfHealthLower(-3,"DukeGibStart")
-			goto Death.DukeDamage
 		DukeGibStart:
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_SpawnDebris("DukeGibs1")
@@ -77,12 +78,16 @@ ACTOR OttoGiftmacher
 		Death:
 		XDeath:
 			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,2) == 1, "FastDeath")
 			WOTT A 70 A_Scream
 			WOTT G 5
 			WOTT H 5
 			WOTT I 5 A_NoBlocking
-			WOTT J -1 A_BossDeath
+			WOTT J -1 A_KillMaster
 			Stop
+		FastDeath:
+			WOTT A 5 A_Scream
+			Goto XDeath+3
 		Death.ZorchPistol:
 		Death.Zorch:
 			TNT1 A 0 A_GiveToTarget("KillCount",1)
@@ -103,7 +108,7 @@ ACTOR OttoGiftmacher
 			WOTT D 3 A_SetTranslucent(0.2,0)
 			WOTT D 3 A_SetTranslucent(0.1,0)
 			TNT1 A 1 A_SetTranslucent(1,0)
-			TNT1 A -1 A_BossDeath
+			TNT1 A -1 A_KillMaster
 			stop
 		Death.DukeIce:
 			TNT1 A 0 A_PlaySound("duke/enemyfreeze")
@@ -124,7 +129,7 @@ ACTOR OttoGiftmacher
 			TNT1 A -1 A_BossDeath
 			stop
 		Raise:
-			WOTT NMLKJ 5
+			WOTT JIHG 5
 			Goto See
 		ZorchRaise:
 			TNT1 A 1 A_UnsetShootable
@@ -144,4 +149,10 @@ ACTOR OttoGiftmacher
 			WOTT A 1 A_SetShootable
 			Goto See
 	}
+}
+
+ACTOR OttoGiftmacherDoom : OttoGiftMacher
+{
+	Height 63
+	Scale 1.0
 }

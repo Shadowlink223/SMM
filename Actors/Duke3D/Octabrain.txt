@@ -1,1 +1,158 @@
-//
+ACTOR Octabrain 
+{
+	Health 175
+	Radius 20
+	Height 56
+	Mass 400
+	Speed 10
+	PainChance 30
+	Scale 0.65
+	MinMissileChance 100
+	MONSTER
+	+FLOORCLIP
+    +NOTDMATCH
+	+NOINFIGHTING
+    +THRUGHOST
+	+NOGRAVITY
+	+FLOAT
+	SeeSound "octabrain/sight"
+	PainSound "octabrain/pain"
+	DeathSound "octabrain/death"
+	ActiveSound "octabrain/roam"
+	AttackSound "octabrain/attack"
+	Obituary "%o was blown to bits by an Assault Commander."
+	MeleeRange 48
+    DamageFactor "Mace", 1.1
+    DamageFactor "DragonClaw", 1.5
+    PainChance "MightyBoot", 255
+	States 
+	{
+		Spawn:
+			OCTA A 2 A_Look
+			Loop
+		See:
+			OCTA AABBCCDD 2 A_Chase
+			Loop
+		Missile:
+			OCTA E 5 A_FaceTarget
+			OCTA EEEE 2 A_FaceTarget
+			OCTA E 2 A_PlaySound("octabrain/attack", CHAN_WEAPON)
+			OCTA E 0 Bright A_CustomMissile("OctabrainProjectile",30,0,0,8)
+			OCTA EEE 5 A_FaceTarget
+			Goto See
+		Melee:
+			OCTA ABC 4 A_FaceTarget
+			OCTA D 4 A_CustomMeleeAttack((11), "octabrain/melee")
+			OCTA ABCD 4 A_FaceTarget
+			Goto See
+		Pain:
+			OCTA F 3
+			OCTA F 3 A_Pain
+			TNT1 A 0 A_Jump(128,"Missile")
+			Goto See
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			OCTA E 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			OCTA E 16 A_Pain
+			Goto See
+		Death.DukeDamage:
+		Death.DukePistol:
+			TNT1 A 0 A_Jump(218,"Death")
+			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
+			goto Death
+		Death.MightyBoot:
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_Jump(64,"Death")
+			TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
+			goto Death
+		Death.DukeExplosive:
+			TNT1 A 0 A_JumpIfHealthLower(-3,"DukeGibStart")
+		DukeGibStart:
+			TNT1 A 0 A_Jump(96,"XDeath")
+			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
+			goto XDeath
+		Death.Explosive:
+			TNT1 A 0 A_JumpIfHealthLower(-3,"XDeath")
+		Death.FireExplosive:
+			TNT1 A 0 A_JumpIfHealthLower(-3,"XDeath")
+		Death:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			OCTA F 5 A_Scream
+			OCTA GHIJK 5 A_NoBlocking
+			OCTA K -1
+			Stop
+		XDeath:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_SpawnDebris("DukeGibs1")
+			TNT1 A 0 A_SpawnDebris("DukeGibs2")
+			TNT1 A 0 A_SpawnDebris("DukeGibs3")
+			TNT1 A 0 A_SpawnDebris("DukeGibs4")
+			TNT1 A 0 A_SpawnDebris("DukeGibs5")
+			TNT1 A 0 A_SpawnDebris("DukeGibs6")
+			TNT1 A 0 A_PlaySound("duke/enemygib")
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			Stop
+		Death.ZorchPistol:
+		Death.Zorch:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			OCTA E 0 A_Stop
+			TNT1 A 0 A_ChangeFlag("DONTGIB",1)
+			TNT1 A 0 A_PlaySoundEx("chex/zorch","soundslot5",0,0)
+			OCTA E 3 A_SpawnItem("ZorchEffectSmall")
+			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
+			OCTA E 3 A_SetTranslucent(0.9,0)
+			OCTA E 0 A_Scream
+			OCTA E 3 A_SetTranslucent(0.8,0)
+			OCTA E 0 A_NoBlocking
+			OCTA E 3 A_SetTranslucent(0.7,0)
+			OCTA E 3 A_SetTranslucent(0.6,0)
+			OCTA E 3 A_SetTranslucent(0.5,0)
+			OCTA E 3 A_SetTranslucent(0.4,0)
+			OCTA E 3 A_SetTranslucent(0.3,0)
+			OCTA E 3 A_SetTranslucent(0.2,0)
+			OCTA E 3 A_SetTranslucent(0.1,0)
+			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A -1
+			stop
+		Death.DukeIce:
+			TNT1 A 0 A_PlaySound("duke/enemyfreeze")
+			TNT1 A 0 A_GiveInventory("FreezethrowerWeakness")
+			TNT1 A 0 A_Jump(218,"Ice")
+			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
+		Ice:
+		Death.HexenIce:
+		Death.Ice:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
+			TNT1 A 0 A_NoBlocking
+			//TNT1 A 0 A_SpawnItem("FakeHitlerFrozen")
+			OCTA A 0 A_GenericFreezeDeath
+			OCTA A 70 A_UnsetSolid
+			OCTA A 0 A_IceGuyDie
+			OCTA A 1 A_IceGuyDie
+			TNT1 A -1
+			stop
+		Raise:
+			OCTA KJIHGF 5
+			Goto See
+		ZorchRaise:
+			TNT1 A 1 A_UnsetShootable
+			TNT1 A 1 A_SpawnItem("SpawnFire2")
+			TNT1 A 0 A_PlaySound("archvile/resummon")
+			TNT1 A 1 A_TakeInventory("EnemyZorched",1)
+			TNT1 A 0 A_SetTranslucent(0.1,0)
+			OCTA A 3 A_SetTranslucent(0.2,0)
+			OCTA A 3 A_SetTranslucent(0.3,0)
+			OCTA A 3 A_SetTranslucent(0.4,0)
+			OCTA A 3 A_SetTranslucent(0.5,0)
+			OCTA A 3 A_SetTranslucent(0.6,0)
+			OCTA A 3 A_SetTranslucent(0.7,0)
+			OCTA A 3 A_SetTranslucent(0.8,0)
+			OCTA A 3 A_SetTranslucent(0.9,0)
+			OCTA A 3 A_SetTranslucent(1,0)
+			OCTA A 1 A_SetShootable
+			Goto See
+	}
+}

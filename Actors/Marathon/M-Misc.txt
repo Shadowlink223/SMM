@@ -1,0 +1,37 @@
+ACTOR MarathonShotgunBulletCoop2 : MarathonShotgunBulletCoop replaces MarathonShotgunBulletCoop
+{
+	DamageType "MarathonShotgun"
+}
+
+ACTOR EnforcerShot2 : EnforcerShot
+{
+	Damage (random(20, 28))
+}
+
+ACTOR HunterShot
+{
+	Radius 6
+	Height 8
+	Speed 15
+	Scale 0.49
+	Damage (random (15, 20))
+	PROJECTILE
+	SeeSound "hunter/fire"
+	DeathSound "hunterpro/explode"
+	States 
+	{
+		Spawn:
+			HUPR A 4 Bright
+			Loop
+		Death:
+			HUEX A 1
+			HUEX B 2
+			HUEX C 3
+			HUEX D 2
+			Stop
+	}
+}
+
+ACTOR EnforcerShotToken : Inventory { Inventory.MaxAmount 12 }
+ACTOR HunterShotToken : Inventory { Inventory.MaxAmount 6 }
+ACTOR MarathonDukeGib : Inventory { Inventory.MaxAmount 1 }

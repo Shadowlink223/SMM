@@ -1,39 +1,253 @@
 #library "SMMACS"
 #include "zcommon.acs"
 
-Script 205 OPEN 
+Script 667 OPEN 
 {
 
-	if (!GetCVar("smm_doom"))
-	{ConsoleCommand("set smm_doom 1");
-	Consolecommand ("archivecvar smm_doom");}
+	if (!GetCVar("smm_init"))	
+	{
+	//Basic monster toggles
+		if (!GetCVar("smm_doom"))
+		{	ConsoleCommand("set smm_doom 1");
+		Consolecommand ("archivecvar smm_doom"); }
 	
-	if (!GetCVar("smm_heretic"))
-	{ConsoleCommand("set smm_heretic 1");
-	Consolecommand ("archivecvar smm_heretic");}
+		if (!GetCVar("smm_heretic"))
+		{	ConsoleCommand("set smm_heretic 1");
+		Consolecommand ("archivecvar smm_heretic"); }
 	
-	if (!GetCVar("smm_hexen"))
-	{ConsoleCommand("set smm_hexen 1");
-	Consolecommand ("archivecvar smm_hexen");}
+		if (!GetCVar("smm_hexen"))
+		{	ConsoleCommand("set smm_hexen 1");
+		Consolecommand ("archivecvar smm_hexen"); }
 	
-	if (!GetCVar("smm_chex"))
-	{ConsoleCommand("set smm_chex 1");
-	Consolecommand ("archivecvar smm_chex");}
+		if (!GetCVar("smm_chex"))
+		{	ConsoleCommand("set smm_chex 1");
+		Consolecommand ("archivecvar smm_chex"); }
 	
-	if (!GetCVar("smm_wolf3d"))
-	{ConsoleCommand("set smm_wolf3d 1");
-	Consolecommand ("archivecvar smm_wolf3d");}
+		if (!GetCVar("smm_wolf3d"))
+		{	ConsoleCommand("set smm_wolf3d 1");
+		Consolecommand ("archivecvar smm_wolf3d"); }
 	
-	if (!GetCVar("smm_duke3d"))
-	{ConsoleCommand("set smm_duke3d 0");
-	Consolecommand ("archivecvar smm_duke3d");}
+		if (!GetCVar("smm_duke3d"))
+		{	ConsoleCommand("set smm_duke3d 1");
+		Consolecommand ("archivecvar smm_duke3d"); }
 	
-	if (!GetCVar("smm_marathon"))
-	{ConsoleCommand("set smm_marathon 0");
-	Consolecommand ("archivecvar smm_marathon");}
+		if (!GetCVar("smm_marathon"))
+		{	ConsoleCommand("set smm_marathon 0");
+		Consolecommand ("archivecvar smm_marathon"); }
 	
-	if (!GetCVar("smm_quake"))
-	{ConsoleCommand("set smm_quake 0");
-	Consolecommand ("archivecvar smm_quake");}
+		if (!GetCVar("smm_quake"))
+		{	ConsoleCommand("set smm_quake 0");
+		Consolecommand ("archivecvar smm_quake"); }
+
+	//Mode toggles
+
+		if (!GetCVar("smm_invisiblemode"))
+		{	ConsoleCommand("set smm_invisiblemode 0");
+		Consolecommand ("archivecvar smm_invisiblemode"); }
 	
+		if (!GetCVar("smm_assholemode"))
+		{	ConsoleCommand("set smm_assholemode 0");
+		Consolecommand ("archivecvar smm_assholemode"); }
+		
+		if (!GetCVar("smm_wolfmode"))
+		{	ConsoleCommand("set smm_wolfmode 2");
+		Consolecommand ("archivecvar smm_wolfmode"); }
+		
+		if (!GetCVar("smm_fakehitlerfire"))
+		{	ConsoleCommand("set smm_fakehitlerfire 0");
+		Consolecommand ("archivecvar smm_fakehitlerfire"); }
+		
+		if (!GetCVar("smm_wolffastdeath"))
+		{	ConsoleCommand("set smm_wolffastdeath 0");
+		Consolecommand ("archivecvar smm_wolffastdeath"); }
+		
+	//Init CVar
+		ConsoleCommand ("set smm_init 1");
+		Consolecommand ("archivecvar smm_init");
+	}
+}
+
+Script 668 (void)
+{
+	int randomselect;
+
+	if(checktoggles()) 
+	{
+		SetActorState(0,"IsNull",true);
+		terminate;
+	}
+	else
+	{
+		randomselect = random(1,7);
+		if(randomselect == 1)
+		{
+			if(GetCvar("smm_doom"))
+			{
+				SetActorState(0,"IsDoom",true);
+				terminate;
+			}
+			else{restart;}
+		}
+		if(randomselect == 2)
+		{
+			if(GetCvar("smm_heretic"))
+			{
+				SetActorState(0,"IsHeretic",true);
+				terminate;
+			}
+			else{restart;}
+		}
+		if(randomselect == 3)
+		{
+			if(GetCvar("smm_hexen"))
+			{
+				SetActorState(0,"IsHexen",true);
+				terminate;
+			}
+			else{restart;}
+		}
+		if(randomselect == 4)
+		{
+			if(GetCvar("smm_chex"))
+			{
+				SetActorState(0,"IsChex",true);
+				terminate;
+			}
+			else{restart;}
+		}
+		if(randomselect == 5)
+		{
+			if(GetCvar("smm_wolf3d"))
+			{
+				if(GetCvar("smm_wolfmode") == 0)
+				{
+					SetActorState(0,"IsM1",true);
+					terminate;
+				}
+				if(GetCvar("smm_wolfmode") == 1)
+				{
+					SetActorState(0,"IsM2",true);
+					terminate;
+				}
+				if(GetCvar("smm_wolfmode") == 2)
+				{
+					SetActorState(0,"IsWolf",true);
+					terminate;
+				}
+			}
+			else{restart;}
+		}
+		if(randomselect == 6)
+		{
+			if(GetCvar("smm_duke3D"))
+			{
+				if(GetCvar("smm_invisiblemode"))
+				{
+					SetActorState(0,"InvisDuke",true);
+					terminate;
+				}
+				SetActorState(0,"IsDuke",true);
+				terminate;
+			}
+			else{restart;}
+		}
+		if(randomselect == 7)
+		{
+			if(GetCvar("smm_marathon"))
+			{
+				SetActorState(0,"IsMarathon",true);
+				terminate;
+			}
+			else{restart;}
+		}
+/*		if(randomselect == 8)
+		{
+			if(GetCvar("smm_quake"))
+			{
+				SetActorState(0,"IsQuake",true);
+				terminate;
+			}
+			else{restart;}
+		}*/
+	}
+}
+
+function int checktoggles (void)
+{
+	if (!GetCvar("smm_doom")&&!GetCvar("smm_heretic")&&!GetCvar("smm_hexen")&&!GetCvar("smm_chex")&&!GetCvar("smm_wolf3d")&&!GetCvar("smm_duke3d")/*&&!GetCvar("smm_marathon")&&!GetCvar("smm_quake*/)
+	{return 1;}
+	return 0;
+}
+
+int GiveTID = 999;
+
+function int NextTID (VOID)
+{
+    for (GiveTID=GiveTID; GiveTID<2000; GiveTID++)
+    {
+        if (!ThingCount (T_NONE, GiveTID))
+            return GiveTID;
+    }
+    return 0;
+}
+
+Script 669 (void)
+{
+	Thing_ChangeTID(0,NextTID());
+}
+
+Script 670 (void)
+{
+	int intResults = ActivatorTID();
+	SetResultValue(intResults);
+}
+
+Script 671 (void)
+{
+	int mytid = ActivatorTID();
+	if(mytid > 998 && mytid < 2013)
+	{
+		if(ThingCountName("StrifeSubEntity",mytid) == 0)
+		{
+			Thing_Destroy(mytid,0);
+		}
+	}
+}
+
+Script 672 (void)
+{
+	Thing_ChangeTID(0,2014);
+	delay(5);
+	if (GetLevelInfo(LEVELINFO_LEVELNUM) == 15)
+	{
+		if(ThingCount(0,2014) < 3)
+		{
+			Thing_Destroy(2014,0);
+			terminate;
+		}
+	}
+	else
+	{
+		terminate;
+	}
+	delay(1);
+	restart;
+}
+
+Script 680 (int pick)
+{
+	int response;
+
+	Switch (pick)
+	{
+		case 1:
+        response = GetCVar("smm_fakehitlerfire");
+        break;
+		
+		case 2:
+		response = GetCVar("smm_wolffastdeath");
+		break;
+	}
+	
+	SetResultValue(response);
 }

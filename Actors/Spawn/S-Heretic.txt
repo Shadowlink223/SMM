@@ -68,8 +68,8 @@ ACTOR KnightReplacer : RandomSpawner replaces Knight {
 }
 
 ACTOR KnightGhostReplacer : RandomSpawner replaces KnightGhost {
-	dropitem "Spectre3" 255 6
-	dropitem "KnightGhost3" 255 2
+	dropitem "Spectre2" 255 6
+	dropitem "KnightGhost2" 255 2
 	dropitem "CentaurLeader2" 255 6
 	dropitem "FlemoidusCycloptisCommonus2" 255 3
 	dropitem "Larva2" 255 3
@@ -77,8 +77,8 @@ ACTOR KnightGhostReplacer : RandomSpawner replaces KnightGhost {
 }
 
 ACTOR IronlichReplacer : RandomSpawner replaces Ironlich {
-	dropitem "PainElemental3" 255 2
-	dropitem "Archvile3" 255 2
+	dropitem "PainElemental2" 255 2
+	dropitem "Archvile2" 255 2
 	dropitem "IronLich3" 255 2
 	dropitem "WraithBuried2" 255 2
 	dropitem "SuperCycloptis2" 255 2

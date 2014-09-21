@@ -4,8 +4,7 @@ ACTOR MainWolfRocket
 	Height 6
 	Speed 20
 	Damage (30 + random (1, 32))
-	Projectile
-	+FORCERADIUSDMG
+	PROJECTILE
 	SeeSound "wolfen/missilefire"
 	DeathSound "wolfen/missilexplod"
 	Decal Scorch
@@ -15,9 +14,7 @@ ACTOR MainWolfRocket
 			WRKT A 3 A_SpawnItem("WolfRocketSmoke")
 			Loop
 		Death:
-			WEXP A 8 Bright A_Explode(32,32,0)
-			WEXP B 6 Bright
-			WEXP C 4 Bright
+			WEXP ABC 2 Bright
 			Stop
 	}
 }
@@ -33,22 +30,18 @@ ACTOR KnightWolfRocket : MainWolfRocket
 	Obituary "%o was blown away by the Death Knight's rocket."
 }
 
-ACTOR RobotWolfRocket : MainWolfRocket
-{
-	SeeSound "deathknight/missile"
-	Obituary "%o was blown away by the Robot's rocket."
-}
+ACTOR RobotWolfRocket : KnightWolfRocket { Obituary "%o was blown away by the Robot's rocket." }
 
 ACTOR AngelBlast 
 {
 	Radius 8
 	Height 6
 	Speed 15
-	Damage (random (0, 32))
-	Projectile
+	Damage (random (1, 32))
+	PROJECTILE
 	+RANDOMIZE
-	SeeSound "angel/fire"
-	DeathSound "angel/fire"
+	SeeSound ""
+	DeathSound ""
 	Obituary "%o was smited by the Angel of Death."
 	Decal Scorch
 	States 
@@ -65,6 +58,7 @@ ACTOR AngelBlast
 ACTOR DevilBlast : AngelBlast { Obituary "%o was smited by the Devil Incarnate." }
 
 ACTOR OrbsFired : Inventory { Inventory.MaxAmount 6 }
+ACTOR HitlerKill : Inventory { Inventory.MaxAmount 1 }
 
 ACTOR WolfSyringe 
 {
@@ -72,8 +66,7 @@ ACTOR WolfSyringe
 	Height 6
 	Speed 15
 	Damage (20 + random(0,32))
-	Projectile
-	+FORCERADIUSDMG
+	PROJECTILE
 	SeeSound "schabbs/throw"
 	DeathSound ""
 	Obituary "%o was injected with Doctor Schabb's serum."
@@ -92,13 +85,13 @@ ACTOR FakeHitlerBall
 {
 	Radius 6
 	Height 8
-	Speed 5
+	Speed 2
 	FastSpeed 20
 	Damage (random (1, 32))
-	Projectile
+	DamageType Fire
+	PROJECTILE
 	+RANDOMIZE
 	SeeSound "fakehitler/fire"
-	DeathSound "fakehitler/fire"
 	States 
 	{
 		Spawn:
@@ -108,6 +101,11 @@ ACTOR FakeHitlerBall
 			TNT1 A 1
 			Stop
 	}
+}
+
+ACTOR FakeHitlerBallFast : FakeHitlerBall
+{
+	Speed 9
 }
 
 ACTOR WolfClip : Clip2
@@ -129,6 +127,11 @@ ACTOR SODClip : WolfClip
 		Stop
 	}
 }
+
+/*ACTOR SSDrop : CustomInventory
+{
+	
+}*/
 
 ACTOR WolfGoldKey : CustomInventory
 {
@@ -165,10 +168,76 @@ ACTOR SODGoldKey : WolfGoldKey
 	}
 }
 
-actor WolfEnemyBulletD1 : DoomEnemyBullet
+actor NewDukeGibs1_WolfPurple : NewDukeGibs1
+{
+	Translation "16:47=[200,0,204]:[64,0,64]"
+	States
+	{
+		Spawn:
+			DKG1 ABCD 5
+			Loop
+	}
+}
+
+actor NewDukeGibs2_WolfPurple : NewDukeGibs2
+{
+	Translation "16:47=[200,0,204]:[64,0,64]"
+	States
+	{
+		Spawn:
+			DKG2 ABCD 5
+			Loop
+	}
+}
+
+actor NewDukeGibs3_WolfPurple : NewDukeGibs3
+{
+	Translation "16:47=[200,0,204]:[64,0,64]"
+	States
+	{
+		Spawn:
+			DKG3 ABCD 5
+			Loop
+	}
+}
+
+actor NewDukeGibs4_WolfPurple : NewDukeGibs4
+{
+	Translation "16:47=[200,0,204]:[64,0,64]"
+	States
+	{
+		Spawn:
+			DKG4 ABCD 5
+			Loop
+	}
+}
+
+actor NewDukeGibs5_WolfPurple : NewDukeGibs5
+{
+	Translation "16:47=[200,0,204]:[64,0,64]"
+	States
+	{
+		Spawn:
+			DKG5 ABCD 5
+			Loop
+	}
+}
+
+actor NewDukeGibs6_WolfPurple : NewDukeGibs6
+{
+	Translation "16:47=[200,0,204]:[64,0,64]"
+	States
+	{
+		Spawn:
+			DKG6 AB 5
+			Loop
+	}
+}
+
+ACTOR WolfEnemyBulletD1 : DoomEnemyBullet
 {
 	Damage (Random (1, 64))
-	
+	+MTHRUSPECIES
 	States
 	{
 		Death:
@@ -177,9 +246,9 @@ actor WolfEnemyBulletD1 : DoomEnemyBullet
 	}
 }
 
-actor WolfEnemyBulletD2 : WolfEnemyBulletD1 { Damage (Random (1, 32)) }
-actor WolfEnemyBulletD3 : WolfEnemyBulletD1 { Damage (Random (1, 16)) }
-actor WolfEnemyBulletD4 : WolfEnemyBulletD1 { Damage (Random (1, 8)) }
-actor WolfEnemyBulletD5 : WolfEnemyBulletD1 { Damage (Random (1, 4)) }
-actor WolfEnemyBulletD6 : WolfEnemyBulletD1 { Damage (Random (1, 2)) }
-actor WolfEnemyBulletD7 : WolfEnemyBulletD1 { Damage (1) }
+ACTOR WolfEnemyBulletD2 : WolfEnemyBulletD1 { Damage (Random (1, 32)) }
+ACTOR WolfEnemyBulletD3 : WolfEnemyBulletD1 { Damage (Random (1, 16)) }
+ACTOR WolfEnemyBulletD4 : WolfEnemyBulletD1 { Damage (Random (1, 8)) }
+ACTOR WolfEnemyBulletD5 : WolfEnemyBulletD1 { Damage (Random (1, 4)) }
+ACTOR WolfEnemyBulletD6 : WolfEnemyBulletD1 { Damage (Random (1, 2)) }
+ACTOR WolfEnemyBulletD7 : WolfEnemyBulletD1 { Damage (1) }

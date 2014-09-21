@@ -1,0 +1,74 @@
+ACTOR HereticImp3 : HereticImp2 
+{
+	States 
+	{	
+		Crash:
+			TNT1 A 0 A_UnsetSolid
+			IMPX I 7 A_ImpExplode
+			IMPX J 7 A_Scream
+			IMPX K 7 A_NoBlocking
+			IMPX L -1
+			Stop
+		XCrash:
+			IMPX X 7
+			IMPX Y 7 A_NoBlocking
+			IMPX Z -1
+			Stop
+	}
+}
+
+/*ACTOR Chicken2 : Chicken {
+
+}
+
+ACTOR Wizard3 : Wizard2 
+{
+}
+
+ACTOR Sorcerer5 : Sorcerer3 
+{
+}
+
+ACTOR Sorcerer6 : Sorcerer4 
+{
+}
+
+ACTOR Mummy3 : Mummy2 
+{
+}
+
+ACTOR MummyGhost3 : MummyGhost2 
+{
+}
+
+ACTOR MummyLeader3 : MummyLeader2 
+{
+}
+
+ACTOR MummyLeaderGhost3 : MummyLeaderGhost2 
+{
+}
+
+ACTOR IronLich3 : IronLich2 
+{
+}
+
+ACTOR Minotaur3 : Minotaur2 
+{
+}
+
+ACTOR Snake3 : Snake2 
+{
+}
+
+ACTOR Knight3 : Knight2 
+{
+}
+
+ACTOR KnightGhost3 : KnightGhost2 
+{
+}
+
+ACTOR Beast3 : Beast2 
+{
+}*/

@@ -1,5 +1,5 @@
 //==============================//
-//Samsara Monster Mixer - v0.15a//
+//Samsara Monster Mixer - v0.15e//
 //==============================//
 
 Author: Minesae Hiromu, Shadowlink223
@@ -7,7 +7,7 @@ Author: Minesae Hiromu, Shadowlink223
 Resources: Doom, Heretic, Hexen, Chex Quest, and Chex Quest III
 
 Description: This pk3 randomly spawns monsters from Doom, Heretic, Hexen,
-	Chex Quest, and Wolfenstein 3D. Soon, it will also spawn Duke3D, Marathon, Quake,
+	Chex Quest, Wolfenstein 3D, and Duke Nukem 3D. Soon, it will also spawn Marathon, Quake,
 	and possibly Strife monsters.
 	
 Use: Load after the main Samsara pk3

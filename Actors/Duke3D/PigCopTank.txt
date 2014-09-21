@@ -1,1 +1,100 @@
-//s
+ACTOR PigCopTank
+{
+	Health 500
+	Radius 32
+	Height 64
+	Mass 150
+	Speed 10
+	PainChance 0
+	Scale 0.94
+	MONSTER
+	+FLOORCLIP
+    +NOTDMATCH
+    +NOICEDEATH
+    +THRUGHOST
+	+NOBLOOD
+    +NOTARGET
+    +NOINFIGHTING
+	+DONTMORPH
+	AttackSound "duke/m1911"
+	Obituary "%o was shredded by a Pig Cop Tank."
+    DamageFactor "Mace", 1.1
+    DamageFactor "DragonClaw", 1.5
+	DamageFactor "MarathonFusion", 2.0
+	Decal BulletChip
+	States 
+	{
+		Spawn:
+			PIGT A 1 A_Look
+			Loop
+		See:
+			TNT1 A 0 A_PlaySound("pigtank/active", CHAN_VOICE)
+			PIGT AAAAAAAAAAAAAAA 3 A_Chase
+			Loop
+		Missile:
+			TNT1 A 0 A_JumpIfInventory("TankMissileToken", 11, "MissileEnd")
+			TNT1 A 0 A_GiveInventory ("TankMissileToken",1)
+			PIGT B 1 A_FaceTarget
+			PIGT B 2 Bright A_CustomMissile("DukeEnemyBullet",64,0,random(-12,12),CMF_CHECKTARGETDEAD,random(-12,12))
+			TNT1 A 0 A_PlaySound("duke/m1911", CHAN_WEAPON)
+			PIGT C 3 Bright A_CustomMissile("DukeEnemyBullet",64,0,random(-12,12),CMF_CHECKTARGETDEAD,random(-12,12))
+			TNT1 A 0 A_PlaySound("duke/m1911", CHAN_WEAPON)
+			Loop
+		MissileEnd:
+			TNT1 A 0 A_TakeInventory ("TankMissileToken", 11)
+			TNT1 A 0 A_JumpIfCloser (1024, 3)
+			TNT1 A 0 A_PlaySound("duke/rocketfire", CHAN_WEAPON)
+			PIGT A 0 Bright A_CustomMissile("BattleLordMortar1",32,0,CMF_CHECKTARGETDEAD|CMF_AIMDIRECTION,random(10,20))
+			PIGT A 40
+			Goto See
+		Death.MightyBoot:
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_Jump(64,"Death")
+			TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
+			Goto Death
+		Death.DukeExplosive:
+		Death.DukeIce:
+		Death.DukeDamage:
+		Death.DukePistol:
+			TNT1 A 0 A_Jump(218,"Death")
+			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
+		Death:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0, 0, ATTN_NONE)
+			TNT1 A 1 A_SpawnItemEx("RPGExplosion",0,0,0,0,0,0,0,160)
+			TNT1 A 1 A_SpawnItemEx("PigCop",0,0,0,0,0,0,0,0,127)
+			TNT1 A -1 A_KillMaster
+			Stop
+		Death.ZorchPistol:
+		Death.Zorch:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			PIGT A 0 A_Stop
+			TNT1 A 0 A_ChangeFlag("DONTGIB",1)
+			TNT1 A 0 A_PlaySoundEx("chex/zorch","soundslot5",0,0)
+			PIGT A 4 A_SpawnItem("ZorchEffectBig")
+			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
+			PIGT A 4 A_SetTranslucent(0.9,0)
+			PIGT A 4 A_SetTranslucent(0.8,0)
+			PIGT A 0 A_NoBlocking
+			PIGT A 4 A_SetTranslucent(0.7,0)
+			PIGT A 4 A_SetTranslucent(0.6,0)
+			PIGT A 4 A_SetTranslucent(0.5,0)
+			PIGT A 4 A_SetTranslucent(0.4,0)
+			PIGT A 4 A_SetTranslucent(0.3,0)
+			PIGT A 4 A_SetTranslucent(0.2,0)
+			PIGT A 4 A_SetTranslucent(0.1,0)
+			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A -1 A_KillMaster
+			stop
+	}
+}
+
+ACTOR PigCopTankArch : PigCopTank
+{
+	Height 56
+	Radius 20
+	YScale 0.80
+	XScale 0.80
+}

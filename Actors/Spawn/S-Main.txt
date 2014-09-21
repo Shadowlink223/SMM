@@ -1,0 +1,1451 @@
+//==============================================================================
+// DOOM
+//==============================================================================
+
+ACTOR ZombiemanSpawner //replaces Zombieman 
+{
+	Health 0x7fffffff
+	Height 68
+	Radius 25
+	+COUNTKILL
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+		IsDoom:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Zombieman2",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsHeretic:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Mummy2",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsHexen:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Ettin2",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsChex:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("FlemoidusCommonus3",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsWolf:
+			TNT1 A 0 A_Jump(255,"Wolf1","Wolf2")
+			IsM1:
+				TNT1 A 0 A_Jump(255,"Wolf1")
+			IsM2:
+				TNT1 A 0 A_Jump(255,"Wolf2")
+			Wolf1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("WolfGuard",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+			Wolf2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("SODGuard",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+		IsDuke:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("AssaultTrooper",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsNull:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("BerzerkRobotYellow",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		Death:
+			BZBL A 70
+			Stop
+	}
+}
+
+ACTOR ShotgunGuySpawner //replaces ShotgunGuy 
+{
+	Health 0x7fffffff
+	Height 68
+	Radius 25
+	+COUNTKILL
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+		IsDoom:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("ShotGunGuy2",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsHeretic:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("MummyLeader2",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsHexen:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Ettin2",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsChex:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("FlemoidusBipedicus3",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsWolf:
+			TNT1 A 0 A_Jump(255,"Wolf1","Wolf2")
+			IsM1:
+				TNT1 A 0 A_Jump(255,"Wolf1")
+			IsM2:
+				TNT1 A 0 A_Jump(255,"Wolf2")
+			Wolf1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("WolfOfficer",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+			Wolf2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("SODOfficer",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+		IsDuke:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("PigCop",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsNull:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("BerzerkRobotYellow",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		Death:
+			BZBL A 70
+			Stop
+	}
+}
+
+ACTOR DoomImpSpawner //replaces DoomImp 
+{
+	Health 0x7fffffff
+	Height 65
+	Radius 22
+	+COUNTKILL
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+		IsDoom:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("DoomImp2",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsHeretic:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("MummyLeader2",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsHexen:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Bishop2",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsChex:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("ArmoredFlemoidusBipedicus2",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsWolf:
+			TNT1 A 0 A_Jump(255,"Wolf1","Wolf2")
+			IsM1:
+				TNT1 A 0 A_Jump(255,"Wolf1")
+			IsM2:
+				TNT1 A 0 A_Jump(255,"Wolf2")
+			Wolf1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("WolfOfficer",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+			Wolf2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("SODOfficer",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+		IsDuke:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("AssaultCaptain",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsNull:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("BerzerkRobotRed",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		Death:
+			BZBL A 70
+			Stop
+		/*IsStrife:
+			TNT1 A 1 A_SpawnItemEx("StrifeAcolyte3",0,0,0,0,0,0,0,288)
+			Stop*/
+	}
+}
+
+ACTOR ChaingunGuySpawner //replaces ChaingunGuy 
+{
+	Health 0x7fffffff
+	Height 78
+	Radius 25
+	+COUNTKILL
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+		IsDoom:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("ChaingunGuy2",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsHeretic:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Knight2",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsHexen:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Ettin2",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsChex:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("ArmoredFlemoidusBipedicus2",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsWolf:
+			TNT1 A 0 A_Jump(255,"Wolf1","Wolf2")
+			IsM1:
+				TNT1 A 0 A_Jump(255,"Wolf1")
+			IsM2:
+				TNT1 A 0 A_Jump(255,"Wolf2")
+			Wolf1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("WolfSS",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+			Wolf2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("SODSS",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+		IsDuke:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("AssaultEnforcer",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsNull:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("BerzerkRobotBlue",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		Death:
+			BZBL A 70
+			Stop
+		/*IsStrife:
+			TNT1 A 1 A_SpawnItemEx("StrifeAcolyte4",0,0,0,0,0,0,0,288)
+			Stop*/
+	}
+}
+
+ACTOR DemonSpawner //replaces Demon 
+{
+	Health 0x7fffffff
+	Height 64
+	Radius 30
+	+COUNTKILL
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+		IsDoom:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("DoomDemon2",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsHeretic:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Clink2",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsHexen:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Centaur2",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsChex:
+			TNT1 A 0 A_Jump(255,"Chex1","Chex2")
+			Chex1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("FlemoidusCycloptisCommonus2",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+			Chex2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("Larva2",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+		IsWolf:
+			TNT1 A 0 A_Jump(255,"Wolf1","Wolf2")
+			IsM1:
+				TNT1 A 0 A_Jump(255,"Wolf1")
+			IsM2:
+				TNT1 A 0 A_Jump(255,"Wolf2")
+			Wolf1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("WolfDog",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+			Wolf2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("SODDog",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+		IsDuke:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("ProtectorDrone",0,0,0,0,0,0,0,288) 
+			TNT1 A 1 A_Die
+			Goto Death
+		IsNull:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("BerzerkRobotYellow",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		Death:
+			BZBL A 70
+			Stop
+		/*IsStrife:
+			TNT1 A 1 A_SpawnItemEx("StrifeStalker",0,0,0,0,0,0,0,288)
+			Stop*/
+	}
+}
+
+ACTOR SpectreSpawner //replaces Spectre
+{
+	Health 0x7fffffff
+	Height 64
+	Radius 30
+	+COUNTKILL
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+		IsDoom:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Spectre2",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsHeretic:
+			TNT1 A 0 A_Jump(255,"Heretic1","Heretic2","Heretic3")
+			Heretic1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("KnightGhost2",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+			Heretic2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("MummyGhost2",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+			Heretic3:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("MummyLeaderGhost2",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+		IsHexen:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("CentaurLeader2",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsChex:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("FlemoidusStridicus2",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsWolf:
+			TNT1 A 0 A_Jump(255,"Wolf1","Wolf2")
+			IsM1:
+				TNT1 A 0 A_Jump(255,"Wolf1")
+			IsM2:
+				TNT1 A 0 A_Jump(255,"Wolf2")
+			Wolf1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("WolfDog",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+			Wolf2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("SODDog",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+		IsDuke:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("ProtectorDrone",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsNull:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("BerzerkRobotYellow",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		Death:
+			BZBL A 70
+			Stop
+		/*IsStrife:
+			TNT1 A 1 A_SpawnItemEx("ShadowStalker",0,0,0,0,0,0,0,288)
+			Stop*/
+	}
+}
+
+ACTOR HellKnightSpawner //replaces HellKnight
+{
+	Health 0x7fffffff
+	Height 70
+	Radius 32
+	+COUNTKILL
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	+BOSSDEATH
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+		IsDoom:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("HellKnight2",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsHeretic:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Snake2",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsHexen:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Demon1B",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsChex:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Quadrumpus2",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsWolf:
+		IsM1:
+		IsM2:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("WolfMutant",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsDuke:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("AssaultCommander",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsNull:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("BerzerkRobotBlue",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		Death:
+			BZBL A 2100
+			TNT1 A 0 A_BossDeath
+			Stop
+		/*IsStrife:
+			TNT1 A 1 A_SpawnItemEx("StrifeReaver",0,0,0,0,0,0,0,288)
+			Stop*/
+	}
+}
+
+ACTOR BaronOfHellSpawner //replaces BaronOfHell
+{
+	Health 0x7fffffff
+	Height 82
+	Radius 37
+	+COUNTKILL
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	+BOSSDEATH
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0)
+		IsDoom:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("BaronOfHell2",0,0,0,0,0,0,0,288/*,0,ACS_ExecuteWithResult(670,0)*/)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsHeretic:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Beast2",0,0,0,0,0,0,0,288/*,0,ACS_ExecuteWithResult(670,0)*/)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsHexen:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Demon2B",0,0,0,0,0,0,0,288/*,0,ACS_ExecuteWithResult(670,0)*/)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsChex:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Quadrumpus2",0,0,0,0,0,0,0,288/*,0,ACS_ExecuteWithResult(670,0)*/)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsWolf:
+		IsM1:
+		IsM2:
+			TNT1 A 0 A_Jump(255,"Wolf1","Wolf2")
+			Wolf1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("HansGrosse",0,0,0,0,0,0,0,288/*,0,ACS_ExecuteWithResult(670,0)*/)
+				TNT1 A 1 A_Die
+				Goto Death
+			Wolf2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("GretelGrosse",0,0,0,0,0,0,0,288/*,0,ACS_ExecuteWithResult(670,0)*/)
+				TNT1 A 1 A_Die
+				Goto Death
+		IsDuke:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("MiniBattlelord",0,0,0,0,0,0,0,288/*,0,ACS_ExecuteWithResult(670,0)*/)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsNull:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("BerzerkRobotGreen",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		Death:
+			BZBL A 2100
+			TNT1 A 0 A_BossDeath
+			Stop
+	}
+}
+
+ACTOR ArachnotronSpawner //replaces Arachnotron
+{
+	Health 0x7fffffff
+	Height 70
+	Radius 64
+	+COUNTKILL
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	+BOSSDEATH
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0)
+		IsDoom:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Arachnotron2",0,0,0,0,0,0,0,288/*,0,ACS_ExecuteWithResult(670,0)*/)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsHeretic:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Snake2",0,0,0,0,0,0,0,288/*,0,ACS_ExecuteWithResult(670,0)*/)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsHexen:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("CentaurLeader2",0,0,0,0,0,0,0,288/*,0,ACS_ExecuteWithResult(670,0)*/)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsChex:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Quadrumpus2",0,0,0,0,0,0,0,288/*,0,ACS_ExecuteWithResult(670,0)*/)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsWolf:
+		IsM1:
+		IsM2:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("OttoGiftmacher",0,0,0,0,0,0,0,288/*,0,ACS_ExecuteWithResult(670,0)*/)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsDuke:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("PigCopTank",0,0,0,0,0,0,0,288/*,0,ACS_ExecuteWithResult(670,0)*/)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsNull:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("BerzerkRobotGreen",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		Death:
+			BZBL A 2100
+			TNT1 A 0 A_BossDeath
+			Stop
+	}
+}
+
+ACTOR FatsoSpawner //replaces Fatso
+{
+	Health 0x7fffffff
+	Height 75
+	Radius 48
+	+COUNTKILL
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	+BOSSDEATH
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0)
+		IsDoom:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Fatso2",0,0,0,0,0,0,0,288/*,0,ACS_ExecuteWithResult(670,0)*/)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsHeretic:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Beast2",0,0,0,0,0,0,0,288/*,0,ACS_ExecuteWithResult(670,0)*/)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsHexen:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("IceGuy2",0,0,0,0,0,0,0,288/*,0,ACS_ExecuteWithResult(670,0)*/)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsChex:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Quadrumpus2",0,0,0,0,0,0,0,288/*,0,ACS_ExecuteWithResult(670,0)*/)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsWolf:
+		IsM1:
+		IsM2:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("OttoGiftmacher",0,0,0,0,0,0,0,288/*,0,ACS_ExecuteWithResult(670,0)*/)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsDuke:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("PigCopTank",0,0,0,0,0,0,0,288/*,0,ACS_ExecuteWithResult(670,0)*/)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsNull:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("BerzerkRobotGreen",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		Death:
+			BZBL A 2100
+			TNT1 A 0 A_BossDeath
+			Stop
+	}
+}
+
+ACTOR LostSoulSpawner //replaces LostSoul 
+{
+	Health 0x7fffffff
+	Height 68
+	Radius 33
+	+COUNTKILL
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+		IsDoom:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("LostSoul2",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsHeretic:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("HereticImp3",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsHexen:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("FireDemon2",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsChex:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("FlemMine2",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsWolf:
+		IsM1:
+		IsM2:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("SODBat",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsDuke:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("SentryDrone",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsNull:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("EvilOttoWeaker",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		Death:
+			BZBL A 70
+			Stop
+		/*IsStrife:
+			TNT1 A 1 A_SpawnItemEx("StrifeSentinel",0,0,0,0,0,0,0,288)
+			Stop*/
+	}
+}
+
+ACTOR PainElementalSpawner //replaces PainElemental 
+{
+	Health 0x7fffffff
+	Height 68
+	Radius 31
+	+COUNTKILL
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+		IsDoom:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("PainElemental3",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsHeretic:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Wizard2",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsHexen:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Wraith2",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsChex:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("SuperCycloptis2",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsWolf:
+		IsM1:
+		IsM2:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("FakeHitler",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsDuke:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("AssaultCommander",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsNull:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("EvilOttoWeak",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		Death:
+			BZBL A 70
+			Stop
+		/*IsStrife:
+			TNT1 A 1 A_SpawnItemEx("Zealot",0,0,0,0,0,0,0,288)
+			Stop*/
+	}
+}
+
+ACTOR CacodemonSpawner //replaces Cacodemon 
+{
+	Health 0x7fffffff
+	Height 68
+	Radius 31
+	+COUNTKILL
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+		IsDoom:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Cacodemon2",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsHeretic:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Wizard2",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsHexen:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Wraith2",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsChex:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("SuperCycloptis2",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsWolf:
+		IsM1:
+		IsM2:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("FakeHitler",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsDuke:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Octabrain",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsNull:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("EvilOttoWeak",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		Death:
+			BZBL A 70
+			Stop
+		/*IsStrife:
+			TNT1 A 1 A_SpawnItemEx("Zealot",0,0,0,0,0,0,0,288)
+			Stop*/
+	}
+}
+
+ACTOR RevenantSpawner //replaces Revenant
+{
+	Health 0x7fffffff
+	Height 70
+	Radius 22
+	+COUNTKILL
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+		IsDoom:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Revenant2",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsHeretic:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Snake2",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsHexen:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("FireDemon2",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsChex:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Quadrumpus2",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsWolf:
+		IsM1:
+		IsM2:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("WolfMutant",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsDuke:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("AssaultCommander",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsMarathon:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("EnforcerMajor",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsNull:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("BerzerkRobotBlue",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		Death:
+			BZBL A 70
+			Stop
+		/*IsStrife:
+			TNT1 A 1 A_SpawnItemEx("StrifeTemplar",0,0,0,0,0,0,0,288)
+			Stop*/
+	}
+}
+
+ACTOR ArchvileSpawner //replaces Archvile 
+{
+	Health 0x7fffffff
+	Height 72
+	Radius 40
+	+COUNTKILL
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+		IsDoom:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Archvile2",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsHeretic:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("IronLich2",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsHexen:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("WraithBuried2",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsChex:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("FlemoidusMaximus2",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsWolf:
+			TNT1 A 0 A_Jump(255,"Wolf1","Wolf2")
+			IsM1:
+				TNT1 A 0 A_Jump(255,"Wolf1")
+			IsM2:
+				TNT1 A 0 A_Jump(255,"Wolf2")
+			Wolf1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("TransGrosse",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+			Wolf2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("SubmarineWilly",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+		IsDuke:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("PigCopTankArch",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsNull:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("BerzerkRobotGreen",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		Death:
+			BZBL A 70
+			Stop
+		/*IsStrife:
+			TNT1 A 1 A_SpawnItemEx("StrifeLoremaster",0,0,0,0,0,0,0,288)
+			Stop*/
+	}
+}
+
+ACTOR CyberDemonSpawner //replaces CyberDemon
+{
+	Health 0x7fffffff
+	Height 130
+	Radius 50
+	+COUNTKILL
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	+BOSSDEATH
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0)
+		IsDoom:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Cyberdemon2",0,0,0,0,0,0,0,288/*,0,ACS_ExecuteWithResult(670,0)*/)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsHeretic:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Minotaur2",0,0,0,0,0,0,0,288/*,0,ACS_ExecuteWithResult(670,0)*/)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsHexen:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Heresiarch2",0,0,0,0,0,0,0,288/*,0,ACS_ExecuteWithResult(670,0)*/)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsChex:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Snotfolus2",0,0,0,0,0,0,0,288/*,0,ACS_ExecuteWithResult(670,0)*/)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsWolf:
+			TNT1 A 0 A_Jump(255,"Wolf1","Wolf2","Wolf3")
+			IsM1:
+				TNT1 A 0 A_Jump(255,"Wolf1","Wolf2")
+			IsM2:
+				TNT1 A 0 A_Jump(255,"Wolf1","Wolf3")
+			Wolf1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("DoctorSchabbs",0,0,0,0,0,0,0,288/*,0,ACS_ExecuteWithResult(670,0)*/)
+				TNT1 A 1 A_Die
+				Goto Death
+			Wolf2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("AngelofDeath",0,0,0,0,0,0,0,288/*,0,ACS_ExecuteWithResult(670,0)*/)
+				TNT1 A 1 A_Die
+				Goto Death
+			Wolf3:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("DevilIncarnate",0,0,0,0,0,0,0,288/*,0,ACS_ExecuteWithResult(670,0)*/)
+				TNT1 A 1 A_Die
+				Goto Death
+		IsDuke:
+			TNT1 A 0 A_Jump(255,"Duke1","Duke2")
+			Duke1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("Overlord",0,0,0,0,0,0,0,288/*,0,ACS_ExecuteWithResult(670,0)*/)
+				TNT1 A 1 A_Die
+				Goto Death
+			Duke2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("CycloidEmperor",0,0,0,0,0,0,0,288/*,0,ACS_ExecuteWithResult(670,0)*/)
+				TNT1 A 1 A_Die
+				Goto Death
+		IsNull:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("EvilOtto",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		Death:
+			BZBL A 2100
+			TNT1 A 0 A_BossDeath
+			Stop
+	}
+}
+
+ACTOR SpiderMastermindSpawner //replaces SpiderMastermind
+{
+	Health 0x7fffffff
+	Height 150
+	Radius 100
+	+COUNTKILL
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	+BOSSDEATH
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0)
+		IsDoom:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("SpiderMastermind2",0,0,0,0,0,0,0,288/*,0,ACS_ExecuteWithResult(670,0)*/)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsHeretic:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Sorcerer3",0,0,0,0,0,0,0,288/*,0,ACS_ExecuteWithResult(670,0)*/)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsHexen:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Korax2",0,0,0,0,0,0,0,288/*,0,ACS_ExecuteWithResult(670,0)*/)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsChex:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Flembomination2",0,0,0,0,0,0,0,288/*,0,ACS_ExecuteWithResult(670,0)*/)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsWolf:
+			TNT1 A 0 A_Jump(255,"Wolf1","Wolf2","Wolf3","Wolf4","Wolf5","Wolf6","Wolf7","Wolf8")
+			IsM1:
+				TNT1 A 0 A_Jump(255,"Wolf1","Wolf2","Wolf3","Wolf4","Wolf5")
+			IsM2:
+				TNT1 A 0 A_Jump(255,"Wolf1","Wolf5","Wolf6","Wolf7","Wolf8")
+			Wolf1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("GeneralFettgesicht",0,0,0,0,0,0,0,288/*,0,ACS_ExecuteWithResult(670,0)*/)
+				TNT1 A 1 A_Die
+				Goto Death
+			Wolf2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("BarnacleWilhelm",0,0,0,0,0,0,0,288/*,0,ACS_ExecuteWithResult(670,0)*/)
+				TNT1 A 1 A_Die
+				Goto Death
+			Wolf3:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("UberMutant",0,0,0,0,0,0,0,288/*,0,ACS_ExecuteWithResult(670,0)*/)
+				TNT1 A 1 A_Die
+				Goto Death
+			Wolf4:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("DeathKnight",0,0,0,0,0,0,0,288/*,0,ACS_ExecuteWithResult(670,0)*/)
+				TNT1 A 1 A_Die
+				Goto Death
+			Wolf5:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("MechaHitler",0,0,0,0,0,0,0,288/*,0,ACS_ExecuteWithResult(670,0)*/)
+				TNT1 A 1 A_Die
+				Goto Death
+			Wolf6:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("Robot",0,0,0,0,0,0,0,288/*,0,ACS_ExecuteWithResult(670,0)*/)
+				TNT1 A 1 A_Die
+				Goto Death
+			Wolf7:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("ProfessorQuarkblitz",0,0,0,0,0,0,0,288/*,0,ACS_ExecuteWithResult(670,0)*/)
+				TNT1 A 1 A_Die
+				Goto Death
+			Wolf8:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("TheAxe",0,0,0,0,0,0,0,288/*,0,ACS_ExecuteWithResult(670,0)*/)
+				TNT1 A 1 A_Die
+				Goto Death
+		IsDuke:
+			TNT1 A 0 A_Jump(255,"Duke1","Duke2")
+			Duke1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("Battlelord",0,0,0,0,0,0,0,288/*,0,ACS_ExecuteWithResult(670,0)*/)
+				TNT1 A 1 A_Die
+				Goto Death
+			Duke2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("AlienQueen",0,0,0,0,0,0,0,288/*,0,ACS_ExecuteWithResult(670,0)*/)
+				TNT1 A 1 A_Die
+				Goto Death
+		IsNull:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("EvilOtto",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		Death:
+			BZBL A 2100
+			TNT1 A 0 A_BossDeath
+			Stop
+	}
+}
+
+ACTOR WolfensteinSSSpawner
+{
+	Health 0x7fffffff
+	Height 56
+	Radius 20
+	+COUNTKILL
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+		IsDoom:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Nazi2",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsHeretic:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Chicken2",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsHexen:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Pig2",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsChex:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("FlemMine2",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsWolf:
+			TNT1 A 0 A_Jump(255,"Wolf1","Wolf2")
+			IsM1:
+				TNT1 A 0 A_Jump(255,"Wolf1")
+			IsM2:
+				TNT1 A 0 A_Jump(255,"Wolf2")
+			Wolf1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("WolfSS",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+			Wolf2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("SODSS",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+		IsDuke:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("SentryDrone",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		IsNull:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("BerzerkRobotBlue",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		Death:
+			BZBL A 70
+			Stop
+		/*IsStrife:
+			TNT1 A 1 A_SpawnItemEx("StrifeAcolyte4",0,0,0,0,0,0,0,288)
+			Stop*/
+	}
+}

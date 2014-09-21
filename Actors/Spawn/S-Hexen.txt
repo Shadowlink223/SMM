@@ -114,7 +114,7 @@ ACTOR WraithBuriedReplacer : RandomSpawner replaces WraithBuried
 {
 	dropitem "Cacodemon3" 255 2
 	dropitem "PainElemental3" 255 2
-	dropitem "Archvile3" 255 2
+	dropitem "Archvile2" 255 2
 	dropitem "Wizard3" 255 2
 	dropitem "Ironlich3" 255 2
 	dropitem "WraithBuried2" 255 2
