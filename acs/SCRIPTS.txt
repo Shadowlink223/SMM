@@ -1,6 +1,42 @@
 #library "SMMACS"
 #include "zcommon.acs"
 
+int SMMCVARINFO = 
+"Samsara Monster Mixer adds some of its own console variables to pick from.\n\
+[set] = doom/heretic/hexen/chex/wolf3d/duke3d/marathon\n\
+smm_[set] 0/1: Enable or disable any monster set from being picked. Disable all of them to see something interesting.\n\
+smm_wolfmode [0-2]: sets which skin to spawn for the Wolf3D set. 0 uses anything from Spear of Destiny Mission one, 1 uses SoD mission two/three skins, and 2 randomly spawns either.\n\
+smm_fakehitlerfire 0/1: Toggles the speed of the fake hitler fireballs. 0 is slow and 1 is fast. Fast mode is recommended for large maps.\n\
+smm_wolffastdeath 0/1: If set to 1, makes certain Wolf3D bosses instantly fall over upon death, otherwise plays the original animation.\n\
+smm_randomcycle [0-3]: When set to 1 or higher, randomly picks a set or sets for the next map or wave.\n\
+smm_skilloverride [0-5]: Overrides the skill check for the Marathon set. Setting it to 5 disables this. e.g. setting this to 4 while playing on skill 1 would spawn Nightmare level monsters on Hey Not Too Rough difficulty\n\
+smm_ban[set] 0/1: Bans a set from being chosen when smm_randomcycle is active.\n\
+smm_multiply [0-12]: When enabled, makes monsters and ammo multiply based on the value. In invasion mode, it only works on ammo.\n\
+smm_pinataparty 0/1: When enabled, makes monsters that are killed drop 5 randomized items, 10 for bosses. Includes anything from ammo, weapons, health, armor, powerups, runes, and an ally spawning beacon.\n\
+smm_newchex 0/1: If set to 1 in Doom, makes the spawners use the Samsara version of Snotfolus rather than the old one. In Chex Quest, it chooses between the old chex3.wad versions or the updated Samsara versions.";
+
+int SMMCHANGES =
+"From 0.17 to 0.17b\n\
+\n\
+Fixes:\n\
+- Fixed an incorrect sprite name on The Axe causing him to disappear for a moment during his death state.\n\
+- Drops done with smm_pinataparty would respawn if sv_itemrespawn was enabled, a change in method fixes this.\n\
+- Runes by default have +NOGRAVITY and because of that would fly to the top of maps and never come back when spawned by DefaultPinataPop. The random spawner now has versions without that flag.\n\
+- D'Sparil spawning in monsters was causing problems in Invasion mode, the spawning method has been changed to A_SpawnItemEx.\n\
+- DukeJibs4 had a wrong sprite name in the Death2 state, renamed to fix.\n\
+- Marathon Juggernauts could get stuck on other actors during its death state, so it wouldn't be able to die. Added THRUACTORS in the Death state to fix this.\n\
+- Finally remembered to fix a long existing issue involving some of the SoD Mission 2 bosses using incorrect projectile sprites.\n\
+Additions:\n\
+- CVar info string.\n\
+- Chex Quest support.\n\
+Tweaks:\n\
+- Made the Protector Drone not play its active sound so often.\n\
+- The Battlelord, Cycloid Emperor, and Overlord now have a footstep sound.\n\
+- Explosives should now always send a Marathon monster into it's XDeath state.\m\
+- Changed some obituaries that were bothering me.";
+
+global int 2:alreadyshowedbs;
+
 Script 667 OPEN 
 {
 
@@ -35,19 +71,23 @@ Script 667 OPEN
 		{	ConsoleCommand("set smm_marathon 0");
 		Consolecommand ("archivecvar smm_marathon"); }
 	
-		if (!GetCVar("smm_quake"))
+		/*if (!GetCVar("smm_quake"))
 		{	ConsoleCommand("set smm_quake 0");
-		Consolecommand ("archivecvar smm_quake"); }
+		Consolecommand ("archivecvar smm_quake"); }*/
+		
+		/*if (!GetCVar("smm_unreal"))
+		{	ConsoleCommand("set smm_unreal 0");
+		Consolecommand ("archivecvar smm_unreal"); }*/
 
 	//Mode toggles
 
-		if (!GetCVar("smm_invisiblemode"))
+		/*if (!GetCVar("smm_invisiblemode"))
 		{	ConsoleCommand("set smm_invisiblemode 0");
-		Consolecommand ("archivecvar smm_invisiblemode"); }
+		Consolecommand ("archivecvar smm_invisiblemode"); }*/
 	
-		if (!GetCVar("smm_assholemode"))
+		/*if (!GetCVar("smm_assholemode"))
 		{	ConsoleCommand("set smm_assholemode 0");
-		Consolecommand ("archivecvar smm_assholemode"); }
+		Consolecommand ("archivecvar smm_assholemode"); }*/
 		
 		if (!GetCVar("smm_wolfmode"))
 		{	ConsoleCommand("set smm_wolfmode 2");
@@ -61,178 +101,350 @@ Script 667 OPEN
 		{	ConsoleCommand("set smm_wolffastdeath 0");
 		Consolecommand ("archivecvar smm_wolffastdeath"); }
 		
+		if (!GetCVar("smm_randomcycle"))
+		{	ConsoleCommand("set smm_randomcycle 0");
+		Consolecommand ("archivecvar smm_randomcycle"); }
+		
+		if (!GetCVar("smm_skilloverride"))
+		{	ConsoleCommand("set smm_skilloverride 5");
+		Consolecommand ("archivecvar smm_skilloverride"); }
+		
+		/*if (!GetCVar("smm_dropdefault"))
+		{	ConsoleCommand("set smm_dropdefault 0");
+		Consolecommand ("archivecvar smm_dropdefault"); }*/
+		
+		if (!GetCVar("smm_bandoom"))
+		{	ConsoleCommand("set smm_bandoom 0");
+		Consolecommand ("archivecvar smm_bandoom"); }
+		
+		if (!GetCVar("smm_banheretic"))
+		{	ConsoleCommand("set smm_banheretic 0");
+		Consolecommand ("archivecvar smm_banheretic"); }
+		
+		if (!GetCVar("smm_banhexen"))
+		{	ConsoleCommand("set smm_banhexen 0");
+		Consolecommand ("archivecvar smm_banhexen"); }
+		
+		if (!GetCVar("smm_banchex"))
+		{	ConsoleCommand("set smm_banchex 0");
+		Consolecommand ("archivecvar smm_banchex"); }
+		
+		if (!GetCVar("smm_banwolf3d"))
+		{	ConsoleCommand("set smm_banwolf3d 0");
+		Consolecommand ("archivecvar smm_banwolf3d"); }
+		
+		if (!GetCVar("smm_banduke3d"))
+		{	ConsoleCommand("set smm_banduke3d 0");
+		Consolecommand ("archivecvar smm_banduke3d"); }
+		
+		if (!GetCVar("smm_banmarathon"))
+		{	ConsoleCommand("set smm_banmarathon 1");
+		Consolecommand ("archivecvar smm_banmarathon"); }
+		
+		if (!GetCVar("smm_multiply"))
+		{	ConsoleCommand("set smm_multiply 0");
+		Consolecommand ("archivecvar smm_multiply"); }
+		
+		/*if (!GetCVar("smm_mara_allminors"))
+		{	ConsoleCommand("set smm_mara_allminors 0");
+		Consolecommand ("archivecvar smm_mara_allminors"); }
+		
+		if (!GetCVar("smm_mara_allmajors"))
+		{	ConsoleCommand("set smm_mara_allmajors 0");
+		Consolecommand ("archivecvar smm_mara_allmajors"); }*/
+		
+		/*if (!GetCVar("smm_mara_simplified"))
+		{	ConsoleCommand("set smm_mara_simplified 0");
+		Consolecommand ("archivecvar smm_mara_simplified"); }*/
+		
+		if (!GetCVar("smm_pinataparty"))
+		{	ConsoleCommand("set smm_pinataparty 0");
+		Consolecommand ("archivecvar smm_pinataparty"); }
+		
+		if (!GetCVar("smm_newchex"))
+		{	ConsoleCommand("set smm_newchex 0");
+		Consolecommand ("archivecvar smm_newchex"); }
+		
 	//Init CVar
 		ConsoleCommand ("set smm_init 1");
 		Consolecommand ("archivecvar smm_init");
 	}
-}
-
-Script 668 (void)
-{
-	int randomselect;
-
-	if(checktoggles()) 
+	ACS_Execute(669, 0, 0, 0, 0);
+	
+	if (alreadyshowedbs == 0)
 	{
-		SetActorState(0,"IsNull",true);
-		terminate;
-	}
-	else
-	{
-		randomselect = random(1,7);
-		if(randomselect == 1)
+		if (GameType() == GAME_TITLE_MAP) { }
+		if (Singleplayer() == 1)
 		{
-			if(GetCvar("smm_doom"))
+			if(GetCvar("samsara_cvarinfo") == 0)
 			{
-				SetActorState(0,"IsDoom",true);
-				terminate;
+				Delay(2);
+				Hudmessage(s:SMMCVARINFO; HUDMSG_PLAIN|HUDMSG_LOG, 93000, CR_GRAY, 1.5, 0.25, 2.5);
+				Hudmessage(s:"Also includes cvar info for SMM."; HUDMSG_FADEOUT, 93000, CR_RED, 1.5, 0.25, 2.0, 0.5);
 			}
-			else{restart;}
 		}
-		if(randomselect == 2)
-		{
-			if(GetCvar("smm_heretic"))
-			{
-				SetActorState(0,"IsHeretic",true);
-				terminate;
-			}
-			else{restart;}
-		}
-		if(randomselect == 3)
-		{
-			if(GetCvar("smm_hexen"))
-			{
-				SetActorState(0,"IsHexen",true);
-				terminate;
-			}
-			else{restart;}
-		}
-		if(randomselect == 4)
-		{
-			if(GetCvar("smm_chex"))
-			{
-				SetActorState(0,"IsChex",true);
-				terminate;
-			}
-			else{restart;}
-		}
-		if(randomselect == 5)
-		{
-			if(GetCvar("smm_wolf3d"))
-			{
-				if(GetCvar("smm_wolfmode") == 0)
-				{
-					SetActorState(0,"IsM1",true);
-					terminate;
-				}
-				if(GetCvar("smm_wolfmode") == 1)
-				{
-					SetActorState(0,"IsM2",true);
-					terminate;
-				}
-				if(GetCvar("smm_wolfmode") == 2)
-				{
-					SetActorState(0,"IsWolf",true);
-					terminate;
-				}
-			}
-			else{restart;}
-		}
-		if(randomselect == 6)
-		{
-			if(GetCvar("smm_duke3D"))
-			{
-				if(GetCvar("smm_invisiblemode"))
-				{
-					SetActorState(0,"InvisDuke",true);
-					terminate;
-				}
-				SetActorState(0,"IsDuke",true);
-				terminate;
-			}
-			else{restart;}
-		}
-		if(randomselect == 7)
-		{
-			if(GetCvar("smm_marathon"))
-			{
-				SetActorState(0,"IsMarathon",true);
-				terminate;
-			}
-			else{restart;}
-		}
-/*		if(randomselect == 8)
-		{
-			if(GetCvar("smm_quake"))
-			{
-				SetActorState(0,"IsQuake",true);
-				terminate;
-			}
-			else{restart;}
-		}*/
+		else { 	Delay(2); Log(s:SMMCVARINFO); }
+		
+		alreadyshowedbs = 1;
 	}
 }
 
-function int checktoggles (void)
+Script 668 (int spawncode, int override)
 {
-	if (!GetCvar("smm_doom")&&!GetCvar("smm_heretic")&&!GetCvar("smm_hexen")&&!GetCvar("smm_chex")&&!GetCvar("smm_wolf3d")&&!GetCvar("smm_duke3d")/*&&!GetCvar("smm_marathon")&&!GetCvar("smm_quake*/)
-	{return 1;}
-	return 0;
-}
+	int setselect;
+	int multitoken;
+	
+	Switch(spawncode)
+	{
+		case 1:
+		if(!GetCVar("smm_invisiblemode")/*&&!GetCVar("smm_assholemode")*/)
+		{
+			SetActorState(0,"SpawnDefault",true);
+			terminate;
+		}
+		else
+		{
+			SetActorState(0,"SpawnInvisible",true);
+			terminate;
+		}
 
-int GiveTID = 999;
-
-function int NextTID (VOID)
-{
-    for (GiveTID=GiveTID; GiveTID<2000; GiveTID++)
-    {
-        if (!ThingCount (T_NONE, GiveTID))
-            return GiveTID;
-    }
-    return 0;
+		case 2:
+		if(!GetCvar("smm_doom")&&!GetCvar("smm_heretic")&&!GetCvar("smm_hexen")&&!GetCvar("smm_chex")&&!GetCvar("smm_wolf3d")&&!GetCvar("smm_duke3d")&&!GetCvar("smm_marathon")/*&&!GetCvar("smm_quake*/) 
+		{
+			SetActorState(0,"SetNull",true);
+			terminate;
+		}
+		else
+		{
+			setselect = random(1,7);
+			if(setselect == 1)
+			{
+				if(GetCvar("smm_doom"))
+				{
+					SetActorState(0,"SetDoom",true);
+					terminate;
+				}
+				else{restart;}
+			}
+			if(setselect == 2)
+			{
+				if(GetCvar("smm_heretic"))
+				{
+					SetActorState(0,"SetHeretic",true);
+					terminate;
+				}
+				else{restart;}
+			}
+			if(setselect == 3)
+			{
+				if(GetCvar("smm_hexen"))
+				{
+					SetActorState(0,"SetHexen",true);
+					terminate;
+				}
+				else{restart;}
+			}
+			if(setselect == 4)
+			{
+				if(GetCvar("smm_chex"))
+				{
+					SetActorState(0,"SetChex",true);
+					terminate;
+				}
+				else{restart;}
+			}
+			if(setselect == 5)
+			{
+				if(GetCvar("smm_wolf3d"))
+				{
+					if(GetCvar("smm_wolfmode") == 0)
+					{
+						SetActorState(0,"SODM1",true);
+						terminate;
+					}
+					if(GetCvar("smm_wolfmode") == 1)
+					{
+						SetActorState(0,"SODM2",true);
+						terminate;
+					}
+					if(GetCvar("smm_wolfmode") == 2)
+					{
+						SetActorState(0,"SetWolf3D",true);
+						terminate;
+					}
+				}
+				else{restart;}
+			}
+			if(setselect == 6)
+			{
+				if(GetCvar("smm_duke3D"))
+				{
+					SetActorState(0,"SetDuke3D",true);
+					terminate;
+				}
+				else{restart;}
+			}
+			if(setselect == 7)
+			{
+				if(GetCvar("smm_marathon"))
+				{
+					SetActorState(0,"SetMarathon",true);
+					terminate;
+				}
+				else{restart;}
+			}
+/*			if(setselect == 8)
+			{
+				if(GetCvar("smm_quake"))
+				{
+					SetActorState(0,"SetQuake",true);
+					terminate;
+				}
+				else{restart;}
+			}
+			if(setselect == 9)
+			{
+				if(GetCVar("smm_unreal"))
+				{
+					SetActorState(0,"SetUnreal",true);
+					terminate;
+				}
+				else {restart;}
+				{
+			
+				}
+			}*/
+				
+		}
+		break;
+		
+		case 3:
+		if(GetCVar("smm_multiply") > 1)
+		{
+			if(GetCvar("invasion") == 0||override == 1)
+			{
+				multitoken = GetCvar("smm_multiply");
+				GiveInventory("MultiplyToken", multitoken);
+				break;
+			}
+			else { break; }
+		}
+		else { break; }
+	}
 }
 
 Script 669 (void)
 {
-	Thing_ChangeTID(0,NextTID());
-}
-
-Script 670 (void)
-{
-	int intResults = ActivatorTID();
-	SetResultValue(intResults);
-}
-
-Script 671 (void)
-{
-	int mytid = ActivatorTID();
-	if(mytid > 998 && mytid < 2013)
+	int selectloop;	
+	int randomvalue;
+	int randnum;
+	
+	if (GetCVar("smm_randomcycle"))
 	{
-		if(ThingCountName("StrifeSubEntity",mytid) == 0)
+		selectloop = 0;
+		randomvalue = GetCvar("smm_randomcycle");
+		ConsoleCommand("set smm_doom 0");
+		ConsoleCommand("set smm_heretic 0");
+		ConsoleCommand("set smm_hexen 0");
+		ConsoleCommand("set smm_chex 0");
+		ConsoleCommand("set smm_wolf3d 0");
+		ConsoleCommand("set smm_duke3d 0");
+		ConsoleCommand("set smm_marathon 0");
+		
+		While (selectloop < randomvalue)
 		{
-			Thing_Destroy(mytid,0);
-		}
-	}
-}
-
-Script 672 (void)
-{
-	Thing_ChangeTID(0,2014);
-	delay(5);
-	if (GetLevelInfo(LEVELINFO_LEVELNUM) == 15)
-	{
-		if(ThingCount(0,2014) < 3)
-		{
-			Thing_Destroy(2014,0);
-			terminate;
+			randnum = random(1,7);
+			
+			if (randnum == 1)
+			{
+				if(GetCVar("smm_doom")||GetCVar("smm_bandoom")) { }
+				else { ConsoleCommand("set smm_doom 1"); selectloop++; }
+			}
+			if (randnum == 2)
+			{
+				if(GetCVar("smm_heretic")||GetCVar("smm_banheretic")) { }
+				else { ConsoleCommand("set smm_heretic 1"); selectloop++; }
+			}
+			if (randnum == 3)
+			{
+				if(GetCVar("smm_hexen")||GetCVar("smm_banhexen")) { }
+				else { ConsoleCommand("set smm_hexen 1"); selectloop++; }
+			}
+			if (randnum == 4)
+			{
+				if(GetCVar("smm_chex")||GetCVar("smm_banchex")) { }
+				else { ConsoleCommand("set smm_chex 1"); selectloop++; }
+			}
+			if (randnum == 5)
+			{
+				if(GetCVar("smm_wolf3d")||GetCVar("smm_banwolf3d")) { }
+				else { ConsoleCommand("set smm_wolf3d 1"); selectloop++; }
+			}
+			if (randnum == 6)
+			{
+				if(GetCVar("smm_duke3d")||GetCVar("smm_banduke3d")) { }
+				else { ConsoleCommand("set smm_duke3d 1"); selectloop++; }
+			}
+			if (randnum == 7)
+			{
+				if(GetCVar("smm_marathon")||GetCVar("smm_banmarathon")) { }
+				else { ConsoleCommand("set smm_marathon 1"); selectloop++; }
+			}
 		}
 	}
 	else
 	{
 		terminate;
 	}
-	delay(1);
-	restart;
 }
+
+Script 670 OPEN
+{
+	While(GetCvar("invasion") > 0)
+	{
+		if(GetInvasionState() == 4)
+		{
+			ACS_Execute(669, 0, 0, 0, 0);
+		}
+		Delay(280);
+	}
+}
+
+Script 671 (void)
+{
+	int checkskill;
+	checkskill = ACS_ExecuteWithResult (680, 3, 0, 0, 0);
+	if (checkskill == 0)
+	{
+		SetActorState(0,"Kindergarten",true);
+		terminate;
+	}
+	if (checkskill == 1)
+	{
+		SetActorState(0,"Easy",true);
+		terminate;
+	}
+	if (checkskill == 2)
+	{
+		SetActorState(0,"Normal",true);
+		terminate;
+	}
+	if (checkskill == 3)
+	{
+		SetActorState(0,"MajorDamage",true);
+		terminate;
+	}
+	if (checkskill == 4)
+	{
+		SetActorState(0,"TotalCarnage",true);
+		terminate;
+	}
+}
+
+/*Script 672 (void)
+{
+
+}*/
 
 Script 680 (int pick)
 {
@@ -247,7 +459,37 @@ Script 680 (int pick)
 		case 2:
 		response = GetCVar("smm_wolffastdeath");
 		break;
+		
+		case 3:
+		if(GetCVar("smm_skilloverride") < 5)
+		{
+			response = GetCVar("smm_skilloverride");
+		}
+		else
+		{
+			response = GameSkill ();
+		}
+		break;
+		
+		case 4:
+		response = GetCVar("smm_dropdefault");
+		break;
+		
+		case 5:
+		response = GetCvar("smm_pinataparty");
+		break;
+		
+		case 6:
+		response = GetCvar("smm_newchex");
+		break;
+		
+		case 7:
+		response = GetCvar("smm_mara_simplified");
+		break;
+		
+		case 8:
+		response = GetCvar("smm_invisiblemode");
+		break;
 	}
-	
 	SetResultValue(response);
 }

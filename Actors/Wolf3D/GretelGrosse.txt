@@ -20,10 +20,13 @@ ACTOR GretelGrosse
 	DeathSound "gretel/death"
 	ActiveSound ""
 	AttackSound "nazi/fire"
+	Dropitem "DefaultPinataPop"
 	Obituary "%o was shot by Gretel Grosse."
     DamageFactor "Mace", 1.1
     DamageFactor "DragonClaw", 1.5
+	DamageFactor "WolfEnemyBullet", 0.0
     PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
 	Dropitem "WolfGoldKey"
 	Decal BulletChip
 	States 
@@ -153,8 +156,17 @@ ACTOR GretelGrosse
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
 			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
 			WGRT D 2 A_FaceTarget
-			TNT1 A 0 A_Recoil(14)
+			TNT1 A 0 A_Recoil(10)
 			WGRT D 16 A_Pain
+			Goto See
+		Pain.MarathonStun:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_GiveInventory("NothingSpeed")
+			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			WGRT H 5 A_FaceTarget
+			TNT1 A 0 A_Gravity
+			WGRT H 30 A_Pain
+			WGRT H 70
 			Goto See
 		Death.DukeDamage:
 		Death.DukePistol:
@@ -189,6 +201,9 @@ ACTOR GretelGrosse
 			Stop
 		Death.ZorchPistol:
 		Death.Zorch:
+		Death.ZorchKamikaze:
+		Death.PhasingZorch:
+		Death.ZorchSpectral:
 			TNT1 A 0 A_GiveToTarget("KillCount",1)
 			WGRT D 0 A_Stop
 			TNT1 A 0 A_ChangeFlag("DONTGIB",1)
@@ -219,7 +234,7 @@ ACTOR GretelGrosse
 		Death.Ice:
 			TNT1 A 0 A_GiveToTarget("KillCount",1)
 			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
-			TNT1 A 0 A_NoBlocking
+			//TNT1 A 0 A_NoBlocking
 			//TNT1 A 0 A_SpawnItem("GretelFrozen")
 			WGRT L 0 A_GenericFreezeDeath
 			WGRT L 70 A_UnsetSolid
@@ -254,6 +269,10 @@ ACTOR GretelGrosseDoom : GretelGrosse
 {
 	Height 64
 	Radius 24
-	XScale 0.8
-	YScale 1.0
+	Scale 1.0
+}
+
+ACTOR MultiGretelGrosseDoom : GretelGrosseDoom
+{
+	+THRUSPECIES
 }

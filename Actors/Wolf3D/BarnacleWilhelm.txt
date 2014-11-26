@@ -30,7 +30,9 @@ ACTOR BarnacleWilhelm
 	Obituary "%o was shot by Barnacle Wilhelm."
     DamageFactor "Mace", 1.1
     DamageFactor "DragonClaw", 1.5
-	Dropitem "rocketammo"
+	DamageFactor "WolfEnemyBullet", 0.0
+	Dropitem "DefaultPinataPop"
+	Dropitem "DefaultPinataPop"
 	Dropitem "WolfGoldKey"
 	Decal BulletChip
 	States 
@@ -164,6 +166,9 @@ ACTOR BarnacleWilhelm
 			Goto XDeath+4
 		Death.ZorchPistol:
 		Death.Zorch:
+		Death.ZorchKamikaze:
+		Death.PhasingZorch:
+		Death.ZorchSpectral:
 			TNT1 A 0 A_GiveToTarget("KillCount",1)
 			WBAR D 0 A_Stop
 			TNT1 A 0 A_ChangeFlag("DONTGIB",1)
@@ -185,4 +190,9 @@ ACTOR BarnacleWilhelm
 			TNT1 A -1 A_KillMaster
 			Stop
 	}
+}
+
+ACTOR MultiBarnacleWilhelm : BarnacleWilhelm
+{
+	+THRUSPECIES
 }

@@ -1,13 +1,28 @@
 //==============================//
-//Samsara Monster Mixer - v0.15e//
+//Samsara Monster Mixer - v0.17 //
 //==============================//
 
-Author: Minesae Hiromu, Shadowlink223
+Author: Shadowlink223, Minesae Hiromu(Former)
 
-Resources: Doom, Heretic, Hexen, Chex Quest, and Chex Quest III
+Resources: Doom, Heretic, Hexen, Chex Quest, Chex Quest III, Wolfenstein 3D, and Marathon.
 
 Description: This pk3 randomly spawns monsters from Doom, Heretic, Hexen,
-	Chex Quest, Wolfenstein 3D, and Duke Nukem 3D. Soon, it will also spawn Marathon, Quake,
-	and possibly Strife monsters.
+	Chex Quest, Wolfenstein 3D, and Duke Nukem 3D. Soon, it will also spawn Quake monsters.
 	
 Use: Load after the main Samsara pk3
+
+Thanks to:
+
+PresidentPeople - For custom Duke gibs, custom sprites to give some Marathon monsters special Duke XDeath states, providing info for the Marathon set, helping code for said set, and some bloodyhell states.
+TerminusEst13 - For help with some coding and creating Samsara.
+Ijon Tichy - For some help with ACS.
+All from #samsara - For help finding that old invasion spawning bug.
+"S" from ZDoom forums. - Code for the cvar based spawners.
+
+Original monsters and sprites/sounds belong to their respective owners, including:
+
+ID Software - Doom, Wolfenstein 3D, and Quake
+Raven Software - Heretic and Hexen
+Digital Cafe - Chex Quest
+3D Realms and Gearbox - Duke Nukem 3D
+Bungie - Marathon

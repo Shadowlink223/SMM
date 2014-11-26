@@ -27,11 +27,14 @@ ACTOR DoctorSchabbs
 	DeathSound "schabbs/death"
 	ActiveSound ""
 	AttackSound "schabbs/throw"
+	Dropitem "DefaultPinataPop"
+	Dropitem "DefaultPinataPop"
 	Obituary "%o was injected with Doctor Schabb's serum."
     DamageFactor "Mace", 1.15
     DamageFactor "DragonClaw", 1.6
     DamageFactor "MarathonFusion", 2.0
     DamageFactor "WMCNade", 0.75
+	DamageFactor "WolfEnemyBullet", 0.0
 	States
 	{
 		Spawn:
@@ -76,6 +79,9 @@ ACTOR DoctorSchabbs
 			Goto XDeath+3
 		Death.ZorchPistol:
 		Death.Zorch:
+		Death.ZorchKamikaze:
+		Death.PhasingZorch:
+		Death.ZorchSpectral:
 			TNT1 A 0 A_GiveToTarget("KillCount",1)
 			WSCB D 0 A_Stop
 			TNT1 A 0 A_ChangeFlag("DONTGIB",1)
@@ -97,4 +103,9 @@ ACTOR DoctorSchabbs
 			TNT1 A -1 A_KillMaster
 			stop
 	}
+}
+
+ACTOR MultiDoctorSchabbs : DoctorSchabbs
+{
+	+THRUSPECIES
 }

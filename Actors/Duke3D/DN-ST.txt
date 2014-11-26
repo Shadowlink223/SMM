@@ -1,8 +1,8 @@
-ACTOR ProtectorDrone
+ACTOR BlueProtectorDrone
 {
-	Health 300
+	Health 600
 	Radius 20
-	Height 64
+	Height 56//64
 	Mass 400
 	Speed 7
 	Scale 0.65
@@ -23,7 +23,6 @@ ACTOR ProtectorDrone
 	Obituary "%o was clawed to death by a Protector Drone."
 	MeleeRange 42
 	PainChance "MightyBoot", 255
-	PainChance "MarathonStun", 255
     DamageFactor "Mace", 1.1
     DamageFactor "DragonClaw", 1.5
 	Bloodcolor Green
@@ -31,101 +30,90 @@ ACTOR ProtectorDrone
 	States
 	{
 		Spawn:
-			PRDR A 1 A_Look
+			BLDR A 1 A_Look
 			Loop
 		See:
-			PRDR BBBBBCCCCCDDDDDEEEEE 1 A_Chase("Melee",0,CHF_NOPLAYACTIVE)
-			PRDR EEEEE 1 A_Chase
+			BLDR BBBBBCCCCCDDDDDEEEEE 1 A_Chase("Melee",0,CHF_NOPLAYACTIVE)
+			BLDR EEEEE 1 A_Chase
 			TNT1 A 0 A_JumpIfCloser(384,"See")
 			Goto Run
 		Run:
-			PRDR B 1 A_Chase("Melee",0,CHF_NOPLAYACTIVE)
+			BLDR B 1 A_Chase("Melee",0,CHF_NOPLAYACTIVE)
 			TNT1 A 0 A_Chase("Melee",0,CHF_NOPLAYACTIVE)
-			PRDR B 1 A_Chase("Melee",0,CHF_NOPLAYACTIVE)
+			BLDR B 1 A_Chase("Melee",0,CHF_NOPLAYACTIVE)
 			TNT1 A 0 A_Chase("Melee",0,CHF_NOPLAYACTIVE)
-			PRDR B 1 A_Chase("Melee",0,CHF_NOPLAYACTIVE)
-			TNT1 A 0 A_Chase("Melee",0,CHF_NOPLAYACTIVE)
-			TNT1 A 0 A_JumpIfCloser(384,"Jump")
-			PRDR C 1 A_Chase("Melee",0,CHF_NOPLAYACTIVE)
-			TNT1 A 0 A_Chase("Melee",0,CHF_NOPLAYACTIVE)
-			PRDR C 1 A_Chase("Melee",0,CHF_NOPLAYACTIVE)
-			TNT1 A 0 A_Chase("Melee",0,CHF_NOPLAYACTIVE)
-			PRDR C 1 A_Chase("Melee",0,CHF_NOPLAYACTIVE)
-			TNT1 A 0 A_Chase("Melee",0,CHF_NOPLAYACTIVE)
-			PRDR C 1 A_Chase("Melee",0,CHF_NOPLAYACTIVE)
+			BLDR B 1 A_Chase("Melee",0,CHF_NOPLAYACTIVE)
 			TNT1 A 0 A_Chase("Melee",0,CHF_NOPLAYACTIVE)
 			TNT1 A 0 A_JumpIfCloser(384,"Jump")
-			PRDR D 1 A_Chase("Melee",0,CHF_NOPLAYACTIVE)
+			BLDR C 1 A_Chase("Melee",0,CHF_NOPLAYACTIVE)
 			TNT1 A 0 A_Chase("Melee",0,CHF_NOPLAYACTIVE)
-			PRDR D 1 A_Chase("Melee",0,CHF_NOPLAYACTIVE)
+			BLDR C 1 A_Chase("Melee",0,CHF_NOPLAYACTIVE)
 			TNT1 A 0 A_Chase("Melee",0,CHF_NOPLAYACTIVE)
-			PRDR D 1 A_Chase("Melee",0,CHF_NOPLAYACTIVE)
+			BLDR C 1 A_Chase("Melee",0,CHF_NOPLAYACTIVE)
+			TNT1 A 0 A_Chase("Melee",0,CHF_NOPLAYACTIVE)
+			BLDR C 1 A_Chase("Melee",0,CHF_NOPLAYACTIVE)
 			TNT1 A 0 A_Chase("Melee",0,CHF_NOPLAYACTIVE)
 			TNT1 A 0 A_JumpIfCloser(384,"Jump")
-			PRDR E 1 A_Chase
+			BLDR D 1 A_Chase("Melee",0,CHF_NOPLAYACTIVE)
+			TNT1 A 0 A_Chase("Melee",0,CHF_NOPLAYACTIVE)
+			BLDR D 1 A_Chase("Melee",0,CHF_NOPLAYACTIVE)
+			TNT1 A 0 A_Chase("Melee",0,CHF_NOPLAYACTIVE)
+			BLDR D 1 A_Chase("Melee",0,CHF_NOPLAYACTIVE)
+			TNT1 A 0 A_Chase("Melee",0,CHF_NOPLAYACTIVE)
+			TNT1 A 0 A_JumpIfCloser(384,"Jump")
+			BLDR E 1 A_Chase
 			TNT1 A 0 A_Chase
-			PRDR E 1 A_Chase
+			BLDR E 1 A_Chase
 			TNT1 A 0 A_Chase
-			PRDR E 1 A_Chase
+			BLDR E 1 A_Chase
 			TNT1 A 0 A_Chase
-			PRDR E 1 A_Chase
+			BLDR E 1 A_Chase
 			TNT1 A 0 A_Chase
 			TNT1 A 0 A_JumpIfCloser(384,"Jump")
 			Loop
 		Jump:
-			PRDR L 1 ThrustThingZ(0,35,0,0)
+			BLDR L 1 ThrustThingZ(0,45,0,0)
 			TNT1 A 0 ThrustThing(angle*256/360,10,0,0)
-			PRDR L 13 A_CheckFloor("See")
+			BLDR L 13 A_CheckFloor("See")
 			Goto MidJump
 		MidJump:
-			PRDR M 17 A_CheckFloor("See")
-			PRDR N 1 A_CheckFloor("See")
+			BLDR M 17 A_CheckFloor("See")
+			BLDR N 1 A_CheckFloor("See")
 			Goto EndJump
 		EndJump:
-			PRDR N 1 A_CheckFloor("See")
-			PRDR N 4 ThrustThing(angle*256/360,1,0,0)
+			BLDR N 1 A_CheckFloor("See")
+			BLDR N 4 ThrustThing(angle*256/360,1,0,0)
 			Loop
 		Melee:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
-			PRDR FFF 2 A_FaceTarget
-			PRDR F 1
-			PRDR G 7 
-			PRDR H 7
+			BLDR FFF 2 A_FaceTarget
+			BLDR F 1
+			BLDR G 7 
+			BLDR H 7
 			TNT1 A 0 A_CustomMeleeAttack((22),"prodrone/attack1","prodrone/attack2")
 			TNT1 A 0 A_JumpIfCloser(64,"See")
 			Goto MeleeEnd
 		MeleeEnd:
-			PRDR A 26
+			BLDR A 26
 			TNT1 A 0 A_Jump(96,1)
 			TNT1 A 0 A_PlaySound("prodrone/roam")
-			PRDR A 14
+			BLDR A 14
 			Goto See
 		Pain:
-			PRDR O 3
-			PRDR O 3 A_Pain
+			BLDR O 3
+			BLDR O 3 A_Pain
 			Goto See
 		Pain.MightyBoot:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
 			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
-			PRDR O 2 A_FaceTarget
+			BLDR O 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)
-			PRDR O 16 A_Pain
-			Goto See
-		Pain.MarathonStun:
-			TNT1 A 0 A_Stop
-			TNT1 A 0 A_GiveInventory("NothingSpeed")
-			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
-			PRDR O 5 A_FaceTarget
-			TNT1 A 0 A_Gravity
-			PRDR O 30 A_Pain
-			PRDR O 70
+			BLDR O 16 A_Pain
 			Goto See
 		Death.DukeDamage:
-		Death.DukeSpectral:
 		Death.DukePistol:
 			TNT1 A 0 A_Jump(218,"Death")
 			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
-			Goto Death
 		Death.MightyBoot:
 			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
 			TNT1 A 0 A_Jump(64,"Death")
@@ -140,18 +128,16 @@ ACTOR ProtectorDrone
 			Goto XDeath
 		Death.Explosive:
 			TNT1 A 0 A_JumpIfHealthLower(-3,"XDeath")
-			Goto Death
 		Death.FireExplosive:
 			TNT1 A 0 A_JumpIfHealthLower(-3,"XDeath")
-			Goto Death
 		Death:
 			TNT1 A 0 A_GiveToTarget("KillCount",1)
-			PRDR P 3 A_Scream
-			PRDR Q 5 A_NoBlocking
-			PRDR R 4
-			PRDR STU 5
-			PRDR V 4
-			PRDR W -1
+			BLDR P 3 A_Scream
+			BLDR Q 5 A_NoBlocking
+			BLDR R 4
+			BLDR STU 5
+			BLDR V 4
+			BLDR W -1
 			stop
 		XDeath:
 			TNT1 A 1
@@ -179,22 +165,22 @@ ACTOR ProtectorDrone
 		Death.PhasingZorch:
 		Death.ZorchSpectral:
 			TNT1 A 0 A_GiveToTarget("KillCount",1)
-			PRDR O 0 A_Stop
+			BLDR O 0 A_Stop
 			TNT1 A 0 A_ChangeFlag("DONTGIB",1)
 			TNT1 A 0 A_PlaySoundEx("chex/zorch","soundslot5",0,0)
-			PRDR O 3 A_SpawnItem("ZorchEffectSmall")
+			BLDR O 3 A_SpawnItem("ZorchEffectSmall")
 			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
-			PRDR O 3 A_SetTranslucent(0.9,0)
-			PRDR O 0 A_Scream
-			PRDR O 3 A_SetTranslucent(0.8,0)
-			PRDR O 0 A_NoBlocking
-			PRDR O 3 A_SetTranslucent(0.7,0)
-			PRDR O 3 A_SetTranslucent(0.6,0)
-			PRDR O 3 A_SetTranslucent(0.5,0)
-			PRDR O 3 A_SetTranslucent(0.4,0)
-			PRDR O 3 A_SetTranslucent(0.3,0)
-			PRDR O 3 A_SetTranslucent(0.2,0)
-			PRDR O 3 A_SetTranslucent(0.1,0)
+			BLDR O 3 A_SetTranslucent(0.9,0)
+			BLDR O 0 A_Scream
+			BLDR O 3 A_SetTranslucent(0.8,0)
+			BLDR O 0 A_NoBlocking
+			BLDR O 3 A_SetTranslucent(0.7,0)
+			BLDR O 3 A_SetTranslucent(0.6,0)
+			BLDR O 3 A_SetTranslucent(0.5,0)
+			BLDR O 3 A_SetTranslucent(0.4,0)
+			BLDR O 3 A_SetTranslucent(0.3,0)
+			BLDR O 3 A_SetTranslucent(0.2,0)
+			BLDR O 3 A_SetTranslucent(0.1,0)
 			TNT1 A 1 A_SetTranslucent(1,0)
 			TNT1 A -1
 			stop
@@ -210,14 +196,14 @@ ACTOR ProtectorDrone
 			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
 			TNT1 A 0 A_NoBlocking
 			//TNT1 A 0 A_SpawnItem("GuardFrozen")
-			PRDR O 0 A_GenericFreezeDeath
-			PRDR O 70 A_UnsetSolid
-			PRDR O 0 A_IceGuyDie
-			PRDR O 1 A_IceGuyDie
+			BLDR O 0 A_GenericFreezeDeath
+			BLDR O 70 A_UnsetSolid
+			BLDR O 0 A_IceGuyDie
+			BLDR O 1 A_IceGuyDie
 			TNT1 A -1
 			stop
 		Raise:
-			PRDR WVUTSRQP 5
+			BLDR WVUTSRQP 5
 			Goto See
 		ZorchRaise:
 			TNT1 A 1 A_UnsetShootable
@@ -225,21 +211,21 @@ ACTOR ProtectorDrone
 			TNT1 A 0 A_PlaySound("archvile/resummon")
 			TNT1 A 1 A_TakeInventory("EnemyZorched",1)
 			TNT1 A 0 A_SetTranslucent(0.1,0)
-			PRDR A 3 A_SetTranslucent(0.2,0)
-			PRDR A 3 A_SetTranslucent(0.3,0)
-			PRDR A 3 A_SetTranslucent(0.4,0)
-			PRDR A 3 A_SetTranslucent(0.5,0)
-			PRDR A 3 A_SetTranslucent(0.6,0)
-			PRDR A 3 A_SetTranslucent(0.7,0)
-			PRDR A 3 A_SetTranslucent(0.8,0)
-			PRDR A 3 A_SetTranslucent(0.9,0)
-			PRDR A 3 A_SetTranslucent(1,0)
-			PRDR A 1 A_SetShootable
+			BLDR A 3 A_SetTranslucent(0.2,0)
+			BLDR A 3 A_SetTranslucent(0.3,0)
+			BLDR A 3 A_SetTranslucent(0.4,0)
+			BLDR A 3 A_SetTranslucent(0.5,0)
+			BLDR A 3 A_SetTranslucent(0.6,0)
+			BLDR A 3 A_SetTranslucent(0.7,0)
+			BLDR A 3 A_SetTranslucent(0.8,0)
+			BLDR A 3 A_SetTranslucent(0.9,0)
+			BLDR A 3 A_SetTranslucent(1,0)
+			BLDR A 1 A_SetShootable
 			Goto See
 	}
 }
 
-ACTOR NewProtectorDrone
+/*ACTOR NewProtectorDrone
 {
 	Height 56
 	Radius 28
@@ -252,7 +238,7 @@ ACTOR NewProtectorDrone
 	States
 	{
 		Spawn:
-			PRDR K 280
+			BLDR K 280
 		Death:
 			TNT1 A 0 A_NoBlocking
 			TNT1 A 0 A_UnsetSolid
@@ -296,50 +282,26 @@ ACTOR SpectreDroneDoom : ProtectorDroneDoom
 	Alpha 0.5
 }
 
-ACTOR MultiProtectorDrone : ProtectorDroneDoom
+ACTOR InvisProtectorDrone : ProtectorDrone
 {
-	Species "ProtectorDrone"
-	+THRUSPECIES
-}
-
-ACTOR MultiSpectreDrone : SpectreDroneDoom
-{
-	Species "SpectreDrone"
-	+THRUSPECIES
-}
-
-ACTOR InvisibleDroneDoom : ProtectorDroneDoom
-{
-	+SHADOW
-	RenderStyle Translucent
-	Alpha 0.0
 	States
 	{
-		Melee:
-			TNT1 A 0 A_SetTranslucent(1,0)
-			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
-			PRDR FFF 2 A_FaceTarget
-			PRDR F 1
-			PRDR G 7 
-			PRDR H 7
-			TNT1 A 0 A_CustomMeleeAttack((22),"prodrone/attack1","prodrone/attack2")
-			TNT1 A 0 A_JumpIfCloser(64,"See")
-			Goto MeleeEnd
-		MeleeEnd:
-			PRDR A 26 A_SetTranslucent(0,0)
-			TNT1 A 0 A_Jump(96,1)
-			TNT1 A 0 A_PlaySound("prodrone/roam")
-			PRDR A 14
+		Spawn:
+			TNT1 A 1 A_Look
+			Loop
+		See:
+			TNT1 AAAAAAAAAAAAAAAAAAAA 1 A_Chase
+			Loop
+		Pain:
+			TNT1 A 3
+			TNT1 A 3 A_Pain
 			Goto See
-		Death:
-			TNT1 A 0 A_SetTranslucent(1,0)
-			TNT1 A 0 A_GiveToTarget("KillCount",1)
-			PRDR P 3 A_Scream
-			PRDR Q 5 A_NoBlocking
-			PRDR R 4
-			PRDR STU 5
-			PRDR V 4
-			PRDR W -1
-			stop
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			TNT1 A 16 A_Pain
+			Goto See
 	}
-}
+}*/

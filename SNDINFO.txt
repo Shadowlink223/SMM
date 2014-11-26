@@ -905,12 +905,16 @@ queen/death				bqdie1a
 
 pigtank/active			tank3a
 
+rpv/fly					rpvfligh
+
 prodrone/attack1		blrip1a
 prodrone/attack2		blrip1b
 prodrone/roam			blroam2a
 prodrone/spit			blspit1a
 prodrone/death			bldie3a
 prodrone/pain			blpain1b
+
+duke/thud				dukethud
 
 $pitchshift prodrone/pain 4
 $pitchshift prodrone/death 4
@@ -922,13 +926,58 @@ $pitchshift prodrone/death 4
 /***************************************************************************/
 
 marathon/splash			maraspla
-enforcer/sight			pfhoensi
-pfhorfighter/wail		pfhowail
+m2enforcer/sight		pfhoensi
+m2enforcer/shoot		mtalnsht
+m1enforcer/shoot		mtawpsht
+pfhorfighter/sight		fightsit
+fighterstaff/hit		staffhit
+fighterstaff/swing		stafswng
+pfhor/wail				pfhowail
+m1pfhor/wail			m1pfwail
+pfhor/roam				pfhoroam
 pfhor/death				pfhodeth
+$random m1pfhor/death { m1pfhor/death1 m1pfhor/death2 }
+m1pfhor/death1			m1pfdie1
+m1pfhor/death2			m1pfdie2
 hunter/crash			huntcrsh
 hunter/fire				huntfire
 hunter/explode			huntexpl
 hunterpro/explode		huntprex
+pfhor/xdeath			MRTHSLOP
+m2jugger/explode		m2juexpl
+m2jugger/fire			m2jufire
+m1jugger/fire			m1jufire
+juggernaut/prep			juprfire
+juggernaut/warn			juggwarn
+$random flickta/hit { flickta/hit1 flickta/hit2 }				
+flickta/hit1			flikmeh1
+flickta/hit2			flikmeh2
+$random flickta/melee { flickta/melee1 flickta/melee2 }
+flickta/melee1			flikmel1
+flickta/melee2			flikmel2
+flickta/rock			flikmiss
+flickta/rockhit			flikmhit
+flickta/death			flikdeth
+spht/attack				sphtattk
+spht/pain				sphtpain
+spht/death				sphtdeth
+sphtattack/explode		spprexpl
+sphtkr/pain 			spkrpain
+sphtkr/death			spkrdeth
+sphtkr/attack			spkrattk
+sphtkrattack/explode	krprexpl
+drone/sight				drosight
+drone/prep				dronprep
+drone/attack			dronattk
+drone/dying				drondyin
+drone/death				dronexpl
+dronebolt/death			drprexpl
+cyborg/moving			cybomove
+cyborg/fire				cybofire
+cyborg/pain				cyborhit
+cyborg/death			cybordie
+cyborggrenade/bounce	cybprbou
+cyborggrenade/explode	cybprexp
 
 /* *************************************************************************/
 /*

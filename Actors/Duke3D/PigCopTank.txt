@@ -3,7 +3,7 @@ ACTOR PigCopTank
 	Health 500
 	Radius 32
 	Height 64
-	Mass 150
+	Mass 1000
 	Speed 10
 	PainChance 0
 	Scale 0.94
@@ -17,10 +17,12 @@ ACTOR PigCopTank
     +NOINFIGHTING
 	+DONTMORPH
 	AttackSound "duke/m1911"
+	Dropitem "DefaultPinataPop"
 	Obituary "%o was shredded by a Pig Cop Tank."
     DamageFactor "Mace", 1.1
     DamageFactor "DragonClaw", 1.5
 	DamageFactor "MarathonFusion", 2.0
+	PainChance "MarathonStun", 255
 	Decal BulletChip
 	States 
 	{
@@ -47,11 +49,16 @@ ACTOR PigCopTank
 			PIGT A 0 Bright A_CustomMissile("BattleLordMortar1",32,0,CMF_CHECKTARGETDEAD|CMF_AIMDIRECTION,random(10,20))
 			PIGT A 40
 			Goto See
+		Pain.MarathonStun:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_GiveInventory("NothingSpeed")
+			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			PIGT A 5 A_FaceTarget
+			TNT1 A 0 A_Gravity
+			PIGT A 30 A_Pain
+			PIGT A 70
+			Goto See
 		Death.MightyBoot:
-			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
-			TNT1 A 0 A_Jump(64,"Death")
-			TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
-			Goto Death
 		Death.DukeExplosive:
 		Death.DukeIce:
 		Death.DukeDamage:
@@ -69,6 +76,9 @@ ACTOR PigCopTank
 			Stop
 		Death.ZorchPistol:
 		Death.Zorch:
+		Death.ZorchKamikaze:
+		Death.PhasingZorch:
+		Death.ZorchSpectral:
 			TNT1 A 0 A_GiveToTarget("KillCount",1)
 			PIGT A 0 A_Stop
 			TNT1 A 0 A_ChangeFlag("DONTGIB",1)
@@ -97,4 +107,16 @@ ACTOR PigCopTankArch : PigCopTank
 	Radius 20
 	YScale 0.80
 	XScale 0.80
+}
+
+ACTOR MultiPigCopTank : PigCopTank
+{
+	Species "PigCopTank"
+	+THRUSPECIES
+}
+
+ACTOR MultiPigCopTankArch : PigCopTankArch
+{
+	Species "PigCopTankArch"
+	+THRUSPECIES
 }

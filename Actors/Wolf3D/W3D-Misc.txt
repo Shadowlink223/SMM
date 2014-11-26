@@ -19,10 +19,23 @@ ACTOR MainWolfRocket
 	}
 }
 
+ACTOR MainSODRocket : MainWolfRocket
+{
+	States
+	{
+		Spawn:
+			WRK2 A 3 A_SpawnItem("SODRocketSmoke")
+			Loop
+		Death:
+			WEX2 ABC 2 Bright
+			Stop
+	}
+}
+
 ACTOR BarnacleWolfRocket : MainWolfRocket { Obituary "%o was blown away by Barnacle Wilhelm's rocket." }
 ACTOR FettWolfRocket : MainWolfRocket { Obituary "%o was blown away by General Fettgesicht's rocket." }
 ACTOR OttoWolfRocket : MainWolfRocket { Obituary "%o was blown away by Otto Giftmacher's rocket." }
-ACTOR ProfessorWolfRocket : MainWolfRocket { Obituary "%o was blown away by Professor Quarkblitz's rocket." }
+ACTOR ProfessorWolfRocket : MainSODRocket { Obituary "%o was blown away by Professor Quarkblitz's rocket." }
 
 ACTOR KnightWolfRocket : MainWolfRocket
 {
@@ -30,7 +43,22 @@ ACTOR KnightWolfRocket : MainWolfRocket
 	Obituary "%o was blown away by the Death Knight's rocket."
 }
 
-ACTOR RobotWolfRocket : KnightWolfRocket { Obituary "%o was blown away by the Robot's rocket." }
+ACTOR RobotWolfRocket : MainSODRocket
+{
+	SeeSound "deathknight/missile"
+	Obituary "%o was blown away by the Robot's rocket." 
+}
+
+ACTOR SODRocketSmoke : WolfRocketSmoke
+{
+	States
+	{
+		Spawn:
+			TNT1 A 2
+			WSM2 ABCD 4
+			Stop
+	}
+}
 
 ACTOR AngelBlast 
 {
@@ -55,7 +83,19 @@ ACTOR AngelBlast
 	}
 }
 
-ACTOR DevilBlast : AngelBlast { Obituary "%o was smited by the Devil Incarnate." }
+ACTOR DevilBlast : AngelBlast
+{
+	Obituary "%o was smited by the Devil Incarnate."
+	States
+	{
+		Spawn:
+			DIPR ABCD 4 Bright
+			Loop
+		Death:
+			TNT1 A 1
+			Stop
+	}
+}
 
 ACTOR OrbsFired : Inventory { Inventory.MaxAmount 6 }
 ACTOR HitlerKill : Inventory { Inventory.MaxAmount 1 }
@@ -237,6 +277,7 @@ actor NewDukeGibs6_WolfPurple : NewDukeGibs6
 ACTOR WolfEnemyBulletD1 : DoomEnemyBullet
 {
 	Damage (Random (1, 64))
+	DamageType "WolfEnemyBullet"
 	+MTHRUSPECIES
 	States
 	{

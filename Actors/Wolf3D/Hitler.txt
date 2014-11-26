@@ -28,11 +28,13 @@ ACTOR MechaHitler
 	DeathSound "mech/break"
 	ActiveSound ""
 	AttackSound "boss/fire"
+	Dropitem "DefaultPinataPop"
 	Obituary "%o was shot by Mecha Hitler."
     DamageFactor "Mace", 1.15
     DamageFactor "DragonClaw", 1.6
     DamageFactor "MarathonFusion", 2.0
     DamageFactor "WMCNade", 0.75
+	DamageFactor "WolfEnemyBullet", 0.0
 	Decal BulletChip
 	States 
 	{
@@ -232,6 +234,7 @@ ACTOR Hitler
 	DeathSound "hitler/death"
 	ActiveSound ""
 	AttackSound "boss/fire"
+	Dropitem "DefaultPinataPop"
 	Obituary "%o was shot by Hitler."
     DamageFactor "Mace", 1.1
     DamageFactor "DragonClaw", 1.5
@@ -368,6 +371,9 @@ ACTOR Hitler
 			Goto XDeath+3
 		Death.ZorchPistol:
 		Death.Zorch:
+		Death.ZorchKamikaze:
+		Death.PhasingZorch:
+		Death.ZorchSpectral:
 			TNT1 A 0 A_GiveToTarget("KillCount",1)
 			WADO D 0 A_Stop
 			TNT1 A 0 A_ChangeFlag("DONTGIB",1)
@@ -389,4 +395,9 @@ ACTOR Hitler
 			TNT1 A -1 A_BossDeath
 			stop
 	}
+}
+
+ACTOR MultiMechaHitler : MechaHitler
+{
+	+THRUSPECIES
 }

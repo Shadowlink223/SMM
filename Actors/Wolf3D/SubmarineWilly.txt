@@ -20,10 +20,13 @@ ACTOR SubmarineWilly
 	DeathSound "subwilly/death"
 	ActiveSound ""
 	AttackSound "nazi/fire"
+	Dropitem "DefaultPinataPop"
 	Obituary "%o was shot by Submarine Willy."
     DamageFactor "Mace", 1.1
     DamageFactor "DragonClaw", 1.5
+	DamageFactor "WolfEnemyBullet", 0.0
     PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
 	Dropitem "SODGoldKey"
 	Decal BulletChip
 	States
@@ -156,6 +159,15 @@ ACTOR SubmarineWilly
 			TNT1 A 0 A_Recoil(14)
 			SUBW D 16 A_Pain
 			Goto See
+		Pain.MarathonStun:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_GiveInventory("NothingSpeed")
+			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			SUBW H 5 A_FaceTarget
+			TNT1 A 0 A_Gravity
+			SUBW H 30 A_Pain
+			SUBW H 70
+			Goto See
 		Death.DukeDamage:
 		Death.DukePistol:
 			TNT1 A 0 A_Jump(218,"Death")
@@ -193,6 +205,9 @@ ACTOR SubmarineWilly
 			Goto XDeath+3
 		Death.ZorchPistol:
 		Death.Zorch:
+		Death.ZorchKamikaze:
+		Death.PhasingZorch:
+		Death.ZorchSpectral:
 			TNT1 A 0 A_GiveToTarget("KillCount",1)
 			SUBW D 0 A_Stop
 			TNT1 A 0 A_ChangeFlag("DONTGIB",1)
@@ -260,4 +275,9 @@ ACTOR SubmarineWillyDoom : SubmarineWilly
 	Radius 20
 	XScale 0.67
 	YScale 0.88
+}
+
+ACTOR MultiSubmarineWillyDoom : SubmarineWillyDoom
+{
+	+THRUSPECIES
 }

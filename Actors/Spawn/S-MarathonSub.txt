@@ -1,0 +1,3567 @@
+ACTOR FighterMinorSpawner
+{
+	Health 0x7fffffff
+	Height 0
+	Radius 0
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0,3)
+			TNT1 A 1 ACS_ExecuteAlways(671,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+		Kindergarten:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKindergarten")
+			TNT1 A 1 A_SpawnItemEx("FighterMinorITYTD",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		Easy:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy")
+			TNT1 A 1 A_SpawnItemEx("FighterMinorHNTR",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		Normal:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNormal")
+			TNT1 A 1 A_SpawnItemEx("FighterMinor",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		MajorDamage:
+			TNT1 A 0 A_Jump(128,"Major2")
+			Major1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajor1")
+				TNT1 A 1 A_SpawnItemEx("FighterMinorUV",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+			Major2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajor2")
+				TNT1 A 1 A_SpawnItemEx("FighterMajorUV",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+		TotalCarnage:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyTotalCarnage")
+			TNT1 A 1 A_SpawnItemEx("FighterMajorNightmare",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyKindergarten:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiFighterMinorITYTD",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKindergarten")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyEasy:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiFighterMinorHNTR",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyNormal:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiFighterMinor",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNormal")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyMajor1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiFighterMinorUV",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajor1")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyMajor2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiFighterMajorUV",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajor2")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyTotalCarnage:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiFighterMajorNightmare",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyTotalCarnage")
+			TNT1 A 1 A_Die
+			Goto Death
+		Death:
+			BZBL A 70
+			Stop
+	}
+}
+
+ACTOR FighterMajorSpawner
+{
+	Health 0x7fffffff
+	Height 0
+	Radius 0
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0,3)
+			TNT1 A 1 ACS_ExecuteAlways(671,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+		Kindergarten:
+			TNT1 A 0 A_Jump(128,"Kinder2")
+			Kinder1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKinder1")
+				TNT1 A 1 A_SpawnItemEx("FighterMajorITYTD",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+			Kinder2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKinder2")
+				TNT1 A 1 A_SpawnItemEx("FighterMinorITYTD",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+		Easy:
+			TNT1 A 0 A_Jump(64,"Easy2")
+			Easy1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy1")
+				TNT1 A 1 A_SpawnItemEx("FighterMajorHNTR",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+			Easy2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy2")
+				TNT1 A 1 A_SpawnItemEx("FighterMinorHNTR",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+		Normal:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNormal")
+			TNT1 A 1 A_SpawnItemEx("FighterMajor",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		MajorDamage:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajorDamage")
+			TNT1 A 1 A_SpawnItemEx("FighterMajorUV",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		TotalCarnage:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyTotalCarnage")
+			TNT1 A 1 A_SpawnItemEx("FighterMajorNightmare",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyKinder1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiFighterMajorITYTD",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKinder1")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyKinder2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiFighterMinorITYTD",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKinder2")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyEasy1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiFighterMajorHNTR",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy1")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyEasy2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiFighterMinorHNTR",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy2")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyNormal:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiFighterMajor",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNormal")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyMajorDamage:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiFighterMajorUV",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajorDamage")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyTotalCarnage:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiFighterMajorNightmare",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyTotalCarnage")
+			TNT1 A 1 A_Die
+			Goto Death
+		Death:
+			BZBL A 70
+			Stop
+	}
+}
+
+ACTOR ProjectileFighterMinorSpawner
+{
+	Health 0x7fffffff
+	Height 0
+	Radius 0
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0,3)
+			TNT1 A 1 ACS_ExecuteAlways(671,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+		Kindergarten:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKindergarten")
+			TNT1 A 1 A_SpawnItemEx("ProjectileFighterMinorITYTD",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		Easy:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy")
+			TNT1 A 1 A_SpawnItemEx("ProjectileFighterMinorHNTR",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		Normal:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNormal")
+			TNT1 A 1 A_SpawnItemEx("ProjectileFighterMinor",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		MajorDamage:
+			TNT1 A 0 A_Jump(128,"Major2")
+			Major1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajor1")
+				TNT1 A 1 A_SpawnItemEx("ProjectileFighterMinorUV",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+			Major2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajor2")
+				TNT1 A 1 A_SpawnItemEx("ProjectileFighterMajorUV",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+		TotalCarnage:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyTotalCarnage")
+			TNT1 A 1 A_SpawnItemEx("ProjectileFighterMajorNightmare",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyKindergarten:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiProjectileFighterMinorITYTD",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKindergarten")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyEasy:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiProjectileFighterMinorHNTR",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyNormal:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiProjectileFighterMinor",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNormal")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyMajor1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiProjectileFighterMinorUV",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajor1")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyMajor2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiProjectileFighterMajorUV",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajor2")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyTotalCarnage:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiProjectileFighterMajorNightmare",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyTotalCarnage")
+			TNT1 A 1 A_Die
+			Goto Death
+		Death:
+			BZBL A 70
+			Stop
+	}
+}
+
+ACTOR ProjectileFighterMajorSpawner
+{
+	Health 0x7fffffff
+	Height 0
+	Radius 0
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0,3)
+			TNT1 A 1 ACS_ExecuteAlways(671,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+		Kindergarten:
+			TNT1 A 0 A_Jump(128,"Kinder2")
+			Kinder1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKinder1")
+				TNT1 A 1 A_SpawnItemEx("ProjectileFighterMajorITYTD",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+			Kinder2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKinder2")
+				TNT1 A 1 A_SpawnItemEx("ProjectileFighterMinorITYTD",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+		Easy:
+			TNT1 A 0 A_Jump(64,"Easy2")
+			Easy1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy1")
+				TNT1 A 1 A_SpawnItemEx("ProjectileFighterMajorHNTR",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+			Easy2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy2")
+				TNT1 A 1 A_SpawnItemEx("ProjectileFighterMinorHNTR",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+		Normal:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNormal")
+			TNT1 A 1 A_SpawnItemEx("ProjectileFighterMajor",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		MajorDamage:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajorDamage")
+			TNT1 A 1 A_SpawnItemEx("ProjectileFighterMajorUV",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		TotalCarnage:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyTotalCarnage")
+			TNT1 A 1 A_SpawnItemEx("ProjectileFighterMajorNightmare",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyKinder1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiProjectileFighterMajorITYTD",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKinder1")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyKinder2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiProjectileFighterMinorITYTD",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKinder2")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyEasy1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiProjectileFighterMajorHNTR",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy1")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyEasy2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiProjectileFighterMinorHNTR",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy2")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyNormal:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiProjectileFighterMajor",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNormal")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyMajorDamage:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiProjectileFighterMajorUV",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajorDamage")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyTotalCarnage:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiProjectileFighterMajorNightmare",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyTotalCarnage")
+			TNT1 A 1 A_Die
+			Goto Death
+		Death:
+			BZBL A 70
+			Stop
+	}
+}
+
+ACTOR TrooperMinorSpawner
+{
+	Health 0x7fffffff
+	Height 0
+	Radius 0
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0,3)
+			TNT1 A 1 ACS_ExecuteAlways(671,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+		Kindergarten:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKindergarten")
+			TNT1 A 1 A_SpawnItemEx("TrooperMinorITYTD",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		Easy:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy")
+			TNT1 A 1 A_SpawnItemEx("TrooperMinorHNTR",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		Normal:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNormal")
+			TNT1 A 1 A_SpawnItemEx("TrooperMinor",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		MajorDamage:
+			TNT1 A 0 A_Jump(128,"Major2")
+			Major1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajor1")
+				TNT1 A 1 A_SpawnItemEx("TrooperMinorUV",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+			Major2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajor2")
+				TNT1 A 1 A_SpawnItemEx("TrooperMajorUV",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+		TotalCarnage:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyTotalCarnage")
+			TNT1 A 1 A_SpawnItemEx("TrooperMajorNightmare",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyKindergarten:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiTrooperMinorITYTD",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKindergarten")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyEasy:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiTrooperMinorHNTR",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyNormal:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiTrooperMinor",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNormal")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyMajor1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiTrooperMinorUV",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajor1")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyMajor2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiTrooperMajorUV",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajor2")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyTotalCarnage:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiTrooperMajorNightmare",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyTotalCarnage")
+			TNT1 A 1 A_Die
+			Goto Death
+		Death:
+			BZBL A 70
+			Stop
+	}
+}
+
+ACTOR TrooperMajorSpawner
+{
+	Health 0x7fffffff
+	Height 0
+	Radius 0
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0,3)
+			TNT1 A 1 ACS_ExecuteAlways(671,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+		Kindergarten:
+			TNT1 A 0 A_Jump(128,"Kinder2")
+			Kinder1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKinder1")
+				TNT1 A 1 A_SpawnItemEx("TrooperMajorITYTD",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+			Kinder2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKinder2")
+				TNT1 A 1 A_SpawnItemEx("TrooperMinorITYTD",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+		Easy:
+			TNT1 A 0 A_Jump(64,"Easy2")
+			Easy1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy1")
+				TNT1 A 1 A_SpawnItemEx("TrooperMajorHNTR",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+			Easy2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy2")
+				TNT1 A 1 A_SpawnItemEx("TrooperMinorHNTR",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+		Normal:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNormal")
+			TNT1 A 1 A_SpawnItemEx("TrooperMajor",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		MajorDamage:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajorDamage")
+			TNT1 A 1 A_SpawnItemEx("TrooperMajorUV",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		TotalCarnage:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyTotalCarnage")
+			TNT1 A 1 A_SpawnItemEx("TrooperMajorNightmare",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyKinder1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiTrooperMajorITYTD",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKinder1")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyKinder2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiTrooperMinorITYTD",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKinder2")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyEasy1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiTrooperMajorHNTR",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy1")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyEasy2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiTrooperMinorHNTR",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy2")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyNormal:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiTrooperMajor",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNormal")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyMajorDamage:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiTrooperMajorUV",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajorDamage")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyTotalCarnage:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiTrooperMajorNightmare",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyTotalCarnage")
+			TNT1 A 1 A_Die
+			Goto Death
+		Death:
+			BZBL A 70
+			Stop
+	}
+}
+
+ACTOR SewageFlicktaSpawner
+{
+	Health 0x7fffffff
+	Height 0
+	Radius 0
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0,3)
+			TNT1 A 1 ACS_ExecuteAlways(671,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+		Kindergarten:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKindergarten")
+			TNT1 A 1 A_SpawnItemEx("SewageFlicktaITYTD",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		Easy:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy")
+			TNT1 A 1 A_SpawnItemEx("SewageFlicktaHNTR",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		Normal:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNormal")
+			TNT1 A 1 A_SpawnItemEx("SewageFlickta",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		MajorDamage:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajorDamage")
+			TNT1 A 1 A_SpawnItemEx("SewageFlicktaUV",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		TotalCarnage:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyTotalCarnage")
+			TNT1 A 1 A_SpawnItemEx("SewageFlicktaNightmare",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyKindergarten:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiSewageFlicktaITYTD",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKindergarten")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyEasy:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiSewageFlicktaHNTR",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyNormal:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiSewageFlickta",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNormal")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyMajorDamage:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiSewageFlicktaUV",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajorDamage")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyTotalCarnage:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiSewageFlicktaNightmare",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyTotalCarnage")
+			TNT1 A 1 A_Die
+			Goto Death
+		Death:
+			BZBL A 70
+			Stop
+	}
+}
+
+ACTOR WaterFlicktaSpawner
+{
+	Health 0x7fffffff
+	Height 0
+	Radius 0
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0,3)
+			TNT1 A 1 ACS_ExecuteAlways(671,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+		Kindergarten:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKindergarten")
+			TNT1 A 1 A_SpawnItemEx("WaterFlicktaITYTD",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		Easy:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy")
+			TNT1 A 1 A_SpawnItemEx("WaterFlicktaHNTR",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		Normal:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNormal")
+			TNT1 A 1 A_SpawnItemEx("WaterFlickta",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		MajorDamage:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajorDamage")
+			TNT1 A 1 A_SpawnItemEx("WaterFlicktaUV",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		TotalCarnage:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyTotalCarnage")
+			TNT1 A 1 A_SpawnItemEx("WaterFlicktaNightmare",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyKindergarten:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiWaterFlicktaITYTD",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKindergarten")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyEasy:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiWaterFlicktaHNTR",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyNormal:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiWaterFlickta",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNormal")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyMajorDamage:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiWaterFlicktaUV",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajorDamage")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyTotalCarnage:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiWaterFlicktaNightmare",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyTotalCarnage")
+			TNT1 A 1 A_Die
+			Goto Death
+		Death:
+			BZBL A 70
+			Stop
+	}
+}
+
+ACTOR DroneMinorSpawner
+{
+	Health 0x7fffffff
+	Height 0
+	Radius 0
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0,3)
+			TNT1 A 1 ACS_ExecuteAlways(671,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+		Kindergarten:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKindergarten")
+			TNT1 A 1 A_SpawnItemEx("DroneMinorITYTD",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		Easy:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy")
+			TNT1 A 1 A_SpawnItemEx("DroneMinorHNTR",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		Normal:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNormal")
+			TNT1 A 1 A_SpawnItemEx("DroneMinor",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		MajorDamage:
+			TNT1 A 0 A_Jump(128,"Major2")
+			Major1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajor1")
+				TNT1 A 1 A_SpawnItemEx("DroneMinorUV",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+			Major2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajor2")
+				TNT1 A 1 A_SpawnItemEx("DroneMajorUV",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+		TotalCarnage:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyTotalCarnage")
+			TNT1 A 1 A_SpawnItemEx("DroneMajorNightmare",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyKindergarten:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiDroneMinorITYTD",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKindergarten")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyEasy:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiDroneMinorHNTR",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyNormal:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiDroneMinor",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNormal")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyMajor1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiDroneMinorUV",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajor1")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyMajor2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiDroneMajorUV",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajor2")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyTotalCarnage:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiDroneMajorNightmare",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyTotalCarnage")
+			TNT1 A 1 A_Die
+			Goto Death
+		Death:
+			BZBL A 70
+			Stop
+	}
+}
+
+ACTOR DroneMajorSpawner
+{
+	Health 0x7fffffff
+	Height 0
+	Radius 0
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0,3)
+			TNT1 A 1 ACS_ExecuteAlways(671,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+		Kindergarten:
+			TNT1 A 0 A_Jump(128,"Kinder2")
+			Kinder1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKinder1")
+				TNT1 A 1 A_SpawnItemEx("DroneMajorITYTD",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+			Kinder2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKinder2")
+				TNT1 A 1 A_SpawnItemEx("DroneMinorITYTD",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+		Easy:
+			TNT1 A 0 A_Jump(64,"Easy2")
+			Easy1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy1")
+				TNT1 A 1 A_SpawnItemEx("DroneMajorHNTR",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+			Easy2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy2")
+				TNT1 A 1 A_SpawnItemEx("DroneMinorHNTR",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+		Normal:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNormal")
+			TNT1 A 1 A_SpawnItemEx("DroneMajor",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		MajorDamage:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajorDamage")
+			TNT1 A 1 A_SpawnItemEx("DroneMajorUV",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		TotalCarnage:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyTotalCarnage")
+			TNT1 A 1 A_SpawnItemEx("DroneMajorNightmare",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyKinder1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiDroneMajorITYTD",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKinder1")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyKinder2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiDroneMinorITYTD",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKinder2")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyEasy1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiDroneMajorHNTR",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy1")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyEasy2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiDroneMinorHNTR",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy2")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyNormal:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiDroneMajor",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNormal")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyMajorDamage:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiDroneMajorUV",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajorDamage")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyTotalCarnage:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiDroneMajorNightmare",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyTotalCarnage")
+			TNT1 A 1 A_Die
+			Goto Death
+		Death:
+			BZBL A 70
+			Stop
+	}
+}
+
+ACTOR M1EnforcerMinorSpawner
+{
+	Health 0x7fffffff
+	Height 0
+	Radius 0
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0,3)
+			TNT1 A 1 ACS_ExecuteAlways(671,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+		Kindergarten:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKindergarten")
+			TNT1 A 1 A_SpawnItemEx("M1EnforcerMinorITYTD",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		Easy:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy")
+			TNT1 A 1 A_SpawnItemEx("M1EnforcerMinorHNTR",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		Normal:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNormal")
+			TNT1 A 1 A_SpawnItemEx("M1EnforcerMinor",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		MajorDamage:
+			TNT1 A 0 A_Jump(128,"Major2")
+			Major1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajor1")
+				TNT1 A 1 A_SpawnItemEx("M1EnforcerMinorUV",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+			Major2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajor2")
+				TNT1 A 1 A_SpawnItemEx("M1EnforcerMajorUV",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+		TotalCarnage:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyTotalCarnage")
+			TNT1 A 1 A_SpawnItemEx("M1EnforcerMajorNightmare",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyKindergarten:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiM1EnforcerMinorITYTD",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKindergarten")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyEasy:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiM1EnforcerMinorHNTR",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyNormal:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiM1EnforcerMinor",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNormal")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyMajor1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiM1EnforcerMinorUV",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajor1")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyMajor2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiM1EnforcerMajorUV",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajor2")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyTotalCarnage:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiM1EnforcerMajorNightmare",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyTotalCarnage")
+			TNT1 A 1 A_Die
+			Goto Death
+		Death:
+			BZBL A 70
+			Stop
+	}
+}
+
+ACTOR M1EnforcerMajorSpawner
+{
+	Health 0x7fffffff
+	Height 0
+	Radius 0
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0,3)
+			TNT1 A 1 ACS_ExecuteAlways(671,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+		Kindergarten:
+			TNT1 A 0 A_Jump(128,"Kinder2")
+			Kinder1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKinder1")
+				TNT1 A 1 A_SpawnItemEx("M1EnforcerMajorITYTD",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+			Kinder2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKinder2")
+				TNT1 A 1 A_SpawnItemEx("M1EnforcerMinorITYTD",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+		Easy:
+			TNT1 A 0 A_Jump(64,"Easy2")
+			Easy1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy1")
+				TNT1 A 1 A_SpawnItemEx("M1EnforcerMajorHNTR",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+			Easy2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy2")
+				TNT1 A 1 A_SpawnItemEx("M1EnforcerMinorHNTR",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+		Normal:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNormal")
+			TNT1 A 1 A_SpawnItemEx("M1EnforcerMajor",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		MajorDamage:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajorDamage")
+			TNT1 A 1 A_SpawnItemEx("M1EnforcerMajorUV",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		TotalCarnage:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyTotalCarnage")
+			TNT1 A 1 A_SpawnItemEx("M1EnforcerMajorNightmare",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyKinder1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiM1EnforcerMajorITYTD",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKinder1")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyKinder2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiM1EnforcerMinorITYTD",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKinder2")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyEasy1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiM1EnforcerMajorHNTR",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy1")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyEasy2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiM1EnforcerMinorHNTR",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy2")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyNormal:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiM1EnforcerMajor",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNormal")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyMajorDamage:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiM1EnforcerMajorUV",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajorDamage")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyTotalCarnage:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiM1EnforcerMajorNightmare",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyTotalCarnage")
+			TNT1 A 1 A_Die
+			Goto Death
+		Death:
+			BZBL A 70
+			Stop
+	}
+}
+
+ACTOR M2EnforcerMinorSpawner
+{
+	Health 0x7fffffff
+	Height 0
+	Radius 0
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0,3)
+			TNT1 A 1 ACS_ExecuteAlways(671,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+		BossWait:
+			TNT1 A 1
+			Loop
+		Kindergarten:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKindergarten")
+			TNT1 A 1 A_SpawnItemEx("M2EnforcerMinorITYTD",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		Easy:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy")
+			TNT1 A 1 A_SpawnItemEx("M2EnforcerMinorHNTR",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		Normal:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNormal")
+			TNT1 A 1 A_SpawnItemEx("M2EnforcerMinor",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		MajorDamage:
+			TNT1 A 0 A_Jump(128,"Major2")
+			Major1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajor1")
+				TNT1 A 1 A_SpawnItemEx("M2EnforcerMinorUV",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+				Goto BossWait
+			Major2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajor2")
+				TNT1 A 1 A_SpawnItemEx("M2EnforcerMajorUV",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+				Goto BossWait
+		TotalCarnage:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyTotalCarnage")
+			TNT1 A 1 A_SpawnItemEx("M2EnforcerMajorNightmare",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		MultiplyKindergarten:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiM2EnforcerMinorITYTD",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyKindergarten_2
+		MultiplyKindergarten_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiM2EnforcerMinorITYTD",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKindergarten_2")
+			Goto BossWait
+		MultiplyEasy:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiM2EnforcerMinorHNTR",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyEasy_2
+		MultiplyEasy_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiM2EnforcerMinorHNTR",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy_2")
+			Goto BossWait
+		MultiplyNormal:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiM2EnforcerMinor",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyNormal_2
+		MultiplyNormal_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiM2EnforcerMinor",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNormal_2")
+			Goto BossWait
+		MultiplyMajor1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiM2EnforcerMinorUV",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyMajor1_2
+		MultiplyMajor1_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiM2EnforcerMinorUV",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajor1_2")
+			Goto BossWait
+		MultiplyMajor2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiM2EnforcerMajorUV",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyMajor2_2
+		MultiplyMajor2_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiM2EnforcerMajorUV",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajor2_2")
+			Goto BossWait
+		MultiplyTotalCarnage:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiM2EnforcerMajorNightmare",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyTotalCarnage_2
+		MultiplyTotalCarnage_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiM2EnforcerMajorNightmare",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyTotalCarnage_2")
+			Goto BossWait
+		Death:
+			TNT1 A 1
+			TNT1 A 1 A_KillMaster
+			Stop
+	}
+}
+
+ACTOR M2EnforcerMajorSpawner
+{
+	Health 0x7fffffff
+	Height 0
+	Radius 0
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0,3)
+			TNT1 A 1 ACS_ExecuteAlways(671,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+		BossWait:
+			TNT1 A 1
+			Loop
+		Kindergarten:
+			TNT1 A 0 A_Jump(128,"Kinder2")
+			Kinder1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKinder1")
+				TNT1 A 1 A_SpawnItemEx("M2EnforcerMajorITYTD",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+				Goto BossWait
+			Kinder2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKinder2")
+				TNT1 A 1 A_SpawnItemEx("M2EnforcerMinorITYTD",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+				Goto BossWait
+		Easy:
+			TNT1 A 0 A_Jump(64,"Easy2")
+			Easy1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy1")
+				TNT1 A 1 A_SpawnItemEx("M2EnforcerMajorHNTR",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+				Goto BossWait
+			Easy2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy2")
+				TNT1 A 1 A_SpawnItemEx("M2EnforcerMinorHNTR",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+				Goto BossWait
+		Normal:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNormal")
+			TNT1 A 1 A_SpawnItemEx("M2EnforcerMajor",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		MajorDamage:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajorDamage")
+			TNT1 A 1 A_SpawnItemEx("M2EnforcerMajorUV",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		TotalCarnage:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyTotalCarnage")
+			TNT1 A 1 A_SpawnItemEx("M2EnforcerMajorNightmare",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		MultiplyKinder1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiM2EnforcerMajorITYTD",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyKinder1_2
+		MultiplyKinder1_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiM2EnforcerMajorITYTD",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKinder1_2")
+			Goto BossWait
+		MultiplyKinder2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiM2EnforcerMinorITYTD",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyKinder2_2
+		MultiplyKinder2_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiM2EnforcerMinorITYTD",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKinder2_2")
+			Goto BossWait
+		MultiplyEasy1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiM2EnforcerMajorHNTR",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyEasy1_2
+		MultiplyEasy1_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiM2EnforcerMajorHNTR",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy1_2")
+			Goto BossWait
+		MultiplyEasy2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiM2EnforcerMinorHNTR",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyEasy2_2
+		MultiplyEasy2_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiM2EnforcerMinorHNTR",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy2_2")
+			Goto BossWait
+		MultiplyNormal:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiM2EnforcerMajor",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyNormal_2
+		MultiplyNormal_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiM2EnforcerMajor",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNormal_2")
+			Goto BossWait
+		MultiplyMajorDamage:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiM2EnforcerMajorUV",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyMajorDamage_2
+		MultiplyMajorDamage_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiM2EnforcerMajorUV",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajorDamage_2")
+			Goto BossWait
+		MultiplyTotalCarnage:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiM2EnforcerMajorNightmare",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyTotalCarnage_2
+		MultiplyTotalCarnage_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiM2EnforcerMajorNightmare",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyTotalCarnage_2")
+			Goto BossWait
+		Death:
+			TNT1 A 1
+			TNT1 A 1 A_KillMaster
+			Stop
+	}
+}
+
+ACTOR CyborgMinorSpawner
+{
+	Health 0x7fffffff
+	Height 0
+	Radius 0
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0,3)
+			TNT1 A 1 ACS_ExecuteAlways(671,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+		BossWait:
+			TNT1 A 1
+			Loop
+		Kindergarten:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKindergarten")
+			TNT1 A 1 A_SpawnItemEx("CyborgMinorITYTD",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		Easy:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy")
+			TNT1 A 1 A_SpawnItemEx("CyborgMinorHNTR",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		Normal:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNormal")
+			TNT1 A 1 A_SpawnItemEx("CyborgMinor",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		MajorDamage:
+			TNT1 A 0 A_Jump(128,"Major2")
+			Major1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajor1")
+				TNT1 A 1 A_SpawnItemEx("CyborgMinorUV",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+				Goto BossWait
+			Major2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajor2")
+				TNT1 A 1 A_SpawnItemEx("CyborgMajorUV",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+				Goto BossWait
+		TotalCarnage:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyTotalCarnage")
+			TNT1 A 1 A_SpawnItemEx("CyborgMajorNightmare",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		MultiplyKindergarten:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiCyborgMinorITYTD",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyKindergarten_2
+		MultiplyKindergarten_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiCyborgMinorITYTD",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKindergarten_2")
+			Goto BossWait
+		MultiplyEasy:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiCyborgMinorHNTR",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyEasy_2
+		MultiplyEasy_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiCyborgMinorHNTR",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy_2")
+			Goto BossWait
+		MultiplyNormal:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiCyborgMinor",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyNormal_2
+		MultiplyNormal_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiCyborgMinor",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNormal_2")
+			Goto BossWait
+		MultiplyMajor1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiCyborgMinorUV",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyMajor1_2
+		MultiplyMajor1_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiCyborgMinorUV",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajor1_2")
+			Goto BossWait
+		MultiplyMajor2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiCyborgMajorUV",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyMajor2_2
+		MultiplyMajor2_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiCyborgMajorUV",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajor2_2")
+			Goto BossWait
+		MultiplyTotalCarnage:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiCyborgMajorNightmare",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyTotalCarnage_2
+		MultiplyTotalCarnage_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiCyborgMajorNightmare",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyTotalCarnage_2")
+			Goto BossWait
+		Death:
+			TNT1 A 1
+			TNT1 A 1 A_KillMaster
+			Stop
+	}
+}
+
+ACTOR CyborgMajorSpawner
+{
+	Health 0x7fffffff
+	Height 0
+	Radius 0
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0,3)
+			TNT1 A 1 ACS_ExecuteAlways(671,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+		BossWait:
+			TNT1 A 1
+			Loop
+		Kindergarten:
+			TNT1 A 0 A_Jump(128,"Kinder2")
+			Kinder1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKinder1")
+				TNT1 A 1 A_SpawnItemEx("CyborgMajorITYTD",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+				Goto BossWait
+			Kinder2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKinder2")
+				TNT1 A 1 A_SpawnItemEx("CyborgMinorITYTD",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+				Goto BossWait
+		Easy:
+			TNT1 A 0 A_Jump(64,"Easy2")
+			Easy1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy1")
+				TNT1 A 1 A_SpawnItemEx("CyborgMajorHNTR",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+				Goto BossWait
+			Easy2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy2")
+				TNT1 A 1 A_SpawnItemEx("CyborgMinorHNTR",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+				Goto BossWait
+		Normal:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNormal")
+			TNT1 A 1 A_SpawnItemEx("CyborgMajor",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		MajorDamage:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajorDamage")
+			TNT1 A 1 A_SpawnItemEx("CyborgMajorUV",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		TotalCarnage:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyTotalCarnage")
+			TNT1 A 1 A_SpawnItemEx("CyborgMajorNightmare",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		MultiplyKinder1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiCyborgMajorITYTD",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyKinder1_2
+		MultiplyKinder1_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiCyborgMajorITYTD",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKinder1_2")
+			Goto BossWait
+		MultiplyKinder2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiCyborgMinorITYTD",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyKinder2_2
+		MultiplyKinder2_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiCyborgMinorITYTD",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKinder2_2")
+			Goto BossWait
+		MultiplyEasy1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiCyborgMajorHNTR",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyEasy1_2
+		MultiplyEasy1_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiCyborgMajorHNTR",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy1_2")
+			Goto BossWait
+		MultiplyEasy2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiCyborgMinorHNTR",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyEasy2_2
+		MultiplyEasy2_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiCyborgMinorHNTR",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy2_2")
+			Goto BossWait
+		MultiplyNormal:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiCyborgMajor",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyNormal_2
+		MultiplyNormal_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiCyborgMajor",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNormal_2")
+			Goto BossWait
+		MultiplyMajorDamage:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiCyborgMajorUV",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyMajorDamage_2
+		MultiplyMajorDamage_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiCyborgMajorUV",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajorDamage_2")
+			Goto BossWait
+		MultiplyTotalCarnage:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiCyborgMajorNightmare",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyTotalCarnage_2
+		MultiplyTotalCarnage_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiCyborgMajorNightmare",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyTotalCarnage_2")
+			Goto BossWait
+		Death:
+			TNT1 A 1
+			TNT1 A 1 A_KillMaster
+			Stop
+	}
+}
+
+ACTOR FlameCyborgMinorSpawner
+{
+	Health 0x7fffffff
+	Height 0
+	Radius 0
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0,3)
+			TNT1 A 1 ACS_ExecuteAlways(671,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+		BossWait:
+			TNT1 A 1
+			Loop
+		Kindergarten:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKindergarten")
+			TNT1 A 1 A_SpawnItemEx("FlameCyborgMinorITYTD",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		Easy:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy")
+			TNT1 A 1 A_SpawnItemEx("FlameCyborgMinorHNTR",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		Normal:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNormal")
+			TNT1 A 1 A_SpawnItemEx("FlameCyborgMinor",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		MajorDamage:
+			TNT1 A 0 A_Jump(128,"Major2")
+			Major1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajor1")
+				TNT1 A 1 A_SpawnItemEx("FlameCyborgMinorUV",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+				Goto BossWait
+			Major2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajor2")
+				TNT1 A 1 A_SpawnItemEx("FlameCyborgMajorUV",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+				Goto BossWait
+		TotalCarnage:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyTotalCarnage")
+			TNT1 A 1 A_SpawnItemEx("FlameCyborgMajorNightmare",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		MultiplyKindergarten:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiFlameCyborgMinorITYTD",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyKindergarten_2
+		MultiplyKindergarten_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiFlameCyborgMinorITYTD",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKindergarten_2")
+			Goto BossWait
+		MultiplyEasy:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiFlameCyborgMinorHNTR",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyEasy_2
+		MultiplyEasy_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiFlameCyborgMinorHNTR",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy_2")
+			Goto BossWait
+		MultiplyNormal:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiFlameCyborgMinor",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyNormal_2
+		MultiplyNormal_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiFlameCyborgMinor",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNormal_2")
+			Goto BossWait
+		MultiplyMajor1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiFlameCyborgMinorUV",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyMajor1_2
+		MultiplyMajor1_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiFlameCyborgMinorUV",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajor1_2")
+			Goto BossWait
+		MultiplyMajor2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiFlameCyborgMajorUV",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyMajor2_2
+		MultiplyMajor2_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiFlameCyborgMajorUV",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajor2_2")
+			Goto BossWait
+		MultiplyTotalCarnage:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiFlameCyborgMajorNightmare",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyTotalCarnage_2
+		MultiplyTotalCarnage_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiFlameCyborgMajorNightmare",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyTotalCarnage_2")
+			Goto BossWait
+		Death:
+			TNT1 A 1
+			TNT1 A 1 A_KillMaster
+			Stop
+	}
+}
+
+ACTOR FlameCyborgMajorSpawner
+{
+	Health 0x7fffffff
+	Height 0
+	Radius 0
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0,3)
+			TNT1 A 1 ACS_ExecuteAlways(671,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+		BossWait:
+			TNT1 A 1
+			Loop
+		Kindergarten:
+			TNT1 A 0 A_Jump(128,"Kinder2")
+			Kinder1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKinder1")
+				TNT1 A 1 A_SpawnItemEx("FlameCyborgMajorITYTD",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+				Goto BossWait
+			Kinder2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKinder2")
+				TNT1 A 1 A_SpawnItemEx("FlameCyborgMinorITYTD",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+				Goto BossWait
+		Easy:
+			TNT1 A 0 A_Jump(64,"Easy2")
+			Easy1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy1")
+				TNT1 A 1 A_SpawnItemEx("FlameCyborgMajorHNTR",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+				Goto BossWait
+			Easy2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy2")
+				TNT1 A 1 A_SpawnItemEx("FlameCyborgMinorHNTR",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+				Goto BossWait
+		Normal:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNormal")
+			TNT1 A 1 A_SpawnItemEx("FlameCyborgMajor",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		MajorDamage:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajorDamage")
+			TNT1 A 1 A_SpawnItemEx("FlameCyborgMajorUV",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		TotalCarnage:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyTotalCarnage")
+			TNT1 A 1 A_SpawnItemEx("FlameCyborgMajorNightmare",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		MultiplyKinder1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiFlameCyborgMajorITYTD",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyKinder1_2
+		MultiplyKinder1_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiFlameCyborgMajorITYTD",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKinder1_2")
+			Goto BossWait
+		MultiplyKinder2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiFlameCyborgMinorITYTD",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyKinder2_2
+		MultiplyKinder2_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiFlameCyborgMinorITYTD",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKinder2_2")
+			Goto BossWait
+		MultiplyEasy1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiFlameCyborgMajorHNTR",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyEasy1_2
+		MultiplyEasy1_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiFlameCyborgMajorHNTR",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy1_2")
+			Goto BossWait
+		MultiplyEasy2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiFlameCyborgMinorHNTR",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyEasy2_2
+		MultiplyEasy2_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiFlameCyborgMinorHNTR",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy2_2")
+			Goto BossWait
+		MultiplyNormal:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiFlameCyborgMajor",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyNormal_2
+		MultiplyNormal_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiFlameCyborgMajor",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNormal_2")
+			Goto BossWait
+		MultiplyMajorDamage:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiFlameCyborgMajorUV",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyMajorDamage_2
+		MultiplyMajorDamage_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiFlameCyborgMajorUV",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajorDamage_2")
+			Goto BossWait
+		MultiplyTotalCarnage:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiFlameCyborgMajorNightmare",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyTotalCarnage_2
+		MultiplyTotalCarnage_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiFlameCyborgMajorNightmare",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyTotalCarnage_2")
+			Goto BossWait
+		Death:
+			TNT1 A 1
+			TNT1 A 1 A_KillMaster
+			Stop
+	}
+}
+
+ACTOR HunterMinorSpawner
+{
+	Health 0x7fffffff
+	Height 0
+	Radius 0
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0,3)
+			TNT1 A 1 ACS_ExecuteAlways(671,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+		BossWait:
+			TNT1 A 1
+			Loop
+		Kindergarten:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKindergarten")
+			TNT1 A 1 A_SpawnItemEx("HunterMinorITYTD",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		Easy:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy")
+			TNT1 A 1 A_SpawnItemEx("HunterMinorHNTR",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		Normal:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNormal")
+			TNT1 A 1 A_SpawnItemEx("HunterMinor",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		MajorDamage:
+			TNT1 A 0 A_Jump(128,"Major2")
+			Major1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajor1")
+				TNT1 A 1 A_SpawnItemEx("HunterMinorUV",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+				Goto BossWait
+			Major2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajor2")
+				TNT1 A 1 A_SpawnItemEx("HunterMajorUV",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+				Goto BossWait
+		TotalCarnage:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyTotalCarnage")
+			TNT1 A 1 A_SpawnItemEx("HunterMajorNightmare",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		MultiplyKindergarten:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiHunterMinorITYTD",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyKindergarten_2
+		MultiplyKindergarten_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiHunterMinorITYTD",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKindergarten_2")
+			Goto BossWait
+		MultiplyEasy:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiHunterMinorHNTR",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyEasy_2
+		MultiplyEasy_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiHunterMinorHNTR",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy_2")
+			Goto BossWait
+		MultiplyNormal:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiHunterMinor",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyNormal_2
+		MultiplyNormal_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiHunterMinor",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNormal_2")
+			Goto BossWait
+		MultiplyMajor1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiHunterMinorUV",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyMajor1_2
+		MultiplyMajor1_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiHunterMinorUV",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajor1_2")
+			Goto BossWait
+		MultiplyMajor2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiHunterMajorUV",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyMajor2_2
+		MultiplyMajor2_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiHunterMajorUV",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajor2_2")
+			Goto BossWait
+		MultiplyTotalCarnage:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiHunterMajorNightmare",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyTotalCarnage_2
+		MultiplyTotalCarnage_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiHunterMajorNightmare",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyTotalCarnage_2")
+			Goto BossWait
+		Death:
+			TNT1 A 1
+			TNT1 A 1 A_KillMaster
+			Stop
+	}
+}
+
+ACTOR HunterMajorSpawner
+{
+	Health 0x7fffffff
+	Height 0
+	Radius 0
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0,3)
+			TNT1 A 1 ACS_ExecuteAlways(671,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+		BossWait:
+			TNT1 A 1
+			Loop
+		Kindergarten:
+			TNT1 A 0 A_Jump(128,"Kinder2")
+			Kinder1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKinder1")
+				TNT1 A 1 A_SpawnItemEx("HunterMajorITYTD",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+				Goto BossWait
+			Kinder2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKinder2")
+				TNT1 A 1 A_SpawnItemEx("HunterMinorITYTD",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+				Goto BossWait
+		Easy:
+			TNT1 A 0 A_Jump(64,"Easy2")
+			Easy1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy1")
+				TNT1 A 1 A_SpawnItemEx("HunterMajorHNTR",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+				Goto BossWait
+			Easy2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy2")
+				TNT1 A 1 A_SpawnItemEx("HunterMinorHNTR",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+				Goto BossWait
+		Normal:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNormal")
+			TNT1 A 1 A_SpawnItemEx("HunterMajor",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		MajorDamage:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajorDamage")
+			TNT1 A 1 A_SpawnItemEx("HunterMajorUV",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		TotalCarnage:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyTotalCarnage")
+			TNT1 A 1 A_SpawnItemEx("HunterMajorNightmare",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		MultiplyKinder1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiHunterMajorITYTD",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyKinder1_2
+		MultiplyKinder1_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiHunterMajorITYTD",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKinder1_2")
+			Goto BossWait
+		MultiplyKinder2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiHunterMinorITYTD",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyKinder2_2
+		MultiplyKinder2_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiHunterMinorITYTD",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKinder2_2")
+			Goto BossWait
+		MultiplyEasy1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiHunterMajorHNTR",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyEasy1_2
+		MultiplyEasy1_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiHunterMajorHNTR",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy1_2")
+			Goto BossWait
+		MultiplyEasy2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiHunterMinorHNTR",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyEasy2_2
+		MultiplyEasy2_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiHunterMinorHNTR",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy2_2")
+			Goto BossWait
+		MultiplyNormal:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiHunterMajor",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyNormal_2
+		MultiplyNormal_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiHunterMajor",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNormal_2")
+			Goto BossWait
+		MultiplyMajorDamage:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiHunterMajorUV",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyMajorDamage_2
+		MultiplyMajorDamage_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiHunterMajorUV",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajorDamage_2")
+			Goto BossWait
+		MultiplyTotalCarnage:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiHunterMajorNightmare",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyTotalCarnage_2
+		MultiplyTotalCarnage_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiHunterMajorNightmare",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyTotalCarnage_2")
+			Goto BossWait
+		Death:
+			TNT1 A 1
+			TNT1 A 1 A_KillMaster
+			Stop
+	}
+}
+
+ACTOR M1JuggernautSpawner
+{
+	Health 0x7fffffff
+	Height 0
+	Radius 0
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0,3)
+			TNT1 A 1 ACS_ExecuteAlways(671,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+		BossWait:
+			TNT1 A 1
+			Loop
+		Kindergarten:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKindergarten")
+			TNT1 A 1 A_SpawnItemEx("M1JuggernautITYTD",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		Easy:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy")
+			TNT1 A 1 A_SpawnItemEx("M1JuggernautHNTR",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		Normal:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNormal")
+			TNT1 A 1 A_SpawnItemEx("M1Juggernaut",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		MajorDamage:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajorDamage")
+			TNT1 A 1 A_SpawnItemEx("M1JuggernautUV",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		TotalCarnage:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyTotalCarnage")
+			TNT1 A 1 A_SpawnItemEx("M1JuggernautNightmare",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		MultiplyKindergarten:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiM1JuggernautITYTD",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyKindergarten_2
+		MultiplyKindergarten_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiM1JuggernautITYTD",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKindergarten_2")
+			Goto BossWait
+		MultiplyEasy:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiM1JuggernautHNTR",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyEasy_2
+		MultiplyEasy_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiM1JuggernautHNTR",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy_2")
+			Goto BossWait
+		MultiplyNormal:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiM1Juggernaut",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyNormal_2
+		MultiplyNormal_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiM1Juggernaut",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNormal_2")
+			Goto BossWait
+		MultiplyMajorDamage:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiM1JuggernautUV",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyMajorDamage_2
+		MultiplyMajorDamage_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiM1JuggernautUV",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajorDamage_2")
+			Goto BossWait
+		MultiplyTotalCarnage:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiM1JuggernautNightmare",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyTotalCarnage_2
+		MultiplyTotalCarnage_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiM1JuggernautNightmare",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyTotalCarnage_2")
+			Goto BossWait
+		Death:
+			TNT1 A 1
+			TNT1 A 1 A_KillMaster
+			Stop
+	}
+}
+
+ACTOR JuggernautMinorSpawner
+{
+	Health 0x7fffffff
+	Height 0
+	Radius 0
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0,3)
+			TNT1 A 1 ACS_ExecuteAlways(671,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+		BossWait:
+			TNT1 A 1
+			Loop
+		Kindergarten:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKindergarten")
+			TNT1 A 1 A_SpawnItemEx("JuggernautMinorITYTD",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		Easy:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy")
+			TNT1 A 1 A_SpawnItemEx("JuggernautMinorHNTR",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		Normal:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNormal")
+			TNT1 A 1 A_SpawnItemEx("JuggernautMinor",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		MajorDamage:
+			TNT1 A 0 A_Jump(128,"Major2")
+			Major1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajor1")
+				TNT1 A 1 A_SpawnItemEx("JuggernautMinorUV",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+				Goto BossWait
+			Major2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajor2")
+				TNT1 A 1 A_SpawnItemEx("JuggernautMajorUV",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+				Goto BossWait
+		TotalCarnage:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyTotalCarnage")
+			TNT1 A 1 A_SpawnItemEx("JuggernautMajorNightmare",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		MultiplyKindergarten:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiJuggernautMinorITYTD",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyKindergarten_2
+		MultiplyKindergarten_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiJuggernautMinorITYTD",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKindergarten_2")
+			Goto BossWait
+		MultiplyEasy:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiJuggernautMinorHNTR",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyEasy_2
+		MultiplyEasy_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiJuggernautMinorHNTR",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy_2")
+			Goto BossWait
+		MultiplyNormal:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiJuggernautMinor",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyNormal_2
+		MultiplyNormal_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiJuggernautMinor",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNormal_2")
+			Goto BossWait
+		MultiplyMajor1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiJuggernautMinorUV",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyMajor1_2
+		MultiplyMajor1_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiJuggernautMinorUV",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajor1_2")
+			Goto BossWait
+		MultiplyMajor2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiJuggernautMajorUV",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyMajor2_2
+		MultiplyMajor2_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiJuggernautMajorUV",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajor2_2")
+			Goto BossWait
+		MultiplyTotalCarnage:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiJuggernautMajorNightmare",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyTotalCarnage_2
+		MultiplyTotalCarnage_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiJuggernautMajorNightmare",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyTotalCarnage_2")
+			Goto BossWait
+		Death:
+			TNT1 A 1
+			TNT1 A 1 A_KillMaster
+			Stop
+	}
+}
+
+ACTOR JuggernautMajorSpawner
+{
+	Health 0x7fffffff
+	Height 0
+	Radius 0
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0,3)
+			TNT1 A 1 ACS_ExecuteAlways(671,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+		BossWait:
+			TNT1 A 1
+			Loop
+		Kindergarten:
+			TNT1 A 0 A_Jump(128,"Kinder2")
+			Kinder1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKinder1")
+				TNT1 A 1 A_SpawnItemEx("JuggernautMajorITYTD",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+				Goto BossWait
+			Kinder2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKinder2")
+				TNT1 A 1 A_SpawnItemEx("JuggernautMinorITYTD",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+				Goto BossWait
+		Easy:
+			TNT1 A 0 A_Jump(64,"Easy2")
+			Easy1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy1")
+				TNT1 A 1 A_SpawnItemEx("JuggernautMajorHNTR",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+				Goto BossWait
+			Easy2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy2")
+				TNT1 A 1 A_SpawnItemEx("JuggernautMinorHNTR",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+				Goto BossWait
+		Normal:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNormal")
+			TNT1 A 1 A_SpawnItemEx("JuggernautMajor",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		MajorDamage:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajorDamage")
+			TNT1 A 1 A_SpawnItemEx("JuggernautMajorUV",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		TotalCarnage:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyTotalCarnage")
+			TNT1 A 1 A_SpawnItemEx("JuggernautMajorNightmare",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		MultiplyKinder1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiJuggernautMajorITYTD",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyKinder1_2
+		MultiplyKinder1_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiJuggernautMajorITYTD",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKinder1_2")
+			Goto BossWait
+		MultiplyKinder2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiJuggernautMinorITYTD",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyKinder2_2
+		MultiplyKinder2_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiJuggernautMinorITYTD",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKinder2_2")
+			Goto BossWait
+		MultiplyEasy1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiJuggernautMajorHNTR",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyEasy1_2
+		MultiplyEasy1_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiJuggernautMajorHNTR",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy1_2")
+			Goto BossWait
+		MultiplyEasy2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiJuggernautMinorHNTR",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyEasy2_2
+		MultiplyEasy2_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiJuggernautMinorHNTR",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy2_2")
+			Goto BossWait
+		MultiplyNormal:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiJuggernautMajor",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyNormal_2
+		MultiplyNormal_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiJuggernautMajor",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNormal_2")
+			Goto BossWait
+		MultiplyMajorDamage:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiJuggernautMajorUV",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyMajorDamage_2
+		MultiplyMajorDamage_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiJuggernautMajorUV",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajorDamage_2")
+			Goto BossWait
+		MultiplyTotalCarnage:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiJuggernautMajorNightmare",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyTotalCarnage_2
+		MultiplyTotalCarnage_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiJuggernautMajorNightmare",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyTotalCarnage_2")
+			Goto BossWait
+		Death:
+			TNT1 A 1
+			TNT1 A 1 A_KillMaster
+			Stop
+	}
+}
+
+ACTOR SphtMinorSpawner
+{
+	Health 0x7fffffff
+	Height 0
+	Radius 0
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0,3)
+			TNT1 A 1 ACS_ExecuteAlways(671,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+		Kindergarten:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKindergarten")
+			TNT1 A 1 A_SpawnItemEx("SphtMinorITYTD",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		Easy:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy")
+			TNT1 A 1 A_SpawnItemEx("SphtMinorHNTR",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		Normal:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNormal")
+			TNT1 A 1 A_SpawnItemEx("SphtMinor",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		MajorDamage:
+			TNT1 A 0 A_Jump(128,"Major2")
+			Major1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajor1")
+				TNT1 A 1 A_SpawnItemEx("SphtMinorUV",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+			Major2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajor2")
+				TNT1 A 1 A_SpawnItemEx("SphtMajorUV",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+		TotalCarnage:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyTotalCarnage")
+			TNT1 A 1 A_SpawnItemEx("SphtMajorNightmare",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyKindergarten:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiSphtMinorITYTD",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKindergarten")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyEasy:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiSphtMinorHNTR",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyNormal:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiSphtMinor",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNormal")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyMajor1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiSphtMinorUV",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajor1")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyMajor2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiSphtMajorUV",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajor2")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyTotalCarnage:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiSphtMajorNightmare",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyTotalCarnage")
+			TNT1 A 1 A_Die
+			Goto Death
+		Death:
+			BZBL A 70
+			Stop
+	}
+}
+
+ACTOR SphtMajorSpawner
+{
+	Health 0x7fffffff
+	Height 0
+	Radius 0
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0,3)
+			TNT1 A 1 ACS_ExecuteAlways(671,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+		Kindergarten:
+			TNT1 A 0 A_Jump(128,"Kinder2")
+			Kinder1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKinder1")
+				TNT1 A 1 A_SpawnItemEx("SphtMajorITYTD",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+			Kinder2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKinder2")
+				TNT1 A 1 A_SpawnItemEx("SphtMinorITYTD",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+		Easy:
+			TNT1 A 0 A_Jump(64,"Easy2")
+			Easy1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy1")
+				TNT1 A 1 A_SpawnItemEx("SphtMajorHNTR",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+			Easy2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy2")
+				TNT1 A 1 A_SpawnItemEx("SphtMinorHNTR",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+		Normal:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNormal")
+			TNT1 A 1 A_SpawnItemEx("SphtMajor",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		MajorDamage:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajorDamage")
+			TNT1 A 1 A_SpawnItemEx("SphtMajorUV",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		TotalCarnage:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyTotalCarnage")
+			TNT1 A 1 A_SpawnItemEx("SphtMajorNightmare",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyKinder1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiSphtMajorITYTD",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKinder1")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyKinder2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiSphtMinorITYTD",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKinder2")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyEasy1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiSphtMajorHNTR",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy1")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyEasy2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiSphtMinorHNTR",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy2")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyNormal:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiSphtMajor",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNormal")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyMajorDamage:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiSphtMajorUV",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajorDamage")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyTotalCarnage:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiSphtMajorNightmare",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyTotalCarnage")
+			TNT1 A 1 A_Die
+			Goto Death
+		Death:
+			BZBL A 70
+			Stop
+	}
+}
+
+ACTOR SphtKrMinorSpawner
+{
+	Health 0x7fffffff
+	Height 0
+	Radius 0
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0,3)
+			TNT1 A 1 ACS_ExecuteAlways(671,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+		Kindergarten:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKindergarten")
+			TNT1 A 1 A_SpawnItemEx("SphtKrMinorITYTD",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		Easy:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy")
+			TNT1 A 1 A_SpawnItemEx("SphtKrMinorHNTR",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		Normal:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNormal")
+			TNT1 A 1 A_SpawnItemEx("SphtKrMinor",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		MajorDamage:
+			TNT1 A 0 A_Jump(128,"Major2")
+			Major1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajor1")
+				TNT1 A 1 A_SpawnItemEx("SphtKrMinorUV",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+			Major2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajor2")
+				TNT1 A 1 A_SpawnItemEx("SphtKrMajorUV",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+		TotalCarnage:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyTotalCarnage")
+			TNT1 A 1 A_SpawnItemEx("SphtKrMajorNightmare",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyKindergarten:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiSphtKrMinorITYTD",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKindergarten")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyEasy:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiSphtKrMinorHNTR",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyNormal:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiSphtKrMinor",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNormal")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyMajor1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiSphtKrMinorUV",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajor1")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyMajor2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiSphtKrMajorUV",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajor2")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyTotalCarnage:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiSphtKrMajorNightmare",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyTotalCarnage")
+			TNT1 A 1 A_Die
+			Goto Death
+		Death:
+			BZBL A 70
+			Stop
+	}
+}
+
+ACTOR SphtKrMajorSpawner
+{
+	Health 0x7fffffff
+	Height 0
+	Radius 0
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0,3)
+			TNT1 A 1 ACS_ExecuteAlways(671,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+		Kindergarten:
+			TNT1 A 0 A_Jump(128,"Kinder2")
+			Kinder1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKinder1")
+				TNT1 A 1 A_SpawnItemEx("SphtKrMajorITYTD",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+			Kinder2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKinder2")
+				TNT1 A 1 A_SpawnItemEx("SphtKrMinorITYTD",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+		Easy:
+			TNT1 A 0 A_Jump(64,"Easy2")
+			Easy1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy1")
+				TNT1 A 1 A_SpawnItemEx("SphtKrMajorHNTR",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+			Easy2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy2")
+				TNT1 A 1 A_SpawnItemEx("SphtKrMinorHNTR",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+		Normal:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNormal")
+			TNT1 A 1 A_SpawnItemEx("SphtKrMajor",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		MajorDamage:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajorDamage")
+			TNT1 A 1 A_SpawnItemEx("SphtKrMajorUV",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		TotalCarnage:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyTotalCarnage")
+			TNT1 A 1 A_SpawnItemEx("SphtKrMajorNightmare",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyKinder1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiSphtKrMajorITYTD",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKinder1")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyKinder2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiSphtKrMinorITYTD",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKinder2")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyEasy1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiSphtKrMajorHNTR",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy1")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyEasy2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiSphtKrMinorHNTR",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy2")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyNormal:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiSphtKrMajor",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNormal")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyMajorDamage:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiSphtKrMajorUV",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajorDamage")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyTotalCarnage:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiSphtKrMajorNightmare",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyTotalCarnage")
+			TNT1 A 1 A_Die
+			Goto Death
+		Death:
+			BZBL A 70
+			Stop
+	}
+}
+
+//Invasion
+//I am literally too lazy to think of another method to make them not multiply in Invasion while still allowing for ammo to multiply.
+
+ACTOR FighterMinorSpawnerInv : FighterMinorSpawner
+{
+	Height 56
+	Radius 16
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(671,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+	}
+}
+
+ACTOR FighterMajorSpawnerInv : FighterMajorSpawner
+{
+	Height 56
+	Radius 16
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(671,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+	}
+}
+
+ACTOR ProjectileFighterMinorSpawnerInv : ProjectileFighterMinorSpawner
+{
+	Height 56
+	Radius 16
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(671,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+	}
+}
+
+ACTOR ProjectileFighterMajorSpawnerInv : ProjectileFighterMajorSpawner
+{
+	Height 56
+	Radius 16
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(671,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+	}
+}
+
+ACTOR TrooperMinorSpawnerInv : TrooperMinorSpawner
+{
+	Height 56
+	Radius 18
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(671,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+	}
+}
+
+ACTOR TrooperMajorSpawnerInv : TrooperMajorSpawner
+{
+	Height 56
+	Radius 18
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(671,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+	}
+}
+
+ACTOR SewageFlicktaSpawnerInv : SewageFlicktaSpawner
+{
+	Height 18
+	Radius 56
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(671,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+	}
+}
+
+ACTOR WaterFlicktaSpawnerInv : WaterFlicktaSpawner
+{
+	Height 20
+	Radius 56
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(671,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+	}
+}
+
+ACTOR DroneMinorSpawnerInv : DroneMinorSpawner
+{
+	Height 56
+	Radius 16
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(671,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+	}
+}
+
+ACTOR DroneMajorSpawnerInv : DroneMajorSpawner
+{
+	Height 56
+	Radius 16
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(671,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+	}
+}
+
+ACTOR M1EnforcerMinorSpawnerInv : M1EnforcerMinorSpawner
+{
+	Height 56
+	Radius 16
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(671,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+	}
+}
+
+ACTOR M1EnforcerMajorSpawnerInv : M1EnforcerMajorSpawner
+{
+	Height 56
+	Radius 16
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(671,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+	}
+}
+
+ACTOR M2EnforcerMinorSpawnerInv : M2EnforcerMinorSpawner
+{
+	Height 56
+	Radius 16
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(671,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+		BossWait:
+			TNT1 A 1 A_Die
+			Goto Death
+	}
+}
+
+ACTOR M2EnforcerMajorSpawnerInv : M2EnforcerMajorSpawner
+{
+	Height 56
+	Radius 16
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(671,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+		BossWait:
+			TNT1 A 1 A_Die
+			Goto Death
+	}
+}
+
+ACTOR CyborgMinorSpawnerInv : CyborgMinorSpawner
+{
+	Height 56
+	Radius 24
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(671,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+		BossWait:
+			TNT1 A 1 A_Die
+			Goto Death
+	}
+}
+
+ACTOR CyborgMajorSpawnerInv : CyborgMajorSpawner
+{
+	Height 56
+	Radius 24
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(671,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+		BossWait:
+			TNT1 A 1 A_Die
+			Goto Death
+	}
+}
+
+ACTOR FlameCyborgMinorSpawnerInv : FlameCyborgMinorSpawner
+{
+	Height 56
+	Radius 24
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(671,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+		BossWait:
+			TNT1 A 1 A_Die
+			Goto Death
+	}
+}
+
+ACTOR FlameCyborgMajorSpawnerInv : FlameCyborgMajorSpawner
+{
+	Height 56
+	Radius 24
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(671,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+		BossWait:
+			TNT1 A 1 A_Die
+			Goto Death
+	}
+}
+
+ACTOR HunterMinorSpawnerInv : HunterMinorSpawner
+{
+	Height 64
+	Radius 24
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(671,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+		BossWait:
+			TNT1 A 1 A_Die
+			Goto Death
+	}
+}
+
+ACTOR HunterMajorSpawnerInv : HunterMajorSpawner
+{
+	Height 64
+	Radius 24
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(671,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+		BossWait:
+			TNT1 A 1 A_Die
+			Goto Death
+	}
+}
+
+ACTOR M1JuggernautSpawnerInv : M1JuggernautSpawner
+{
+	Height 100
+	Radius 50
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(671,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+		BossWait:
+			TNT1 A 1 A_Die
+			Goto Death
+	}
+}
+
+ACTOR JuggernautMinorSpawnerInv : JuggernautMinorSpawner
+{
+	Height 100
+	Radius 40
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(671,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+		BossWait:
+			TNT1 A 1 A_Die
+			Goto Death
+	}
+}
+
+ACTOR JuggernautMajorSpawnerInv : JuggernautMajorSpawner
+{
+	Height 100
+	Radius 40
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(671,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+		BossWait:
+			TNT1 A 1 A_Die
+			Goto Death
+	}
+}
+
+ACTOR SphtMinorSpawnerInv : SphtMinorSpawner
+{
+	Height 56
+	Radius 24
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(671,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+	}
+}
+
+ACTOR SphtMajorSpawnerInv : SphtMajorSpawner
+{
+	Height 56
+	Radius 24
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(671,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+	}
+}
+
+ACTOR SphtKrMinorSpawnerInv : SphtKrMinorSpawner
+{
+	Height 50
+	Radius 24
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(671,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+	}
+}
+
+ACTOR SphtKrMajorSpawnerInv : SphtKrMajorSpawner
+{
+	Height 50
+	Radius 24
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(671,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+	}
+}

@@ -16,11 +16,14 @@ ACTOR CycloidEmperor
     +THRUGHOST
 	+MISSILEMORE
 	+DONTMORPH
+	+DONTRIP
 	SeeSound ""
 	PainSound "cycloid/pain"
 	DeathSound "cycloid/death"
 	ActiveSound "cycloid/roam"
 	AttackSound "cycloid/attack"
+	Dropitem "DefaultPinataPop"
+	Dropitem "DefaultPinataPop"
 	Obituary "%o was stomped on by the Cycloid Emperor."
     DamageFactor "CorvusCrossbow", 1.15
     DamageFactor "DragonClaw", 1.6
@@ -38,6 +41,7 @@ ACTOR CycloidEmperor
 			TNT1 A 0 A_GiveToTarget("DukeBossSightTaunt")
 		See2:
 			CYEM AABBCCDD 5 A_Chase
+			TNT1 A 0 A_PlaySound("duke/thud", CHAN_BODY)
 			Loop
 		Missile:
 			TNT1 A 0 A_TakeInventory("CycloidEmperorRocketToken",5)
@@ -102,20 +106,27 @@ ACTOR CycloidEmperor
 			TNT1 A 0 A_Pain
 			Goto RocketAtk
 		Death.DukeDamage:
-		Death.DukePistol:
-			TNT1 A 0 A_GiveToTarget("DukeBossKillTaunt",1)
+		Death.DukeSpectral:
 		Death.MightyBoot:
 		Death.DukeExplosive:
+		Death.DukeIce:
+		Death.DukePistol:
+			TNT1 A 0 A_GiveToTarget("DukeBossKillTaunt",1)
 		Death:
 		XDeath:
 			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 ACS_ExecuteAlways(SAMSARA_CLIENT_DECORATE,0,11)
 			CYEM I 10 A_Scream
-			CYEM JKLMNOPQ 10 A_NoBlocking
+			CYEM J 10 A_NoBlocking
+			CYEM KLMNOPQ 10 
 			CYEM Q 30
 			CYEM Q -1 A_KillMaster
 			Stop
 		Death.ZorchPistol:
 		Death.Zorch:
+		Death.ZorchKamikaze:
+		Death.PhasingZorch:
+		Death.ZorchSpectral:
 			TNT1 A 0 A_GiveToTarget("KillCount",1)
 			CYEM I 0 A_Stop
 			TNT1 A 0 A_ChangeFlag("DONTGIB",1)
@@ -137,6 +148,37 @@ ACTOR CycloidEmperor
 			TNT1 A 30
 			TNT1 A -1 A_KillMaster
 			stop
+		DeathHappyfun:
+			TNT1 A 0
+			TNT1 AAAA 0 A_SpawnItemEx("RainbowSparkleSound",random(-10,10),random(-10,10),random(32,40),0,0,0,0,32)
+			TNT1 AAAAAA 0 A_SpawnItemEx("WhiteSpark",0,0,random(32,40),random(-60,60)/20.0,random(-60,60)/20.0,random(-40,40)/20.0,random(-180,180),32)
+			TNT1 AAAA 0 A_SpawnItemEx("RainbowSpark",random(-20,20),random(-20,20),random(12,40),random(-60,60)/20.0,random(-60,60)/20.0,random(-40,40)/20.0,random(-180,180),32)
+			TNT1 AAA 0 A_SpawnItemEx("HappyOnlineSound",0,0,0,0,0,0,0,160)
+			TNT1 AAAA 0 A_SpawnItemEx("RainbowSparkHuge",random(-20,20),random(-20,20),random(12,100),random(-60,60)/20.0,random(-60,60)/20.0,random(-40,40)/20.0,random(-180,180),32)
+			TNT1 AAAAAAAA 0 A_SpawnItemEx("RainbowSpark",random(-20,20),random(-20,20),random(12,100),random(-60,60)/20.0,random(-60,60)/20.0,random(-40,40)/20.0,random(-180,180),32)
+			TNT1 AAAAAA 0 A_SpawnItemEx("RainbowSparkTiny",random(-15,15),random(-15,15),random(15,100),random(-80,80)/10.00,random(-80,80)/10.0,random(-3,3),random(-180,180),160)
+			CYEM I 10 A_Scream
+			CYEM J 10 A_NoBlocking
+			CYEM KLMNOPQ 10
+			CYEM Q 30
+			CYEM Q -1 A_KillMaster
+			Stop
+ 
+		DeathBrutal:
+			TNT1 A 0
+			TNT1 AA 0 A_SpawnItemEx("DukeOrangeMistTrail",random(-20,20),random(-20,20),random(12,60),random(-400,400)/100.00,random(-400,400)/100.00,random(300,600)/100.00,random(-180,180),160)
+			TNT1 AAAAA 0 A_SpawnItemEx("BrutalTinyBone",random(-5,5),random(-5,5),random(12,60),random(-400,400)/100.00,random(-400,400)/100.00,random(300,800)/100.00,random(-180,180),160)
+			TNT1 AAAAAAA 0 A_SpawnItemEx("BrutalChunkTinier_DukeOrange",random(-20,20),random(-20,20),random(12,60),random(-400,400)/100.00,random(-400,400)/100.00,random(300,600)/100.00,random(-180,180),160)
+			TNT1 AAAAA 0 A_SpawnItemEx("BrutalChunkTiny_DukeOrange",random(-20,20),random(-20,20),random(12,60),random(-400,400)/100.00,random(-400,400)/100.00,random(300,600)/100.00,random(-180,180),160)
+			TNT1 A 0 A_SpawnItemEx("DukeOrangeMistIntenseTrail",random(-20,20),random(-20,20),random(12,60),random(-400,400)/100.00,random(-400,400)/100.00,random(300,600)/100.00,random(-180,180),160)
+			TNT1 AAA 0 A_SpawnItemEx("Switchable_FlyingBlood_DukeOrange",random(-20,20),random(-20,20),random(12,60),random(-350,350)/100.00,random(-350,350)/100.00,random(300,700)/100.00,random(-180,180),160)
+			TNT1 AA 0 A_SpawnItemEx("BrutalOnlineSound2",0,0,0,0,0,0,0,160) // Apparently A_PlaySound doesn't work, so I have to spawn the item. Weird!
+			CYEM I 10 A_Scream
+			CYEM J 10 A_NoBlocking
+			CYEM KLMNOPQ 10
+			CYEM Q 30
+			CYEM Q -1 A_KillMaster
+			Stop	
 	}
 }
 
@@ -144,8 +186,7 @@ ACTOR CycloidEmperorDoom : CycloidEmperor
 {
 	Height 110
 	Radius 40
-	YScale 0.90
-	XScale 0.75
+	Scale 0.85
 	States
 	{
 		EnergyAtk:
@@ -179,4 +220,10 @@ ACTOR CycloidEmperorDoom : CycloidEmperor
 		CYEM H 2 A_FaceTarget
 		goto See2
 	}
+}
+
+ACTOR MultiCycloidEmperorDoom : CycloidEmperorDoom
+{
+	Species "CycloidEmperor"
+	+THRUSPECIES
 }

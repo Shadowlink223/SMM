@@ -27,9 +27,12 @@ ACTOR AngelOfDeath
 	DeathSound "angel/death"
 	ActiveSound ""
 	AttackSound "boss/fire"
+	Dropitem "DefaultPinataPop"
+	Dropitem "DefaultPinataPop"
 	Obituary "%o was smited by the Angel of Death."
     DamageFactor "Mace", 1.1
     DamageFactor "DragonClaw", 1.5
+	DamageFactor "WolfEnemyBullet", 0.0
 	Decal Scorch
 	States 
 	{
@@ -112,6 +115,9 @@ ACTOR AngelOfDeath
 			Goto XDeath+3
 		Death.ZorchPistol:
 		Death.Zorch:
+		Death.ZorchKamikaze:
+		Death.PhasingZorch:
+		Death.ZorchSpectral:
 			TNT1 A 0 A_GiveToTarget("KillCount",1)
 			WADH D 0 A_Stop
 			TNT1 A 0 A_ChangeFlag("DONTGIB",1)
@@ -133,4 +139,9 @@ ACTOR AngelOfDeath
 			TNT1 A -1 A_KillMaster
 			stop
 	}
+}
+
+ACTOR MultiAngelofDeath : AngelofDeath
+{
+	+THRUSPECIES
 }

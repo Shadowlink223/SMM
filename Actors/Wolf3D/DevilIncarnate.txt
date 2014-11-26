@@ -27,8 +27,11 @@ ACTOR DevilIncarnate
 	ActiveSound ""
 	AttackSound "boss/fire"
 	Obituary "%o was smited by the Devil Incarnate."
+	Dropitem "DefaultPinataPop"
+	Dropitem "DefaultPinataPop"
     DamageFactor "Mace", 1.1
     DamageFactor "DragonClaw", 1.5
+	DamageFactor "WolfEnemyBullet", 0.0
 	Decal Scorch
 	States 
 	{
@@ -111,6 +114,9 @@ ACTOR DevilIncarnate
 			Goto XDeath+3
 		Death.ZorchPistol:
 		Death.Zorch:
+		Death.ZorchKamikaze:
+		Death.PhasingZorch:
+		Death.ZorchSpectral:
 			TNT1 A 0 A_GiveToTarget("KillCount",1)
 			DEIN D 0 A_Stop
 			TNT1 A 0 A_ChangeFlag("DONTGIB",1)
@@ -132,4 +138,9 @@ ACTOR DevilIncarnate
 			TNT1 A -1 A_KillMaster
 			stop
 	}
+}
+
+ACTOR MultiDevilIncarnate : DevilIncarnate
+{
+	+THRUSPECIES
 }

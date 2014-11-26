@@ -19,11 +19,14 @@ ACTOR Battlelord
 	+MISSILEMORE
 	+DONTMORPH
 	+BOSSDEATH
+	+DONTRIP
 	SeeSound "battlelord/sight"
 	PainSound "battlelord/pain"
 	DeathSound "battlelord/death"
 	ActiveSound "battlelord/roam"
 	AttackSound "duke/chaingun"
+	Dropitem "DefaultPinataPop"
+	Dropitem "DefaultPinataPop"
 	Obituary "%o was shot by the Battlelord."
     DamageFactor "CorvusCrossbow", 1.15
     DamageFactor "DragonClaw", 1.6
@@ -40,7 +43,8 @@ ACTOR Battlelord
 			TNT1 A 0 A_GiveInventory("DukeBossSee",1)
 			TNT1 A 0 A_GiveToTarget("DukeBossSightTaunt")
 		See2:
-			BTLO AABBCCDD 5 A_Chase
+			BTLO AABBCCDDAABBCCDD 5 A_Chase
+			TNT1 A 0 A_PlaySound("duke/thud", CHAN_BODY)
 			Loop
 		Missile:
 			//TNT1 A 0 A_TakeInventory("BattleLordChaingunToken",12)
@@ -167,6 +171,7 @@ ACTOR Battlelord
 		Death:
 		XDeath:
 			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 ACS_ExecuteAlways(SAMSARA_CLIENT_DECORATE,0,11)
 			BTLO I 10 A_Scream
 			BTLO JK 10
 			BTLO L 10 A_NoBlocking
@@ -176,6 +181,9 @@ ACTOR Battlelord
 			Stop
 		Death.ZorchPistol:
 		Death.Zorch:
+		Death.ZorchKamikaze:
+		Death.PhasingZorch:
+		Death.ZorchSpectral:
 			TNT1 A 0 A_GiveToTarget("KillCount",1)
 			BTLO I 0 A_Stop
 			TNT1 A 0 A_ChangeFlag("DONTGIB",1)
@@ -197,6 +205,38 @@ ACTOR Battlelord
 			TNT1 A 30
 			TNT1 A -1 A_KillMaster
 			stop
+		DeathHappyfun:
+			TNT1 A 0
+            TNT1 AAAA 0 A_SpawnItemEx("RainbowSparkleSound",random(-10,10),random(-10,10),random(32,40),0,0,0,0,32)
+            TNT1 AAAAAA 0 A_SpawnItemEx("WhiteSpark",0,0,random(32,40),random(-60,60)/20.0,random(-60,60)/20.0,random(-40,40)/20.0,random(-180,180),32)
+            TNT1 AAAA 0 A_SpawnItemEx("RainbowSpark",random(-20,20),random(-20,20),random(12,40),random(-60,60)/20.0,random(-60,60)/20.0,random(-40,40)/20.0,random(-180,180),32)
+            TNT1 AAA 0 A_SpawnItemEx("HappyOnlineSound",0,0,0,0,0,0,0,160)
+            TNT1 AAAA 0 A_SpawnItemEx("RainbowSparkHuge",random(-20,20),random(-20,20),random(12,100),random(-60,60)/20.0,random(-60,60)/20.0,random(-40,40)/20.0,random(-180,180),32)
+            TNT1 AAAAAAAA 0 A_SpawnItemEx("RainbowSpark",random(-20,20),random(-20,20),random(12,100),random(-60,60)/20.0,random(-60,60)/20.0,random(-40,40)/20.0,random(-180,180),32)
+            TNT1 AAAAAA 0 A_SpawnItemEx("RainbowSparkTiny",random(-15,15),random(-15,15),random(15,100),random(-80,80)/10.00,random(-80,80)/10.0,random(-3,3),random(-180,180),160)
+            BTLO I 10 A_Scream
+            BTLO JK 10
+            BTLO L 10 A_NoBlocking
+            BTLO MN 10
+            BTLO N 20
+            BTLO N -1 A_KillMaster
+            Stop
+		DeathBrutal:
+			TNT1 A 0
+			TNT1 AA 0 A_SpawnItemEx("DukeOrangeMistTrail",random(-20,20),random(-20,20),random(12,60),random(-400,400)/100.00,random(-400,400)/100.00,random(300,600)/100.00,random(-180,180),160)
+			TNT1 AAAAA 0 A_SpawnItemEx("BrutalTinyBone",random(-5,5),random(-5,5),random(12,60),random(-400,400)/100.00,random(-400,400)/100.00,random(300,800)/100.00,random(-180,180),160)
+			TNT1 AAAAAAA 0 A_SpawnItemEx("BrutalChunkTinier_DukeOrange",random(-20,20),random(-20,20),random(12,60),random(-400,400)/100.00,random(-400,400)/100.00,random(300,600)/100.00,random(-180,180),160)
+            TNT1 AAAAA 0 A_SpawnItemEx("BrutalChunkTiny_DukeOrange",random(-20,20),random(-20,20),random(12,60),random(-400,400)/100.00,random(-400,400)/100.00,random(300,600)/100.00,random(-180,180),160)
+            TNT1 A 0 A_SpawnItemEx("DukeOrangeMistIntenseTrail",random(-20,20),random(-20,20),random(12,60),random(-400,400)/100.00,random(-400,400)/100.00,random(300,600)/100.00,random(-180,180),160)
+            TNT1 AAA 0 A_SpawnItemEx("Switchable_FlyingBlood_DukeOrange",random(-20,20),random(-20,20),random(12,60),random(-350,350)/100.00,random(-350,350)/100.00,random(300,700)/100.00,random(-180,180),160)
+            TNT1 AA 0 A_SpawnItemEx("BrutalOnlineSound2",0,0,0,0,0,0,0,160) // Apparently A_PlaySound doesn't work, so I have to spawn the item. Weird!
+            BTLO I 10 A_Scream
+            BTLO JK 10
+            BTLO L 10 A_NoBlocking
+            BTLO MN 10
+            BTLO N 20
+            BTLO N -1 A_KillMaster
+            Stop
 	}
 }
 
@@ -208,8 +248,35 @@ ACTOR MiniBattlelord : Battlelord
 	Scale 0.65
 	-DONTMORPH
 	-BOSS
+	Dropitem "DefaultPinataPop"
+	PainChance "MarathonStun", 255
 	States
 	{
+		See:
+			BTLO AABBCCDD 5 A_Chase
+			Loop
+		Pain.MarathonStun:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_GiveInventory("NothingSpeed")
+			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			BTLO I 5 A_FaceTarget
+			TNT1 A 0 A_Gravity
+			BTLO I 30 A_Pain
+			BTLO I 70
+			Goto See
+		Death.DukeDamage:
+		Death.DukeSpectral:
+		Death.MightyBoot:
+		Death.DukeExplosive:
+		Death.DukeIce:
+		Death.DukePistol:
+			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
+			Goto XDeath
+		Death.ZorchPistol:
+		Death.Zorch:
+		Death.ZorchKamikaze:
+		Death.PhasingZorch:
+		Death.ZorchSpectral:
 		Death.Zorch:
 			TNT1 A 0 A_GiveToTarget("KillCount",1)
 			BTLO I 0 A_Stop
@@ -231,6 +298,26 @@ ACTOR MiniBattlelord : Battlelord
 			TNT1 A 1 A_SetTranslucent(1,0)
 			TNT1 A -1 A_KillMaster
 			stop
+		Raise:
+			BTLO NMLKJI 5
+			Goto See
+		ZorchRaise:
+			TNT1 A 1 A_UnsetShootable
+			TNT1 A 1 A_SpawnItem("SpawnFire2")
+			TNT1 A 0 A_PlaySound("archvile/resummon")
+			TNT1 A 1 A_TakeInventory("EnemyZorched",1)
+			TNT1 A 0 A_SetTranslucent(0.1,0)
+			BTLO A 3 A_SetTranslucent(0.2,0)
+			BTLO A 3 A_SetTranslucent(0.3,0)
+			BTLO A 3 A_SetTranslucent(0.4,0)
+			BTLO A 3 A_SetTranslucent(0.5,0)
+			BTLO A 3 A_SetTranslucent(0.6,0)
+			BTLO A 3 A_SetTranslucent(0.7,0)
+			BTLO A 3 A_SetTranslucent(0.8,0)
+			BTLO A 3 A_SetTranslucent(0.9,0)
+			BTLO A 3 A_SetTranslucent(1,0)
+			BTLO A 1 A_SetShootable	
+			Goto See
 	}
 }
 
@@ -239,11 +326,23 @@ ACTOR BattlelordDoom : Battlelord
 	Height 100
 	Radius 57
 	XScale 1.0
-	YScale 0.81
+	YScale 1.0
 }
 
 ACTOR MiniBattlelordDoom : MiniBattleLord
 {
 	Radius 24
-	XScale 0.52
+	XScale 0.55
+}
+
+ACTOR MultiBattlelordDoom : BattlelordDoom
+{
+	Species "Battlelord"
+	+THRUSPECIES
+}
+
+ACTOR MultiMiniBattlelordDoom : MiniBattlelordDoom
+{
+	Species "MiniBattlelord"
+	+THRUSPECIES
 }

@@ -18,10 +18,13 @@ ACTOR WolfSS
 	DeathSound "ss/death"
 	ActiveSound ""
 	AttackSound "ss/fire"
+	Dropitem "DefaultPinataPop"
 	Obituary "%o was shot by a nazi Schutzstaffel."
     DamageFactor "Mace", 1.1
     DamageFactor "DragonClaw", 1.5
+	DamageFactor "WolfEnemyBullet", 0.0
     PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
 	Dropitem "WolfClip"
 	Decal BulletChip
 	States 
@@ -145,6 +148,15 @@ ACTOR WolfSS
 			TNT1 A 0 A_Recoil(14)
 			WSCH F 16 A_Pain
 			Goto See
+		Pain.MarathonStun:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_GiveInventory("NothingSpeed")
+			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			WSCH F 5 A_FaceTarget
+			TNT1 A 0 A_Gravity
+			WSCH F 30 A_Pain
+			WSCH F 70
+			Goto See
 		Death.DukeDamage:
 		Death.DukePistol:
 			TNT1 A 0 A_Jump(218,"Death")
@@ -178,6 +190,9 @@ ACTOR WolfSS
 			Stop
 		Death.ZorchPistol:
 		Death.Zorch:
+		Death.ZorchKamikaze:
+		Death.PhasingZorch:
+		Death.ZorchSpectral:
 			TNT1 A 0 A_GiveToTarget("KillCount",1)
 			WSCH F 0 A_Stop
 			TNT1 A 0 A_ChangeFlag("DONTGIB",1)
@@ -237,4 +252,9 @@ ACTOR WolfSS
 			WSCH A 1 A_SetShootable
 			Goto See
 	}
+}
+
+ACTOR MultiWolfSS : WolfSS
+{
+	+THRUSPECIES
 }

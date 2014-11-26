@@ -22,10 +22,13 @@ ACTOR FakeHitler
 	DeathSound "fakehitler/death"
 	ActiveSound ""
 	AttackSound "fakehitler/fire"
+	Dropitem "DefaultPinataPop"
 	Obituary "%o was blasted by a fake Hitler."
     DamageFactor "Mace", 1.1
     DamageFactor "DragonClaw", 1.5
+	DamageFactor "WolfEnemyBullet", 0.0
     PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
 	States 
 	{
 		Spawn:
@@ -101,6 +104,15 @@ ACTOR FakeHitler
 			TNT1 A 0 A_Recoil(14)
 			WFAH D 16 A_Pain
 			Goto See
+		Pain.MarathonStun:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_GiveInventory("NothingSpeed")
+			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			WFAH A 5 A_FaceTarget
+			TNT1 A 0 A_Gravity
+			WFAH A 30 A_Pain
+			WFAH A 70
+			Goto See
 		Death.DukeDamage:
 		Death.DukePistol:
 			TNT1 A 0 A_Jump(218,"Death")
@@ -113,17 +125,17 @@ ACTOR FakeHitler
 			goto Death
 		Death.DukeExplosive:
 			TNT1 A 0 A_JumpIfHealthLower(-3,"DukeGibStart")
+			Goto XDeath
 		DukeGibStart:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_SpawnDebris("DukeGibs1")
-			TNT1 A 0 A_SpawnDebris("DukeGibs2")
-			TNT1 A 0 A_SpawnDebris("DukeGibs3")
-			TNT1 A 0 A_SpawnDebris("DukeGibs4")
-			TNT1 A 0 A_SpawnDebris("DukeGibs5")
-			TNT1 A 0 A_SpawnDebris("DukeGibs6")
-			TNT1 A 0 A_PlaySound("duke/enemygib")
-			TNT1 A 0 A_Jump(96,"XDeath")
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
+			WFAH F 1
+			WFAH F 0 A_UnsetSolid
+			WFAH F 1 A_SpawnDebris("DukeShrapnel1")
+			TNT1 AAAAAAA 0 A_SpawnDebris("DukeShrapnel1")
+			TNT1 AAAA 0 A_SpawnDebris("DukeShrapnel2")
+			TNT1 AAAAAAA 0 A_SpawnDebris("DukeShrapnel3")
+			TNT1 A 0 A_Jump(96,"Death")
+			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)//TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
+			Goto Death
 		Death:
 		XDeath:
 			TNT1 A 0 A_GiveToTarget("KillCount",1)
@@ -136,6 +148,9 @@ ACTOR FakeHitler
 			Stop
 		Death.ZorchPistol:
 		Death.Zorch:
+		Death.ZorchKamikaze:
+		Death.PhasingZorch:
+		Death.ZorchSpectral:
 			TNT1 A 0 A_GiveToTarget("KillCount",1)
 			WFAH F 0 A_Stop
 			TNT1 A 0 A_ChangeFlag("DONTGIB",1)
@@ -195,4 +210,9 @@ ACTOR FakeHitler
 			WFAH A 1 A_SetShootable
 			Goto See
 	}
+}
+
+ACTOR MultiFakeHitler : FakeHitler
+{
+	+THRUSPECIES
 }

@@ -153,6 +153,7 @@ ACTOR EnforcerTurd
 	Radius 2
 	Scale 0.65
 	+NOINTERACTION
+	+MOVEWITHSECTOR
 	States
 	{
 		Spawn:
@@ -161,132 +162,410 @@ ACTOR EnforcerTurd
 	}
 }
 
-ACTOR NewDukeGibs1 replaces DukeGibs1
+ACTOR ProtectorDroneGibs1 : NewDukeGibs1
 {
-	Radius 1
-    Height 1
-    Speed 0
-    Projectile
-    -NOGRAVITY
-    -SOLID
-    +MOVEWITHSECTOR
-    +CLIENTSIDEONLY
-    +NOBLOCKMAP
-    +NOTELEPORT
-    Gravity 0.65
-    Health 2
-    scale 0.65
+	Health 1
+	States
+	{
+		Spawn:
+			PRJ1 ABCD 5
+			Loop
+		Death:
+			TNT1 A 0 A_Gravity
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(SAMSARA_DECORATE,31) == 1, "Death2")
+			PRJ6 ABCDEF 5
+			Stop
+		Death2:
+			PRJ1 E 2100
+			Loop
+	}
+}
+
+ACTOR ProtectorDroneGibs2 : NewDukeGibs1
+{
+	Health 1
+	States
+	{
+		Spawn:
+			PRJ2 ABCD 5
+			Loop
+		Death:
+			TNT1 A 0 A_Gravity
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(SAMSARA_DECORATE,31) == 1, "Death2")
+			PRJ6 ABCDEF 5
+			Stop
+		Death2:
+			PRJ2 E 2100
+			Loop
+	}
+}
+
+ACTOR ProtectorDroneGibs3 : NewDukeGibs1
+{
+	Health 1
+	States
+	{
+		Spawn:
+			PRJ3 ABCD 5
+			Loop
+		Death:
+			TNT1 A 0 A_Gravity
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(SAMSARA_DECORATE,31) == 1, "Death2")
+			PRJ6 ABCDEF 5
+			Stop
+		Death2:
+			PRJ3 E 2100
+			Loop
+	}
+}
+
+ACTOR ProtectorDroneGibs4 : NewDukeGibs1
+{
+	Health 1
+	States
+	{
+		Spawn:
+			PRJ4 ABCD 5
+			Loop
+		Death:
+			TNT1 A 0 A_Gravity
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(SAMSARA_DECORATE,31) == 1, "Death2")
+			PRJ6 ABCDEF 5
+			Stop
+		Death2:
+			PRJ4 E 2100
+			Loop
+	}
+}
+
+ACTOR ProtectorDroneGibs5 : NewDukeGibs1
+{
+	Health 1
+	States
+	{
+		Spawn:
+			PRJ5 ABCD 5
+			Loop
+		Death:
+			TNT1 A 0 A_Gravity
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(SAMSARA_DECORATE,31) == 1, "Death2")
+			PRJ6 ABCDEF 5
+			Stop
+		Death2:
+			PRJ5 E 2100
+			Loop
+	}
+}
+
+ACTOR ProtectorDroneGibs6 : NewDukeGibs1
+{
+	Health 1
+	States
+	{
+		Spawn:
+			PRJ6 AB 5
+			Loop
+		Death:
+			TNT1 A 0 A_Gravity
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(SAMSARA_DECORATE,31) == 1, "Death2")
+			PRJ6 ABCDEFGH 5
+			Stop
+		Death2:
+			PRJ6 CDEFGH 5
+			PRJ6 H 2100
+			Goto Death2+6
+	}
+}
+
+ACTOR ProtectorDroneGibs7 : NewDukeGibs1
+{
+	Health 1
+	States
+	{
+		Spawn:
+			PRJ7 ABCD 5
+			Loop
+		Death:
+			TNT1 A 0 A_Gravity
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(SAMSARA_DECORATE,31) == 1, "Death2")
+			PRJ6 ABCDEF 5
+			Stop
+		Death2:
+			PRJ7 A 2100
+			Loop
+	}
+}
+
+ACTOR ProtectorDroneGibs8 : NewDukeGibs1
+{
+	Health 1
+	States
+	{
+		Spawn:
+			PRJ8 ABCD 5
+			Loop
+		Death:
+			TNT1 A 0 A_Gravity
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(SAMSARA_DECORATE,31) == 1, "Death2")
+			PRJ6 ABCDEF 5
+			Stop
+		Death2:
+			PRJ8 A 2100
+			Loop
+	}
+}
+
+ACTOR ProtectorDroneGibs9 : NewDukeGibs1
+{
+	Health 1
+	States
+	{
+		Spawn:
+			PRJ9 ABCD 5
+			Loop
+		Death:
+			TNT1 A 0 A_Gravity
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(SAMSARA_DECORATE,31) == 1, "Death2")
+			PRJ6 ABCDEF 5
+			Stop
+		Death2:
+			PRJ9 A 2100
+			Loop
+	}
+}
+
+ACTOR DukeJibs1 : NewDukeGibs1
+{
+	Health 1
+	States
+	{
+		Spawn:
+			DJ01 ABCD 5
+			Loop
+		Death:
+			TNT1 A 0 A_Gravity
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(SAMSARA_DECORATE,31) == 1, "Death2")
+			DJ06 ABCDEF 5
+			Stop
+		Death2:
+			DJ01 E 2100
+			Loop
+	}
+}
+
+ACTOR DukeJibs2 : DukeJibs1
+{
+	States
+	{
+		Spawn:
+			DJ02 ABCD 5
+			Loop
+		Death2:
+			DJ02 E 2100
+			Loop
+	}
+}
+
+ACTOR DukeJibs3 : DukeJibs1
+{
+	States
+	{
+		Spawn:
+			DJ03 ABCD 5
+			Loop
+		Death2:
+			DJ03 E 2100
+			Loop
+	}
+}
+
+ACTOR DukeJibs4 : DukeJibs1
+{
+	States
+	{
+		Spawn:
+			DJ04 ABCD 5
+			Loop
+		Death2:
+			DJ04 E 2100
+			Loop
+	}
+}
+
+ACTOR DukeJibs5 : DukeJibs1
+{
+	States
+	{
+		Spawn:
+			DJ05 ABCD 5
+			Loop
+		Death2:
+			DJ05 E 2100
+			Loop
+	}
+}
+
+ACTOR DukeJibs6 : DukeJibs1
+{
+	States
+	{
+		Spawn:
+			DJ06 ABCD 5
+			Loop
+		Death2:
+			DJ06 CDEFGH 5
+			DJ06 H 2100
+			Goto Death2+6
+	}
+}
+
+ACTOR DukeJibs7 : DukeJibs1 //Assault Enforcer Head
+{
+	States
+	{
+		Spawn:
+			DJ07 ABCD 5
+			Loop
+		Death2:
+			DJ07 A 2100
+			Loop
+	}
+}
+
+ACTOR DukeJibs8 : DukeJibs1 //Assault Enforcer arm
+{
+	States
+	{
+		Spawn:
+			DJ08 ABCD 5
+			Loop
+		Death2:
+			DJ08 A 2100
+			Loop
+	}
+}
+
+ACTOR DukeJibs9 : DukeJibs1 //Assault Enforcer leg
+{
+	States
+	{
+		Spawn:
+			DJ09 ABCD 5
+			Loop
+		Death2:
+			DJ09 A 2100
+			Loop
+	}
+}
+
+ACTOR DukeJibs10 : DukeJibs1 //Assault Trooper head
+{
+	States
+	{
+		Spawn:
+			DJ10 ABCD 5
+			Loop
+		Death2:
+			DJ10 A 2100
+			Loop
+	}
+}
+
+ACTOR DukeJibs11 : DukeJibs1 //Assault Trooper arm
+{
+	States
+	{
+		Spawn:
+			DJ11 ABCD 5
+			Loop
+		Death2:
+			DJ11 A 2100
+			Loop
+	}
+}
+
+ACTOR DukeJibs12 : DukeJibs1 //Assault Trooper leg
+{
+	States
+	{
+		Spawn:
+			DJ12 ABCD 5
+			Loop
+		Death2:
+			DJ12 A 2100
+			Loop
+	}
+}
+
+actor NewDukeGibs1_DukeOrange : NewDukeGibs1 replaces DukeGibs1_DukeOrange
+{
+	Translation "16:47=[255,64,0]:[66,18,0]"
 	States
 	{
 		Spawn:
 			DKG1 ABCD 5
 			Loop
-		Death:
-			TNT1 A 0 A_Gravity
-			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(SAMSARA_DECORATE,31) == 1, "Death2")
-			DKG6 ABCDEF 5
-			Stop
-		Death2:
-			DKG1 E 2100
-			Loop
 	}
 }
 
-ACTOR NewDukeGibs2 : NewDukeGibs1 replaces DukeGibs2
+actor NewDukeGibs2_DukeOrange : NewDukeGibs2 replaces DukeGibs2_DukeOrange
 {
-	Health 2
+	Translation "16:47=[255,64,0]:[66,18,0]"
 	States
 	{
 		Spawn:
 			DKG2 ABCD 5
 			Loop
-		Death:
-			TNT1 A 0 A_Gravity
-			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(SAMSARA_DECORATE,31) == 1, "Death2")
-			DKG6 ABCDEF 5
-			Stop
-		Death2:
-			DKG2 E 2100
-			Loop
 	}
 }
 
-ACTOR NewDukeGibs3 : NewDukeGibs1 replaces DukeGibs3
+actor NewDukeGibs3_DukeOrange : NewDukeGibs3 replaces DukeGibs3_DukeOrange
 {
-	Health 4
+	Translation "16:47=[255,64,0]:[66,18,0]"
 	States
 	{
 		Spawn:
 			DKG3 ABCD 5
 			Loop
-		Death:
-			TNT1 A 0 A_Gravity
-			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(SAMSARA_DECORATE,31) == 1, "Death2")
-			DKG6 ABCDEF 5
-			Stop
-		Death2:
-			DKG3 E 2100
-			Loop
 	}
 }
 
-ACTOR NewDukeGibs4 : NewDukeGibs1 replaces DukeGibs4
+actor NewDukeGibs4_DukeOrange : NewDukeGibs4 replaces DukeGibs4_DukeOrange
 {
+	Translation "16:47=[255,64,0]:[66,18,0]"
 	States
 	{
 		Spawn:
 			DKG4 ABCD 5
 			Loop
-		Death:
-			TNT1 A 0 A_Gravity
-			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(SAMSARA_DECORATE,31) == 1, "Death2")
-			DKG6 ABCDEF 5
-			Stop
-		Death2:
-			DKG4 E 2100
-			Loop
 	}
 }
 
-ACTOR NewDukeGibs5 :NewDukeGibs1 replaces DukeGibs5
+actor NewDukeGibs5_DukeOrange : NewDukeGibs5 replaces DukeGibs5_DukeOrange
 {
+	Translation "16:47=[255,64,0]:[66,18,0]"
 	States
 	{
 		Spawn:
 			DKG5 ABCD 5
 			Loop
-		Death:
-			TNT1 A 0 A_Gravity
-			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(SAMSARA_DECORATE,31) == 1, "Death2")
-			DKG6 ABCDEF 5
-			Stop
-		Death2:
-			DKG5 E 2100
-			Loop
 	}
 }
 
-ACTOR NewDukeGibs6 : NewDukeGibs1 replaces DukeGibs6
+actor NewDukeGibs6_DukeOrange : NewDukeGibs6 replaces DukeGibs6_DukeOrange
 {
+	Translation "16:47=[255,64,0]:[66,18,0]"
 	States
 	{
 		Spawn:
 			DKG6 AB 5
 			Loop
-		Death:
-			TNT1 A 0 A_Gravity
-			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(SAMSARA_DECORATE,31) == 1, "Death2")
-			DKG6 ABCDEFGH 5
-			Stop
-		Death2:
-			DKG6 CDEFGH 5
-			DKG6 H 2100
-			Goto Death2+6
 	}
 }
 
 Actor PigDrop : SamsaraSlotTwoDrop
 {
+	+DROPPED
 	Scale 0.65
     States
     {
@@ -299,17 +578,22 @@ Actor PigDrop : SamsaraSlotTwoDrop
 ACTOR AEnforcerDrop : SamsaraSlotFourDrop
 {
 	Scale 0.65
+	+DROPPED
 	States
     {
       Spawn:
         DCCP A -1
         stop
+	  Pickup:
+		TNT1 A 0 A_GiveInventory("Clip",40)
+		Goto "Super::Pickup"
     }
 }
 
 ACTOR AEnforcerAmmoDrop : Ammo1Big
 {
 	Scale 0.65
+	+DROPPED
 	States
     {
       Spawn:
@@ -321,11 +605,15 @@ ACTOR AEnforcerAmmoDrop : Ammo1Big
 ACTOR ATrooperAmmoDrop : Ammo1Small
 {
 	Scale 0.40
+	+DROPPED
 	States
     {
       Spawn:
         DPAP A -1
         stop
+	  Pickup:
+		TNT1 A 0 A_GiveInventory("Clip",2)
+		Goto "Super::Pickup"
     }
 }
 
@@ -337,6 +625,7 @@ ACTOR DukeArmor : BasicArmorPickup
   armor.saveamount 50
   armor.savepercent 35
   Scale 0.65
+  +DROPPED
   states
   {
   Spawn:

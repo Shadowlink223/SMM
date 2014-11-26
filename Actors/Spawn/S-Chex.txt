@@ -1,0 +1,207 @@
+ACTOR FlemoidusCommonusSpawner : ZombiemanSpawnerCoop replaces FlemoidusCommonus { }
+ACTOR FlemoidusBipedicusSpawner : ShotgunGuySpawnerCoop replaces FlemoidusBipedicus { }
+ACTOR FlemMineSpawner : LostSoulSpawnerCoop replaces ChexSoul { }
+ACTOR SuperCycloptisSpawner : CacodemonSpawnerCoop replaces SuperCycloptis { }
+ACTOR SnotfolusSpawner : CyberDemonSpawnerCoop replaces Snotfolus { }
+ACTOR FlembominationSpawner : SpiderMastermindSpawnerCoop replaces Flembomination { }
+
+ACTOR FlemoidusStridicusSpawner : DemonSpawnerCoop replaces FlemoidusCycloptisCommonus
+{
+	States
+	{
+		SetChex:
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,6) == 1, "SetChex_2")
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyChex1")
+			TNT1 A 1 A_SpawnItemEx("OldFlemoidusStridicus",0,0,0,0,0,0,0,288)
+			Stop
+		SetChex_2:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyChex2")
+			TNT1 A 1 A_SpawnItemEx("NewFlemoidusStridicus",0,0,0,0,0,0,0,288)
+			Stop
+		MultiplyChex1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiOldFlemoidusStridicus",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyChex1")
+			Stop
+		MultiplyChex2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiNewFlemoidusStridicus",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyChex2")
+			Stop
+	}
+}
+
+ACTOR ArmoredFlemoidusBipedicusSpawner : DoomImpSpawnerCoop replaces ArmoredFlemoidusBipedicus
+{
+	States
+	{
+		SetChex:
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,6) == 1, "SetChex_2")
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyChex1")
+			TNT1 A 1 A_SpawnItemEx("OldArmoredFlemoidusBipedicus",0,0,0,0,0,0,0,288)
+			Stop
+		SetChex_2:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyChex2")
+			TNT1 A 1 A_SpawnItemEx("NewArmoredFlemoidusBipedicus",0,0,0,0,0,0,0,288)
+			Stop
+		MultiplyChex1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiOldArmoredFlemoidusBipedicus",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyChex1")
+			Stop
+		MultiplyChex2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiNewArmoredFlemoidusBipedicus",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyChex2")
+			Stop
+	}
+}
+
+ACTOR QuadrumpusSpawner : RevenantSpawnerCoop replaces Quadrumpus
+{
+	States
+	{
+		SetChex:
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,6) == 1, "SetChex_2")
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyChex1")
+			TNT1 A 1 A_SpawnItemEx("OldQuadrumpus",0,0,0,0,0,0,0,288)
+			Stop
+		SetChex_2:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyChex2")
+			TNT1 A 1 A_SpawnItemEx("NewQuadrumpus",0,0,0,0,0,0,0,288)
+			Stop
+		MultiplyChex1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiOldQuadrumpus",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyChex1")
+			Stop
+		MultiplyChex2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiNewQuadrumpus",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyChex2")
+			Stop
+	}
+}
+
+ACTOR FlemoidusCycloptisCommonusSpawner : SpectreSpawnerCoop replaces FlemoidusCycloptisCommonusV3
+{
+	States
+	{
+		SetChex:
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,6) == 1, "SetChex_2")
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyChex1")
+			TNT1 A 1 A_SpawnItemEx("OldFlemoidusCycloptisCommonus",0,0,0,0,0,0,0,288)
+			Stop
+		SetChex_2:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyChex2")
+			TNT1 A 1 A_SpawnItemEx("NewFlemoidusCycloptisCommonus",0,0,0,0,0,0,0,288)
+			Stop
+		MultiplyChex1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiOldFlemoidusCycloptisCommonus",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyChex1")
+			Stop
+		MultiplyChex2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiNewFlemoidusCycloptisCommonus",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyChex2")
+			Stop
+	}
+}
+
+ACTOR LarvaSpawner : SpectreSpawnerCoop replaces Larva
+{
+	States
+	{
+		SetChex:
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,6) == 1, "SetChex_2")
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyChex1")
+			TNT1 A 1 A_SpawnItemEx("OldLarva",0,0,0,0,0,0,0,288)
+			Stop
+		SetChex_2:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyChex2")
+			TNT1 A 1 A_SpawnItemEx("NewLarva",0,0,0,0,0,0,0,288)
+			Stop
+		MultiplyChex1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiOldLarva",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyChex1")
+			Stop
+		MultiplyChex2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiNewLarva",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyChex2")
+			Stop
+	}
+}
+
+ACTOR FlembraneSpawner : BaronOfHellSpawnerCoop replaces FlembraneV3
+{
+	States
+	{
+		Spawn:
+			TNT1 A 6 ACS_ExecuteAlways(668,0,3,0)
+		SetChex:
+			TNT1 A 0
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,6) == 1, "SetChex_2")
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyChex1")
+			TNT1 A 1 A_SpawnItemEx("OldFlembrane",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		SetChex_2:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyChex")
+			TNT1 A 1 A_SpawnItemEx("NewFlembrane",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		MultiplyChex1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiOldFlembrane",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyChex1_2
+		MultiplyChex1_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiOldFlembrane",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyChex1_2")
+			Goto BossWait
+		MultiplyChex2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiNewFlembrane",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyChex2_2
+		MultiplyChex2_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiNewFlembrane",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyChex2_2")
+			Goto BossWait
+	}
+}
+
+ACTOR FlemoidusMaximusSpawner : BaronOfHellSpawnerCoop replaces FlemoidusMaximus
+{
+	States
+	{
+		SetChex:
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,6) == 1, "SetChex_2")
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyChex1")
+			TNT1 A 1 A_SpawnItemEx("OldFlemoidusMaximus",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		SetChex_2:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyChex2")
+			TNT1 A 1 A_SpawnItemEx("NewFlemoidusMaximus",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		MultiplyChex1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiOldFlemoidusMaximus",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyChex1_2
+		MultiplyChex1_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiOldFlemoidusMaximus",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyChex1_2")
+			Goto BossWait
+		MultiplyChex2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiNewFlemoidusMaximus",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyChex2_2
+		MultiplyChex2_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiNewFlemoidusMaximus",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyChex2_2")
+			Goto BossWait
+	}
+}
