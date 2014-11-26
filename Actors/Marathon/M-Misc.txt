@@ -3,16 +3,385 @@ ACTOR MarathonShotgunBulletCoop2 : MarathonShotgunBulletCoop replaces MarathonSh
 	DamageType "MarathonShotgun"
 }
 
-ACTOR EnforcerShot2 : EnforcerShot
+ACTOR NewEnforcerShot : EnforcerShot replaces EnforcerShot
+{
+	DamageType "MarathonPlasmaFire"
+}
+
+ACTOR NewEnforcerShotCoop : NewEnforcerShot replaces EnforcerShotCoop
+{
+	+THRUSPECIES
+    Species "Player"
+}
+
+ACTOR JuggernautExplosion
+{
+	Radius 1
+	Height 1
+	Speed 0
+	+NOCLIP
+	PROJECTILE
+	Obituary "%o didn't run away from the dying Pfhor Juggernaut fast enough"
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			Goto Death
+		Death:
+			TNT1 A 0 A_Explode(350 + random(1,50),640,1)
+			stop
+  }
+}
+
+actor CyborgGrenadeSmoke // Copy/Pasted from Samsara, mostly
+{
+    Radius 1
+    Height 1
+    Speed 0
+    +NOGRAVITY
+    -SOLID
+    +NOCLIP
+    +CLIENTSIDEONLY
+    Scale 0.30
+    States
+    {
+      Spawn:
+        TNT1 A 2
+        FLME CD 1 BRIGHT
+        MSMK ABCD 1
+        stop
+    }
+}
+
+ACTOR CyborgGrenade //Copied over most of this from the code PresidentPeople sent me.
+{
+	Radius 10
+	Height 10
+	Speed 5.199
+	Damage 0
+	Gravity 0.30
+	Scale 0.49
+	BounceCount 0x7FFFFFFF
+	BounceFactor 0.92
+	PROJECTILE
+	SeeSound "cyborggrenade/bounce"
+	//BounceSound "cyborggrenade/bounce"
+	DeathSound "marathon/rifle/nadexpl"
+	-NOGRAVITY
+	+LOWGRAVITY
+	+DOOMBOUNCE
+	+EXPLODEONWATER
+	+FORCERADIUSDMG
+	+BLOODLESSIMPACT
+	+EXTREMEDEATH
+	States
+	{
+		Spawn:
+			CYPR AAAABBBB 1 Bright A_SpawnItem("CyborgGrenadeSmoke")
+			CYPR C 4 bright
+		Spawn2:
+			CYPR ABC 4 Bright
+			Loop
+		Death:
+			TNT1 A 0 A_NoGravity
+			XPLD A 4 Bright A_Explode(20+random(0,10),128)
+			XPLD B 4 Bright 
+			XPLD C 4 Bright
+			XPLD D 4 Bright
+			XPLD E 4 Bright
+			XPLD F 4 Bright
+			Stop
+	}
+}
+
+ACTOR SeekerCyborgGrenade : CyborgGrenade
+{
+	+SEEKERMISSILE
+	States
+	{
+		Spawn:
+			CYP2 AAAABBBB 1 Bright A_SpawnItem("CyborgGrenadeSmoke")
+			CYP2 C 4 bright
+		Spawn2:
+			CYP2 ABC 4 Bright A_Tracer2//A_SeekerMissile(5,7.5)
+			Loop
+		Death:
+			TNT1 A 0 A_NoGravity
+			XPLD A 4 Bright A_Explode(40+random(0,10),128)
+			XPLD B 4 Bright 
+			XPLD C 4 Bright
+			XPLD D 4 Bright
+			XPLD E 4 Bright
+			XPLD F 4 Bright
+			Stop
+	}
+}
+
+ACTOR SeekerCyborgGrenadeITYTD : SeekerCyborgGrenade { Speed 4.575 }
+ACTOR SeekerCyborgGrenadeHNTR : SeekerCyborgGrenade { Speed 4.887 }
+ACTOR SeekerCyborgGrenadeUV : SeekerCyborgGrenade { Speed 5.874 }
+ACTOR SeekerCyborgGrenadeNightmare : SeekerCyborgGrenade { Speed 6.498 }
+
+ACTOR CyborgGrenadeITYTD : CyborgGrenade { Speed 4.575 }
+ACTOR CyborgGrenadeHNTR : CyborgGrenade { Speed 4.887 }
+ACTOR CyborgGrenadeUV : CyborgGrenade { Speed 5.874 }
+ACTOR CyborgGrenadeNightmare : CyborgGrenade { Speed 6.498 }
+
+ACTOR CyborgFlameShot : FlameShot
+{
+	-RIPPER
+	Damage (random(8,12))
+}
+
+ACTOR FighterProjectile
+{
+	Radius 6
+	Height 8
+	Speed 6.525
+	Scale 0.49
+	Damage (random (30, 35))
+	PROJECTILE
+	DamageType "ElectricalStaff"
+	SeeSound ""
+	DeathSound "fighterstaff/hit"
+	States 
+	{
+		Spawn:
+			FIPR AB 4 Bright
+			Loop
+		Death:
+			FPRE A 1 bright
+			FPRE B 2 bright
+			FPRE C 3 bright
+			FPRE D 2 bright
+			FPRE E 2 bright
+			Stop
+	}
+}
+
+ACTOR FighterProjectileITYTD : FighterProjectile { Speed 5.74 }
+ACTOR FighterProjectileHNTR : FighterProjectile { Speed 6.125 }
+ACTOR FighterProjectileUV : FighterProjectile { Speed 7.5 }
+ACTOR FighterProjectileNightmare : FighterProjectile { Speed 8.155 }
+
+ACTOR DroneBolt
+{
+	Radius 6
+	Height 8
+	Speed 6.525
+	Scale 0.49
+	Damage (random (15, 20))
+	PROJECTILE
+	//DamageType "ElectricalStaff"
+	SeeSound "drone/attack"
+	DeathSound "dronebolt/death"
+	States 
+	{
+		Spawn:
+			DRBO AB 2 Bright
+			Loop
+		Death:
+			DPEX ABCDE 4 bright
+			Stop
+	}
+}
+
+ACTOR DroneBoltITYTD : DroneBolt { Speed 5.74 }
+ACTOR DroneBoltHNTR : DroneBolt { Speed 6.125 }
+ACTOR DroneBoltUV : DroneBolt { Speed 7.5 }
+ACTOR DroneBoltNightmare : DroneBolt { Speed 8.155 }
+
+ACTOR SphtProjectileTrail
+{
+    Radius 1
+    Height 1
+    Speed 0
+	Scale 0.49
+    +NOGRAVITY
+    -SOLID
+    +NOCLIP
+    +CLIENTSIDEONLY
+    States
+    {
+      Spawn:
+        TNT1 A 2
+        COP2 EFG 4 bright
+        stop
+    }
+}
+
+ACTOR SphtProjectile
+{
+	Radius 10
+	Height 12
+	Speed 6.525
+	Scale 0.49
+	Damage (random (40, 50))
+	PROJECTILE
+	DamageType "CompilerBolt"
+	SeeSound "spht/attack"
+	DeathSound "sphtattack/explode"
+	States 
+	{
+		Spawn:
+			COPR ABCD 4 Bright
+			Loop
+		Death:
+			CPEX ABCDEF 4 bright
+			Stop
+		XDeath:
+			TNT1 A 0 A_RadiusThrust(2500,60,0)
+			CPEX ABCDEF 4 Bright
+			Stop
+	}
+}
+
+ACTOR SphtSeekerProjectile : SphtProjectile
+{
+	+SEEKERMISSILE
+	+DONTSEEKINVISIBLE
+	States
+	{
+		Spawn:
+			TNT1 A 0 A_SpawnItem("SphtProjectileTrail")
+			COP2 A 2 Bright A_SeekerMissile(4,6)
+			TNT1 A 0 A_SpawnItem("SphtProjectileTrail")
+			COP2 A 2 Bright A_SeekerMissile(4,6)
+			TNT1 A 0 A_SpawnItem("SphtProjectileTrail")
+			COP2 B 2 Bright A_SeekerMissile(4,6)
+			TNT1 A 0 A_SpawnItem("SphtProjectileTrail")
+			COP2 B 2 Bright A_SeekerMissile(4,6)
+			TNT1 A 0 A_SpawnItem("SphtProjectileTrail")
+			COP2 C 2 Bright A_SeekerMissile(4,6)
+			TNT1 A 0 A_SpawnItem("SphtProjectileTrail")
+			COP2 C 2 Bright A_SeekerMissile(4,6)
+			TNT1 A 0 A_SpawnItem("SphtProjectileTrail")
+			COP2 D 2 Bright A_SeekerMissile(4,6)
+			TNT1 A 0 A_SpawnItem("SphtProjectileTrail")
+			COP2 D 2 Bright A_SeekerMissile(4,6)
+			Loop
+		Death:
+			CP2X ABCDEF 4 Bright
+			Stop
+		XDeath:
+			TNT1 A 0 A_RadiusThrust(2500,60,0)
+			CP2X ABCDEF 4 Bright
+			Stop
+	}
+}
+
+ACTOR SphtProjectileITYTD : SphtProjectile { Speed 5.74 }
+ACTOR SphtProjectileHNTR : SphtProjectile { Speed 6.125 }
+ACTOR SphtProjectileUV : SphtProjectile { Speed 7.5 }
+ACTOR SphtProjectileNightmare : SphtProjectile { Speed 8.155 }
+
+ACTOR SphtSeekerProjectileITYTD : SphtSeekerProjectile { Speed 5.74 }
+ACTOR SphtSeekerProjectileHNTR : SphtSeekerProjectile { Speed 6.125 }
+ACTOR SphtSeekerProjectileUV : SphtSeekerProjectile { Speed 7.5 }
+ACTOR SphtSeekerProjectileNightmare : SphtSeekerProjectile { -DONTSEEKINVISIBLE Speed 8.155 }
+
+ACTOR SphtKrProjectile
+{
+	Radius 5
+	Height 12
+	Speed 13.05
+	Scale 0.49
+	Damage (random (30, 38))
+	PROJECTILE
+	SeeSound "sphtkr/attack"
+	DeathSound "sphtkrattack/explode"
+	States 
+	{
+		Spawn:
+			KRPR ABC 2 Bright
+			Loop
+		Death:
+			KPEX ABCDEF 4 bright
+			Stop
+	}
+}
+
+ACTOR SphtKrSeekerProjectile : SphtKrProjectile
+{
+	+SEEKERMISSILE
+	+DONTSEEKINVISIBLE
+	States
+	{
+		Spawn:
+			KRPR ABC 2 Bright A_SeekerMissile(5,7.5)
+			Loop
+	}
+}
+
+ACTOR SphtKrProjectileITYTD : SphtKrProjectile { Speed 5.74 }
+ACTOR SphtKrProjectileHNTR : SphtKrProjectile { Speed 6.125 }
+ACTOR SphtKrProjectileUV : SphtKrProjectile { Speed 7.5 }
+ACTOR SphtKrProjectileNightmare : SphtKrProjectile { Speed 8.155 }
+
+ACTOR SphtKrSeekerProjectileITYTD : SphtKrSeekerProjectile { Speed 5.74 }
+ACTOR SphtKrSeekerProjectileHNTR : SphtKrSeekerProjectile { Speed 6.125 }
+ACTOR SphtKrSeekerProjectileUV : SphtKrSeekerProjectile { Speed 7.5 }
+ACTOR SphtKrSeekerProjectileNightmare : SphtKrSeekerProjectile { -DONTSEEKINVISIBLE Speed 8.155 }
+
+ACTOR FlicktaProjectile
+{
+	Radius 6
+	Height 8
+	Speed 6.525
+	Scale 0.49
+	Gravity 0.075
+	Damage (random (15, 20))
+	PROJECTILE
+	-NOGRAVITY
+	SeeSound ""
+	DeathSound "flickta/rockhit"
+	States 
+	{
+		Spawn:
+			FLPR A 4 A_ChangeVelocity(0,0,0.24)
+			Loop
+		Death:
+			FLPR B 6
+			FLPR C 6
+			FLPR D 6
+			FLPR E 6
+			Stop
+	}
+}
+
+ACTOR FlicktaProjectileITYTD : FlicktaProjectile { Speed 5.74 }
+ACTOR FlicktaProjectileHNTR : FlicktaProjectile { Speed 6.125 }
+ACTOR FlicktaProjectileUV : FlicktaProjectile { Speed 7.5 }
+ACTOR FlicktaProjectileNightmare : FlicktaProjectile { Speed 8.155 }
+
+
+ACTOR EnforcerShotEnemy : EnforcerShot
 {
 	Damage (random(20, 28))
+}
+
+ACTOR EnforcerShotEnemyITYTD : EnforcerShotEnemy { Speed 13.2 }
+ACTOR EnforcerShotEnemyHNTR : EnforcerShotEnemy { Speed 14.1 }
+ACTOR EnforcerShotEnemyUV : EnforcerShotEnemy { Speed 16.95 }
+ACTOR EnforcerShotEnemyNightmare : EnforcerShotEnemy { Speed 18.75 }
+
+ACTOR M1EnforcerBullet : AlienWeaponBullet
+{
+	Damage (random(10, 18))
+	Obituary ""
+}
+
+ACTOR TrooperBullet : AlienWeaponBullet
+{
+	Damage (random(15,19))
+	Obituary ""
 }
 
 ACTOR HunterShot
 {
 	Radius 6
 	Height 8
-	Speed 15
+	Speed 13.05
 	Scale 0.49
 	Damage (random (15, 20))
 	PROJECTILE
@@ -24,14 +393,535 @@ ACTOR HunterShot
 			HUPR A 4 Bright
 			Loop
 		Death:
-			HUEX A 1
-			HUEX B 2
-			HUEX C 3
-			HUEX D 2
+			HUEX A 1 bright
+			HUEX B 2 bright
+			HUEX C 3 bright
+			HUEX D 2 bright
 			Stop
 	}
 }
 
+ACTOR HunterShotITYTD : HunterShot { Speed 11.48 }
+ACTOR HunterShotHNTR : HunterShot { Speed 12.26 }
+ACTOR HunterShotUV : HunterShot { Speed 15 }
+ACTOR HunterShotNightmare : HunterShot { Speed 16.31 }
+
+ACTOR JuggernautRocketTrail
+{
+    Radius 1
+    Height 1
+    Speed 0
+    +NOGRAVITY
+    -SOLID
+    +NOCLIP
+    +CLIENTSIDEONLY
+    States
+    {
+      Spawn:
+        TNT1 A 3
+        FLME B 4 bright
+		FLME CD 5 bright
+		FLME E 4 bright
+        stop
+    }
+}
+
+ACTOR JuggernautRocket
+{
+	Radius 10
+	Height 10
+	Speed 10.399
+	Scale 1.2
+	Gravity 0.05
+	PROJECTILE
+	+SEEKERMISSILE
+	+DONTSEEKINVISIBLE
+	DeathSound "marathon/rifle/nadexpl"
+	States
+	{
+		Spawn:
+			TNT1 A 0 A_SpawnItem("JuggernautRocketTrail")
+			JMIS A 2 bright A_SeekerMissile(5,7.5)
+			Loop
+		Death:
+			TNT1 A 0 A_NoGravity
+			XPLD A 4 Bright A_Explode(40+random(0,20),96)
+			XPLD B 4 Bright 
+			XPLD C 4 Bright
+			XPLD D 4 Bright
+			XPLD E 4 Bright
+			XPLD F 4 Bright
+			Stop
+	}
+}
+
+ACTOR JuggernautRocketITYTD : JuggernautRocket { Speed 9.151 }
+ACTOR JuggernautRocketHNTR : JuggernautRocket { Speed 9.775 }
+ACTOR JuggernautRocketUV : JuggernautRocket { Speed 11.75 }
+ACTOR JuggernautRocketNightmare : JuggernautRocket { -DONTSEEKINVISIBLE Speed 12.998 }
+
+ACTOR M1JuggernautRocket
+{
+	Radius 10
+	Height 10
+	Speed 10.399
+	Scale 1.2
+	Gravity 0.05
+	PROJECTILE
+	+SEEKERMISSILE
+	+DONTSEEKINVISIBLE
+	DeathSound "marathon/rifle/nadexpl"
+	States
+	{
+		Spawn:
+			TNT1 A 0 A_SpawnItem("M1JuggernautRocketTrail")
+			J1MI A 2 bright A_SeekerMissile(5,7.5)
+			Loop
+		Death:
+			TNT1 A 0 A_NoGravity
+			XPLD A 4 Bright A_Explode(40+random(0,20),96)
+			XPLD B 4 Bright 
+			XPLD C 4 Bright
+			XPLD D 4 Bright
+			XPLD E 4 Bright
+			XPLD F 4 Bright
+			Stop
+	}
+}
+
+ACTOR M1JuggernautRocketITYTD : M1JuggernautRocket { Speed 9.151 }
+ACTOR M1JuggernautRocketHNTR : M1JuggernautRocket { Speed 9.775 }
+ACTOR M1JuggernautRocketUV : M1JuggernautRocket { Speed 11.75 }
+ACTOR M1JuggernautRocketNightmare : M1JuggernautRocket { -DONTSEEKINVISIBLE Speed 12.998 }
+
+ACTOR M1JuggernautRocketTrail : MarathonGrenadeSmoke
+{
+	Scale 1
+	States
+	{
+		Spawn:
+        TNT1 A 2
+        MSMK ABCD 1
+        stop
+	}
+}
+
+ACTOR TrooperGrenade : MarathonGrenade
+{
+	Speed 10.399
+	States
+	{
+		Spawn:
+			TRGR AAAABBBB 1 Bright A_SpawnItem("MarathonGrenadeSmoke")
+        
+		Spawn2:
+			TRGR AABB 2 Bright A_ChangeVelocity(0,0,0.20)
+			Loop
+        
+		Death:
+			TNT1 A 0 A_NoGravity
+			XPLD A 4 Bright A_Explode(40+random(0, 20), 128)
+			XPLD B 4 Bright 
+			XPLD C 4 Bright
+			XPLD D 4 Bright
+			XPLD E 4 Bright
+			XPLD F 4 Bright
+			Stop
+	}
+}
+
+ACTOR TrooperGrenadeITYTD : TrooperGrenade { Speed 9.151 }
+ACTOR TrooperGrenadeHNTR : TrooperGrenade { Speed 9.775 }
+ACTOR TrooperGrenadeUV : TrooperGrenade { Speed 11.75 }
+ACTOR TrooperGrenadeNightmare : TrooperGrenade { Speed 12.998 }
+
+
+ACTOR NewDukeGibs1_Pfhor : NewDukeGibs1 //Thanks to PresidentPeople for the pretty yellow gibs
+{
+    //Health 2
+	States
+	{
+		Spawn:
+			DPG2 ABCD 5
+			Loop
+		Death:
+			TNT1 A 0 A_Gravity
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(SAMSARA_DECORATE,31) == 1, "Death2")
+			DPG6 ABCDEF 5
+			Stop
+		Death2:
+			DPG1 E 2100
+			Loop
+	}
+}
+
+ACTOR NewDukeGibs2_Pfhor : NewDukeGibs1  // eyes
+{
+	States
+	{
+		Spawn:
+			DPG2 ABCD 5
+			Loop
+		Death:
+			TNT1 A 0 A_Gravity
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(SAMSARA_DECORATE,31) == 1, "Death2")
+			DPG6 ABCDEF 5
+			Stop
+		Death2:
+			DPG2 E 2100
+			Loop
+	}
+}
+
+ACTOR NewDukeGibs3_Pfhor : NewDukeGibs1
+{
+	States
+	{
+		Spawn:
+			DPG3 ABCD 5
+			Loop
+		Death:
+			TNT1 A 0 A_Gravity
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(SAMSARA_DECORATE,31) == 1, "Death2")
+			DPG6 ABCDEF 5
+			Stop
+		Death2:
+			DPG3 E 2100
+			Loop
+	}
+}
+
+ACTOR NewDukeGibs4_Pfhor : NewDukeGibs1
+{
+	States
+	{
+		Spawn:
+			DPG4 ABCD 5
+			Loop
+		Death:
+			TNT1 A 0 A_Gravity
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(SAMSARA_DECORATE,31) == 1, "Death2")
+			DPG6 ABCDEF 5
+			Stop
+		Death2:
+			DPG4 E 2100
+			Loop
+	}
+}
+
+ACTOR NewDukeGibs5_Pfhor : NewDukeGibs1
+{
+	States
+	{
+		Spawn:
+			DPG5 ABCD 5
+			Loop
+		Death:
+			TNT1 A 0 A_Gravity
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(SAMSARA_DECORATE,31) == 1, "Death2")
+			DPG6 ABCDEF 5
+			Stop
+		Death2:
+			DPG5 E 2100
+			Loop
+	}
+}
+
+ACTOR NewDukeGibs6_Pfhor : NewDukeGibs1
+{
+	States
+	{
+		Spawn:
+			DPG6 AB 5
+			Loop
+		Death:
+			TNT1 A 0 A_Gravity
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(SAMSARA_DECORATE,31) == 1, "Death2")
+			DPG6 ABCDEFGH 5
+			Stop
+		Death2:
+			DPG6 CDEFGH 5
+			DPG6 H 2100
+			Goto Death2+6
+	}
+}
+
+actor NewDukeGibs1_FlicktaBlue : NewDukeGibs1
+{
+	Health 1
+	Translation "16:47=[0,200,204]:[0,64,64]"
+	States
+	{
+		Spawn:
+			DKG1 ABCD 5
+			Loop
+	}
+}
+
+actor NewDukeGibs2_FlicktaBlue : NewDukeGibs2
+{
+	Health 1
+	Translation "16:47=[0,200,204]:[0,64,64]"
+	States
+	{
+		Spawn:
+			DKG2 ABCD 5
+			Loop
+	}
+}
+
+actor NewDukeGibs3_FlicktaBlue : NewDukeGibs3
+{
+	Health 1
+	Translation "16:47=[0,200,204]:[0,64,64]"
+	States
+	{
+		Spawn:
+			DKG3 ABCD 5
+			Loop
+	}
+}
+
+actor NewDukeGibs4_FlicktaBlue : NewDukeGibs4
+{
+	Health 1
+	Translation "16:47=[0,200,204]:[0,64,64]"
+	States
+	{
+		Spawn:
+			DKG4 ABCD 5
+			Loop
+	}
+}
+
+actor NewDukeGibs5_FlicktaBlue : NewDukeGibs5
+{
+	Health 1
+	Translation "16:47=[0,200,204]:[0,64,64]"
+	States
+	{
+		Spawn:
+			DKG5 ABCD 5
+			Loop
+	}
+}
+
+actor NewDukeGibs6_FlicktaBlue : NewDukeGibs6
+{
+	Health 1
+	Translation "16:47=[0,200,204]:[0,64,64]"
+	States
+	{
+		Spawn:
+			DKG6 AB 5
+			Loop
+	}
+}
+
+actor NewDukeGibs1_FlicktaGreen : NewDukeGibs1
+{
+	Health 1
+	Translation "16:47=112:127"
+	States
+	{
+		Spawn:
+			DKG1 ABCD 5
+			Loop
+	}
+}
+
+actor NewDukeGibs2_FlicktaGreen : NewDukeGibs2
+{
+	Health 1
+	Translation "16:47=112:127"
+	States
+	{
+		Spawn:
+			DKG2 ABCD 5
+			Loop
+	}
+}
+
+actor NewDukeGibs3_FlicktaGreen : NewDukeGibs3
+{
+	Health 1
+	Translation "16:47=112:127"
+	States
+	{
+		Spawn:
+			DKG3 ABCD 5
+			Loop
+	}
+}
+
+actor NewDukeGibs4_FlicktaGreen : NewDukeGibs4
+{
+	Health 1
+	Translation "16:47=112:127"
+	States
+	{
+		Spawn:
+			DKG4 ABCD 5
+			Loop
+	}
+}
+
+actor NewDukeGibs5_FlicktaGreen : NewDukeGibs5
+{
+	Health 1
+	Translation "16:47=112:127"
+	States
+	{
+		Spawn:
+			DKG5 ABCD 5
+			Loop
+	}
+}
+
+actor NewDukeGibs6_FlicktaGreen : NewDukeGibs6
+{
+	Health 1
+	Translation "16:47=112:127"
+	States
+	{
+		Spawn:
+			DKG6 AB 5
+			Loop
+	}
+}
+
+actor NewDukeGibs1_MajorHunter : NewDukeGibs1
+{
+	Health 1
+	Translation "16:47=[164,173,235]:[37,40,54]", "189:190=[102,106,145]:[101,105,144]"
+	States
+	{
+		Spawn:
+			DKG1 ABCD 5
+			Loop
+	}
+}
+
+actor NewDukeGibs2_MajorHunter : NewDukeGibs2
+{
+	Health 1
+	Translation "16:47=[164,173,235]:[37,40,54]", "189:190=[102,106,145]:[101,105,144]"
+	States
+	{
+		Spawn:
+			DKG2 ABCD 5
+			Loop
+	}
+}
+
+actor NewDukeGibs3_MajorHunter : NewDukeGibs3
+{
+	Health 1
+	Translation "16:47=[164,173,235]:[37,40,54]", "189:190=[102,106,145]:[101,105,144]"
+	States
+	{
+		Spawn:
+			DKG3 ABCD 5
+			Loop
+	}
+}
+
+actor NewDukeGibs4_MajorHunter : NewDukeGibs4
+{
+	Health 1
+	Translation "16:47=[164,173,235]:[37,40,54]", "189:190=[102,106,145]:[101,105,144]"
+	States
+	{
+		Spawn:
+			DKG4 ABCD 5
+			Loop
+	}
+}
+
+actor NewDukeGibs5_MajorHunter : NewDukeGibs5
+{
+	Health 1
+	Translation "16:47=[164,173,235]:[37,40,54]", "189:190=[102,106,145]:[101,105,144]"
+	States
+	{
+		Spawn:
+			DKG5 ABCD 5
+			Loop
+	}
+}
+
+actor NewDukeGibs6_MajorHunter : NewDukeGibs6
+{
+	Health 1
+	Translation "16:47=[164,173,235]:[37,40,54]", "189:190=[102,106,145]:[101,105,144]"
+	States
+	{
+		Spawn:
+			DKG6 AB 5
+			Loop
+	}
+}
+
+ACTOR M2EnforcerDrop : SamsaraSlotSixDrop
+{
+	+DROPPED
+	+NOCLIP
+	Scale 0.45
+	States
+    {
+		Spawn:
+			ENP2 A -1
+			stop
+		Pickup:
+			TNT1 A 0 A_JumpIfInventory("MarathonClass",1,"SOPickup")
+			TNT1 A 0 A_GiveInventory("Clip",20)
+			TNT1 A 0 A_JumpIf((ACS_ExecuteWithResult(229, 6, 1) & 1) == 1, "PickupSuccess")
+			goto PickupFailure
+		SOPickup:
+			TNT1 A 0 A_JumpIfInventory("UnknownAmmo",0,"PickupFailure")
+			TNT1 A 0 A_GiveInventory("UnknownAmmo", 50)
+			TNT1 A 0 A_GiveInventory("Alien Weapon")
+			TNT1 A 0 A_SetBlend("Green",0.4,8)
+			TNT1 A 0 A_PlaySound("marathon/itemget",5)
+			stop
+    }
+}
+
+ACTOR M1EnforcerDrop : SamsaraSlotFourDrop
+{
+	+DROPPED
+	+NOCLIP
+	Scale 0.5
+	States
+    {
+		Spawn:
+			ENP1 A -1
+			stop
+		Pickup:
+			TNT1 A 0 A_JumpIfInventory("MarathonClass",1,"SOPickup")
+			TNT1 A 0 A_GiveInventory("Cell",20)
+			TNT1 A 0 A_JumpIf((ACS_ExecuteWithResult(229, 4, 1) & 1) == 1, "PickupSuccess")
+			goto PickupFailure
+		SOPickup:
+			TNT1 A 0 A_JumpIfInventory("UnknownAmmo2",0,"PickupFailure")
+			TNT1 A 0 A_GiveInventory("UnknownAmmo2", 50)
+			TNT1 A 0 A_GiveInventory(" Alien Weapon ")
+			TNT1 A 0 A_SetBlend("Green",0.4,8)
+			TNT1 A 0 A_PlaySound("marathon/itemget",5)
+			stop
+    }
+}
+
+actor Counter : Inventory
+{
+   Inventory.MaxAmount 0x7FFFFFFF
+   +UNDROPPABLE
+   -INVBAR
+}
+
+ACTOR FrameTicCounter : Counter {}
+ACTOR AttackFrequency : Counter {}
+ACTOR AttackReps : Counter {}
 ACTOR EnforcerShotToken : Inventory { Inventory.MaxAmount 12 }
 ACTOR HunterShotToken : Inventory { Inventory.MaxAmount 6 }
 ACTOR MarathonDukeGib : Inventory { Inventory.MaxAmount 1 }

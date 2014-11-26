@@ -1,0 +1,382 @@
+ACTOR M2EnforcerMinor
+{
+	Health 120
+	Radius 16
+	Height 56
+	Speed 4.779
+	PainChance 255
+	MaxDropOffHeight 96
+	Gravity 0.15
+	MONSTER
+	+FLOORCLIP
+    +NOTDMATCH
+    +NOICEDEATH
+	+DONTRIP
+	+MISSILEMORE
+	+MISSILEEVENMORE
+	SeeSound "m2enforcer/sight"
+	PainSound ""
+	DeathSound "pfhor/death"
+	ActiveSound ""
+	AttackSound ""
+	Dropitem "DefaultPinataPop"
+	Obituary "%o was burned to a crisp by a Minor Enforcer."
+    DamageFactor "Mace", 1.1
+    DamageFactor "DragonClaw", 1.5
+	DamageFactor "MarathonShotgun", 2.0
+	DamageFactor "MarathonPlasmaFire", 0.74
+    PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
+	Decal BulletChip
+	Scale 0.49
+	Bloodcolor Yellow
+	States 
+	{
+		Spawn:
+			ENMI A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 0, "SpawnITYTD")
+			ENMI A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 1, "SpawnHNTR")
+			ENMI A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 2, "SpawnHMP")
+			ENMI A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 3, "SpawnUV")
+			ENMI A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 4, "SpawnNightmare")
+			Goto SpawnITYTD
+		SpawnITYTD:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",420)
+			Goto Spawn2
+		SpawnHNTR:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",280)
+			Goto Spawn2
+		SpawnHMP:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",140)
+			Goto Spawn2
+		SpawnUV:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",70)
+			Goto Spawn2
+		SpawnNightmare:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",35)
+			Goto Spawn2
+		Spawn2:
+			ENMI A 3 A_Look
+			Loop
+		See:
+			TNT1 A 0 A_JumpIfInventory("FrameTicCounter",8,"See2")
+			TNT1 A 0 A_TakeInventory("AttackFrequency",1)
+			TNT1 A 0 A_GiveInventory("FrameTicCounter",1)
+			TNT1 A 0 A_JumpIfInventory("AttackFrequency",1,2)
+			ENMI B 1 A_Chase
+			Loop
+			ENMI B 1 A_Chase(0,0)
+			Loop
+		See2:
+			TNT1 A 0 A_JumpIfInventory("FrameTicCounter",16,"See3")
+			TNT1 A 0 A_TakeInventory("AttackFrequency",1)
+			TNT1 A 0 A_GiveInventory("FrameTicCounter",1)
+			TNT1 A 0 A_JumpIfInventory("AttackFrequency",1,2)
+			ENMI A 1 A_Chase
+			Loop
+			ENMI A 1 A_Chase(0,0)
+			Loop
+		See3:
+			TNT1 A 0 A_JumpIfInventory("FrameTicCounter",24,"See4")
+			TNT1 A 0 A_TakeInventory("AttackFrequency",1)
+			TNT1 A 0 A_GiveInventory("FrameTicCounter",1)
+			TNT1 A 0 A_JumpIfInventory("AttackFrequency",1,2)
+			ENMI C 1 A_Chase
+			Loop
+			ENMI C 1 A_Chase(0,0)
+			Loop
+		See4:
+			TNT1 A 0 A_JumpIfInventory("FrameTicCounter",32,"SeeEnd")
+			TNT1 A 0 A_TakeInventory("AttackFrequency",1)
+			TNT1 A 0 A_GiveInventory("FrameTicCounter",1)
+			TNT1 A 0 A_JumpIfInventory("AttackFrequency",1,2)
+			ENMI A 1 A_Chase
+			Loop
+			ENMI A 1 A_Chase(0,0)
+			Loop
+		SeeEnd:
+			TNT1 A 0 A_TakeInventory("FrameTicCounter",32)
+			Goto See
+		Stand:
+			TNT1 A 0 A_TakeInventory("AttackFrequency",1)
+			TNT1 A 0 A_JumpIfInventory("AttackFrequency",1,2)
+			ENMI A 1 A_Chase(0,"Missile",CHF_DONTMOVE)
+			Loop
+			ENMI A 1 A_Chase(0,0,CHF_DONTMOVE)
+			Loop
+		Missile:
+			ENMI D 3 A_FaceTarget
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 0, "MissileITYTD")
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 1, "MissileHNTR")
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 2, "MissileHMP")
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 3, "MissileUV")
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 4, "MissileNightmare")
+		MissileITYTD:
+			TNT1 A 0 A_TakeInventory("FrameTicCounter",32)
+			TNT1 A 0 A_GiveInventory("AttackFrequency",420)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0 A_JumpIfInventory("EnforcerShotToken",4,"MissileEnd")
+			ENMI E 4 A_FaceTarget
+			TNT1 A 0 A_PlaySound("m2enforcer/shoot", CHAN_WEAPON)
+			ENMI F 3 Bright A_CustomMissile("EnforcerShotEnemyITYTD", 50, 0, Random(-4,4), 0, Random(-4,4))
+			TNT1 A 0 A_GiveInventory("EnforcerShotToken",1)
+			Goto MissileITYTD+2
+		MissileHNTR:
+			TNT1 A 0 A_TakeInventory("FrameTicCounter",32)
+			TNT1 A 0 A_GiveInventory("AttackFrequency",280)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0 A_JumpIfInventory("EnforcerShotToken",4,"MissileEnd")
+			ENMI E 4 A_FaceTarget
+			TNT1 A 0 A_PlaySound("m2enforcer/shoot", CHAN_WEAPON)
+			ENMI F 3 Bright A_CustomMissile("EnforcerShotEnemyHNTR", 50, 0, Random(-4,4), 0, Random(-4,4))
+			TNT1 A 0 A_GiveInventory("EnforcerShotToken",1)
+			Goto MissileHNTR+2
+		MissileHMP:
+			TNT1 A 0 A_TakeInventory("FrameTicCounter",32)
+			TNT1 A 0 A_GiveInventory("AttackFrequency",140)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0 A_JumpIfInventory("EnforcerShotToken",8,"MissileEnd")
+			ENMI E 4 A_FaceTarget
+			TNT1 A 0 A_PlaySound("m2enforcer/shoot", CHAN_WEAPON)
+			ENMI F 3 Bright A_CustomMissile("EnforcerShotEnemy", 50, 0, Random(-4,4), 0, Random(-4,4))
+			TNT1 A 0 A_GiveInventory("EnforcerShotToken",1)
+			Goto MissileHMP+2
+		MissileUV:
+			TNT1 A 0 A_TakeInventory("FrameTicCounter",32)
+			TNT1 A 0 A_GiveInventory("AttackFrequency",70)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0 A_JumpIfInventory("EnforcerShotToken",9,"MissileEnd")
+			ENMI E 4 A_FaceTarget
+			TNT1 A 0 A_PlaySound("m2enforcer/shoot", CHAN_WEAPON)
+			ENMI F 3 Bright A_CustomMissile("EnforcerShotEnemyUV", 50, 0, Random(-4,4), 0, Random(-4,4))
+			TNT1 A 0 A_GiveInventory("EnforcerShotToken",1)
+			Goto MissileUV+2
+		MissileNightmare:
+			TNT1 A 0 A_TakeInventory("FrameTicCounter",32)
+			TNT1 A 0 A_GiveInventory("AttackFrequency",35)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_JumpIfInventory("EnforcerShotToken",9,"MissileEnd")
+			ENMI E 4 A_FaceTarget
+			TNT1 A 0 A_PlaySound("m2enforcer/shoot", CHAN_WEAPON)
+			ENMI F 3 Bright A_CustomMissile("EnforcerShotEnemyNightmare", 50, 0, Random(-4,4), 0, Random(-4,4))
+			TNT1 A 0 A_GiveInventory("EnforcerShotToken",1)
+			Goto MissileNightmare+2
+		MissileEnd:
+			TNT1 A 0 A_TakeInventory("EnforcerShotToken",9)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			Goto Stand
+		Pain:
+			ENMI A 1
+			TNT1 A 0 A_TakeInventory("EnforcerShotToken",8)
+			Goto See
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_TakeInventory("EnforcerShotToken",8)
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			ENMI F 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			ENMI F 16
+			Goto See
+		Pain.MarathonStun:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_TakeInventory("EnforcerShotToken",8)
+			TNT1 A 0 A_GiveInventory("NothingSpeed")
+			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			ENMI E 5 A_FaceTarget
+			TNT1 A 0 A_Gravity
+			ENMI D 30 A_Pain
+			ENMI D 70
+			Goto See
+		Death.DukeDamage:
+		Death.DukePistol:
+			TNT1 A 0 A_Jump(218,"Death")
+			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
+			goto Death
+		Death.MightyBoot:
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_Jump(64,"Death")
+			TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
+			goto Death
+		Death.DukeExplosive:
+			TNT1 A 0 A_JumpIfHealthLower(-3,1)
+			Goto XDeath
+			TNT1 A 0 A_GiveInventory ("MarathonDukeGib",1)
+			Goto XDeath
+		DukeGibStart:
+			ENMI L 1
+			TNT1 A 0 A_UnsetSolid
+			ENMI L 1 A_SpawnDebris("NewDukeGibs1_Pfhor")
+			TNT1 A 0 A_SpawnDebris("NewDukeGibs2_Pfhor")
+			TNT1 AA 0 A_SpawnDebris("NewDukeGibs3_Pfhor")
+			TNT1 AAA 0 A_SpawnDebris("NewDukeGibs4_Pfhor")
+			TNT1 AA 0 A_SpawnDebris("NewDukeGibs5_Pfhor")
+			TNT1 AAA 0 A_SpawnDebris("NewDukeGibs6_Pfhor")
+			TNT1 A 0 A_PlaySound("duke/enemygib",5)
+			TNT1 A 0 A_TakeInventory("MarathonDukeGib",1)
+			TNT1 A 0 A_Jump(96,"XDeath2")
+			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
+			Goto XDeath2
+		Death:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 A_Scream
+			TNT1 A 0 A_Recoil(5)
+			ENMI G 13
+			ENMI GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG 2 A_JumpIf(momx < 0.8 && momy < 0.8 && momz == 0, "Death2")
+			ENMI G 2 A_CheckFloor("Death2")
+			Goto Death+4
+		Death2:
+			ENMI H 4 A_Stop
+			ENMI I 5
+			ENMI J 4 A_NoBlocking
+			ENMI K 0 A_PlaySoundEx("marathon/splash","body",0,0)
+			ENMI K 1 A_KillMaster
+			ENMI K -1 A_SpawnItemEx("M2EnforcerDrop",0,0,0,0,0,0,0,32)
+			Stop
+		Death.Explosive:
+		XDeath:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 A_Scream
+			TNT1 A 0 A_Recoil(5)
+			ENMI G 4
+			ENMI GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG 2 A_JumpIf(momx < 0.8 && momy < 0.8 && momz == 0, "XDeath2")
+			ENMI G 2 A_CheckFloor("XDeath2")
+			Goto XDeath+4
+		XDeath2:
+			TNT1 A 0 A_JumpIfInventory("MarathonDukeGib",1,"DukeGibStart")
+			ENMI L 5 A_PlaySoundEx("pfhor/xdeath","body",0,0)
+			ENMI M 5 A_Stop
+			ENMI N 5 
+			ENMI O 5 A_NoBlocking
+			ENMI P 5
+			ENMI Q -1 A_KillMaster
+			Stop
+		Death.HexGreenFire:
+		Death.QuakeFire:
+		Death.FireExplosive:
+		Death.MarathonPlasmaFire:
+		Burn:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 A_Recoil(5)
+			SOPL U 13 Bright A_PlaySound("pfhor/wail")
+			SOPL UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU 2 Bright A_JumpIf(momx < 0.8 && momy < 0.8 && momz == 0, "Burn2")
+			SOPL U 2 A_CheckFloor("Burn2")
+			Goto Burn+3
+		Burn2:
+			SOPL V 5 Bright A_Stop
+			SOPL W 4 Bright A_NoBlocking
+			SOPL X 5 Bright
+			SOPL X -1 A_KillMaster
+			Stop
+		Death.ZorchPistol:
+		Death.Zorch:
+		Death.ZorchKamikaze:
+		Death.PhasingZorch:
+		Death.ZorchSpectral:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			ENMA D 0 A_Stop
+			TNT1 A 0 A_ChangeFlag("DONTGIB",1)
+			TNT1 A 0 A_PlaySoundEx("chex/zorch","soundslot5",0,0)
+			ENMA D 3 A_SpawnItem("ZorchEffectSmall")
+			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
+			ENMA D 3 A_SetTranslucent(0.9,0)
+			ENMA D 0 A_Scream
+			ENMA D 3 A_SetTranslucent(0.8,0)
+			ENMA D 0 A_NoBlocking
+			ENMA D 3 A_SetTranslucent(0.7,0)
+			ENMA D 3 A_SetTranslucent(0.6,0)
+			ENMA D 3 A_SetTranslucent(0.5,0)
+			ENMA D 3 A_SetTranslucent(0.4,0)
+			ENMA D 3 A_SetTranslucent(0.3,0)
+			ENMA D 3 A_SetTranslucent(0.2,0)
+			ENMA D 3 A_SetTranslucent(0.1,0)
+			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A 1 A_KillMaster
+			TNT1 A -1 A_SpawnItemEx("M2EnforcerDrop",0,0,0,0,0,0,0,32,0)
+			stop
+		Death.DukeIce:
+			TNT1 A 0 A_PlaySound("duke/enemyfreeze")
+			TNT1 A 0 A_GiveInventory("FreezethrowerWeakness")
+			TNT1 A 0 A_Jump(218,"Ice")
+			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
+		Ice:
+		Death.HexenIce:
+		Death.Ice:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
+			TNT1 A 0 A_NoBlocking
+			//TNT1 A 0 A_SpawnItem("GuardFrozen")
+			ENMA D 0 A_GenericFreezeDeath
+			ENMA D 70 A_UnsetSolid
+			ENMA D 0 A_IceGuyDie
+			ENMA D 1 A_IceGuyDie
+			TNT1 A -1
+			stop
+		Raise:
+			TNT1 A 0 A_JumpIfInventory("EnemyZorched",1,"ZorchRaise")
+			ENMI KJIHG 5
+			Goto See
+		ZorchRaise:
+			TNT1 A 1 A_UnsetShootable
+			TNT1 A 1 A_SpawnItem("SpawnFire2")
+			TNT1 A 0 A_PlaySound("archvile/resummon")
+			TNT1 A 1 A_TakeInventory("EnemyZorched",1)
+			TNT1 A 0 A_SetTranslucent(0.1,0)
+			WGRD A 3 A_SetTranslucent(0.2,0)
+			WGRD A 3 A_SetTranslucent(0.3,0)
+			WGRD A 3 A_SetTranslucent(0.4,0)
+			WGRD A 3 A_SetTranslucent(0.5,0)
+			WGRD A 3 A_SetTranslucent(0.6,0)
+			WGRD A 3 A_SetTranslucent(0.7,0)
+			WGRD A 3 A_SetTranslucent(0.8,0)
+			WGRD A 3 A_SetTranslucent(0.9,0)
+			WGRD A 3 A_SetTranslucent(1,0)
+			WGRD A 1 A_SetShootable
+			Goto See
+	}
+}
+
+ACTOR M2EnforcerMinorITYTD : M2EnforcerMinor 
+{ 
+	Speed 4.205 
+	Health 60 
+}
+ACTOR M2EnforcerMinorHNTR : M2EnforcerMinor 
+{ 
+	Speed 4.492 
+	Health 90 
+}
+ACTOR M2EnforcerMinorUV : M2EnforcerMinor 
+{ 
+	Speed 5.4
+	Health 150 
+}
+ACTOR M2EnforcerMinorNightmare : M2EnforcerMinor 
+{ 
+	Speed 5.973 
+	Health 180
+}
+
+ACTOR MultiM2EnforcerMinor : M2EnforcerMinor
+{
+	Species "M2EnforcerMinor"
+	+THRUSPECIES
+}
+ACTOR MultiM2EnforcerMinorITYTD : M2EnforcerMinorITYTD
+{
+	Species "M2EnforcerMinor"
+	+THRUSPECIES
+}
+ACTOR MultiM2EnforcerMinorHNTR : M2EnforcerMinorHNTR
+{
+	Species "M2EnforcerMinor"
+	+THRUSPECIES
+}
+ACTOR MultiM2EnforcerMinorUV : M2EnforcerMinorUV
+{
+	Species "M2EnforcerMinor"
+	+THRUSPECIES
+}
+ACTOR MultiM2EnforcerMinorNightmare : M2EnforcerMinorNightmare
+{
+	Species "M2EnforcerMinor"
+	+THRUSPECIES
+}

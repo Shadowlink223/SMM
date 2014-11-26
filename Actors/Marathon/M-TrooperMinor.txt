@@ -1,0 +1,445 @@
+ACTOR TrooperMinor
+{
+	Health 120
+	Radius 18
+	Height 56
+	Speed 4.425
+	PainChance 255
+	MaxDropOffHeight 96
+	Gravity 0.15
+	MONSTER
+	+FLOORCLIP
+    +NOTDMATCH
+    +NOICEDEATH
+	+DONTRIP
+	+MISSILEMORE
+	+MISSILEEVENMORE
+	SeeSound "pfhorfighter/sight"
+	PainSound ""
+	DeathSound "pfhor/death"
+	ActiveSound "pfhor/roam"
+	AttackSound ""
+	Dropitem "DefaultPinataPop"
+	Obituary "A Minor Pfhor Trooper took %o down."
+    DamageFactor "Mace", 1.1
+    DamageFactor "DragonClaw", 1.5
+	DamageFactor "MarathonShotgun", 2.0
+	DamageFactor "MarathonPlasmaFire", 0.74
+    PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
+	Decal BulletChip
+	Scale 0.49
+	Bloodcolor Yellow
+	States 
+	{
+		Spawn:
+			TRMI A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 0, "SpawnITYTD")
+			TRMI A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 1, "SpawnHNTR")
+			TRMI A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 2, "SpawnHMP")
+			TRMI A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 3, "SpawnUV")
+			TRMI A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 4, "SpawnNightmare")
+			Goto SpawnITYTD
+		SpawnITYTD:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",420)
+			Goto Spawn2
+		SpawnHNTR:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",280)
+			Goto Spawn2
+		SpawnHMP:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",140)
+			Goto Spawn2
+		SpawnUV:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",70)
+			Goto Spawn2
+		SpawnNightmare:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",35)
+			Goto Spawn2
+		Spawn2:
+			TRMI A 3 A_Look
+			Loop
+		See:
+			TNT1 A 0 A_JumpIfInventory("FrameTicCounter",5,"See2")
+			TNT1 A 0 A_TakeInventory("AttackFrequency",1)
+			TNT1 A 0 A_GiveInventory("FrameTicCounter",1)
+			TNT1 A 0 A_JumpIfInventory("AttackFrequency",1,3)
+			TRMI B 1 A_Chase
+			TNT1 A 0 A_CheckFloor("See")
+			Goto Falling
+			TRMI B 1 A_Chase(0,0)
+			TNT1 A 0 A_CheckFloor("See")
+			Goto Falling
+		See2:
+			TNT1 A 0 A_JumpIfInventory("FrameTicCounter",10,"See3")
+			TNT1 A 0 A_TakeInventory("AttackFrequency",1)
+			TNT1 A 0 A_GiveInventory("FrameTicCounter",1)
+			TNT1 A 0 A_JumpIfInventory("AttackFrequency",1,3)
+			TRMI C 1 A_Chase(0,"Missile",CHF_NOPLAYACTIVE)
+			TNT1 A 0 A_CheckFloor("See2")
+			Goto Falling
+			TRMI C 1 A_Chase(0,0,CHF_NOPLAYACTIVE)
+			TNT1 A 0 A_CheckFloor("See2")
+			Goto Falling
+		See3:
+			TNT1 A 0 A_JumpIfInventory("FrameTicCounter",15,"See4")
+			TNT1 A 0 A_TakeInventory("AttackFrequency",1)
+			TNT1 A 0 A_GiveInventory("FrameTicCounter",1)
+			TNT1 A 0 A_JumpIfInventory("AttackFrequency",1,3)
+			TRMI D 1 A_Chase(0,"Missile",CHF_NOPLAYACTIVE)
+			TNT1 A 0 A_CheckFloor("See3")
+			Goto Falling
+			TRMI D 1 A_Chase(0,0,CHF_NOPLAYACTIVE)
+			TNT1 A 0 A_CheckFloor("See3")
+			Goto Falling
+		See4:
+			TNT1 A 0 A_JumpIfInventory("FrameTicCounter",20,"SeeEnd")
+			TNT1 A 0 A_TakeInventory("AttackFrequency",1)
+			TNT1 A 0 A_GiveInventory("FrameTicCounter",1)
+			TNT1 A 0 A_JumpIfInventory("AttackFrequency",1,3)
+			TRMI E 1 A_Chase(0,"Missile",CHF_NOPLAYACTIVE)
+			TNT1 A 0 A_CheckFloor("See4")
+			Goto Falling
+			TRMI E 1 A_Chase(0,0,CHF_NOPLAYACTIVE)
+			TNT1 A 0 A_CheckFloor("See4")
+			Goto Falling
+		SeeEnd:
+			TNT1 A 0 A_TakeInventory("FrameTicCounter",20)
+			Goto See
+		Falling:
+			TNT1 A 0 A_TakeInventory("FrameTicCounter",20)
+			TRMI D 3 A_CheckFloor("See")
+			Goto Falling+1
+		Missile:
+			TNT1 A 0 A_Jump(32,1)
+			TNT1 A 0 A_JumpIfCloser(160,"Missile2")
+			Goto Missile1
+		Missile1:
+			TRMI A 0 A_FaceTarget
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 0, "Missile1ITYTD")
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 1, "Missile1HNTR")
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 2, "Missile1HMP")
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 3, "Missile1UV")
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 4, "Missile1Nightmare")
+		Missile1ITYTD:
+			TNT1 A 0 A_TakeInventory("FrameTicCounter",20)
+			TNT1 A 0 A_GiveInventory("AttackFrequency",420)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0 A_JumpIfInventory("AttackReps",1,"Missile1End")
+			TRMI AA 4 A_FaceTarget
+			TNT1 A 0 A_PlaySound("marathon/rifle/grenade", CHAN_WEAPON)
+			TRMI F 4 Bright A_CustomMissile("TrooperGrenadeITYTD", 45, -8, Random(-5,5), 0, Random(-5,5))
+			TNT1 A 0 A_GiveInventory("AttackReps",1)
+			Goto Missile1ITYTD+2
+		Missile1HNTR:
+			TNT1 A 0 A_TakeInventory("FrameTicCounter",20)
+			TNT1 A 0 A_GiveInventory("AttackFrequency",280)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0 A_JumpIfInventory("AttackReps",1,"Missile1End")
+			TRMI AA 4 A_FaceTarget
+			TNT1 A 0 A_PlaySound("marathon/rifle/grenade", CHAN_WEAPON)
+			TRMI F 4 Bright A_CustomMissile("TrooperGrenadeHNTR", 45, -8, Random(-5,5), 0, Random(-5,5))
+			TNT1 A 0 A_GiveInventory("AttackReps",1)
+			Goto Missile1HNTR+2
+		Missile1HMP:
+			TNT1 A 0 A_TakeInventory("FrameTicCounter",20)
+			TNT1 A 0 A_GiveInventory("AttackFrequency",140)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0 A_JumpIfInventory("AttackReps",1,"Missile1End")
+			TRMI AA 4 A_FaceTarget
+			TNT1 A 0 A_PlaySound("marathon/rifle/grenade", CHAN_WEAPON)
+			TRMI F 4 Bright A_CustomMissile("TrooperGrenade", 45, -8, Random(-5,5), 0, Random(-5,5))
+			TNT1 A 0 A_GiveInventory("AttackReps",1)
+			Goto Missile1HMP+2
+		Missile1UV:
+			TNT1 A 0 A_TakeInventory("FrameTicCounter",20)
+			TNT1 A 0 A_GiveInventory("AttackFrequency",70)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0 A_JumpIfInventory("AttackReps",1,"Missile1End")
+			TRMI AA 4 A_FaceTarget
+			TNT1 A 0 A_PlaySound("marathon/rifle/grenade", CHAN_WEAPON)
+			TRMI F 4 Bright A_CustomMissile("TrooperGrenadeUV", 45, -8, Random(-5,5), 0, Random(-5,5))
+			TNT1 A 0 A_GiveInventory("AttackReps",1)
+			Goto Missile1UV+2
+		Missile1Nightmare:
+			TNT1 A 0 A_TakeInventory("FrameTicCounter",20)
+			TNT1 A 0 A_GiveInventory("AttackFrequency",35)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_JumpIfInventory("AttackReps",1,"Missile1End")
+			TRMI AA 4 A_FaceTarget
+			TNT1 A 0 A_PlaySound("marathon/rifle/grenade", CHAN_WEAPON)
+			TRMI F 4 Bright A_CustomMissile("TrooperGrenadeNightmare", 45, -8, Random(-5,5), 0, Random(-5,5))
+			TNT1 A 0 A_GiveInventory("AttackReps",1)
+			Goto Missile1Nightmare+2
+		Missile1End:
+			TNT1 A 0 A_TakeInventory("AttackReps",1)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			Goto See
+		Missile2:
+			TRMI A 0 A_FaceTarget
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 0, "Missile2ITYTD")
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 1, "Missile2HNTR")
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 2, "Missile2HMP")
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 3, "Missile2UV")
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 4, "Missile2Nightmare")
+		Missile2ITYTD:
+			TNT1 A 0 A_TakeInventory("FrameTicCounter",20)
+			TNT1 A 0 A_GiveInventory("AttackFrequency",420)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0 A_JumpIfInventory("AttackReps",3,"Missile2End")
+			TRMI A 2 A_FaceTarget
+			TNT1 A 0 A_PlaySound("marathon/rifle/fire", CHAN_WEAPON)
+			TRMI F 2 Bright A_CustomMissile("TrooperBullet", 45, 0, Random(-15,15), 0, Random(-15,15))
+			TNT1 A 0 A_GiveInventory("AttackReps",1)
+			Goto Missile2ITYTD+2
+		Missile2HNTR:
+			TNT1 A 0 A_TakeInventory("FrameTicCounter",20)
+			TNT1 A 0 A_GiveInventory("AttackFrequency",280)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0 A_JumpIfInventory("AttackReps",3,"Missile2End")
+			TRMI A 2 A_FaceTarget
+			TNT1 A 0 A_PlaySound("marathon/rifle/fire", CHAN_WEAPON)
+			TRMI F 2 Bright A_CustomMissile("TrooperBullet", 45, 0, Random(-15,15), 0, Random(-15,15))
+			TNT1 A 0 A_GiveInventory("AttackReps",1)
+			Goto Missile2HNTR+2
+		Missile2HMP:
+			TNT1 A 0 A_TakeInventory("FrameTicCounter",20)
+			TNT1 A 0 A_GiveInventory("AttackFrequency",140)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0 A_JumpIfInventory("AttackReps",4,"Missile2End")
+			TRMI A 2 A_FaceTarget
+			TNT1 A 0 A_PlaySound("marathon/rifle/fire", CHAN_WEAPON)
+			TRMI F 2 Bright A_CustomMissile("TrooperBullet", 45, 0, Random(-15,15), 0, Random(-15,15))
+			TNT1 A 0 A_GiveInventory("AttackReps",1)
+			Goto Missile2HMP+2
+		Missile2UV:
+			TNT1 A 0 A_TakeInventory("FrameTicCounter",20)
+			TNT1 A 0 A_GiveInventory("AttackFrequency",70)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0 A_JumpIfInventory("AttackReps",5,"Missile2End")
+			TRMI A 2 A_FaceTarget
+			TNT1 A 0 A_PlaySound("marathon/rifle/fire", CHAN_WEAPON)
+			TRMI F 2 Bright A_CustomMissile("TrooperBullet", 45, 0, Random(-15,15), 0, Random(-15,15))
+			TNT1 A 0 A_GiveInventory("AttackReps",1)
+			Goto Missile2UV+2
+		Missile2Nightmare:
+			TNT1 A 0 A_TakeInventory("FrameTicCounter",20)
+			TNT1 A 0 A_GiveInventory("AttackFrequency",35)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_JumpIfInventory("AttackReps",5,"Missile2End")
+			TRMI A 2 A_FaceTarget
+			TNT1 A 0 A_PlaySound("marathon/rifle/fire", CHAN_WEAPON)
+			TRMI F 2 Bright A_CustomMissile("TrooperBullet", 45, 0, Random(-15,15), 0, Random(-15,15))
+			TNT1 A 0 A_GiveInventory("AttackReps",1)
+			Goto Missile2Nightmare+2
+		Missile2End:
+			TNT1 A 0 A_TakeInventory("AttackReps",5)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			Goto See
+		Pain:
+			TRMI C 7
+			TNT1 A 0 A_TakeInventory("AttackReps",5)
+			Goto See
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_TakeInventory("AttackReps",5)
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TRMI C 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			TRMI C 16
+			Goto See
+		Pain.MarathonStun:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_TakeInventory("AttackReps",8)
+			TNT1 A 0 A_GiveInventory("NothingSpeed")
+			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			TRMI C 5 A_FaceTarget
+			TNT1 A 0 A_Gravity
+			TRMI C 30 A_Pain
+			TRMI C 70
+			Goto See
+		Death.DukeExplosive:
+			Goto XDeathDuke
+			/*TNT1 A 0 A_JumpIfHealthLower(-3,"XDeathDuke")
+			Goto Death*/
+		Death.DukeDamage:
+		Death.DukePistol:
+			TNT1 A 0 A_Jump(218,"Death")
+			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
+			goto Death
+		Death.MightyBoot:
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_Jump(64,"Death")
+			TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
+			goto Death
+		Death:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 A_Scream
+			TNT1 A 0 A_Recoil(5)
+			TRMI G 13
+			TRMI GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG 2 A_JumpIf(momx < 0.8 && momy < 0.8 && momz == 0, "Death2")
+			TRMI G 2 A_CheckFloor("Death2")
+			Goto Death+4
+		Death2:
+			TRMI H 5 A_Stop
+			TRMI I 5 A_NoBlocking
+			TRMI J 5
+			//TNT1 A 0 A_Jump (128,2)
+			TNT1 A 0 A_PlaySoundEx("marathon/splash","body",0,0)
+			TRMI K -1
+			Stop
+		XDeathDuke:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 A_FaceTarget
+			TNT1 A 0 A_Recoil(10)
+			TNT1 A 0 A_Scream
+			TRMI G 6
+			TRMI GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG 2 A_JumpIf(momx < 0.8 && momy < 0.8 && momz == 0, "XDeathDuke2")
+			TRMI G 2 A_CheckFloor("XDeathDuke2")
+			Goto XDeathDuke+5
+		XDeathDuke2:
+			PFDG A 1
+			TNT1 A 0 A_UnsetSolid
+			PFDG A 1 A_SpawnDebris("NewDukeGibs1_Pfhor")
+			TNT1 A 0 A_SpawnDebris("NewDukeGibs2_Pfhor")
+			TNT1 AA 0 A_SpawnDebris("NewDukeGibs3_Pfhor")
+			TNT1 AAA 0 A_SpawnDebris("NewDukeGibs4_Pfhor")
+			TNT1 AA 0 A_SpawnDebris("NewDukeGibs5_Pfhor")
+			TNT1 AAA 0 A_SpawnDebris("NewDukeGibs6_Pfhor")
+			TNT1 A 0 A_PlaySound("duke/enemygib",5)
+			TNT1 A 0 A_TakeInventory("MarathonDukeGib",1)
+			TNT1 A 0 A_Jump(96,2)
+			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
+			PFDG A 3 A_NoBlocking
+			PFDG B 4 A_Stop
+			PFDG CD 4
+			PFDG E -1
+			Stop
+		Death.HexGreenFire:
+		Death.QuakeFire:
+		Death.FireExplosive:
+		Death.MarathonPlasmaFire:
+		Burn:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 A_Recoil(5)
+			SOPL U 13 Bright A_PlaySound("pfhor/wail")
+			SOPL UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU 2 Bright A_JumpIf(momx < 0.8 && momy < 0.8 && momz == 0, "Burn2")
+			SOPL U 2 A_CheckFloor("Burn2")
+			Goto Burn+3
+		Burn2:
+			SOPL V 5 Bright A_Stop
+			SOPL W 4 Bright A_NoBlocking
+			SOPL X 5 Bright
+			SOPL X -1
+			Stop
+		Death.ZorchPistol:
+		Death.Zorch:
+		Death.ZorchKamikaze:
+		Death.PhasingZorch:
+		Death.ZorchSpectral:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TRMI C 0 A_Stop
+			TNT1 A 0 A_ChangeFlag("DONTGIB",1)
+			TNT1 A 0 A_PlaySoundEx("chex/zorch","soundslot5",0,0)
+			TRMI C 3 A_SpawnItem("ZorchEffectSmall")
+			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
+			TRMI C 3 A_SetTranslucent(0.9,0)
+			TRMI C 0 A_Scream
+			TRMI C 3 A_SetTranslucent(0.8,0)
+			TRMI C 0 A_NoBlocking
+			TRMI C 3 A_SetTranslucent(0.7,0)
+			TRMI C 3 A_SetTranslucent(0.6,0)
+			TRMI C 3 A_SetTranslucent(0.5,0)
+			TRMI C 3 A_SetTranslucent(0.4,0)
+			TRMI C 3 A_SetTranslucent(0.3,0)
+			TRMI C 3 A_SetTranslucent(0.2,0)
+			TRMI C 3 A_SetTranslucent(0.1,0)
+			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A -1
+			stop
+		Death.DukeIce:
+			TNT1 A 0 A_PlaySound("duke/enemyfreeze")
+			TNT1 A 0 A_GiveInventory("FreezethrowerWeakness")
+			TNT1 A 0 A_Jump(218,"Ice")
+			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
+		Ice:
+		Death.HexenIce:
+		Death.Ice:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
+			TNT1 A 0 A_NoBlocking
+			//TNT1 A 0 A_SpawnItem("GuardFrozen")
+			TRMI C 0 A_GenericFreezeDeath
+			TRMI C 70 A_UnsetSolid
+			TRMI C 0 A_IceGuyDie
+			TRMI C 1 A_IceGuyDie
+			TNT1 A -1
+			stop
+		Raise:
+			TNT1 A 0 A_JumpIfInventory("EnemyZorched",1,"ZorchRaise")
+			TRMI KJIHG 5
+			Goto See
+		ZorchRaise:
+			TNT1 A 1 A_UnsetShootable
+			TNT1 A 1 A_SpawnItem("SpawnFire2")
+			TNT1 A 0 A_PlaySound("archvile/resummon")
+			TNT1 A 1 A_TakeInventory("EnemyZorched",1)
+			TNT1 A 0 A_SetTranslucent(0.1,0)
+			TRMI A 3 A_SetTranslucent(0.2,0)
+			TRMI A 3 A_SetTranslucent(0.3,0)
+			TRMI A 3 A_SetTranslucent(0.4,0)
+			TRMI A 3 A_SetTranslucent(0.5,0)
+			TRMI A 3 A_SetTranslucent(0.6,0)
+			TRMI A 3 A_SetTranslucent(0.7,0)
+			TRMI A 3 A_SetTranslucent(0.8,0)
+			TRMI A 3 A_SetTranslucent(0.9,0)
+			TRMI A 3 A_SetTranslucent(1,0)
+			TRMI A 1 A_SetShootable
+			Goto See
+	}
+}
+
+ACTOR TrooperMinorITYTD : TrooperMinor 
+{ 
+	Speed 3.89 
+	Health 60 
+}
+ACTOR TrooperMinorHNTR : TrooperMinor 
+{ 
+	Speed 4.155 
+	Health 90 
+}
+ACTOR TrooperMinorUV : TrooperMinor 
+{ 
+	Speed 5
+	Health 150 
+}
+ACTOR TrooperMinorNightmare : TrooperMinor 
+{ 
+	Speed 5.53 
+	Health 180
+}
+
+ACTOR MultiTrooperMinor : TrooperMinor
+{
+	Species "TrooperMinor"
+	+THRUSPECIES
+}
+ACTOR MultiTrooperMinorITYTD : TrooperMinorITYTD
+{
+	Species "TrooperMinor"
+	+THRUSPECIES
+}
+ACTOR MultiTrooperMinorHNTR : TrooperMinorHNTR
+{
+	Species "TrooperMinor"
+	+THRUSPECIES
+}
+ACTOR MultiTrooperMinorUV : TrooperMinorUV
+{
+	Species "TrooperMinor"
+	+THRUSPECIES
+}
+ACTOR MultiTrooperMinorNightmare : TrooperMinorNightmare
+{
+	Species "TrooperMinor"
+	+THRUSPECIES
+}

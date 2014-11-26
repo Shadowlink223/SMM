@@ -1,0 +1,387 @@
+ACTOR SewageFlickta
+{
+	Health 100
+	Radius 18
+	Height 56
+	Speed 5.31
+	PainChance 255
+	MaxDropOffHeight 96
+	MinMissileChance 10
+	Gravity 0.15
+	MONSTER
+	+FLOORCLIP
+    +NOTDMATCH
+    +NOICEDEATH
+	+DONTRIP
+	+MISSILEMORE
+	+MISSILEEVENMORE
+	SeeSound ""
+	PainSound ""
+	DeathSound "flickta/death"
+	ActiveSound ""
+	AttackSound ""
+	Dropitem "DefaultPinataPop"
+	Obituary "%o had rocks slung at %h for intruding on a Sewage F'lickta's territory."
+	HitObituary "%o was lacerated for intruding on a Sewage F'lickta's territory."
+    DamageFactor "Mace", 1.1
+    DamageFactor "DragonClaw", 1.5
+	DamageFactor "MarathonShotgun", 2.0
+	DamageFactor "MarathonPlasmaFire", 0.74
+    PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
+	Decal BulletChip
+	Scale 0.49
+	Bloodcolor Red
+	States 
+	{
+		Spawn:
+			FLIK A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 0, "SpawnITYTD")
+			FLIK A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 1, "SpawnHNTR")
+			FLIK A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 2, "SpawnHMP")
+			FLIK A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 3, "SpawnUV")
+			FLIK A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 4, "SpawnNightmare")
+			Goto SpawnITYTD
+		SpawnITYTD:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",210)
+			Goto Spawn2
+		SpawnHNTR:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",140)
+			Goto Spawn2
+		SpawnHMP:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",70)
+			Goto Spawn2
+		SpawnUV:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",35)
+			Goto Spawn2
+		SpawnNightmare:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",17)
+			Goto Spawn2
+		Spawn2:
+			FLIK A 2 A_Look
+			Loop
+		See:
+			TNT1 A 0 A_JumpIfInventory("FrameTicCounter",5,"See2")
+			TNT1 A 0 A_TakeInventory("AttackFrequency",1)
+			TNT1 A 0 A_GiveInventory("FrameTicCounter",1)
+			TNT1 A 0 A_JumpIfInventory("AttackFrequency",1,2)
+			FLIK B 1 A_Chase("Melee","Missile")
+			Loop
+			FLIK B 1 A_Chase("Melee",0)
+			Loop
+		See2:
+			TNT1 A 0 A_JumpIfInventory("FrameTicCounter",10,"See3")
+			TNT1 A 0 A_TakeInventory("AttackFrequency",1)
+			TNT1 A 0 A_GiveInventory("FrameTicCounter",1)
+			TNT1 A 0 A_JumpIfInventory("AttackFrequency",1,2)
+			FLIK C 1 A_Chase("Melee","Missile")
+			Loop
+			FLIK C 1 A_Chase("Melee",0)
+			Loop
+		See3:
+			TNT1 A 0 A_JumpIfInventory("FrameTicCounter",15,"See4")
+			TNT1 A 0 A_TakeInventory("AttackFrequency",1)
+			TNT1 A 0 A_GiveInventory("FrameTicCounter",1)
+			TNT1 A 0 A_JumpIfInventory("AttackFrequency",1,2)
+			FLIK D 1 A_Chase("Melee","Missile")
+			Loop
+			FLIK D 1 A_Chase("Melee",0)
+			Loop
+		See4:
+			TNT1 A 0 A_JumpIfInventory("FrameTicCounter",20,"SeeEnd")
+			TNT1 A 0 A_TakeInventory("AttackFrequency",1)
+			TNT1 A 0 A_GiveInventory("FrameTicCounter",1)
+			TNT1 A 0 A_JumpIfInventory("AttackFrequency",1,2)
+			FLIK E 1 A_Chase("Melee","Missile")
+			Loop
+			FLIK E 1 A_Chase("Melee",0)
+			Loop
+		SeeEnd:
+			TNT1 A 0 A_TakeInventory("FrameTicCounter",20)
+			Goto See
+		Melee:
+			TNT1 A 0
+			TNT1 A 0 A_JumpIfInventory("AttackFrequency",1,6)
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 0, "MeleeITYTD")
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 1, "MeleeHNTR")
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 2, "MeleeHMP")
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 3, "MeleeUV")
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 4, "MeleeNightmare")
+			TNT1 A 0 A_TakeInventory("FrameTicCounter",32)
+			TNT1 A 0 A_TakeInventory("AttackFrequency",1)
+			FLIK A 1 A_FaceTarget
+			FLIK A 1 A_JumpIfCloser(75,"Melee")
+			Goto See
+		MeleeITYTD:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",210)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			FLIK F 12 A_PlaySound("flickta/melee")
+			FLIK G 12 A_CustomComboAttack("FlicktaProjectileITYTD",45,(random(20,25)),"flickta/hit")
+			Goto See
+		MeleeHNTR:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",140)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			FLIK F 12 A_PlaySound("flickta/melee")
+			FLIK G 12 A_CustomComboAttack("FlicktaProjectileHNTR",45,(random(20,25)),"flickta/hit")
+			Goto See
+		MeleeHMP:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",70)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			FLIK F 12 A_PlaySound("flickta/melee")
+			FLIK G 12 A_CustomComboAttack("FlicktaProjectile",45,(random(20,25)),"flickta/hit")
+			Goto See
+		MeleeUV:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",35)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			FLIK F 12 A_PlaySound("flickta/melee")
+			FLIK G 12 A_CustomComboAttack("FlicktaProjectileUV",45,(random(20,25)),"flickta/hit")
+			Goto See
+		MeleeNightmare:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",17)
+			FLIK F 12 A_PlaySound("flickta/melee")
+			FLIK G 12 A_CustomComboAttack("FlicktaProjectileNightmare",45,(random(20,25)),"flickta/hit")
+			Goto See
+		Missile:
+			TNT1 A 0 A_TakeInventory("FrameTicCounter",32)
+			TNT1 A 0 A_FaceTarget
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 0, "MissileITYTD")
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 1, "MissileHNTR")
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 2, "MissileHMP")
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 3, "MissileUV")
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 4, "MissileNightmare")
+		MissileITYTD:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",210)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			FLIK F 12 A_PlaySound("flickta/rock")
+			FLIK G 12 A_CustomComboAttack("FlicktaProjectileITYTD",45,(random(20,25)),"flickta/hit")
+			Goto See
+		MissileHNTR:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",140)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			FLIK F 12 A_PlaySound("flickta/rock")
+			FLIK G 12 A_CustomComboAttack("FlicktaProjectileHNTR",45,(random(20,25)),"flickta/hit")
+			Goto See
+		MissileHMP:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",70)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			FLIK F 12 A_PlaySound("flickta/rock")
+			FLIK G 12 A_CustomComboAttack("FlicktaProjectile",45,(random(20,25)),"flickta/hit")
+			Goto See
+		MissileUV:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",35)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			FLIK F 12 A_PlaySound("flickta/rock")
+			FLIK G 12 A_CustomComboAttack("FlicktaProjectileUV",45,(random(20,25)),"flickta/hit")
+			Goto See
+		MissileNightmare:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",17)
+			FLIK F 12 A_PlaySound("flickta/rock")
+			FLIK G 12 A_CustomComboAttack("FlicktaProjectileNightmare",45,(random(20,25)),"flickta/hit")
+			Goto See
+		Pain:
+			FLIK M 5
+			Goto See
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			FLIK M 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			FLIK M 16
+			Goto See
+		Death.DukeExplosive:
+			Goto XDeathDuke
+			/*TNT1 A 0 A_JumpIfHealthLower(-3,"XDeathDuke")
+			Goto Death*/
+		Death.DukeDamage:
+		Death.DukePistol:
+			TNT1 A 0 A_Jump(218,"Death")
+			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
+			goto Death
+		Death.MightyBoot:
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_Jump(64,"Death")
+			TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
+			goto Death
+		Death:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 A_FaceTarget
+			TNT1 A 0 A_Recoil(5)
+			TNT1 A 0 A_Scream
+			FLIK H 13
+			FLIK HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH 2 A_JumpIf(momx < 0.8 && momy < 0.8 && momz == 0, "Death2")
+			FLIK H 2 A_CheckFloor("Death2")
+			Goto Death+5
+		Death2:
+			FLIK I 5 A_Stop
+			FLIK J 5 A_NoBlocking
+			FLIK K 5
+			FLIK L 5 A_PlaySoundEx("pfhor/xdeath","body",0,0)
+			FLIK L -1
+			Stop
+		XDeathDuke:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 A_FaceTarget
+			TNT1 A 0 A_Recoil(5)
+			TNT1 A 0 A_Scream
+			FLIK H 13
+			FLIK HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH 2 A_JumpIf(momx < 0.8 && momy < 0.8 && momz == 0, "XDeathDuke2")
+			FLIK H 2 A_CheckFloor("XDeathDuke2")
+			Goto XDeathDuke+5
+		XDeathDuke2:
+			SFDG A 1
+			TNT1 A 0 A_UnsetSolid
+			SFDG A 1 A_SpawnDebris("NewDukeGibs1")
+			TNT1 A 0 A_SpawnDebris("NewDukeGibs2")
+			TNT1 A 0 A_SpawnDebris("NewDukeGibs2_FlicktaGreen")
+			TNT1 A 0 A_SpawnDebris("NewDukeGibs3")
+			TNT1 A 0 A_SpawnDebris("NewDukeGibs3_FlicktaGreen")
+			TNT1 AA 0 A_SpawnDebris("NewDukeGibs4")
+			TNT1 A 0 A_SpawnDebris("NewDukeGibs4_FlicktaGreen")
+			TNT1 A 0 A_SpawnDebris("NewDukeGibs5")
+			TNT1 A 0 A_SpawnDebris("NewDukeGibs5_FlicktaGreen")
+			TNT1 AA 0 A_SpawnDebris("NewDukeGibs6")
+			TNT1 A 0 A_SpawnDebris("NewDukeGibs6_FlicktaGreen")
+			TNT1 A 0 A_PlaySound("duke/enemygib",5)
+			TNT1 A 0 A_Jump(96,2)
+			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
+			SFDG A 3 A_NoBlocking
+			SFDG B 4 A_Stop
+			SFDG CD 4
+			SFDG E -1
+			Stop
+/*		Death.HexGreenFire:
+		Death.QuakeFire:
+		Death.FireExplosive:
+		Death.MarathonPlasmaFire:
+		Burn:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 A_Recoil(5)
+			SOPL U 13 Bright A_PlaySound("pfhor/wail")
+			SOPL U 1 Bright A_CheckFloor("Burn2")
+			Goto Burn+3
+		Burn2:
+			SOPL V 5 Bright A_Stop
+			SOPL W 4 Bright A_NoBlocking
+			SOPL X 5 Bright
+			SOPL X -1
+			Stop
+		Death.Crush:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_NoBlocking
+			TNT1 A -1 A_PlaySound("pfhor/wail")
+			Stop*/
+		Death.ZorchPistol:
+		Death.Zorch:
+		Death.ZorchKamikaze:
+		Death.PhasingZorch:
+		Death.ZorchSpectral:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			FLIK M 0 A_Stop
+			TNT1 A 0 A_ChangeFlag("DONTGIB",1)
+			TNT1 A 0 A_PlaySoundEx("chex/zorch","soundslot5",0,0)
+			FLIK M 3 A_SpawnItem("ZorchEffectSmall")
+			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
+			FLIK M 3 A_SetTranslucent(0.9,0)
+			FLIK M 0 A_Scream
+			FLIK M 3 A_SetTranslucent(0.8,0)
+			FLIK M 0 A_NoBlocking
+			FLIK M 3 A_SetTranslucent(0.7,0)
+			FLIK M 3 A_SetTranslucent(0.6,0)
+			FLIK M 3 A_SetTranslucent(0.5,0)
+			FLIK M 3 A_SetTranslucent(0.4,0)
+			FLIK M 3 A_SetTranslucent(0.3,0)
+			FLIK M 3 A_SetTranslucent(0.2,0)
+			FLIK M 3 A_SetTranslucent(0.1,0)
+			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A -1
+			stop
+		Death.DukeIce:
+			TNT1 A 0 A_PlaySound("duke/enemyfreeze")
+			TNT1 A 0 A_GiveInventory("FreezethrowerWeakness")
+			TNT1 A 0 A_Jump(218,"Ice")
+			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
+		Ice:
+		Death.HexenIce:
+		Death.Ice:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
+			TNT1 A 0 A_NoBlocking
+			//TNT1 A 0 A_SpawnItem("GuardFrozen")
+			FLIK M 0 A_GenericFreezeDeath
+			FLIK M 70 A_UnsetSolid
+			FLIK M 0 A_IceGuyDie
+			FLIK M 1 A_IceGuyDie
+			TNT1 A -1
+			stop
+		Raise:
+			TNT1 A 0 A_JumpIfInventory("EnemyZorched",1,"ZorchRaise")
+			FLIK KJIH 5
+			Goto See
+		ZorchRaise:
+			TNT1 A 1 A_UnsetShootable
+			TNT1 A 1 A_SpawnItem("SpawnFire2")
+			TNT1 A 0 A_PlaySound("archvile/resummon")
+			TNT1 A 1 A_TakeInventory("EnemyZorched",1)
+			TNT1 A 0 A_SetTranslucent(0.1,0)
+			FLIK A 3 A_SetTranslucent(0.2,0)
+			FLIK A 3 A_SetTranslucent(0.3,0)
+			FLIK A 3 A_SetTranslucent(0.4,0)
+			FLIK A 3 A_SetTranslucent(0.5,0)
+			FLIK A 3 A_SetTranslucent(0.6,0)
+			FLIK A 3 A_SetTranslucent(0.7,0)
+			FLIK A 3 A_SetTranslucent(0.8,0)
+			FLIK A 3 A_SetTranslucent(0.9,0)
+			FLIK A 3 A_SetTranslucent(1,0)
+			FLIK A 1 A_SetShootable
+			Goto See
+	}
+}
+
+ACTOR SewageFlicktaITYTD : SewageFlickta
+{
+	Health 50
+	Speed 4.67
+}
+
+ACTOR SewageFlicktaHNTR : SewageFlickta
+{
+	Health 75
+	Speed 4.99
+}
+
+ACTOR SewageFlicktaUV : SewageFlickta
+{
+	Health 125
+	Speed 6
+}
+
+ACTOR SewageFlicktaNightmare : SewageFlickta
+{
+	Health 150
+	Speed 6.635
+}
+
+ACTOR MultiSewageFlickta : SewageFlickta
+{
+	Species "SewageFlickta"
+	+THRUSPECIES
+}
+ACTOR MultiSewageFlicktaITYTD : SewageFlicktaITYTD
+{
+	Species "SewageFlickta"
+	+THRUSPECIES
+}
+ACTOR MultiSewageFlicktaHNTR : SewageFlicktaHNTR
+{
+	Species "SewageFlickta"
+	+THRUSPECIES
+}
+ACTOR MultiSewageFlicktaUV : SewageFlicktaUV
+{
+	Species "SewageFlickta"
+	+THRUSPECIES
+}
+ACTOR MultiSewageFlicktaNightmare : SewageFlicktaNightmare
+{
+	Species "SewageFlickta"
+	+THRUSPECIES
+}

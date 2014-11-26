@@ -1,0 +1,221 @@
+ACTOR SphtMinor
+{
+	Health 160
+	Radius 24
+	Height 56
+	Speed 4.049
+	Mass 1000
+	PainChance 255
+	Gravity 0.15
+	MinMissileChance 10
+	Scale 0.38
+	MONSTER
+	+FLOORCLIP
+    +NOTDMATCH
+    +NOICEDEATH
+	+DONTRIP
+	+NOBLOOD
+	+MISSILEMORE
+	+MISSILEEVENMORE
+	+NOGRAVITY
+	+FLOAT
+	SeeSound ""
+	PainSound "Spht/Pain"
+	DeathSound "spht/death"
+	ActiveSound ""
+	AttackSound "Spht/Attack"
+	Dropitem "DefaultPinataPop"
+	Obituary "%o was \ch(?unwillingly) \c*eradicated by a Minor S'pht Compiler."
+    DamageFactor "Mace", 1.1
+    DamageFactor "DragonClaw", 1.5
+	DamageFactor "MarathonShotgun", 2.0
+	DamageFactor "MarathonPlasmaFire", 0.74
+	DamageFactor "MarathonFusion", 1.8
+	DamageFactor "Fire", 0.0
+	DamageFactor "HexGreenFire", 0.0
+	DamageFactor "FireExplosive", 0.0
+	Decal BulletChip
+	States 
+	{
+		Spawn:
+			COMI A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 0, "SpawnITYTD")
+			COMI A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 1, "SpawnHNTR")
+			COMI A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 2, "SpawnHMP")
+			COMI A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 3, "SpawnUV")
+			COMI A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 4, "SpawnNightmare")
+			Goto SpawnITYTD
+		SpawnITYTD:
+			TNT1 A 1 A_GiveInventory("AttackFrequency",315)
+			Goto Spawn2
+		SpawnHNTR:
+			TNT1 A 1 A_GiveInventory("AttackFrequency",210)
+			Goto Spawn2
+		SpawnHMP:
+			TNT1 A 1 A_GiveInventory("AttackFrequency",105)
+			Goto Spawn2
+		SpawnUV:
+			TNT1 A 1 A_GiveInventory("AttackFrequency",52)
+			Goto Spawn2
+		SpawnNightmare:
+			TNT1 A 1 A_GiveInventory("AttackFrequency",26)
+			Goto Spawn2
+		Spawn2:
+			COMI A 12 A_Look
+			Loop
+		See:
+			TNT1 A 0 A_TakeInventory("AttackFrequency",1)
+			TNT1 A 0 A_JumpIfInventory("AttackFrequency",1,2)
+			COMI A 1 A_Chase
+			Loop
+			COMI A 1 A_Chase(0,0)
+			Loop
+		Missile:
+			COMI A 0 A_FaceTarget
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 0, "MissileITYTD")
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 1, "MissileHNTR")
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 2, "MissileHMP")
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 3, "MissileUV")
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 4, "MissileNightmare")
+		MissileITYTD:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",315)
+			COMI ABC 7 A_FaceTarget
+			COMI D 7 Bright A_CustomMissile("SphtProjectileITYTD",40,0,0,0,0)
+			COMI E 7
+			Goto See
+		MissileHNTR:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",210)
+			COMI ABC 7 A_FaceTarget
+			COMI D 7 Bright A_CustomMissile("SphtProjectileHNTR",40,0,0,0,0)
+			COMI E 7
+			Goto See
+		MissileHMP:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",105)
+			COMI ABC 7 A_FaceTarget
+			COMI D 7 Bright A_CustomMissile("SphtProjectile",40,0,0,0,0)
+			COMI E 7
+			Goto See
+		MissileUV:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",52)
+			COMI ABC 7 A_FaceTarget
+			COMI D 7 Bright A_CustomMissile("SphtProjectileUV",40,0,0,0,0)
+			COMI E 7
+			Goto See
+		MissileNightmare:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",26)
+			COMI ABC 7 A_FaceTarget
+			COMI D 7 Bright A_CustomMissile("SphtProjectileNightmare",40,0,0,0,0)
+			COMI E 7
+			Goto See
+/*		Missile1End:
+			TNT1 A 0 A_TakeInventory("AttackReps",11)
+			Goto See*/
+		Pain:
+			COMI F 5 bright A_Pain
+			Goto See
+		Death.DukeDamage:
+		Death.MightyBoot:
+		Death.DukeExplosive:
+		Death.DukeSpectral:
+		Death.DukePistol:
+			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
+		Death:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 A_Scream
+			COMI F 5 bright A_NoBlocking
+			COMI GH 5 bright
+			Stop
+		Death.ZorchPistol:
+		Death.Zorch:
+		Death.ZorchKamikaze:
+		Death.PhasingZorch:
+		Death.ZorchSpectral:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			COMI A 0 A_Stop
+			TNT1 A 0 A_ChangeFlag("DONTGIB",1)
+			TNT1 A 0 A_PlaySoundEx("chex/zorch","soundslot5",0,0)
+			COMI A 4 A_SpawnItem("ZorchEffectBig")
+			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
+			COMI A 4 A_SetTranslucent(0.9,0)
+			COMI A 0 A_Scream
+			COMI A 4 A_SetTranslucent(0.8,0)
+			COMI A 0 A_NoBlocking
+			COMI A 4 A_SetTranslucent(0.7,0)
+			COMI A 4 A_SetTranslucent(0.6,0)
+			COMI A 4 A_SetTranslucent(0.5,0)
+			COMI A 4 A_SetTranslucent(0.4,0)
+			COMI A 4 A_SetTranslucent(0.3,0)
+			COMI A 4 A_SetTranslucent(0.2,0)
+			COMI A 4 A_SetTranslucent(0.1,0)
+			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A -1
+			stop
+		Death.DukeIce:
+			TNT1 A 0 A_PlaySound("duke/enemyfreeze")
+			TNT1 A 0 A_GiveInventory("FreezethrowerWeakness")
+			TNT1 A 0 A_Jump(218,"Ice")
+			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
+		Ice:
+		Death.HexenIce:
+		Death.Ice:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
+			TNT1 A 0 A_NoBlocking
+			//TNT1 A 0 A_SpawnItem("GuardFrozen")
+			COMI B 0 A_GenericFreezeDeath
+			COMI B 70 A_UnsetSolid
+			COMI B 0 A_IceGuyDie
+			COMI B 1 A_IceGuyDie
+			TNT1 A -1
+			stop
+	}
+}
+
+ACTOR SphtMinorITYTD : SphtMinor
+{
+	Health 80
+	Speed 3.563
+}
+
+ACTOR SphtMinorHNTR : SphtMinor
+{
+	Health 120
+	Speed 3.806
+}
+
+ACTOR SphtMinorUV : SphtMinor
+{
+	Health 200
+	Speed 4.575
+}
+
+ACTOR SphtMinorNightmare : SphtMinor
+{
+	Health 240
+	Speed 5.061
+}
+
+ACTOR MultiSphtMinor : SphtMinor
+{
+	Species "SphtMinor"
+	+THRUSPECIES
+}
+ACTOR MultiSphtMinorITYTD : SphtMinorITYTD
+{
+	Species "SphtMinor"
+	+THRUSPECIES
+}
+ACTOR MultiSphtMinorHNTR : SphtMinorHNTR
+{
+	Species "SphtMinor"
+	+THRUSPECIES
+}
+ACTOR MultiSphtMinorUV : SphtMinorUV
+{
+	Species "SphtMinor"
+	+THRUSPECIES
+}
+ACTOR MultiSphtMinorNightmare : SphtMinorNightmare
+{
+	Species "SphtMinor"
+	+THRUSPECIES
+}

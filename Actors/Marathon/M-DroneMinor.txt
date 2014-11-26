@@ -1,0 +1,243 @@
+ACTOR DroneMinor
+{
+	Health 40
+	Radius 16
+	Height 50
+	Speed 5.83
+	Mass 100
+	PainChance 255
+	Gravity 0.15
+	MinMissileChance 10
+	Scale 0.49
+	MONSTER
+	+FLOORCLIP
+    +NOTDMATCH
+    +NOICEDEATH
+	+DONTRIP
+	+NOBLOOD
+	+MISSILEMORE
+	+MISSILEEVENMORE
+	+NOGRAVITY
+	+FLOAT
+	SeeSound "drone/sight"
+	PainSound ""
+	DeathSound "drone/death"
+	ActiveSound ""
+	AttackSound ""
+	Dropitem "DefaultPinataPop"
+	Obituary "%o was picked off by a Minor Drone."
+    DamageFactor "Mace", 1.1
+    DamageFactor "DragonClaw", 1.5
+	DamageFactor "MarathonShotgun", 2.0
+	DamageFactor "MarathonPlasmaFire", 0.74
+	DamageFactor "MarathonFusion", 1.8
+	DamageFactor "ElectricalStaff", 2.0
+	DamageFactor "CompilerBolt", 2.0
+	Decal BulletChip
+	States 
+	{
+		Spawn:
+			DRMI A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 0, "SpawnITYTD")
+			DRMI A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 1, "SpawnHNTR")
+			DRMI A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 2, "SpawnHMP")
+			DRMI A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 3, "SpawnUV")
+			DRMI A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 4, "SpawnNightmare")
+			Goto SpawnITYTD
+		SpawnITYTD:
+			TNT1 A 1 A_GiveInventory("AttackFrequency",315)
+			Goto Spawn2
+		SpawnHNTR:
+			TNT1 A 1 A_GiveInventory("AttackFrequency",210)
+			Goto Spawn2
+		SpawnHMP:
+			TNT1 A 1 A_GiveInventory("AttackFrequency",105)
+			Goto Spawn2
+		SpawnUV:
+			TNT1 A 1 A_GiveInventory("AttackFrequency",52)
+			Goto Spawn2
+		SpawnNightmare:
+			TNT1 A 1 A_GiveInventory("AttackFrequency",26)
+			Goto Spawn2
+		Spawn2:
+			DRMI A 12 A_Look
+			Loop
+		See:
+			TNT1 A 0 A_TakeInventory("AttackFrequency",1)
+			TNT1 A 0 A_JumpIfInventory("AttackFrequency",1,2)
+			DRMI A 1 A_Chase
+			Loop
+			DRMI A 1 A_Chase(0,0)
+			Loop
+		Missile:
+			DRMI A 0 A_FaceTarget
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 0, "MissileITYTD")
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 1, "MissileHNTR")
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 2, "MissileHMP")
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 3, "MissileUV")
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 4, "MissileNightmare")
+		MissileITYTD:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",315)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			DRMI B 5 A_PlaySound("drone/prep")
+			DRMI BBBBB 2 A_FaceTarget
+			DRMI C 5 Bright A_CustomMissile("DroneBoltITYTD", 10, 0, 0,0, 0)
+			Goto See
+		MissileHNTR:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",210)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			DRMI B 5 A_PlaySound("drone/prep")
+			DRMI BBBBB 2 A_FaceTarget
+			DRMI C 5 Bright A_CustomMissile("DroneBoltHNTR", 10, 0, 0,0, 0)
+			Goto See
+		MissileHMP:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",105)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			DRMI B 5 A_PlaySound("drone/prep")
+			DRMI BBBBB 2 A_FaceTarget
+			DRMI C 5 Bright A_CustomMissile("DroneBolt", 10, 0, 0,0, 0)
+			Goto See
+		MissileUV:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",52)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			DRMI B 5 A_PlaySound("drone/prep")
+			DRMI BBBBB 2 A_FaceTarget
+			DRMI C 5 Bright A_CustomMissile("DroneBoltUV", 10, 0, 0,0, 0)
+			Goto See
+		MissileNightmare:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",26)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			DRMI B 5 A_PlaySound("drone/prep")
+			DRMI BBBBB 2 A_FaceTarget
+			DRMI C 5 A_CustomMissile("DroneBoltNightmare", 10, 0, 0,0, 0)
+			TNT1 A 0 Bright A_ChangeFlag("NOPAIN",0)
+			Goto See
+		Pain:
+			TNT1 A 0
+			Goto See
+		Death.DukeDamage:
+		Death.MightyBoot:
+		Death.DukeExplosive:
+		Death.DukeSpectral:
+		Death.DukePistol:
+			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
+		Death:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 A_FaceTarget
+			TNT1 A 0 A_Recoil(6)
+			DRMI D 1 A_PlaySound("drone/dying")
+			DRMI DDDDDD 1 A_SpawnItem("MarathonRocketSmoke")
+			DRMI E 1 A_JumpIf(momx < 0.8 && momy < 0.8 && momz == 0, "Death2")//A_CheckFloor("Death2")
+			TNT1 A 0 A_SpawnItem("MarathonRocketSmoke")
+			DRMI E 1 A_JumpIf(momx < 0.8 && momy < 0.8 && momz == 0, "Death2")
+			TNT1 A 0 A_SpawnItem("MarathonRocketSmoke")
+			DRMI E 1 A_JumpIf(momx < 0.8 && momy < 0.8 && momz == 0, "Death2")
+			TNT1 A 0 A_SpawnItem("MarathonRocketSmoke")
+			DRMI E 1 A_JumpIf(momx < 0.8 && momy < 0.8 && momz == 0, "Death2")
+			TNT1 A 0 A_SpawnItem("MarathonRocketSmoke")
+			DRMI E 1 A_JumpIf(momx < 0.8 && momy < 0.8 && momz == 0, "Death2")
+			TNT1 A 0 A_SpawnItem("MarathonRocketSmoke")
+			DRMI E 1 A_JumpIf(momx < 0.8 && momy < 0.8 && momz == 0, "Death2")
+			TNT1 A 0 A_SpawnItem("MarathonRocketSmoke")
+			DRMI E 1 A_JumpIf(momx < 0.8 && momy < 0.8 && momz == 0, "Death2")
+			TNT1 A 0 A_SpawnItem("MarathonRocketSmoke")
+			Goto Death+3
+		Death2:
+			DRMI F 4 A_Scream
+			DRMI G 4 A_Stop
+			DRMI H 4 A_NoBlocking
+			DRMI I -1
+			Stop
+		Death.ZorchPistol:
+		Death.Zorch:
+		Death.ZorchKamikaze:
+		Death.PhasingZorch:
+		Death.ZorchSpectral:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			DRMI A 0 A_Stop
+			TNT1 A 0 A_ChangeFlag("DONTGIB",1)
+			TNT1 A 0 A_PlaySoundEx("chex/zorchsmall","soundslot5",0,0)
+			DRMI A 2 A_SpawnItem("ZorchEffectTiny")
+			DRMI A 2 A_SetTranslucent(0.9,0)
+			DRMI A 0 A_PlaySound("drone/dying")
+			DRMI A 2 A_SetTranslucent(0.8,0)
+			DRMI A 0 A_NoBlocking
+			DRMI A 2 A_SetTranslucent(0.7,0)
+			DRMI A 2 A_SetTranslucent(0.6,0)
+			DRMI A 2 A_SetTranslucent(0.5,0)
+			DRMI A 2 A_SetTranslucent(0.4,0)
+			DRMI A 2 A_SetTranslucent(0.3,0)
+			DRMI A 2 A_SetTranslucent(0.2,0)
+			DRMI A 2 A_SetTranslucent(0.1,0)
+			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A -1
+			Stop
+		Death.DukeIce:
+			TNT1 A 0 A_PlaySound("duke/enemyfreeze")
+			TNT1 A 0 A_GiveInventory("FreezethrowerWeakness")
+			TNT1 A 0 A_Jump(218,"Ice")
+			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
+		Ice:
+		Death.HexenIce:
+		Death.Ice:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
+			TNT1 A 0 A_NoBlocking
+			//TNT1 A 0 A_SpawnItem("GuardFrozen")
+			DRMI B 0 A_GenericFreezeDeath
+			DRMI B 70 A_UnsetSolid
+			DRMI B 0 A_IceGuyDie
+			DRMI B 1 A_IceGuyDie
+			TNT1 A -1
+			stop
+	}
+}
+
+ACTOR DroneMinorITYTD : DroneMinor
+{
+	Health 20
+	Speed 5.13
+}
+
+ACTOR DroneMinorHNTR : DroneMinor
+{
+	Health 30
+	Speed 5.48
+}
+
+ACTOR DroneMinorUV : DroneMinor
+{
+	Health 50
+	Speed 6.587
+}
+
+ACTOR DroneMinorNightmare : DroneMinor
+{
+	Health 60
+	Speed 7.287
+}
+
+ACTOR MultiDroneMinor : DroneMinor
+{
+	Species "DroneMinor"
+	+THRUSPECIES
+}
+ACTOR MultiDroneMinorITYTD : DroneMinorITYTD
+{
+	Species "DroneMinor"
+	+THRUSPECIES
+}
+ACTOR MultiDroneMinorHNTR : DroneMinorHNTR
+{
+	Species "DroneMinor"
+	+THRUSPECIES
+}
+ACTOR MultiDroneMinorUV : DroneMinorUV
+{
+	Species "DroneMinor"
+	+THRUSPECIES
+}
+ACTOR MultiDroneMinorNightmare : DroneMinorNightmare
+{
+	Species "DroneMinor"
+	+THRUSPECIES
+}

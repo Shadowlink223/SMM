@@ -1,0 +1,434 @@
+ACTOR ProjectileFighterMinor
+{
+	Health 80
+	Radius 16
+	Height 56
+	Speed 4.386
+	PainChance 255
+	MaxDropOffHeight 96
+	MinMissileChance 10
+	Gravity 0.15
+	MONSTER
+	+FLOORCLIP
+    +NOTDMATCH
+    +NOICEDEATH
+	+DONTRIP
+	+MISSILEMORE
+	+MISSILEEVENMORE
+	SeeSound "pfhorfighter/sight"
+	PainSound ""
+	DeathSound "pfhor/death"
+	ActiveSound "pfhor/roam"
+	AttackSound ""
+	Dropitem "DefaultPinataPop"
+	Obituary "A Minor Pfhor Fighter sent %o into cardiac arrest."
+	Hitobituary "%o was beaten to death by a Minor Pfhor Fighter's staff."
+    DamageFactor "Mace", 1.1
+    DamageFactor "DragonClaw", 1.5
+	DamageFactor "MarathonShotgun", 2.0
+	DamageFactor "MarathonPlasmaFire", 0.74
+    PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
+	Decal BulletChip
+	Scale 0.49
+	Bloodcolor Yellow
+	States 
+	{
+		Spawn:
+			PFMI A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 0, "SpawnITYTD")
+			PFMI A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 1, "SpawnHNTR")
+			PFMI A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 2, "SpawnHMP")
+			PFMI A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 3, "SpawnUV")
+			PFMI A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 4, "SpawnNightmare")
+			Goto SpawnITYTD
+		SpawnITYTD:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",420)
+			Goto Spawn2
+		SpawnHNTR:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",280)
+			Goto Spawn2
+		SpawnHMP:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",140)
+			Goto Spawn2
+		SpawnUV:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",70)
+			Goto Spawn2
+		SpawnNightmare:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",35)
+			Goto Spawn2
+		Spawn2:
+			PFMI A 2 A_Look
+			Loop
+		See:
+			TNT1 A 0 A_JumpIfInventory("FrameTicCounter",5,"See2")
+			TNT1 A 0 A_TakeInventory("AttackFrequency",1)
+			TNT1 A 0 A_GiveInventory("FrameTicCounter",1)
+			TNT1 A 0 A_JumpIfInventory("AttackFrequency",1,2)
+			PFMI B 1 A_Chase("Melee","Missile")
+			Loop
+			PFMI B 1 A_Chase("Melee",0)
+			Loop
+		See2:
+			TNT1 A 0 A_JumpIfInventory("FrameTicCounter",10,"See3")
+			TNT1 A 0 A_TakeInventory("AttackFrequency",1)
+			TNT1 A 0 A_GiveInventory("FrameTicCounter",1)
+			TNT1 A 0 A_JumpIfInventory("AttackFrequency",1,2)
+			PFMI C 1 A_Chase("Melee","Missile",CHF_NOPLAYACTIVE)
+			Loop
+			PFMI C 1 A_Chase("Melee",0,CHF_NOPLAYACTIVE)
+			Loop
+		See3:
+			TNT1 A 0 A_JumpIfInventory("FrameTicCounter",15,"See4")
+			TNT1 A 0 A_TakeInventory("AttackFrequency",1)
+			TNT1 A 0 A_GiveInventory("FrameTicCounter",1)
+			TNT1 A 0 A_JumpIfInventory("AttackFrequency",1,2)
+			PFMI D 1 A_Chase("Melee","Missile",CHF_NOPLAYACTIVE)
+			Loop
+			PFMI D 1 A_Chase("Melee",0,CHF_NOPLAYACTIVE)
+			Loop
+		See4:
+			TNT1 A 0 A_JumpIfInventory("FrameTicCounter",20,"SeeEnd")
+			TNT1 A 0 A_TakeInventory("AttackFrequency",1)
+			TNT1 A 0 A_GiveInventory("FrameTicCounter",1)
+			TNT1 A 0 A_JumpIfInventory("AttackFrequency",1,2)
+			PFMI E 1 A_Chase("Melee","Missile",CHF_NOPLAYACTIVE)
+			Loop
+			PFMI E 1 A_Chase("Melee",0,CHF_NOPLAYACTIVE)
+			Loop
+		SeeEnd:
+			TNT1 A 0 A_TakeInventory("FrameTicCounter",20)
+			Goto See
+		Melee:
+			TNT1 A 0
+			TNT1 A 0 A_JumpIfInventory("AttackFrequency",1,6)
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 0, "MeleeITYTD")
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 1, "MeleeHNTR")
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 2, "MeleeHMP")
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 3, "MeleeUV")
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 4, "MeleeNightmare")
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0 A_TakeInventory("FrameTicCounter",32)
+			TNT1 A 0 A_TakeInventory("AttackFrequency",1)
+			PFMI F 1 A_FaceTarget
+			PFMI F 1 A_JumpIfCloser(70,"Melee")
+			Goto See
+		MeleeITYTD:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",420)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			PFMI F 4
+			PFMI G 5 bright A_PlaySound("fighterstaff/swing")
+			PFMI H 5 bright
+			PFMI I 5 bright A_CustomComboAttack("FighterProjectileITYTD",32,(random(20,25)),"fighterstaff/hit")
+			Goto See
+		MeleeHNTR:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",280)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			PFMI F 4 
+			PFMI G 5 bright A_PlaySound("fighterstaff/swing")
+			PFMI H 5 bright
+			PFMI I 5 bright A_CustomComboAttack("FighterProjectileHNTR",32,(random(20,25)),"fighterstaff/hit")
+			Goto See
+		MeleeHMP:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",140)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			PFMI F 4
+			PFMI G 5 bright A_PlaySound("fighterstaff/swing")
+			PFMI H 5 bright
+			PFMI I 5 bright A_CustomComboAttack("FighterProjectile",32,(random(20,25)),"fighterstaff/hit")
+			Goto See
+		MeleeUV:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",70)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			PFMI F 4
+			PFMI G 5 bright A_PlaySound("fighterstaff/swing")
+			PFMI H 5 bright
+			PFMI I 5 bright A_CustomComboAttack("FighterProjectileUV",32,(random(20,25)),"fighterstaff/hit")
+			Goto See
+		MeleeNightmare:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",35)
+			PFMI F 4
+			PFMI G 5 bright A_PlaySound("fighterstaff/swing")
+			PFMI H 5 bright
+			PFMI I 5 bright A_CustomComboAttack("FighterProjectileNightmare",32,(random(20,25)),"fighterstaff/hit")
+			Goto See
+		Missile:
+			TNT1 A 0 A_TakeInventory("FrameTicCounter",32)
+			TNT1 A 0 A_FaceTarget
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 0, "MissileITYTD")
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 1, "MissileHNTR")
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 2, "MissileHMP")
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 3, "MissileUV")
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 4, "MissileNightmare")
+		MissileITYTD:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",420)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			PFMI F 5
+			PFMI G 5 bright A_PlaySound("fighterstaff/swing")
+			PFMI H 5 bright
+			PFMI I 5 bright A_CustomComboAttack("FighterProjectileITYTD",32,(random(20,25)),"fighterstaff/hit")
+			Goto See
+		MissileHNTR:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",280)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			PFMI F 5
+			PFMI G 5 bright A_PlaySound("fighterstaff/swing")
+			PFMI H 5 bright
+			PFMI I 5 bright A_CustomComboAttack("FighterProjectileHNTR",32,(random(20,25)),"fighterstaff/hit")
+			Goto See
+		MissileHMP:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",140)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			PFMI F 5 
+			PFMI G 5 bright A_PlaySound("fighterstaff/swing")
+			PFMI H 5 bright
+			PFMI I 5 bright A_CustomComboAttack("FighterProjectile",32,(random(20,25)),"fighterstaff/hit")
+			Goto See
+		MissileUV:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",70)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			PFMI F 5
+			PFMI G 5 bright A_PlaySound("fighterstaff/swing")
+			PFMI H 5 bright
+			PFMI I 5 bright A_CustomComboAttack("FighterProjectileUV",32,(random(20,25)),"fighterstaff/hit")
+			Goto See
+		MissileNightmare:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",35)
+			PFMI F 5
+			PFMI G 5 bright A_PlaySound("fighterstaff/swing")
+			PFMI H 5 bright
+			PFMI I 5 bright A_CustomComboAttack("FighterProjectileNightmare",32,(random(20,25)),"fighterstaff/hit")
+			Goto See
+		Pain:
+			PFMI J 5
+			Goto See
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			PFMI J 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			PFMI J 16
+			Goto See
+		Death.DukeDamage:
+		Death.DukePistol:
+			TNT1 A 0 A_Jump(218,"Death")
+			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
+			goto Death
+		Death.MightyBoot:
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_Jump(64,"Death")
+			TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
+			goto Death
+		Death.DukeExplosive:
+			Goto XDeathDuke
+			/*TNT1 A 0 A_JumpIfHealthLower(-3,"XDeathDuke")
+			Goto XDeath*/
+		DukeGibStart:
+			TNT1 A 0 A_UnsetSolid
+			PFMI O 1 A_SpawnDebris("NewDukeGibs1_Pfhor")
+			TNT1 A 0 A_SpawnDebris("NewDukeGibs2_Pfhor")
+			TNT1 AA 0 A_SpawnDebris("NewDukeGibs3_Pfhor")
+			TNT1 AAA 0 A_SpawnDebris("NewDukeGibs4_Pfhor")
+			TNT1 AA 0 A_SpawnDebris("NewDukeGibs5_Pfhor")
+			TNT1 AAA 0 A_SpawnDebris("NewDukeGibs6_Pfhor")
+			TNT1 A 0 A_PlaySound("duke/enemygib",5)
+			TNT1 A 0 A_TakeInventory("MarathonDukeGib",1)
+			TNT1 A 0 A_Jump(96,"XDeath2")
+			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
+			Goto XDeath2
+		Death:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 A_FaceTarget
+			TNT1 A 0 A_Recoil(5)
+			TNT1 A 0 A_Scream
+			PFMI K 13
+			PFMI KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK 2 A_JumpIf(momx < 0.8 && momy < 0.8 && momz == 0, "Death2")
+			PFMI K 2 A_CheckFloor("Death2")
+			Goto Death+5
+		Death2:
+			PFMI L 7 A_Stop
+			PFMI M 7 A_NoBlocking
+			PFMI N 0 A_PlaySoundEx("marathon/splash","body",0,0)
+			PFMI N -1
+			Stop
+		Death.Explosive:
+		XDeath:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 A_FaceTarget
+			TNT1 A 0 A_Recoil(5)
+			TNT1 A 0 A_Scream
+			PFMI K 6
+			PFMI KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK 2 A_JumpIf(momx < 0.8 && momy < 0.8 && momz == 0, "XDeath2")
+			PFMI K 2 A_CheckFloor("XDeath2")
+			Goto XDeath+5
+		XDeath2:
+			PFMI O 1 A_JumpIfInventory("MarathonDukeGib",1,"DukeGibStart")
+			PFMI O 2 A_PlaySoundEx("pfhor/xdeath","body",0,0)
+			PFMI P 3 A_Stop
+			PFMI Q 3 A_NoBlocking
+			PFMI R 3
+			PFMI S -1
+		XDeathDuke:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 A_FaceTarget
+			TNT1 A 0 A_Recoil(10)
+			TNT1 A 0 A_Scream
+			PFMI K 6
+			PFMI KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK 2 A_JumpIf(momx < 0.8 && momy < 0.8 && momz == 0, "XDeathDuke2")
+			PFMI K 2 A_CheckFloor("XDeathDuke2")
+			Goto XDeathDuke+5
+		XDeathDuke2:
+			PFDG A 1
+			TNT1 A 0 A_UnsetSolid
+			PFDG A 1 A_SpawnDebris("NewDukeGibs1_Pfhor")
+			TNT1 A 0 A_SpawnDebris("NewDukeGibs2_Pfhor")
+			TNT1 AA 0 A_SpawnDebris("NewDukeGibs3_Pfhor")
+			TNT1 AAA 0 A_SpawnDebris("NewDukeGibs4_Pfhor")
+			TNT1 AA 0 A_SpawnDebris("NewDukeGibs5_Pfhor")
+			TNT1 AAA 0 A_SpawnDebris("NewDukeGibs6_Pfhor")
+			TNT1 A 0 A_PlaySound("duke/enemygib",5)
+			TNT1 A 0 A_TakeInventory("MarathonDukeGib",1)
+			TNT1 A 0 A_Jump(96,2)
+			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
+			PFDG A 3 A_NoBlocking
+			PFDG B 4 A_Stop
+			PFDG CD 4
+			PFDG E -1
+			Stop
+		Death.HexGreenFire:
+		Death.QuakeFire:
+		Death.FireExplosive:
+		Death.MarathonPlasmaFire:
+		Burn:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 A_Recoil(5)
+			SOPL U 13 Bright A_PlaySound("pfhor/wail")
+			SOPL UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU 2 Bright A_JumpIf(momx < 0.8 && momy < 0.8 && momz == 0, "Burn2")
+			SOPL U 2 A_CheckFloor("Burn2")
+			Goto Burn+3
+		Burn2:
+			SOPL V 5 Bright A_Stop
+			SOPL W 4 Bright A_NoBlocking
+			SOPL X 5 Bright
+			SOPL X -1
+			Stop
+		Death.Crush:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_NoBlocking
+			TNT1 A -1 A_PlaySound("pfhor/wail")
+			Stop
+		Death.ZorchPistol:
+		Death.Zorch:
+		Death.ZorchKamikaze:
+		Death.PhasingZorch:
+		Death.ZorchSpectral:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			PFMI J 0 A_Stop
+			TNT1 A 0 A_ChangeFlag("DONTGIB",1)
+			TNT1 A 0 A_PlaySoundEx("chex/zorch","soundslot5",0,0)
+			PFMI J 3 A_SpawnItem("ZorchEffectSmall")
+			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
+			PFMI J 3 A_SetTranslucent(0.9,0)
+			PFMI J 0 A_Scream
+			PFMI J 3 A_SetTranslucent(0.8,0)
+			PFMI J 0 A_NoBlocking
+			PFMI J 3 A_SetTranslucent(0.7,0)
+			PFMI J 3 A_SetTranslucent(0.6,0)
+			PFMI J 3 A_SetTranslucent(0.5,0)
+			PFMI J 3 A_SetTranslucent(0.4,0)
+			PFMI J 3 A_SetTranslucent(0.3,0)
+			PFMI J 3 A_SetTranslucent(0.2,0)
+			PFMI J 3 A_SetTranslucent(0.1,0)
+			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A -1
+			stop
+		Death.DukeIce:
+			TNT1 A 0 A_PlaySound("duke/enemyfreeze")
+			TNT1 A 0 A_GiveInventory("FreezethrowerWeakness")
+			TNT1 A 0 A_Jump(218,"Ice")
+			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
+		Ice:
+		Death.HexenIce:
+		Death.Ice:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
+			TNT1 A 0 A_NoBlocking
+			//TNT1 A 0 A_SpawnItem("GuardFrozen")
+			PFMI J 0 A_GenericFreezeDeath
+			PFMI J 70 A_UnsetSolid
+			PFMI J 0 A_IceGuyDie
+			PFMI J 1 A_IceGuyDie
+			TNT1 A -1
+			stop
+		Raise:
+			TNT1 A 0 A_JumpIfInventory("EnemyZorched",1,"ZorchRaise")
+			PFMI NMLK 5
+			Goto See
+		ZorchRaise:
+			TNT1 A 1 A_UnsetShootable
+			TNT1 A 1 A_SpawnItem("SpawnFire2")
+			TNT1 A 0 A_PlaySound("archvile/resummon")
+			TNT1 A 1 A_TakeInventory("EnemyZorched",1)
+			TNT1 A 0 A_SetTranslucent(0.1,0)
+			PFMI A 3 A_SetTranslucent(0.2,0)
+			PFMI A 3 A_SetTranslucent(0.3,0)
+			PFMI A 3 A_SetTranslucent(0.4,0)
+			PFMI A 3 A_SetTranslucent(0.5,0)
+			PFMI A 3 A_SetTranslucent(0.6,0)
+			PFMI A 3 A_SetTranslucent(0.7,0)
+			PFMI A 3 A_SetTranslucent(0.8,0)
+			PFMI A 3 A_SetTranslucent(0.9,0)
+			PFMI A 3 A_SetTranslucent(1,0)
+			PFMI A 1 A_SetShootable
+			Goto See
+	}
+}
+
+ACTOR ProjectileFighterMinorITYTD : ProjectileFighterMinor
+{
+	Health 40
+	Speed 3.563
+}
+
+ACTOR ProjectileFighterMinorHNTR : ProjectileFighterMinor
+{
+	Health 60
+	Speed 3.806
+}
+
+ACTOR ProjectileFighterMinorUV : ProjectileFighterMinor
+{
+	Health 100
+	Speed 4.575
+}
+
+ACTOR ProjectileFighterMinorNightmare : ProjectileFighterMinor
+{
+	Health 120
+	Speed 5.061
+}
+
+ACTOR MultiProjectileFighterMinor : ProjectileFighterMinor
+{
+	Species "ProjectileFighterMinor"
+	+THRUSPECIES
+}
+ACTOR MultiProjectileFighterMinorITYTD : ProjectileFighterMinorITYTD
+{
+	Species "ProjectileFighterMinor"
+	+THRUSPECIES
+}
+ACTOR MultiProjectileFighterMinorHNTR : ProjectileFighterMinorHNTR
+{
+	Species "ProjectileFighterMinor"
+	+THRUSPECIES
+}
+ACTOR MultiProjectileFighterMinorUV : ProjectileFighterMinorUV
+{
+	Species "ProjectileFighterMinor"
+	+THRUSPECIES
+}
+ACTOR MultiProjectileFighterMinorNightmare : ProjectileFighterMinorNightmare
+{
+	Species "ProjectileFighterMinor"
+	+THRUSPECIES
+}

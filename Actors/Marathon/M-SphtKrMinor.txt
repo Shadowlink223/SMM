@@ -1,0 +1,236 @@
+ACTOR SphtKrMinor
+{
+	Health 160
+	Radius 24
+	Height 50
+	Speed 5.83
+	Mass 1000
+	PainChance 255
+	Gravity 0.15
+	MinMissileChance 10
+	Scale 0.38
+	MONSTER
+	+FLOORCLIP
+    +NOTDMATCH
+    +NOICEDEATH
+	+DONTRIP
+	+NOBLOOD
+	+MISSILEMORE
+	+MISSILEEVENMORE
+	+NOGRAVITY
+	+FLOAT
+	SeeSound ""
+	PainSound "Sphtkr/Pain"
+	DeathSound "sphtkr/death"
+	ActiveSound ""
+	AttackSound ""
+	Dropitem "DefaultPinataPop"
+	Obituary "%o was gracefully liberated by a Minor S'pht'Kr Defender."
+    DamageFactor "Mace", 1.1
+    DamageFactor "DragonClaw", 1.5
+	DamageFactor "MarathonShotgun", 2.0
+	DamageFactor "MarathonPlasmaFire", 0.74
+	DamageFactor "MarathonFusion", 1.8
+	Decal BulletChip
+	States 
+	{
+		Spawn:
+			KRMI A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 0, "SpawnITYTD")
+			KRMI A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 1, "SpawnHNTR")
+			KRMI A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 2, "SpawnHMP")
+			KRMI A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 3, "SpawnUV")
+			KRMI A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 4, "SpawnNightmare")
+			Goto SpawnITYTD
+		SpawnITYTD:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",315)
+			Goto Spawn2
+		SpawnHNTR:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",210)
+			Goto Spawn2
+		SpawnHMP:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",105)
+			Goto Spawn2
+		SpawnUV:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",52)
+			Goto Spawn2
+		SpawnNightmare:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",26)
+			Goto Spawn2
+		Spawn2:
+			KRMI A 12 A_Look
+			Loop
+		See:
+			TNT1 A 0 A_TakeInventory("AttackFrequency",1)
+			TNT1 A 0 A_JumpIfInventory("AttackFrequency",1,2)
+			KRMI A 1 A_Chase
+			Loop
+			KRMI A 1 A_Chase(0,0)
+			Loop
+		Missile:
+			KRMI A 0 A_FaceTarget
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 0, "MissileITYTD")
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 1, "MissileHNTR")
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 2, "MissileHMP")
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 3, "MissileUV")
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 4, "MissileNightmare")
+		MissileITYTD:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",315)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0 A_JumpIfInventory("AttackReps",2,"MissileEnd")
+			KRMI A 4 A_FaceTarget
+			KRMI B 4 Bright A_CustomMissile("SphtKrProjectileITYTD", 14, -16, 0,0, 0)
+			TNT1 A 0 A_GiveInventory("AttackReps",1)
+			TNT1 A 0 A_MonsterRefire(128,"MissileEnd")
+			Goto MissileITYTD+1
+		MissileHNTR:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",210)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0 A_JumpIfInventory("AttackReps",2,"MissileEnd")
+			KRMI A 4 A_FaceTarget
+			KRMI B 4 Bright A_CustomMissile("SphtKrProjectileHNTR", 14, -16, 0,0, 0)
+			TNT1 A 0 A_GiveInventory("AttackReps",1)
+			TNT1 A 0 A_MonsterRefire(128,"MissileEnd")
+			Goto MissileHNTR+1
+		MissileHMP:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",105)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0 A_JumpIfInventory("AttackReps",2,"MissileEnd")
+			KRMI A 4 A_FaceTarget
+			KRMI B 4 Bright A_CustomMissile("SphtKrProjectile", 14, -16, 0,0, 0)
+			TNT1 A 0 A_GiveInventory("AttackReps",1)
+			TNT1 A 0 A_MonsterRefire(128,"MissileEnd")
+			Goto MissileHMP+1
+		MissileUV:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",52)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0 A_JumpIfInventory("AttackReps",3,"MissileEnd")
+			KRMI A 4 A_FaceTarget
+			KRMI B 4 Bright A_CustomMissile("SphtKrProjectileUV", 14, -16, 0,0, 0)
+			TNT1 A 0 A_GiveInventory("AttackReps",1)
+			TNT1 A 0 A_MonsterRefire(128,"MissileEnd")
+			Goto MissileUV+1
+		MissileNightmare:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",26)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_JumpIfInventory("AttackReps",3,"MissileEnd")
+			KRMI A 4 A_FaceTarget
+			KRMI B 4 Bright A_CustomMissile("SphtKrProjectileNightmare", 14, -16, 0,0, 0)
+			TNT1 A 0 A_GiveInventory("AttackReps",1)
+			TNT1 A 0 A_MonsterRefire(128,"MissileEnd")
+			Goto MissileNightmare+1
+		MissileEnd:
+			TNT1 A 0 A_TakeInventory("AttackReps",3)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			Goto See
+		Pain:
+			TNT1 A 0 A_TakeInventory("AttackReps",3)
+			KRMI C 4 bright A_Pain
+			KRMI DE 4 bright
+			Goto See
+		Death.DukeDamage:
+		Death.MightyBoot:
+		Death.DukeExplosive:
+		Death.DukeSpectral:
+		Death.DukePistol:
+			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
+		Death:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 A_Scream
+			KRMI F 5 bright A_NoBlocking
+			KRMI GHIJK 5 bright
+			Stop
+		Death.ZorchPistol:
+		Death.Zorch:
+		Death.ZorchKamikaze:
+		Death.PhasingZorch:
+		Death.ZorchSpectral:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			KRMI A 0 A_Stop
+			TNT1 A 0 A_ChangeFlag("DONTGIB",1)
+			TNT1 A 0 A_PlaySoundEx("chex/zorch","soundslot5",0,0)
+			KRMI A 4 A_SpawnItem("ZorchEffectBig")
+			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
+			KRMI A 4 A_SetTranslucent(0.9,0)
+			KRMI A 0 A_Scream
+			KRMI A 4 A_SetTranslucent(0.8,0)
+			KRMI A 0 A_NoBlocking
+			KRMI A 4 A_SetTranslucent(0.7,0)
+			KRMI A 4 A_SetTranslucent(0.6,0)
+			KRMI A 4 A_SetTranslucent(0.5,0)
+			KRMI A 4 A_SetTranslucent(0.4,0)
+			KRMI A 4 A_SetTranslucent(0.3,0)
+			KRMI A 4 A_SetTranslucent(0.2,0)
+			KRMI A 4 A_SetTranslucent(0.1,0)
+			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A -1
+			stop
+		Death.DukeIce:
+			TNT1 A 0 A_PlaySound("duke/enemyfreeze")
+			TNT1 A 0 A_GiveInventory("FreezethrowerWeakness")
+			TNT1 A 0 A_Jump(218,"Ice")
+			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
+		Ice:
+		Death.HexenIce:
+		Death.Ice:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
+			TNT1 A 0 A_NoBlocking
+			//TNT1 A 0 A_SpawnItem("GuardFrozen")
+			KRMI B 0 A_GenericFreezeDeath
+			KRMI B 70 A_UnsetSolid
+			KRMI B 0 A_IceGuyDie
+			KRMI B 1 A_IceGuyDie
+			TNT1 A -1
+			stop
+	}
+}
+
+ACTOR SphtKrMinorITYTD : SphtKrMinor
+{
+	Health 80
+	Speed 5.13
+}
+
+ACTOR SphtKrMinorHNTR : SphtKrMinor
+{
+	Health 120
+	Speed 5.48
+}
+
+ACTOR SphtKrMinorUV : SphtKrMinor
+{
+	Health 200
+	Speed 6.587
+}
+
+ACTOR SphtKrMinorNightmare : SphtKrMinor
+{
+	Health 240
+	Speed 7.287
+}
+
+ACTOR MultiSphtKrMinor : SphtKrMinor
+{
+	Species "SphtKrMinor"
+	+THRUSPECIES
+}
+ACTOR MultiSphtKrMinorITYTD : SphtKrMinorITYTD
+{
+	Species "SphtKrMinor"
+	+THRUSPECIES
+}
+ACTOR MultiSphtKrMinorHNTR : SphtKrMinorHNTR
+{
+	Species "SphtKrMinor"
+	+THRUSPECIES
+}
+ACTOR MultiSphtKrMinorUV : SphtKrMinorUV
+{
+	Species "SphtKrMinor"
+	+THRUSPECIES
+}
+ACTOR MultiSphtKrMinorNightmare : SphtKrMinorNightmare
+{
+	Species "SphtKrMinor"
+	+THRUSPECIES
+}
