@@ -1,0 +1,1 @@
+//DamageFactor "MarathonFusion", 2.0

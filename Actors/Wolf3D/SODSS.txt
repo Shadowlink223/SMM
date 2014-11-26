@@ -5,6 +5,8 @@ ACTOR SODSS
 	Height 56
 	Speed 8
 	PainChance 170
+	Scale 1.1
+	Species Nazi
 	MONSTER
 	+FLOORCLIP
     +NOTDMATCH
@@ -16,10 +18,13 @@ ACTOR SODSS
 	DeathSound "sodss/death"
 	ActiveSound ""
 	AttackSound "sodss/fire"
-	Obituary "%o was shot by a nazi special Schutzstaffel."
+	Dropitem "DefaultPinataPop"
+	Obituary "%o was shot by a nazi Schutzstaffel."
     DamageFactor "Mace", 1.1
     DamageFactor "DragonClaw", 1.5
+	DamageFactor "WolfEnemyBullet", 0.0
     PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
 	Dropitem "SODClip"
 	Decal BulletChip
 	States 
@@ -28,111 +33,108 @@ ACTOR SODSS
 			SSSO A 1 A_Look
 			Loop
 		See:
-			SSSO BBCCDDEE 2 A_Chase
+			SSSO BBBCCDDDEE 2 A_Chase
 			Loop
 		Missile:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			SSSO GH 10 A_FaceTarget
-			TNT1 A 0 A_JumpIfCloser (256, "Bullet1")
-			TNT1 A 0 A_JumpIfCloser (512, "Bullet2")
-			TNT1 A 0 A_JumpIfCloser (768, "Bullet3")
-			TNT1 A 0 A_JumpIfCloser (1024, "Bullet4")
-			TNT1 A 0 A_JumpIfCloser (1280, "Bullet5")
-			TNT1 A 0 A_JumpIfCloser (1536, "Bullet6")
+			TNT1 A 0 A_JumpIfCloser (128, "Bullet1")
+			TNT1 A 0 A_JumpIfCloser (256, "Bullet2")
+			TNT1 A 0 A_JumpIfCloser (384, "Bullet3")
+			TNT1 A 0 A_JumpIfCloser (512, "Bullet4")
+			TNT1 A 0 A_JumpIfCloser (640, "Bullet5")
+			TNT1 A 0 A_JumpIfCloser (768, "Bullet6")
 			Goto Bullet7
 		Bullet1:
-			SSSO I 4 bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
-			SSSO H 4 A_FaceTarget
 			TNT1 A 0 A_PlaySound("sodss/fire")
-			SSSO I 4 bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
-			SSSO H 4 A_FaceTarget
+			SSSO I 5 bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-4,4),8)
+			SSSO H 5 A_FaceTarget
 			TNT1 A 0 A_PlaySound("sodss/fire")
-			SSSO I 4 bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
-			SSSO H 4 A_FaceTarget
+			SSSO I 5 bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-4,4),8)
+			SSSO H 5 A_FaceTarget
 			TNT1 A 0 A_PlaySound("sodss/fire")
-			SSSO I 4 bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-7,7),8)
+			SSSO I 5 bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-4,4),8)
+			SSSO H 5 A_FaceTarget
 			TNT1 A 0 A_PlaySound("sodss/fire")
-			Goto MissileEnd
+			SSSO I 5 bright A_CustomMissile("WolfEnemyBulletD1",32,0,random(-4,4),8)
+			Goto See
 		Bullet2:
-			SSSO I 4 bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-9,9),8)
-			SSSO H 4 A_FaceTarget
 			TNT1 A 0 A_PlaySound("sodss/fire")
-			SSSO I 4 bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-9,9),8)
-			SSSO H 4 A_FaceTarget
+			SSSO I 5 bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-5,5),8)
+			SSSO H 5 A_FaceTarget
 			TNT1 A 0 A_PlaySound("sodss/fire")
-			SSSO I 4 bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-9,9),8)
-			SSSO H 4 A_FaceTarget
+			SSSO I 5 bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-5,5),8)
+			SSSO H 5 A_FaceTarget
 			TNT1 A 0 A_PlaySound("sodss/fire")
-			SSSO I 4 bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-9,9),8)
+			SSSO I 5 bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-5,5),8)
+			SSSO H 5 A_FaceTarget
 			TNT1 A 0 A_PlaySound("sodss/fire")
-			Goto MissileEnd
+			SSSO I 5 bright A_CustomMissile("WolfEnemyBulletD2",32,0,random(-5,5),8)
+			Goto See
 		Bullet3:
-			SSSO I 4 bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-11,11),8)
-			SSSO H 4 A_FaceTarget
 			TNT1 A 0 A_PlaySound("sodss/fire")
-			SSSO I 4 bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-11,11),8)
-			SSSO H 4 A_FaceTarget
+			SSSO I 5 bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-6,6),8)
+			SSSO H 5 A_FaceTarget
 			TNT1 A 0 A_PlaySound("sodss/fire")
-			SSSO I 4 bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-11,11),8)
-			SSSO H 4 A_FaceTarget
+			SSSO I 5 bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-6,6),8)
+			SSSO H 5 A_FaceTarget
 			TNT1 A 0 A_PlaySound("sodss/fire")
-			SSSO I 4 bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-11,11),8)
+			SSSO I 5 bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-6,6),8)
+			SSSO H 5 A_FaceTarget
 			TNT1 A 0 A_PlaySound("sodss/fire")
-			Goto MissileEnd
+			SSSO I 5 bright A_CustomMissile("WolfEnemyBulletD3",32,0,random(-6,6),8)
+			Goto See
 		Bullet4:
-			SSSO I 4 bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-13,13),8)
-			SSSO H 4 A_FaceTarget
 			TNT1 A 0 A_PlaySound("sodss/fire")
-			SSSO I 4 bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-13,13),8)
-			SSSO H 4 A_FaceTarget
+			SSSO I 5 bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			SSSO H 5 A_FaceTarget
 			TNT1 A 0 A_PlaySound("sodss/fire")
-			SSSO I 4 bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-13,13),8)
-			SSSO H 4 A_FaceTarget
+			SSSO I 5 bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			SSSO H 5 A_FaceTarget
 			TNT1 A 0 A_PlaySound("sodss/fire")
-			SSSO I 4 bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-13,13),8)
+			SSSO I 5 bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			SSSO H 5 A_FaceTarget
 			TNT1 A 0 A_PlaySound("sodss/fire")
-			Goto MissileEnd
+			SSSO I 5 bright A_CustomMissile("WolfEnemyBulletD4",32,0,random(-7,7),8)
+			Goto See
 		Bullet5:
-			SSSO I 4 bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-15,15),8)
-			SSSO H 4 A_FaceTarget
 			TNT1 A 0 A_PlaySound("sodss/fire")
-			SSSO I 4 bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-15,15),8)
-			SSSO H 4 A_FaceTarget
+			SSSO I 5 bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-8,8),8)
+			SSSO H 5 A_FaceTarget
 			TNT1 A 0 A_PlaySound("sodss/fire")
-			SSSO I 4 bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-15,15),8)
-			SSSO H 4 A_FaceTarget
+			SSSO I 5 bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-8,8),8)
+			SSSO H 5 A_FaceTarget
 			TNT1 A 0 A_PlaySound("sodss/fire")
-			SSSO I 4 bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-15,15),8)
+			SSSO I 5 bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-8,8),8)
+			SSSO H 5 A_FaceTarget
 			TNT1 A 0 A_PlaySound("sodss/fire")
-			Goto MissileEnd
+			SSSO I 5 bright A_CustomMissile("WolfEnemyBulletD5",32,0,random(-8,8),8)
+			Goto See
 		Bullet6:
-			SSSO I 4 bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-17,17),8)
-			SSSO H 4 A_FaceTarget
 			TNT1 A 0 A_PlaySound("sodss/fire")
-			SSSO I 4 bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-17,17),8)
-			SSSO H 4 A_FaceTarget
+			SSSO I 5 bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-9,9),8)
+			SSSO H 5 A_FaceTarget
 			TNT1 A 0 A_PlaySound("sodss/fire")
-			SSSO I 4 bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-17,17),8)
-			SSSO H 4 A_FaceTarget
+			SSSO I 5 bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-9,9),8)
+			SSSO H 5 A_FaceTarget
 			TNT1 A 0 A_PlaySound("sodss/fire")
-			SSSO I 4 bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-17,17),8)
+			SSSO I 5 bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-9,9),8)
+			SSSO H 5 A_FaceTarget
 			TNT1 A 0 A_PlaySound("sodss/fire")
-			Goto MissileEnd
+			SSSO I 5 bright A_CustomMissile("WolfEnemyBulletD6",32,0,random(-9,9),8)
+			Goto See
 		Bullet7:
-			SSSO I 4 bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-19,19),8)
-			SSSO H 4 A_FaceTarget
 			TNT1 A 0 A_PlaySound("sodss/fire")
-			SSSO I 4 bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-19,19),8)
-			SSSO H 4 A_FaceTarget
+			SSSO I 5 bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-10,10),8)
+			SSSO H 5 A_FaceTarget
 			TNT1 A 0 A_PlaySound("sodss/fire")
-			SSSO I 4 bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-19,19),8)
-			SSSO H 4 A_FaceTarget
+			SSSO I 5 bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-10,10),8)
+			SSSO H 5 A_FaceTarget
 			TNT1 A 0 A_PlaySound("sodss/fire")
-			SSSO I 4 bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-19,19),8)
+			SSSO I 5 bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-10,10),8)
+			SSSO H 5 A_FaceTarget
 			TNT1 A 0 A_PlaySound("sodss/fire")
-			Goto MissileEnd
-		MissileEnd:
-			SSSO H 1 
+			SSSO I 5 bright A_CustomMissile("WolfEnemyBulletD7",32,0,random(-10,10),8)
 			Goto See
 		Pain:
 			SSSO F 3
@@ -144,6 +146,15 @@ ACTOR SODSS
 			SSSO F 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)
 			SSSO F 16 A_Pain
+			Goto See
+		Pain.MarathonStun:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_GiveInventory("NothingSpeed")
+			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			SSSO F 5 A_FaceTarget
+			TNT1 A 0 A_Gravity
+			SSSO F 30 A_Pain
+			SSSO F 70
 			Goto See
 		Death.DukeDamage:
 		Death.DukePistol:
@@ -157,7 +168,6 @@ ACTOR SODSS
 			goto Death
 		Death.DukeExplosive:
 			TNT1 A 0 A_JumpIfHealthLower(-3,"DukeGibStart")
-			goto Death.DukeDamage
 		DukeGibStart:
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_SpawnDebris("DukeGibs1")
@@ -172,14 +182,16 @@ ACTOR SODSS
 		Death:
 		XDeath:
 			TNT1 A 0 A_GiveToTarget("KillCount",1)
-			SSSO J 5
-			SSSO K 5 A_Scream
-			SSSO L 5 A_NoBlocking
-			SSSO M 5
+			SSSO K 6
+			SSSO L 7 A_Scream
+			SSSO M 8 A_NoBlocking
 			SSSO N -1
 			Stop
 		Death.ZorchPistol:
 		Death.Zorch:
+		Death.ZorchKamikaze:
+		Death.PhasingZorch:
+		Death.ZorchSpectral:
 			TNT1 A 0 A_GiveToTarget("KillCount",1)
 			SSSO F 0 A_Stop
 			TNT1 A 0 A_ChangeFlag("DONTGIB",1)
@@ -219,7 +231,7 @@ ACTOR SODSS
 			TNT1 A -1
 			stop
 		Raise:
-			SSSO NMLKJ 5
+			SSSO NMLK 5
 			Goto See
 		ZorchRaise:
 			TNT1 A 1 A_UnsetShootable
@@ -239,4 +251,9 @@ ACTOR SODSS
 			SSSO A 1 A_SetShootable
 			Goto See
 	}
+}
+
+ACTOR MultiSODSS : SODSS
+{
+	+THRUSPECIES
 }

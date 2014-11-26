@@ -1,0 +1,398 @@
+ACTOR EvilOtto
+{
+	Health 4000
+	Radius 40
+	Height 80
+	Speed 15
+	Mass 90000
+	PainChance 0
+	MaxStepHeight 512
+	MaxDropOffHeight 512
+	Scale 4.0
+	MONSTER
+	+NOTDMATCH
+	+NOICEDEATH
+	+LOOKALLAROUND
+	+NOBLOOD
+	SeeSound "EvilOtto/Sight"
+	Obituary "%o was destroyed by Evil Otto."
+	States
+	{
+		Spawn:
+			EOTG ABCDEFGHI 1 A_Look
+			Loop
+		See:
+			EOTG ABCDEFGHI 1 A_Chase
+			TNT1 A 0 A_CustomMeleeAttack(10000)
+			Loop
+		Death:
+			EOTG A 1 A_KillMaster
+			Stop
+	}
+}
+
+ACTOR EvilOttoWeak : EvilOtto
+{
+	Radius 20
+	Height 56
+	Health 400
+	Speed 10
+	Scale 4.0
+	States
+	{
+		Spawn:
+			EOTR ABCDEFGHI 1 A_Look
+			Loop
+		See:
+			EOTR ABCDEFGHI 1 A_Chase
+			TNT1 A 0 A_CustomMeleeAttack(10000)
+			Loop
+		Death:
+			EOTR A 1 A_KillMaster
+			Stop
+	}
+}
+
+ACTOR EvilOttoWeaker : EvilOtto
+{
+	Radius 16
+	Height 56
+	Health 100
+	Speed 5
+	Scale 4.0
+	States
+	{
+		Spawn:
+			EOTY ABCDEFGHI 1 A_Look
+			Loop
+		See:
+			EOTY ABCDEFGHI 1 A_Chase
+			TNT1 A 0 A_CustomMeleeAttack(10000)
+			Loop
+		Death:
+			EOTY A 1 A_KillMaster
+			Stop
+	}
+}
+
+ACTOR BerzerkRobotYellow 
+{
+	Health 1
+	Radius 16
+	Height 56
+	Speed 10
+	Mass 1000
+	PainChance 0
+	Scale 4.0
+	MONSTER
+	+FLOORCLIP
+    +NOTDMATCH
+    +NOICEDEATH
+    +THRUGHOST
+	+LOOKALLAROUND
+	+NOBLOOD
+	SeeSound "Berzerk/Random"
+	DeathSound "Berzerk/Death"
+	ActiveSound "Berzerk/Random"
+	Obituary "%o was caught by a robot."
+	States 
+	{
+		Spawn:
+			BZRK ABCDEF 5 A_Look
+			Loop
+		See:
+			BZRK GHIJ 8 A_Chase
+			Loop
+		Death.DukeDamage:
+		Death.DukeExplosive:
+		Death.DukeIce:
+		Death.DukePistol:
+			TNT1 A 0 A_Jump(218,"Death")
+			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
+			goto Death
+		Death.MightyBoot:
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_Jump(64,"Death")
+			TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
+			goto Death
+		Pain:
+		Melee:
+		Death:
+		XDeath:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			BZRK K 5 A_Scream
+			TNT1 A 0 A_Explode(10000, 40)
+			BZRK L 5 A_NoBlocking
+			BZRK M 5
+			TNT1 A -1 A_KillMaster
+			Stop
+		Death.ZorchPistol:
+		Death.Zorch:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			BZRK A 0 A_Stop
+			TNT1 A 0 A_ChangeFlag("DONTGIB",1)
+			TNT1 A 0 A_PlaySoundEx("chex/zorch","soundslot5",0,0)
+			BZRK A 3 A_SpawnItem("ZorchEffectSmall")
+			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
+			BZRK A 3 A_SetTranslucent(0.9,0)
+			BZRK A 0 A_Scream
+			BZRK A 3 A_SetTranslucent(0.8,0)
+			BZRK A 0 A_NoBlocking
+			BZRK A 3 A_SetTranslucent(0.7,0)
+			BZRK A 3 A_SetTranslucent(0.6,0)
+			BZRK A 3 A_SetTranslucent(0.5,0)
+			BZRK A 3 A_SetTranslucent(0.4,0)
+			BZRK A 3 A_SetTranslucent(0.3,0)
+			BZRK A 3 A_SetTranslucent(0.2,0)
+			BZRK A 3 A_SetTranslucent(0.1,0)
+			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A -1 A_KillMaster
+			stop
+	}
+}
+
+ACTOR BerzerkRobotRed : BerzerkRobotYellow
+{
+	+MISSILEMORE
+	States
+	{
+		Spawn:
+			BZKR ABCDEF 5 A_Look
+			Loop
+		See:
+			BZKR GHIJ 7 A_Chase
+			Loop
+		Missile:
+			BZKR G 2 A_FaceTarget
+			BZKR G 1 A_CustomMissile("BerzerkLaserRed",32,16,0,8)
+			Goto See
+		Pain:
+		Melee:
+		Death:
+		XDeath:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			BZKR K 5 A_Scream
+			TNT1 A 0 A_Explode(10000, 40)
+			BZKR L 5 A_NoBlocking
+			BZKR M 5
+			TNT1 A -1 A_KillMaster
+			Stop
+		Death.Zorch:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			BZKR A 0 A_Stop
+			TNT1 A 0 A_ChangeFlag("DONTGIB",1)
+			TNT1 A 0 A_PlaySoundEx("chex/zorch","soundslot5",0,0)
+			BZKR A 3 A_SpawnItem("ZorchEffectSmall")
+			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
+			BZKR A 3 A_SetTranslucent(0.9,0)
+			BZKR A 0 A_Scream
+			BZKR A 3 A_SetTranslucent(0.8,0)
+			BZKR A 0 A_NoBlocking
+			BZKR A 3 A_SetTranslucent(0.7,0)
+			BZKR A 3 A_SetTranslucent(0.6,0)
+			BZKR A 3 A_SetTranslucent(0.5,0)
+			BZKR A 3 A_SetTranslucent(0.4,0)
+			BZKR A 3 A_SetTranslucent(0.3,0)
+			BZKR A 3 A_SetTranslucent(0.2,0)
+			BZKR A 3 A_SetTranslucent(0.1,0)
+			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A -1 A_KillMaster
+			stop
+	}
+}
+
+ACTOR BerzerkRobotBlue : BerzerkRobotYellow
+{
+	+MISSILEMORE
+	States
+	{
+		Spawn:
+			BZKB ABCDEF 5 A_Look
+			Loop
+		See:
+			BZKB GHIJ 6 A_Chase
+			Loop
+		Missile:
+			BZKB G 2 A_FaceTarget
+			BZKB G 1 A_CustomMissile("BerzerkLaserBlue",32,16,0,8)
+			BZKB G 4 A_FaceTarget
+			BZKB G 1 A_CustomMissile("BerzerkLaserBlue",32,16,0,8)
+			Goto See
+		Pain:
+		Melee:
+		Death:
+		XDeath:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			BZKB K 5 A_Scream
+			TNT1 A 0 A_Explode(10000, 40)
+			BZKB L 5 A_NoBlocking
+			BZKB M 5
+			TNT1 A -1 A_KillMaster
+			Stop
+		Death.Zorch:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			BZKB A 0 A_Stop
+			TNT1 A 0 A_ChangeFlag("DONTGIB",1)
+			TNT1 A 0 A_PlaySoundEx("chex/zorch","soundslot5",0,0)
+			BZKB A 3 A_SpawnItem("ZorchEffectSmall")
+			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
+			BZKB A 3 A_SetTranslucent(0.9,0)
+			BZKB A 0 A_Scream
+			BZKB A 3 A_SetTranslucent(0.8,0)
+			BZKB A 0 A_NoBlocking
+			BZKB A 3 A_SetTranslucent(0.7,0)
+			BZKB A 3 A_SetTranslucent(0.6,0)
+			BZKB A 3 A_SetTranslucent(0.5,0)
+			BZKB A 3 A_SetTranslucent(0.4,0)
+			BZKB A 3 A_SetTranslucent(0.3,0)
+			BZKB A 3 A_SetTranslucent(0.2,0)
+			BZKB A 3 A_SetTranslucent(0.1,0)
+			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A -1 A_KillMaster
+			stop
+	}
+}
+
+ACTOR BerzerkRobotGreen : BerzerkRobotYellow
+{
+	+MISSILEMORE
+	States
+	{
+		Spawn:
+			BZKG ABCDEF 5 A_Look
+			Loop
+		See:
+			BZKG GHIJ 5 A_Chase
+			Loop
+		Missile:
+			BZKG G 2 A_FaceTarget
+			BZKG G 1 A_CustomMissile("BerzerkLaserGreen",32,16,0,8)
+			BZKG G 4 A_FaceTarget
+			BZKG G 1 A_CustomMissile("BerzerkLaserGreen",32,16,0,8)
+			BZKG G 4 A_FaceTarget
+			BZKG G 1 A_CustomMissile("BerzerkLaserGreen",32,16,0,8)
+			Goto See
+		Pain:
+		Melee:
+		Death:
+		XDeath:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			BZKG K 5 A_Scream
+			TNT1 A 0 A_Explode(10000, 40)
+			BZKG L 5 A_NoBlocking
+			BZKG M 5
+			TNT1 A -1 A_KillMaster
+			Stop
+		Death.Zorch:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			BZKG A 0 A_Stop
+			TNT1 A 0 A_ChangeFlag("DONTGIB",1)
+			TNT1 A 0 A_PlaySoundEx("chex/zorch","soundslot5",0,0)
+			BZKG A 3 A_SpawnItem("ZorchEffectSmall")
+			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
+			BZKG A 3 A_SetTranslucent(0.9,0)
+			BZKG A 0 A_Scream
+			BZKG A 3 A_SetTranslucent(0.8,0)
+			BZKG A 0 A_NoBlocking
+			BZKG A 3 A_SetTranslucent(0.7,0)
+			BZKG A 3 A_SetTranslucent(0.6,0)
+			BZKG A 3 A_SetTranslucent(0.5,0)
+			BZKG A 3 A_SetTranslucent(0.4,0)
+			BZKG A 3 A_SetTranslucent(0.3,0)
+			BZKG A 3 A_SetTranslucent(0.2,0)
+			BZKG A 3 A_SetTranslucent(0.1,0)
+			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A -1 A_KillMaster
+			stop
+	}
+}
+
+ACTOR MultiEvilOtto : EvilOtto
+{
+	Species "EvilOtto"
+	+THRUSPECIES
+}
+
+ACTOR MultiEvilOttoWeak : EvilOttoWeak
+{
+	Species "EvilOttoWeak"
+	+THRUSPECIES
+}
+
+ACTOR MultiEvilOttoWeaker : EvilOttoWeaker
+{
+	Species "EvilOttoWeaker"
+	+THRUSPECIES
+}
+
+ACTOR MultiBerzerkRobotYellow : BerzerkRobotYellow
+{
+	Species "BerzerkRobotYellow"
+	+THRUSPECIES
+}
+
+ACTOR MultiBerzerkRobotRed : BerzerkRobotRed
+{
+	Species "BerzerkRobotRed"
+	+THRUSPECIES
+}
+
+ACTOR MultiBerzerkRobotBlue : BerzerkRobotBlue
+{
+	Species "BerzerkRobotBlue"
+	+THRUSPECIES
+}
+
+ACTOR MultiBerzerkRobotGreen : BerzerkRobotGreen
+{
+	Species "BerzerkRobotGreen"
+	+THRUSPECIES
+}
+
+ACTOR BerzerkLaserRed
+{
+	Radius 8
+	Height 6
+	Speed 5
+	Damage (10000)
+	Scale 4.0
+	PROJECTILE
+	SeeSound "Berzerk/Fire"
+	States 
+	{
+		Spawn:
+			BZRL A 3 Bright
+			Loop
+		Death:
+			BZRL A 1 Bright
+			Stop
+	}
+}
+
+ACTOR BerzerkLaserBlue : BerzerkLaserRed
+{
+	Speed 10
+	States
+	{
+		Spawn:
+			BZBL A 3 Bright
+			Loop
+		Death:
+			BZBL A 1 Bright
+			Stop
+	}
+}
+
+ACTOR BerzerkLaserGreen : BerzerkLaserRed
+{
+	Speed 15
+	States
+	{
+		Spawn:
+			BZGL A 3 Bright
+			Loop
+		Death:
+			BZGL A 1 Bright
+			Stop
+	}
+}

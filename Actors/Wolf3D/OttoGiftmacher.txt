@@ -1,11 +1,13 @@
 ACTOR OttoGiftmacher 
 {
 	Health 850
-	Radius 40
-	Height 66
+	Radius 26
+	Height 69
 	Speed 6
 	Mass 1000
 	PainChance 0
+	Scale 1.1
+	Species Nazi
 	MONSTER
 	+FLOORCLIP
     +NOTDMATCH
@@ -13,16 +15,19 @@ ACTOR OttoGiftmacher
     +THRUGHOST
 	+MISSILEMORE
 	+LOOKALLAROUND
+	+BOSSDEATH
 	SeeSound "otto/sight"
 	PainSound ""
 	DeathSound "otto/death"
 	ActiveSound ""
 	AttackSound "wolfen/missilefire"
+	Dropitem "DefaultPinataPop"
 	Obituary "%o was blown away by Otto Giftmacher's rocket."
     DamageFactor "Mace", 1.1
     DamageFactor "DragonClaw", 1.5
+	DamageFactor "WolfEnemyBullet", 0.0
     PainChance "MightyBoot", 255
-	Dropitem "rocketammo"
+	PainChance "MarathonStun", 255
 	Dropitem "WolfGoldKey"
 	Decal Scorch
 	States 
@@ -31,13 +36,13 @@ ACTOR OttoGiftmacher
 			WOTT A 1 A_Look
 			Loop
 		See:
-			WOTT AABBCCDD 2 A_Chase
+			WOTT AAABBCCCDD 2 A_Chase
 			Loop
 		Missile:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
-			WOTT E 10 A_FaceTarget
-			WOTT F 4 Bright A_CustomMissile("OttoWolfRocket",32,16,0,8)
-			WOTT E 10
+			WOTT EEEEE 3 A_FaceTarget
+			WOTT F 5 Bright
+			TNT1 A 0 A_CustomMissile("OttoWolfRocket",32,16,0,8)
 			Goto See
 		Pain:
 			WOTT D 3
@@ -47,8 +52,17 @@ ACTOR OttoGiftmacher
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
 			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
 			WOTT D 2 A_FaceTarget
-			TNT1 A 0 A_Recoil(14)
+			TNT1 A 0 A_Recoil(8)
 			WOTT D 16 A_Pain
+			Goto See
+		Pain.MarathonStun:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_GiveInventory("NothingSpeed")
+			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			WOTT G 5 A_FaceTarget
+			TNT1 A 0 A_Gravity
+			WOTT G 30 A_Pain
+			WOTT G 70
 			Goto See
 		Death.DukeDamage:
 		Death.DukePistol:
@@ -62,7 +76,6 @@ ACTOR OttoGiftmacher
 			goto Death
 		Death.DukeExplosive:
 			TNT1 A 0 A_JumpIfHealthLower(-3,"DukeGibStart")
-			goto Death.DukeDamage
 		DukeGibStart:
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_SpawnDebris("DukeGibs1")
@@ -77,14 +90,21 @@ ACTOR OttoGiftmacher
 		Death:
 		XDeath:
 			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,2) == 1, "FastDeath")
 			WOTT A 70 A_Scream
 			WOTT G 5
 			WOTT H 5
 			WOTT I 5 A_NoBlocking
-			WOTT J -1 A_BossDeath
+			WOTT J -1 A_KillMaster
 			Stop
+		FastDeath:
+			WOTT A 5 A_Scream
+			Goto XDeath+3
 		Death.ZorchPistol:
 		Death.Zorch:
+		Death.ZorchKamikaze:
+		Death.PhasingZorch:
+		Death.ZorchSpectral:
 			TNT1 A 0 A_GiveToTarget("KillCount",1)
 			WOTT D 0 A_Stop
 			TNT1 A 0 A_ChangeFlag("DONTGIB",1)
@@ -103,7 +123,7 @@ ACTOR OttoGiftmacher
 			WOTT D 3 A_SetTranslucent(0.2,0)
 			WOTT D 3 A_SetTranslucent(0.1,0)
 			TNT1 A 1 A_SetTranslucent(1,0)
-			TNT1 A -1 A_BossDeath
+			TNT1 A -1 A_KillMaster
 			stop
 		Death.DukeIce:
 			TNT1 A 0 A_PlaySound("duke/enemyfreeze")
@@ -124,7 +144,7 @@ ACTOR OttoGiftmacher
 			TNT1 A -1 A_BossDeath
 			stop
 		Raise:
-			WOTT NMLKJ 5
+			WOTT JIHG 5
 			Goto See
 		ZorchRaise:
 			TNT1 A 1 A_UnsetShootable
@@ -144,4 +164,15 @@ ACTOR OttoGiftmacher
 			WOTT A 1 A_SetShootable
 			Goto See
 	}
+}
+
+ACTOR OttoGiftmacherDoom : OttoGiftMacher
+{
+	Height 63
+	Scale 1.0
+}
+
+ACTOR MultiOttoGiftmacherDoom : OttoGiftmacherDoom
+{
+	+THRUSPECIES
 }

@@ -2,10 +2,11 @@ ACTOR FakeHitler
 {
 	Health 500
 	Radius 20
-	Height 56
+	Height 50
 	Mass 400
 	Speed 6
 	PainChance 0
+	Scale 1.1
 	MONSTER
 	+FLOORCLIP
     +NOTDMATCH
@@ -13,6 +14,7 @@ ACTOR FakeHitler
     +THRUGHOST
 	+MISSILEMORE
 	+FLOAT
+	+NOBLOOD
 	+NOGRAVITY
 	+LOOKALLAROUND
 	SeeSound "fakehitler/sight"
@@ -20,53 +22,76 @@ ACTOR FakeHitler
 	DeathSound "fakehitler/death"
 	ActiveSound ""
 	AttackSound "fakehitler/fire"
+	Dropitem "DefaultPinataPop"
 	Obituary "%o was blasted by a fake Hitler."
     DamageFactor "Mace", 1.1
     DamageFactor "DragonClaw", 1.5
+	DamageFactor "WolfEnemyBullet", 0.0
     PainChance "MightyBoot", 255
-	Dropitem "cell2"
+	PainChance "MarathonStun", 255
 	States 
 	{
 		Spawn:
-			WFAH AABBCCDD 2 A_Look
+			WFAH AAABBCCCDD 2 A_Look
 			Loop
 		See:
-			WFAH AABBCCDD 2 A_Chase
+			WFAH AAABBCCCDD 2 A_Chase
 			Loop
 		Missile:
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,1) == 1, "Missile2")
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			TNT1 A 0 A_FaceTarget
 			TNT1 A 0 A_PlaySound("fakehitler/fire", CHAN_WEAPON)
-			WFAH E 2 Bright A_CustomMissile("FakeHitlerBall",32,0,0,8)
-			WFAH E 4
+			WFAH E 3 Bright A_CustomMissile("FakeHitlerBall",32,0,0,8)
 			TNT1 A 0 A_FaceTarget
 			TNT1 A 0 A_PlaySound("fakehitler/fire", CHAN_WEAPON)
-			WFAH E 2 Bright A_CustomMissile("FakeHitlerBall",32,0,0,8)
-			WFAH E 4
+			WFAH E 3 Bright A_CustomMissile("FakeHitlerBall",32,0,0,8)
 			TNT1 A 0 A_FaceTarget
 			TNT1 A 0 A_PlaySound("fakehitler/fire", CHAN_WEAPON)
-			WFAH E 2 Bright A_CustomMissile("FakeHitlerBall",32,0,0,8)
-			WFAH E 4
+			WFAH E 3 Bright A_CustomMissile("FakeHitlerBall",32,0,0,8)
 			TNT1 A 0 A_FaceTarget
 			TNT1 A 0 A_PlaySound("fakehitler/fire", CHAN_WEAPON)
-			WFAH E 2 Bright A_CustomMissile("FakeHitlerBall",32,0,0,8)
-			WFAH E 4
+			WFAH E 3 Bright A_CustomMissile("FakeHitlerBall",32,0,0,8)
 			TNT1 A 0 A_FaceTarget
 			TNT1 A 0 A_PlaySound("fakehitler/fire", CHAN_WEAPON)
-			WFAH E 2 Bright A_CustomMissile("FakeHitlerBall",32,0,0,8)
-			WFAH E 4
+			WFAH E 3 Bright A_CustomMissile("FakeHitlerBall",32,0,0,8)
 			TNT1 A 0 A_FaceTarget
 			TNT1 A 0 A_PlaySound("fakehitler/fire", CHAN_WEAPON)
-			WFAH E 2 Bright A_CustomMissile("FakeHitlerBall",32,0,0,8)
-			WFAH E 4
+			WFAH E 3 Bright A_CustomMissile("FakeHitlerBall",32,0,0,8)
 			TNT1 A 0 A_FaceTarget
 			TNT1 A 0 A_PlaySound("fakehitler/fire", CHAN_WEAPON)
-			WFAH E 2 Bright A_CustomMissile("FakeHitlerBall",32,0,0,8)
-			WFAH E 4
+			WFAH E 3 Bright A_CustomMissile("FakeHitlerBall",32,0,0,8)
 			TNT1 A 0 A_FaceTarget
 			TNT1 A 0 A_PlaySound("fakehitler/fire", CHAN_WEAPON)
-			WFAH E 2 Bright A_CustomMissile("FakeHitlerBall",32,0,0,8)
-			WFAH E 4
+			WFAH E 3 Bright A_CustomMissile("FakeHitlerBall",32,0,0,8)
+			Goto See
+		Missile2:
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,1) == 0, "Missile")
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0 A_FaceTarget
+			TNT1 A 0 A_PlaySound("fakehitler/fire", CHAN_WEAPON)
+			WFAH E 3 Bright A_CustomMissile("FakeHitlerBallFast",32,0,0,8)
+			TNT1 A 0 A_FaceTarget
+			TNT1 A 0 A_PlaySound("fakehitler/fire", CHAN_WEAPON)
+			WFAH E 3 Bright A_CustomMissile("FakeHitlerBallFast",32,0,0,8)
+			TNT1 A 0 A_FaceTarget
+			TNT1 A 0 A_PlaySound("fakehitler/fire", CHAN_WEAPON)
+			WFAH E 3 Bright A_CustomMissile("FakeHitlerBallFast",32,0,0,8)
+			TNT1 A 0 A_FaceTarget
+			TNT1 A 0 A_PlaySound("fakehitler/fire", CHAN_WEAPON)
+			WFAH E 3 Bright A_CustomMissile("FakeHitlerBallFast",32,0,0,8)
+			TNT1 A 0 A_FaceTarget
+			TNT1 A 0 A_PlaySound("fakehitler/fire", CHAN_WEAPON)
+			WFAH E 3 Bright A_CustomMissile("FakeHitlerBallFast",32,0,0,8)
+			TNT1 A 0 A_FaceTarget
+			TNT1 A 0 A_PlaySound("fakehitler/fire", CHAN_WEAPON)
+			WFAH E 3 Bright A_CustomMissile("FakeHitlerBallFast",32,0,0,8)
+			TNT1 A 0 A_FaceTarget
+			TNT1 A 0 A_PlaySound("fakehitler/fire", CHAN_WEAPON)
+			WFAH E 3 Bright A_CustomMissile("FakeHitlerBallFast",32,0,0,8)
+			TNT1 A 0 A_FaceTarget
+			TNT1 A 0 A_PlaySound("fakehitler/fire", CHAN_WEAPON)
+			WFAH E 3 Bright A_CustomMissile("FakeHitlerBallFast",32,0,0,8)
 			Goto See
 		Pain:
 			WFAH D 3
@@ -78,6 +103,15 @@ ACTOR FakeHitler
 			WFAH D 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)
 			WFAH D 16 A_Pain
+			Goto See
+		Pain.MarathonStun:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_GiveInventory("NothingSpeed")
+			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			WFAH A 5 A_FaceTarget
+			TNT1 A 0 A_Gravity
+			WFAH A 30 A_Pain
+			WFAH A 70
 			Goto See
 		Death.DukeDamage:
 		Death.DukePistol:
@@ -91,29 +125,32 @@ ACTOR FakeHitler
 			goto Death
 		Death.DukeExplosive:
 			TNT1 A 0 A_JumpIfHealthLower(-3,"DukeGibStart")
-			goto Death.DukeDamage
+			Goto XDeath
 		DukeGibStart:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_SpawnDebris("DukeGibs1")
-			TNT1 A 0 A_SpawnDebris("DukeGibs2")
-			TNT1 A 0 A_SpawnDebris("DukeGibs3")
-			TNT1 A 0 A_SpawnDebris("DukeGibs4")
-			TNT1 A 0 A_SpawnDebris("DukeGibs5")
-			TNT1 A 0 A_SpawnDebris("DukeGibs6")
-			TNT1 A 0 A_PlaySound("duke/enemygib")
-			TNT1 A 0 A_Jump(96,"XDeath")
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
+			WFAH F 1
+			WFAH F 0 A_UnsetSolid
+			WFAH F 1 A_SpawnDebris("DukeShrapnel1")
+			TNT1 AAAAAAA 0 A_SpawnDebris("DukeShrapnel1")
+			TNT1 AAAA 0 A_SpawnDebris("DukeShrapnel2")
+			TNT1 AAAAAAA 0 A_SpawnDebris("DukeShrapnel3")
+			TNT1 A 0 A_Jump(96,"Death")
+			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)//TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
+			Goto Death
 		Death:
 		XDeath:
 			TNT1 A 0 A_GiveToTarget("KillCount",1)
-			WFAH F 5
-			WFAH G 5 A_Scream
-			WFAH H 5 A_NoBlocking
-			WFAH IJ 5
+			WFAH F 4 A_Scream
+			WFAH G 5 
+			WFAH H 6 A_NoBlocking
+			WFAH I 4
+			WFAH J 5
 			WFAH K -1
 			Stop
 		Death.ZorchPistol:
 		Death.Zorch:
+		Death.ZorchKamikaze:
+		Death.PhasingZorch:
+		Death.ZorchSpectral:
 			TNT1 A 0 A_GiveToTarget("KillCount",1)
 			WFAH F 0 A_Stop
 			TNT1 A 0 A_ChangeFlag("DONTGIB",1)
@@ -153,7 +190,7 @@ ACTOR FakeHitler
 			TNT1 A -1
 			stop
 		Raise:
-			WFAH NMLKJ 5
+			WFAH KJIHGF 5
 			Goto See
 		ZorchRaise:
 			TNT1 A 1 A_UnsetShootable
@@ -173,4 +210,9 @@ ACTOR FakeHitler
 			WFAH A 1 A_SetShootable
 			Goto See
 	}
+}
+
+ACTOR MultiFakeHitler : FakeHitler
+{
+	+THRUSPECIES
 }

@@ -1,1 +1,303 @@
-//s
+ACTOR AssaultCaptain
+{
+	Health 60
+	Radius 18
+	Height 51
+	Speed 20
+	PainChance 96
+	Scale 0.65
+	MONSTER
+	+FLOORCLIP
+    +NOTDMATCH
+	+NOINFIGHTING
+    +THRUGHOST
+	+MISSILEMORE
+	SeeSound "assaultenf/sight"
+	PainSound "assaultenf/pain"
+	DeathSound "assaultenf/death"
+	ActiveSound "assaultcapt/roam"
+	AttackSound ""
+	Dropitem "DefaultPinataPop"
+	Obituary "An Assault Trooper killed %o with his laser."
+    DamageFactor "Mace", 1.1
+    DamageFactor "DragonClaw", 1.5
+    PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
+	Decal BulletChip
+	States 
+	{
+		Spawn:
+			ASCA A 1 A_Look
+			Loop
+		See:
+			ASCA ABCD 5 A_Chase
+			TNT1 A 0 A_SetSolid
+			TNT1 A 0 A_SetShootable
+			Loop
+		Missile:
+			TNT1 A 0 A_Jump (64, "CrouchShot", "Teleport")
+			Goto StandShot
+		StandShot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			ASCA EE 9 A_Facetarget 
+			TNT1 A 0 A_PlaySound("assaultcapt/fire", CHAN_WEAPON)
+			TNT1 A 0 Bright A_CustomMissile("TrooperLaser",32,10,0,8)
+			ASCA EE 9 A_Facetarget 
+			TNT1 A 0 A_PlaySound("assaultcapt/fire", CHAN_WEAPON)
+			TNT1 A 0 Bright A_CustomMissile("TrooperLaser",32,10,0,8)
+			Goto See
+		CrouchShot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			ASCA GG 9 A_FaceTarget
+			ASCA HH 4 A_FaceTarget
+			TNT1 A 0 A_PlaySound("assaultcapt/fire", CHAN_WEAPON)
+			TNT1 A 0 Bright A_CustomMissile("TrooperLaser",32,10,0,8)
+			ASCA GG 4 A_FaceTarget
+			ASCA HH 4 A_FaceTarget
+			TNT1 A 0 A_PlaySound("assaultcapt/fire", CHAN_WEAPON)
+			TNT1 A 0 Bright A_CustomMissile("TrooperLaser",32,10,0,8)
+			ASCA GG 4 A_FaceTarget
+			ASCA HH 4 A_FaceTarget
+			TNT1 A 0 A_PlaySound("assaultcapt/fire", CHAN_WEAPON)
+			TNT1 A 0 Bright A_CustomMissile("TrooperLaser",32,10,0,8)
+			ASCA GG 4 A_FaceTarget
+			ASCA HH 4 A_FaceTarget
+			Goto See
+		Teleport:
+			ASCA Q 12
+			ASCA R 1 A_ChangeFlag("NOPAIN",1)
+			ASCA R 1 A_SetTranslucent(0.96,0)
+			ASCA R 1 A_SetTranslucent(0.90,0)
+			ASCA R 1 A_SetTranslucent(0.84,0)
+			ASCA R 1 A_SetTranslucent(0.78,0)
+			ASCA R 1 A_SetTranslucent(0.72,0)
+			ASCA R 1 A_SetTranslucent(0.66,0)
+			ASCA R 1 A_SetTranslucent(0.60,0)
+			ASCA R 1 A_SetTranslucent(0.54,0)
+			ASCA R 1 A_SetTranslucent(0.48,0)
+			ASCA R 1 A_SetTranslucent(0.42,0)
+			ASCA R 1 A_SetTranslucent(0.36,0)
+			ASCA R 1 A_SetTranslucent(0.30,0)
+			ASCA R 1 A_SetTranslucent(0.24,0)
+			ASCA R 1 A_SetTranslucent(0.18,0)
+			ASCA R 1 A_SetTranslucent(0.12,0)
+			ASCA R 1 A_SetTranslucent(0.06,0)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_UnsetShootable
+			TNT1 A 0 A_PlaySoundEx("assaultcapt/teleport","soundslot5",0,0)
+			TNT1 A 0 A_SpawnItem("DukeTeleportFlash")
+			TNT1 A 1 A_SetTranslucent(1,0)
+			Goto Invisible
+		Invisible:
+			TNT1 AA 5 A_Wander
+			TNT1 AA 5 A_ExtChase(0,0,0,0)
+			TNT1 A 0 A_Jump(30,"TeleEnd")
+			Loop
+		TeleEnd:
+			TNT1 A 13 A_SpawnItem("DukeTeleportFlash")
+			TNT1 A 0 A_SetSolid
+			TNT1 A 0 A_SetShootable
+			ASCA E 1 A_PlaySoundEx("assaultcapt/teleport","soundslot5",0,0)
+			Goto StandShot
+		Pain:
+			ASCA I 3
+			ASCA I 3 A_Pain
+			Goto See
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			ASCA I 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			ASCA I 16 A_Pain
+			Goto See
+		Pain.MarathonStun:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_GiveInventory("NothingSpeed")
+			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			ASCA I 5 A_FaceTarget
+			TNT1 A 0 A_Gravity
+			ASCA I 30 A_Pain
+			ASCA I 70
+			Goto See
+		Death.DukeDamage:
+		Death.DukeSpectral:
+		Death.DukePistol:
+			TNT1 A 0 A_Jump(218,"Death")
+			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
+			goto Death
+		Death.MightyBoot:
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_Jump(64,"Death")
+			TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
+			goto Death
+		Death.DukeExplosive:
+			TNT1 A 0 A_JumpIfHealthLower(-3,"DukeGibStart")
+			Goto Death
+		DukeGibStart:
+			TNT1 A 0 A_Jump(96,"XDeath")
+			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
+			goto XDeath
+		Death.Explosive:
+			TNT1 A 0 A_JumpIfHealthLower(-3,"XDeath")
+			Goto Death
+		Death.FireExplosive:
+			TNT1 A 0 A_JumpIfHealthLower(-3,"XDeath")
+			Goto Death
+		Death:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 A_SetTranslucent(1,0)
+			ASCA I 7 A_Scream
+			ASCA J 5 A_NoBlocking
+			ASCA K 6
+			ASCA L 6 A_SpawnItemEx("ATrooperAmmoDrop",0,0,0,0,0,8,0,32,160)
+			ASCA M -1
+			stop
+		XDeath:
+			TNT1 A 1
+			TNT1 A 1 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_SetTranslucent(1,0)
+			TNT1 A 0 A_SpawnDebris("DukeJibs2")
+			TNT1 AA 0 A_SpawnDebris("DukeJibs3")
+			TNT1 AAA 0 A_SpawnDebris("DukeJibs4")
+			TNT1 AA 0 A_SpawnDebris("DukeJibs5")
+			TNT1 AAA 0 A_SpawnDebris("DukeJibs6")
+			TNT1 A 0 A_Jump(32,2)
+			TNT1 A 0 A_SpawnDebris("DukeJibs1")
+			TNT1 A 0 A_Jump(64,2)
+			TNT1 A 0 A_SpawnDebris("DukeJibs10")
+			TNT1 A 0 A_Jump(64,2)
+			TNT1 AA 0 A_SpawnDebris("DukeJibs12")
+			TNT1 A 0 A_Jump(64,2)
+			TNT1 A 0 A_SpawnDebris("DukeJibs11")
+			TNT1 A 0 A_PlaySound("duke/enemygib")
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			Stop
+		Death.ZorchPistol:
+		Death.Zorch:
+		Death.ZorchKamikaze:
+		Death.PhasingZorch:
+		Death.ZorchSpectral:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			ASCA I 0 A_Stop
+			TNT1 A 0 A_ChangeFlag("DONTGIB",1)
+			TNT1 A 0 A_PlaySoundEx("chex/zorch","soundslot5",0,0)
+			ASCA I 3 A_SpawnItem("ZorchEffectSmall")
+			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
+			ASCA I 3 A_SetTranslucent(0.9,0)
+			ASCA I 0 A_Scream
+			ASCA I 3 A_SetTranslucent(0.8,0)
+			ASCA I 0 A_NoBlocking
+			TNT1 A 0 A_SpawnItemEx("ATrooperAmmoDrop",0,0,0,0,0,8,0,32,160)
+			ASCA I 3 A_SetTranslucent(0.7,0)
+			ASCA I 3 A_SetTranslucent(0.6,0)
+			ASCA I 3 A_SetTranslucent(0.5,0)
+			ASCA I 3 A_SetTranslucent(0.4,0)
+			ASCA I 3 A_SetTranslucent(0.3,0)
+			ASCA I 3 A_SetTranslucent(0.2,0)
+			ASCA I 3 A_SetTranslucent(0.1,0)
+			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A -1
+			stop
+		Death.DukeIce:
+			TNT1 A 0 A_PlaySound("duke/enemyfreeze")
+			TNT1 A 0 A_GiveInventory("FreezethrowerWeakness")
+			TNT1 A 0 A_Jump(218,"Ice")
+			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
+		Ice:
+		Death.HexenIce:
+		Death.Ice:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
+			TNT1 A 0 A_NoBlocking
+			ASCA I 0 A_GenericFreezeDeath
+			ASCA I 70 A_UnsetSolid
+			ASCA I 0 A_IceGuyDie
+			ASCA I 1 A_IceGuyDie
+			TNT1 A -1
+			stop
+		Raise:
+			ASCA MLKJI 5
+			Goto See
+		ZorchRaise:
+			TNT1 A 1 A_UnsetShootable
+			TNT1 A 1 A_SpawnItem("SpawnFire2")
+			TNT1 A 0 A_PlaySound("archvile/resummon")
+			TNT1 A 1 A_TakeInventory("EnemyZorched",1)
+			TNT1 A 0 A_SetTranslucent(0.1,0)
+			ASCA A 3 A_SetTranslucent(0.2,0)
+			ASCA A 3 A_SetTranslucent(0.3,0)
+			ASCA A 3 A_SetTranslucent(0.4,0)
+			ASCA A 3 A_SetTranslucent(0.5,0)
+			ASCA A 3 A_SetTranslucent(0.6,0)
+			ASCA A 3 A_SetTranslucent(0.7,0)
+			ASCA A 3 A_SetTranslucent(0.8,0)
+			ASCA A 3 A_SetTranslucent(0.9,0)
+			ASCA A 3 A_SetTranslucent(1,0)
+			ASCA A 1 A_SetShootable	
+			Goto See
+	}
+}
+
+ACTOR InvisAssaultCaptain : AssaultCaptain
+{	
+	States 
+	{
+		Spawn:
+			TNT1 A 1 A_Look
+			Loop
+		See:
+			TNT1 AAAA 5 A_Chase
+			TNT1 A 0 A_SetSolid
+			TNT1 A 0 A_SetShootable
+			Loop
+		Teleport:
+			TNT1 A 12
+			TNT1 A 1 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 1 A_SetTranslucent(0.96,0)
+			TNT1 A 1 A_SetTranslucent(0.90,0)
+			TNT1 A 1 A_SetTranslucent(0.84,0)
+			TNT1 A 1 A_SetTranslucent(0.78,0)
+			TNT1 A 1 A_SetTranslucent(0.72,0)
+			TNT1 A 1 A_SetTranslucent(0.66,0)
+			TNT1 A 1 A_SetTranslucent(0.60,0)
+			TNT1 A 1 A_SetTranslucent(0.54,0)
+			TNT1 A 1 A_SetTranslucent(0.48,0)
+			TNT1 A 1 A_SetTranslucent(0.42,0)
+			TNT1 A 1 A_SetTranslucent(0.36,0)
+			TNT1 A 1 A_SetTranslucent(0.30,0)
+			TNT1 A 1 A_SetTranslucent(0.24,0)
+			TNT1 A 1 A_SetTranslucent(0.18,0)
+			TNT1 A 1 A_SetTranslucent(0.12,0)
+			TNT1 A 1 A_SetTranslucent(0.06,0)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_UnsetShootable
+			TNT1 A 0 A_PlaySoundEx("assaultcapt/teleport","soundslot5",0,0)
+			TNT1 A 0 A_SpawnItem("DukeTeleportFlash")
+			TNT1 A 1 A_SetTranslucent(1,0)
+			Goto Invisible
+		TeleEnd:
+			TNT1 A 13 A_SpawnItem("DukeTeleportFlash")
+			TNT1 A 0 A_SetSolid
+			TNT1 A 0 A_SetShootable
+			TNT1 A 1 A_PlaySoundEx("assaultcapt/teleport","soundslot5",0,0)
+			Goto StandShot
+		Pain:
+			TNT1 A 3
+			TNT1 A 3 A_Pain
+			Goto See
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			TNT1 A 16 A_Pain
+			Goto See
+	}
+}
+
+ACTOR MultiAssaultCaptain : AssaultCaptain
+{
+	Species "AssaultCaptain"
+	+THRUSPECIES
+}

@@ -1,29 +1,32 @@
 ACTOR AssaultEnforcer
 {
 	Health 100
-	Radius 30
-	Height 56
+	Radius 18
+	Height 50
 	Mass 150
-	Speed 35
-	Scale 0.8
-	PainChance 32
+	Speed 3
+	Scale 0.65
+	Gravity 0.50
+	PainChance 0
+	MinMissileChance 100
 	MONSTER
 	+FLOORCLIP
     +NOTDMATCH
-    +NOICEDEATH
     +THRUGHOST
     +NOTARGET
     +NOINFIGHTING
-	+MISSILEMORE
-	+DONTMORPH
+	+NOPAIN
 	SeeSound "assaultenf/sight"
 	PainSound "assaultenf/pain"
 	DeathSound "assaultenf/death"
 	ActiveSound "assaultenf/roam"
 	AttackSound "duke/chaingun"
+	Dropitem "DefaultPinataPop"
 	Obituary "%o was shot by an Assault Enforcer."
     DamageFactor "Mace", 1.1
     DamageFactor "DragonClaw", 1.5
+	PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
 	Decal BulletChip
 	States 
 	{
@@ -31,94 +34,208 @@ ACTOR AssaultEnforcer
 			ASEN A 1 A_Look
 			Loop
 		See:
-			ASEN AABBCCDD 5 A_Chase
+			ASEN AAAAABBBBBCCCCCDDDDD 1 A_Chase
 			TNT1 A 0 A_Jump (5, "Poop")
+			TNT1 A 0 A_JumpIfCloser(256,"See")
+			Goto Run
+		Run:
+			ASEN A 1 A_Chase("","")
+			TNT1 AA 0 A_Chase("","")
+			ASEN A 1 A_Chase("","")
+			TNT1 AA 0 A_Chase("","")
+			ASEN A 1 A_Chase("","")
+			TNT1 AA 0 A_Chase("","")
+			TNT1 A 0 A_JumpIfCloser(140, "Missile")
+			ASEN B 1 A_Chase("","")
+			TNT1 AA 0 A_Chase("","")
+			ASEN B 1 A_Chase("","")
+			TNT1 AA 0 A_Chase("","")
+			ASEN B 1 A_Chase("","")
+			TNT1 AA 0 A_Chase("","")
+			ASEN B 1 A_Chase("","")
+			TNT1 AA 0 A_Chase("","")
+			TNT1 A 0 A_JumpIfCloser(140, "Missile")
+			ASEN C 1 A_Chase("","")
+			TNT1 AA 0 A_Chase("","")
+			ASEN C 1 A_Chase("","")
+			TNT1 AA 0 A_Chase("","")
+			ASEN C 1 A_Chase("","")
+			TNT1 AA 0 A_Chase("","")
+			TNT1 A 0 A_JumpIfCloser(140, "Missile")
+			ASEN D 1 A_Chase("","")
+			TNT1 AA 0 A_Chase("","")
+			ASEN D 1 A_Chase("","")
+			TNT1 AA 0 A_Chase("","")
+			ASEN D 1 A_Chase("","")
+			TNT1 AA 0 A_Chase("","")
+			ASEN D 1 A_Chase("","")
+			TNT1 AA 0 A_Chase("","")
+			TNT1 A 0 A_JumpIfCloser(140, "Missile")
+			TNT1 A 0 A_Jump(20,"Jump")
+			Loop
+		Jump:
+			ASEN I 1 ThrustThingZ(0,30,0,0)
+			TNT1 A 0 ThrustThing(angle*256/360,10,0,0)
+			ASEN I 13 A_CheckFloor("See")
+			Goto MidJump
+		MidJump:
+			ASEN J 17 A_CheckFloor("See")
+			ASEN K 1 A_CheckFloor("See")
+			Goto EndJump
+		EndJump:
+			ASEN K 1 A_CheckFloor("See")
+			ASEN K 4 ThrustThing(angle*256/360,1,0,0)
 			Loop
 		Poop:
-			ASEN L 20
-			TNT1 A 0 A_PlaySound("assaultenf/turd", CHAN_AUTO)
-			TNT1 A 0 A_SpawnItemEX ("DukeTurd", 0 , -30, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+			ASEN G 20
+			TNT1 A 0 A_SpawnItemEX ("EnforcerTurd", 0 , -30, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
 			goto See
 		Missile:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			ASEN E 2 A_FaceTarget
-			ASEN F 2 Bright A_CustomMissile("DukeEnemyBullet",32,0,random(-7,7),8)
-			TNT1 A 0 A_PlaySound("duke/chaingun", CHAN_WEAPON)
+			ASEN F 2 Bright A_CustomBulletAttack(12,10,1,5,"DukeBulletPuff",0,CBAF_NORANDOM)
 			ASEN E 2 A_FaceTarget
-			ASEN F 2 Bright A_CustomMissile("DukeEnemyBullet",32,0,random(-7,7),8)
-			TNT1 A 0 A_PlaySound("duke/chaingun", CHAN_WEAPON)
-			ASEN E 2 A_FaceTarget
-			ASEN F 2 Bright A_CustomMissile("DukeEnemyBullet",32,0,random(-7,7),8)
-			TNT1 A 0 A_PlaySound("duke/chaingun", CHAN_WEAPON)
-			ASEN E 2 A_FaceTarget
-			ASEN F 2 Bright A_CustomMissile("DukeEnemyBullet",32,0,random(-7,7),8)
-			TNT1 A 0 A_PlaySound("duke/chaingun", CHAN_WEAPON)
-			ASEN E 2 A_FaceTarget
-			ASEN F 2 Bright A_CustomMissile("DukeEnemyBullet",32,0,random(-7,7),8)
-			TNT1 A 0 A_PlaySound("duke/chaingun", CHAN_WEAPON)
-			ASEN E 2 A_FaceTarget
-			ASEN F 2 Bright A_CustomMissile("DukeEnemyBullet",32,0,random(-7,7),8)
-			TNT1 A 0 A_PlaySound("duke/chaingun", CHAN_WEAPON)
-			ASEN E 2 A_FaceTarget
-			ASEN F 2 Bright A_CustomMissile("DukeEnemyBullet",32,0,random(-7,7),8)
-			TNT1 A 0 A_PlaySound("duke/chaingun", CHAN_WEAPON)
-			ASEN E 2 A_FaceTarget
-			ASEN F 2 Bright A_CustomMissile("DukeEnemyBullet",32,0,random(-7,7),8)
-			TNT1 A 0 A_PlaySound("duke/chaingun", CHAN_WEAPON)
-			ASEN E 2 A_FaceTarget
-			ASEN F 2 Bright A_CustomMissile("DukeEnemyBullet",32,0,random(-7,7),8)
-			TNT1 A 0 A_PlaySound("duke/chaingun", CHAN_WEAPON)
-			ASEN E 2 A_FaceTarget
-			ASEN F 2 Bright A_CustomMissile("DukeEnemyBullet",32,0,random(-7,7),8)
-			TNT1 A 0 A_PlaySound("duke/chaingun", CHAN_WEAPON)
-			ASEN E 2 A_FaceTarget
-			ASEN F 2 Bright A_CustomMissile("DukeEnemyBullet",32,0,random(-7,7),8)
-			TNT1 A 0 A_PlaySound("duke/chaingun", CHAN_WEAPON)
-			ASEN E 2 A_FaceTarget
-			ASEN F 2 Bright A_CustomMissile("DukeEnemyBullet",32,0,random(-7,7),8)
-			TNT1 A 0 A_PlaySound("duke/chaingun", CHAN_WEAPON)
-			ASEN E 2 A_FaceTarget
-			ASEN E 1 A_Jump (40, "See")
-			Goto Missile+1
-		Pain:
-			ASEN I 3
-			ASEN I 3 A_Pain
+			ASEN F 2 Bright A_CustomBulletAttack(12,10,1,5,"DukeBulletPuff",0,CBAF_NORANDOM)
+			TNT1 A 0 A_Jump (40, "See")
+			TNT1 A 0 A_CPosRefire
+			Goto Missile
+			//ASEN F 2 Bright A_CustomMissile("DukeEnemyBullet",32,0,random(-7,7),CMF_CHECKTARGETDEAD,random(-5,5))
+		Pain.MightyBoot:
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			ASEN M 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			ASEN M 16 A_Pain
 			Goto See
-		Death.DukeDamage:
+		Pain.MarathonStun:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_GiveInventory("NothingSpeed")
+			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			ASEN M 5 A_FaceTarget
+			TNT1 A 0 A_Gravity
+			ASEN M 30 A_Pain
+			ASEN M 70
+			Goto See
 		Death.MightyBoot:
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_Jump(64,"Death")
+			TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
+			goto Death
 		Death.DukeExplosive:
-		Death.DukeIce:
+			TNT1 A 0 A_JumpIfHealthLower(-3,"DukeGibStart")
+			Goto Death
+		DukeGibStart:
+			TNT1 A 0 A_Jump(96,"XDeath")
+			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
+			goto XDeath
+		Death.DukeDamage:
+		Death.DukeSpectral:
 		Death.DukePistol:
-			TNT1 A 0 A_GiveToTarget("DukeBossKillTaunt",1)
+			TNT1 A 0 A_Jump(218,"Death")
+			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
+			Goto Death
+		Death.Explosive:
+			TNT1 A 0 A_JumpIfHealthLower(-3,"XDeath")
+			Goto Death
+		Death.FireExplosive:
+			TNT1 A 0 A_JumpIfHealthLower(-3,"XDeath")
+			Goto Death
 		Death:
-		XDeath:
 			TNT1 A 0 A_GiveToTarget("KillCount",1)
-			ASEN M 4 A_Scream
-			ASEN NO 4
-			ASEN P 4 A_NoBlocking
-			ASEN QR 4
+			ASEN M 5 A_Scream
+			ASEN NO 5
+			ASEN P 5 A_NoBlocking
+			ASEN Q 5
+			ASEN R 5 A_SpawnItemEx("RandomEnforcerDrop",0,0,0,0,0,10,0,0,160)
 			ASEN R -1
+			Stop
+		XDeath:
+			TNT1 A 1
+			TNT1 A 1 A_NoBlocking
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_SpawnDebris("DukeJibs2")
+			TNT1 AA 0 A_SpawnDebris("DukeJibs3")
+			TNT1 AAA 0 A_SpawnDebris("DukeJibs4")
+			TNT1 AA 0 A_SpawnDebris("DukeJibs5")
+			TNT1 AAA 0 A_SpawnDebris("DukeJibs6")
+			TNT1 A 0 A_Jump(32,2)
+			TNT1 A 0 A_SpawnDebris("DukeJibs1")
+			TNT1 A 0 A_Jump(64,2)
+			TNT1 A 0 A_SpawnDebris("DukeJibs7")
+			TNT1 A 0 A_Jump(64,2)
+			TNT1 AA 0 A_SpawnDebris("DukeJibs9")
+			TNT1 A 0 A_Jump(64,2)
+			TNT1 A 0 A_SpawnDebris("DukeJibs8")
+			TNT1 A 0 A_PlaySound("duke/enemygib")
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
 			Stop
 		Death.ZorchPistol:
 		Death.Zorch:
+		Death.ZorchKamikaze:
+		Death.PhasingZorch:
+		Death.ZorchSpectral:
 			TNT1 A 0 A_GiveToTarget("KillCount",1)
-			ASEN D 0 A_Stop
+			ASEN M 0 A_Stop
 			TNT1 A 0 A_ChangeFlag("DONTGIB",1)
 			TNT1 A 0 A_PlaySoundEx("chex/zorch","soundslot5",0,0)
-			ASEN D 3 A_SpawnItem("ZorchEffectSmall")
+			ASEN M 3 A_SpawnItem("ZorchEffectSmall")
 			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
-			ASEN D 3 A_SetTranslucent(0.9,0)
-			ASEN D 0 A_Scream
-			ASEN D 3 A_SetTranslucent(0.8,0)
-			ASEN D 0 A_NoBlocking
-			ASEN D 3 A_SetTranslucent(0.7,0)
-			ASEN D 3 A_SetTranslucent(0.6,0)
-			ASEN D 3 A_SetTranslucent(0.5,0)
-			ASEN D 3 A_SetTranslucent(0.4,0)
-			ASEN D 3 A_SetTranslucent(0.3,0)
-			ASEN D 3 A_SetTranslucent(0.2,0)
-			ASEN D 3 A_SetTranslucent(0.1,0)
+			ASEN M 3 A_SetTranslucent(0.9,0)
+			ASEN M 0 A_Scream
+			ASEN M 3 A_SetTranslucent(0.8,0)
+			ASEN M 0 A_NoBlocking
+			TNT1 A 0 A_SpawnItemEx("RandomEnforcerDrop",0,0,0,0,0,10,0,0,160)
+			ASEN M 3 A_SetTranslucent(0.7,0)
+			ASEN M 3 A_SetTranslucent(0.6,0)
+			ASEN M 3 A_SetTranslucent(0.5,0)
+			ASEN M 3 A_SetTranslucent(0.4,0)
+			ASEN M 3 A_SetTranslucent(0.3,0)
+			ASEN M 3 A_SetTranslucent(0.2,0)
+			ASEN M 3 A_SetTranslucent(0.1,0)
 			TNT1 A 1 A_SetTranslucent(1,0)
 			TNT1 A -1
 			stop
+		Death.DukeIce:
+			TNT1 A 0 A_PlaySound("duke/enemyfreeze")
+			TNT1 A 0 A_GiveInventory("FreezethrowerWeakness")
+			TNT1 A 0 A_Jump(218,"Ice")
+			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
+		Ice:
+		Death.HexenIce:
+		Death.Ice:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
+			TNT1 A 0 A_NoBlocking
+			ASEN M 0 A_GenericFreezeDeath
+			ASEN M 70 A_UnsetSolid
+			ASEN M 0 A_IceGuyDie
+			ASEN M 1 A_IceGuyDie
+			TNT1 A -1
+			stop
+		Raise:
+			ASEN RQPONM 5
+			Goto See
+		ZorchRaise:
+			TNT1 A 1 A_UnsetShootable
+			TNT1 A 1 A_SpawnItem("SpawnFire2")
+			TNT1 A 0 A_PlaySound("archvile/resummon")
+			TNT1 A 1 A_TakeInventory("EnemyZorched",1)
+			TNT1 A 0 A_SetTranslucent(0.1,0)
+			ASEN A 3 A_SetTranslucent(0.2,0)
+			ASEN A 3 A_SetTranslucent(0.3,0)
+			ASEN A 3 A_SetTranslucent(0.4,0)
+			ASEN A 3 A_SetTranslucent(0.5,0)
+			ASEN A 3 A_SetTranslucent(0.6,0)
+			ASEN A 3 A_SetTranslucent(0.7,0)
+			ASEN A 3 A_SetTranslucent(0.8,0)
+			ASEN A 3 A_SetTranslucent(0.9,0)
+			ASEN A 3 A_SetTranslucent(1,0)
+			ASEN A 1 A_SetShootable	
+			Goto See
 	}
+}
+
+ACTOR MultiAssaultEnforcer : AssaultEnforcer
+{
+	Species "AssaultEnforcer"
+	+THRUSPECIES
 }

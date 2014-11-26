@@ -788,19 +788,21 @@ schabbs/throw			schabbst
 deathknight/missile		knghtmis
 angel/fire				angelfir
 
+angel/tired				angeltir
+
 mech/step				mechstep
 wolfkey/pickup			getkey
 
 //Spear of Destiny M2/M3
 
-$random snazi/death { snazi/death1 snazi/death2 snazi/death4 snazi/death5 snazi/death7 snazi/death8 snazi/death9 }
+$random snazi/death { snazi/death1 snazi/death2 snazi/death3 snazi/death4 snazi/death5 snazi/death6 snazi/death7 }
 snazi/death1				dthscr1
 snazi/death2				dthscr2
+snazi/death3				dthscr3
 snazi/death4				dthscr4
 snazi/death5				dthscr5
+snazi/death6				dthscr6
 snazi/death7				dthscr7
-snazi/death8				dthscr8
-snazi/death9				dthscr9
 
 sguard/sight			sodgdsi
 sdog/bark				soddgsi
@@ -837,13 +839,14 @@ sdog/bite				soddgat
 /*
 /* DUKE NUKEM 3D SOUNDS
 /*
-/************************************************************************* */
+/***************************************************************************/
 
 $random assaultcapt/roam { assaultcapt/roam1 assaultcapt/roam2 }
 assaultcapt/roam1		roam06
 assaultcapt/roam2		roam58
 assaultcapt/choking		chokn12
 assaultcapt/fire		gblasr01
+assaultcapt/teleport	ascatele
 
 $random pigcop/roam { pigcop/roam1 pigcop/roam2 pigcop/roam3 }
 pigcop/roam1			pigrm
@@ -900,10 +903,123 @@ queen/birth				bqegg1a
 queen/pain				bqpain2a
 queen/death				bqdie1a
 
-$random prodrone/attack { prodrone/attack1 prodrone/attack2 }
+pigtank/active			tank3a
+
+rpv/fly					rpvfligh
+
 prodrone/attack1		blrip1a
-prodrone/attack2		blrip2a
+prodrone/attack2		blrip1b
 prodrone/roam			blroam2a
 prodrone/spit			blspit1a
 prodrone/death			bldie3a
 prodrone/pain			blpain1b
+
+duke/thud				dukethud
+
+$pitchshift prodrone/pain 4
+$pitchshift prodrone/death 4
+
+/* *************************************************************************/
+/*
+/* MARATHON SOUNDS
+/*
+/***************************************************************************/
+
+marathon/splash			maraspla
+m2enforcer/sight		pfhoensi
+m2enforcer/shoot		mtalnsht
+m1enforcer/shoot		mtawpsht
+pfhorfighter/sight		fightsit
+fighterstaff/hit		staffhit
+fighterstaff/swing		stafswng
+pfhor/wail				pfhowail
+m1pfhor/wail			m1pfwail
+pfhor/roam				pfhoroam
+pfhor/death				pfhodeth
+$random m1pfhor/death { m1pfhor/death1 m1pfhor/death2 }
+m1pfhor/death1			m1pfdie1
+m1pfhor/death2			m1pfdie2
+hunter/crash			huntcrsh
+hunter/fire				huntfire
+hunter/explode			huntexpl
+hunterpro/explode		huntprex
+pfhor/xdeath			MRTHSLOP
+m2jugger/explode		m2juexpl
+m2jugger/fire			m2jufire
+m1jugger/fire			m1jufire
+juggernaut/prep			juprfire
+juggernaut/warn			juggwarn
+$random flickta/hit { flickta/hit1 flickta/hit2 }				
+flickta/hit1			flikmeh1
+flickta/hit2			flikmeh2
+$random flickta/melee { flickta/melee1 flickta/melee2 }
+flickta/melee1			flikmel1
+flickta/melee2			flikmel2
+flickta/rock			flikmiss
+flickta/rockhit			flikmhit
+flickta/death			flikdeth
+spht/attack				sphtattk
+spht/pain				sphtpain
+spht/death				sphtdeth
+sphtattack/explode		spprexpl
+sphtkr/pain 			spkrpain
+sphtkr/death			spkrdeth
+sphtkr/attack			spkrattk
+sphtkrattack/explode	krprexpl
+drone/sight				drosight
+drone/prep				dronprep
+drone/attack			dronattk
+drone/dying				drondyin
+drone/death				dronexpl
+dronebolt/death			drprexpl
+cyborg/moving			cybomove
+cyborg/fire				cybofire
+cyborg/pain				cyborhit
+cyborg/death			cybordie
+cyborggrenade/bounce	cybprbou
+cyborggrenade/explode	cybprexp
+
+/* *************************************************************************/
+/*
+/* ARCADE SOUNDS
+/*
+/***************************************************************************/
+
+EvilOtto/Sight		bzksnd32
+
+Berzerk/Fire		bzkfire
+Berzerk/Death		bzkdeath
+
+$random Berzerk/Random { Berzerk/Random1 Berzerk/Random2 Berzerk/Random3 Berzerk/Random4 Berzerk/Random5 Berzerk/Random6 Berzerk/Random7 Berzerk/Random8 Berzerk/Random9 Berzerk/Random10 Berzerk/Random11 Berzerk/Random12 Berzerk/Random13 Berzerk/Random14 Berzerk/Random15 Berzerk/Random16 Berzerk/Random17 Berzerk/Random18 Berzerk/Random19 Berzerk/Random20 Berzerk/Random21 Berzerk/Random22 Berzerk/Random23 Berzerk/Random24 Berzerk/Random25 Berzerk/Random26 Berzerk/Random27 Berzerk/Random28 Berzerk/Random29 Berzerk/Random30 Berzerk/Random31 }
+
+Berzerk/Random1		bzksnd01
+Berzerk/Random2		bzksnd02
+Berzerk/Random3		bzksnd03
+Berzerk/Random4		bzksnd04
+Berzerk/Random5		bzksnd05
+Berzerk/Random6		bzksnd06
+Berzerk/Random7		bzksnd07
+Berzerk/Random8		bzksnd08
+Berzerk/Random9		bzksnd09
+Berzerk/Random10	bzksnd10
+Berzerk/Random11	bzksnd11
+Berzerk/Random12	bzksnd12
+Berzerk/Random13	bzksnd13
+Berzerk/Random14	bzksnd14
+Berzerk/Random15	bzksnd15
+Berzerk/Random16	bzksnd16
+Berzerk/Random17	bzksnd17
+Berzerk/Random18	bzksnd18
+Berzerk/Random19	bzksnd19
+Berzerk/Random20	bzksnd20
+Berzerk/Random21	bzksnd21
+Berzerk/Random22	bzksnd22
+Berzerk/Random23	bzksnd23
+Berzerk/Random24	bzksnd24
+Berzerk/Random25	bzksnd25
+Berzerk/Random26	bzksnd26
+Berzerk/Random27	bzksnd27
+Berzerk/Random28	bzksnd28
+Berzerk/Random29	bzksnd29
+Berzerk/Random30	bzksnd30
+Berzerk/Random31	bzksnd31

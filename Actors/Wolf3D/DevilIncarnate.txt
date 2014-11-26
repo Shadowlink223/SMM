@@ -1,11 +1,12 @@
 ACTOR DevilIncarnate 
 {
 	Health 2000
-	Radius 40
-	Height 66
+	Radius 33
+	Height 70
 	Speed 12
 	Mass 1000
 	PainChance 0
+	Scale 1.1
 	MONSTER
 	+FLOORCLIP
     +NOTDMATCH
@@ -26,9 +27,11 @@ ACTOR DevilIncarnate
 	ActiveSound ""
 	AttackSound "boss/fire"
 	Obituary "%o was smited by the Devil Incarnate."
+	Dropitem "DefaultPinataPop"
+	Dropitem "DefaultPinataPop"
     DamageFactor "Mace", 1.1
     DamageFactor "DragonClaw", 1.5
-	Dropitem "cellpack"
+	DamageFactor "WolfEnemyBullet", 0.0
 	Decal Scorch
 	States 
 	{
@@ -40,41 +43,49 @@ ACTOR DevilIncarnate
 			TNT1 A 0 A_GiveInventory("DukeBossSee",1)
 			TNT1 A 0 A_GiveToTarget("DukeBossSightTaunt")
 		See2:
-			DEIN AABBCCDD 2 A_Chase
+			DEIN AAABBCCCDD 2 A_Chase
 			Loop
 		Missile:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
-			DEIN E 6 A_FaceTarget
+			DEIN E 5 A_FaceTarget
 		Blast:
-			DEIN E 4 A_FaceTarget
-			DEIN F 4 Bright A_CustomMissile("DevilBlast",32,16,0,8)
+			TNT1 A 0 A_FaceTarget
+			DEIN FFFFF 2 A_FaceTarget
+			DEIN E 5 Bright A_CustomMissile("AngelBlast",32,16,0,8)
 			TNT1 A 0 A_PlaySound("angel/fire", CHAN_WEAPON)
 			TNT1 A 0 A_GiveInventory("OrbsFired",1)
 			TNT1 A 0 A_JumpIfInventory("OrbsFired",6,"Exhaust")
 			TNT1 A 0 A_Jump(128,1)
 			Goto Blast2
-			DEIN E 10
+			TNT1 A 0
 			Goto See2
 		Blast2:
-			DEIN E 4 A_FaceTarget
-			DEIN F 4 Bright A_CustomMissile("DevilBlast",32,16,0,8)
+			TNT1 A 0 A_FaceTarget
+			DEIN FFFFF 2 A_FaceTarget
+			DEIN E 5 Bright A_CustomMissile("AngelBlast",32,16,0,8)
 			TNT1 A 0 A_PlaySound("angel/fire", CHAN_WEAPON)
 			TNT1 A 0 A_GiveInventory("OrbsFired",1)
 			TNT1 A 0 A_JumpIfInventory("OrbsFired",6,"Exhaust")
 			TNT1 A 0 A_Jump(128,1)
 			Goto Blast3
-			DEIN E 10
+			TNT1 A 0
 			Goto See2
 		Blast3:
-			DEIN E 4 A_FaceTarget
-			DEIN F 4 Bright A_CustomMissile("DevilBlast",32,16,0,8)
+			TNT1 A 0 A_FaceTarget
+			DEIN FFFFF 2 A_FaceTarget
+			DEIN E 5 Bright A_CustomMissile("AngelBlast",32,16,0,8)
 			TNT1 A 0 A_PlaySound("angel/fire", CHAN_WEAPON)
 			TNT1 A 0 A_GiveInventory("OrbsFired",1)
 			TNT1 A 0 A_JumpIfInventory("OrbsFired",6,"Exhaust")
 			Goto See2
 		Exhaust:
-			DEIN E 10 A_TakeInventory("OrbsFired",6)
-			DEIN GHGHGHG 18
+			TNT1 A 0 A_TakeInventory("OrbsFired",6)
+			DEIN H 40
+			DEIN G 20 A_PlaySound("angel/tired", CHAN_WEAPON)
+			DEIN H 20
+			DEIN G 20 A_PlaySound("angel/tired", CHAN_WEAPON)
+			DEIN H 20 
+			DEIN G 20 A_PlaySound("angel/tired", CHAN_WEAPON)
 			Goto See
 		Pain:
 			DEIN D 3
@@ -89,15 +100,23 @@ ACTOR DevilIncarnate
 		Death:
 		XDeath:
 			TNT1 A 0 A_GiveToTarget("KillCount",1)
-			DEIN A 70 A_Scream
-			DEIN I 5
-			DEIN J 5 A_PlaySoundEx("hitler/melt","soundslot5",0,0)
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,2) == 1, "FastDeath")
+			DEIN A 52 A_Scream
+			DEIN I 5 A_PlaySoundEx("hitler/melt","soundslot5",0,0)
+			DEIN J 5 
 			DEIN K 5 A_NoBlocking
 			DEIN LMNO 5
-			DEIN P -1 A_BossDeath
+			DEIN P 30
+			DEIN P -1 A_KillMaster
 			Stop
+		FastDeath:
+			DEIN A 5 A_Scream
+			Goto XDeath+3
 		Death.ZorchPistol:
 		Death.Zorch:
+		Death.ZorchKamikaze:
+		Death.PhasingZorch:
+		Death.ZorchSpectral:
 			TNT1 A 0 A_GiveToTarget("KillCount",1)
 			DEIN D 0 A_Stop
 			TNT1 A 0 A_ChangeFlag("DONTGIB",1)
@@ -116,7 +135,12 @@ ACTOR DevilIncarnate
 			DEIN D 3 A_SetTranslucent(0.2,0)
 			DEIN D 3 A_SetTranslucent(0.1,0)
 			TNT1 A 1 A_SetTranslucent(1,0)
-			TNT1 A -1 A_BossDeath
+			TNT1 A -1 A_KillMaster
 			stop
 	}
+}
+
+ACTOR MultiDevilIncarnate : DevilIncarnate
+{
+	+THRUSPECIES
 }

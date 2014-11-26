@@ -1,205 +1,1717 @@
 //==============================================================================
+// DOOM
+//==============================================================================
+
+ACTOR ZombiemanSpawner //replaces Zombieman 
+{
+	Health 0x7fffffff
+	Height 56
+	Radius 20
+	Mass 0x7fffffff
+	+COUNTKILL
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0,2)
+		Deciding:
+			TNT1 A 1
+			Loop
+		SetDoom:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Zombieman3",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetHeretic:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("HereticImpLeader3",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetHexen:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Ettin3Doom",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetChex:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("FlemoidusCommonus3",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetWolf3D:
+			TNT1 A 0 A_Jump(256,"Wolf1","Wolf2")
+			SODM1:
+				TNT1 A 0 A_Jump(256,"Wolf1")
+			SODM2:
+				TNT1 A 0 A_Jump(256,"Wolf2")
+			Wolf1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("WolfGuard",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+			Wolf2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("SODGuard",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+		SetDuke3D:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("AssaultTrooper",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetMarathon:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("ProjectileFighterMinorSpawnerInv",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetNull:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("BerzerkRobotYellow",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		Death:
+			BZBL A 70
+			Stop
+	}
+}
+
+ACTOR ShotgunGuySpawner //replaces ShotgunGuy 
+{
+	Health 0x7fffffff
+	Height 56
+	Radius 20
+	Mass 0x7fffffff
+	+COUNTKILL
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0,2)
+		Deciding:
+			TNT1 A 1
+			Loop
+		SetDoom:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("ShotGunGuy3",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetHeretic:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("MummyLeader3Doom",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetHexen:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("FireDemon3Doom",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetChex:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("FlemoidusBipedicus3",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetWolf3D:
+			TNT1 A 0 A_Jump(256,"Wolf1","Wolf2")
+			SODM1:
+				TNT1 A 0 A_Jump(256,"Wolf1")
+			SODM2:
+				TNT1 A 0 A_Jump(256,"Wolf2")
+			Wolf1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("WolfOfficer",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+			Wolf2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("SODOfficer",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+		SetDuke3D:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("PigCop",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetMarathon:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("ProjectileFighterMinorSpawnerInv",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetNull:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("BerzerkRobotYellow",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		Death:
+			BZBL A 70
+			Stop
+	}
+}
+
+ACTOR DoomImpSpawner //replaces DoomImp 
+{
+	Health 0x7fffffff
+	Height 56
+	Radius 20
+	Mass 0x7fffffff
+	+COUNTKILL
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0,2)
+		Deciding:
+			TNT1 A 1
+			Loop
+		SetDoom:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("DoomImp3",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetHeretic:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("MummyLeader3Doom",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetHexen:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Bishop3Doom",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetChex:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("NewArmoredFlemoidusBipedicus",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetWolf3D:
+			TNT1 A 0 A_Jump(256,"Wolf1","Wolf2")
+			SODM1:
+				TNT1 A 0 A_Jump(256,"Wolf1")
+			SODM2:
+				TNT1 A 0 A_Jump(256,"Wolf2")
+			Wolf1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("WolfOfficer",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+			Wolf2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("SODOfficer",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+		SetDuke3D:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("AssaultCaptain",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetMarathon:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("SewageFlicktaSpawnerInv",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetNull:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("BerzerkRobotRed",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		Death:
+			BZBL A 70
+			Stop
+	}
+}
+
+ACTOR ChaingunGuySpawner //replaces ChaingunGuy 
+{
+	Health 0x7fffffff
+	Height 56
+	Radius 20
+	Mass 0x7fffffff
+	+COUNTKILL
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0,2)
+		Deciding:
+			TNT1 A 1
+			Loop
+		SetDoom:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("ChaingunGuy3",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetHeretic:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Knight3Doom",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetHexen:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Bishop3Doom",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetChex:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("NewArmoredFlemoidusBipedicus",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetWolf3D:
+			TNT1 A 0 A_Jump(256,"Wolf1","Wolf2")
+			SODM1:
+				TNT1 A 0 A_Jump(256,"Wolf1")
+			SODM2:
+				TNT1 A 0 A_Jump(256,"Wolf2")
+			Wolf1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("WolfSS",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+			Wolf2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("SODSS",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+		SetDuke3D:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("AssaultEnforcer",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetMarathon:
+			TNT1 A 0 A_Jump(192,"Mara2")
+			Mara1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("M1EnforcerMinorSpawnerInv",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+			Mara2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("TrooperMinorSpawnerInv",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+		SetNull:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("BerzerkRobotBlue",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		Death:
+			BZBL A 70
+			Stop
+	}
+}
+
+ACTOR DemonSpawner //replaces Demon 
+{
+	Health 0x7fffffff
+	Height 56
+	Radius 30
+	Mass 0x7fffffff
+	+COUNTKILL
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0,2)
+		Deciding:
+			TNT1 A 1
+			Loop
+		SetDoom:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("DoomDemon3",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetHeretic:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Clink3Doom",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetHexen:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Centaur3Doom",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetChex:
+			TNT1 A 0 A_Jump(256,"Chex1","Chex2")
+			Chex1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("NewFlemoidusCycloptisCommonus",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+			Chex2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("NewLarva",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+		SetWolf3D:
+			TNT1 A 0 A_Jump(256,"Wolf1","Wolf2")
+			SODM1:
+				TNT1 A 0 A_Jump(256,"Wolf1")
+			SODM2:
+				TNT1 A 0 A_Jump(256,"Wolf2")
+			Wolf1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("WolfDog",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+			Wolf2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("SODDog",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+		SetDuke3D:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("ProtectorDroneDoom",0,0,0,0,0,0,0,288) 
+			TNT1 A 1 A_Die
+			Goto Death
+		SetMarathon:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("FighterMajorSpawnerInv",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetNull:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("BerzerkRobotYellow",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		Death:
+			BZBL A 70
+			Stop
+	}
+}
+
+ACTOR SpectreSpawner //replaces Spectre
+{
+	Health 0x7fffffff
+	Height 56
+	Radius 30
+	Mass 0x7fffffff
+	+COUNTKILL
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0,2)
+		Deciding:
+			TNT1 A 1
+			Loop
+		SetDoom:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Spectre3",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetHeretic:
+			TNT1 A 0 A_Jump(256,"Heretic1","Heretic2","Heretic3")
+			Heretic1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("KnightGhost3Doom",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+			Heretic2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("MummyGhost3Doom",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+			Heretic3:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("MummyLeaderGhost3Doom",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+		SetHexen:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("CentaurLeader3Doom",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetChex:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("NewFlemoidusStridicus",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetWolf3D:
+			TNT1 A 0 A_Jump(256,"Wolf1","Wolf2")
+			SODM1:
+				TNT1 A 0 A_Jump(256,"Wolf1")
+			SODM2:
+				TNT1 A 0 A_Jump(256,"Wolf2")
+			Wolf1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("WolfDogSpectre",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+			Wolf2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("SODDogSpectre",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+		SetDuke3D:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("SpectreDroneDoom",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetMarathon:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("WaterFlicktaSpawnerInv",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetNull:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("BerzerkRobotYellow",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		Death:
+			BZBL A 70
+			Stop
+	}
+}
+
+ACTOR HellKnightSpawner //replaces HellKnight
+{
+	Health 0x7fffffff
+	Height 64
+	Radius 24
+	Mass 0x7fffffff
+	+COUNTKILL
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	+BOSSDEATH
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0,2)
+		Deciding:
+			TNT1 A 1
+			Loop
+		SetDoom:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("HellKnight3",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetHeretic:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Snake3Doom",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetHexen:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Demon1CDoom",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetChex:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("NewQuadrumpus",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetWolf3D:
+		SODM1:
+		SODM2:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("WolfMutant",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetDuke3D:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("AssaultCommander",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetMarathon:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("HunterMinorSpawnerInv",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetNull:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("BerzerkRobotBlue",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		Death:
+			BZBL A 2100
+			TNT1 A 0 A_BossDeath
+			Stop
+	}
+}
+
+ACTOR BaronOfHellSpawner //replaces BaronOfHell
+{
+	Health 0x7fffffff
+	Height 64
+	Radius 24
+	Mass 0x7fffffff
+	+COUNTKILL
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	+BOSSDEATH
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0,2)
+		SetDoom:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("BaronOfHell3",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetHeretic:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Beast3Doom",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetHexen:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Demon2CDoom",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetChex:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("OldFlemoidusMaximusDoom",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetWolf3D:
+		SODM1:
+		SODM2:
+			TNT1 A 0 A_Jump(256,"Wolf1","Wolf2")
+			Wolf1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("HansGrosseDoom",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+			Wolf2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("GretelGrosseDoom",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+		SetDuke3D:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("MiniBattlelordDoom",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetMarathon:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("HunterMajorSpawnerInv",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetNull:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("BerzerkRobotGreen",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		Death:
+			BZBL A 2100
+			TNT1 A 0 A_BossDeath
+			Stop
+	}
+}
+
+ACTOR ArachnotronSpawner //replaces Arachnotron
+{
+	Health 0x7fffffff
+	Height 64
+	Radius 64
+	Mass 0x7fffffff
+	+COUNTKILL
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	+BOSSDEATH
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0,2)
+		SetDoom:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Arachnotron3",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetHeretic:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Snake3Doom",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetHexen:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("CentaurLeader3Doom",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetChex:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("NewQuadrumpus",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetWolf3D:
+		SODM1:
+		SODM2:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("OttoGiftmacherDoom",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetDuke3D:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("PigCopTank",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetMarathon:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("CyborgMajorSpawnerInv",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetNull:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("BerzerkRobotGreen",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		Death:
+			BZBL A 2100
+			TNT1 A 0 A_BossDeath
+			Stop
+	}
+}
+
+ACTOR FatsoSpawner //replaces Fatso
+{
+	Health 0x7fffffff
+	Height 64
+	Radius 48
+	Mass 0x7fffffff
+	+COUNTKILL
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	+BOSSDEATH
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0,2)
+		SetDoom:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Fatso3",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetHeretic:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Beast3Doom",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetHexen:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("IceGuy3Doom",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetChex:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("NewQuadrumpus",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetWolf3D:
+		SODM1:
+		SODM2:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("OttoGiftmacherDoom",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetDuke3D:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("ScorpionTank",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetMarathon:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("CyborgMajorSpawnerInv",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetNull:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("BerzerkRobotGreen",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		Death:
+			BZBL A 2100
+			TNT1 A 0 A_BossDeath
+			Stop
+	}
+}
+
+ACTOR LostSoulSpawner //replaces LostSoul 
+{
+	Health 0x7fffffff
+	Height 56
+	Radius 16
+	Mass 0x7fffffff
+	+COUNTKILL
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0,2)
+		Deciding:
+			TNT1 A 1
+			Loop
+		SetDoom:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("LostSoul3",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetHeretic:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("HereticImp3",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetHexen:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("FireDemon3Doom",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetChex:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("FlemMine2",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetWolf3D:
+		SODM1:
+		SODM2:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("SODBat",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetDuke3D:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("SentryDrone",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetMarathon:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("DroneMajorSpawnerInv",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetNull:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("EvilOttoWeaker",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		Death:
+			BZBL A 70
+			Stop
+	}
+}
+
+ACTOR PainElementalSpawner //replaces PainElemental 
+{
+	Health 0x7fffffff
+	Height 56
+	Radius 31
+	Mass 0x7fffffff
+	+COUNTKILL
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0,2)
+		Deciding:
+			TNT1 A 1
+			Loop
+		SetDoom:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("PainElemental3",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetHeretic:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Wizard3Doom",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetHexen:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Wraith3",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetChex:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("SuperCycloptis2",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetWolf3D:
+		SODM1:
+		SODM2:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("FakeHitler",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetDuke3D:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("AssaultCommander",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetMarathon:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("SphtKrMinorSpawnerInv",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetNull:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("EvilOttoWeak",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		Death:
+			BZBL A 70
+			Stop
+	}
+}
+
+ACTOR CacodemonSpawner //replaces Cacodemon 
+{
+	Health 0x7fffffff
+	Height 56
+	Radius 31
+	Mass 0x7fffffff
+	+COUNTKILL
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0,2)
+		Deciding:
+			TNT1 A 1
+			Loop
+		SetDoom:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Cacodemon3",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetHeretic:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Wizard3Doom",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetHexen:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Wraith3",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetChex:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("SuperCycloptis2",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetWolf3D:
+		SODM1:
+		SODM2:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("FakeHitler",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetDuke3D:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Octabrain",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetMarathon:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("SphtMinorSpawnerInv",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetNull:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("EvilOttoWeak",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		Death:
+			BZBL A 70
+			Stop
+	}
+}
+
+ACTOR RevenantSpawner //replaces Revenant
+{
+	Health 0x7fffffff
+	Height 56
+	Radius 20
+	Mass 0x7fffffff
+	+COUNTKILL
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0,2)
+		Deciding:
+			TNT1 A 1
+			Loop
+		SetDoom:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Revenant3",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetHeretic:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Snake3Doom",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetHexen:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("FireDemon3Doom",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetChex:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("NewQuadrumpus",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetWolf3D:
+		SODM1:
+		SODM2:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("WolfMutant",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetDuke3D:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("AssaultCommander",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetMarathon:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("FlameCyborgMinorSpawnerInv",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetNull:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("BerzerkRobotBlue",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		Death:
+			BZBL A 70
+			Stop
+	}
+}
+
+ACTOR ArchvileSpawner //replaces Archvile 
+{
+	Health 0x7fffffff
+	Height 56
+	Radius 20
+	Mass 0x7fffffff
+	+COUNTKILL
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0,2)
+		Deciding:
+			TNT1 A 1
+			Loop
+		SetDoom:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Archvile3",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetHeretic:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("IronLich3Doom",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetHexen:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("WraithBuried3",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetChex:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("NewFlemoidusMaximusArch",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetWolf3D:
+			TNT1 A 0 A_Jump(256,"Wolf1","Wolf2")
+			SODM1:
+				TNT1 A 0 A_Jump(256,"Wolf1")
+			SODM2:
+				TNT1 A 0 A_Jump(256,"Wolf2")
+			Wolf1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("TransGrosseDoom",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+			Wolf2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("SubmarineWillyDoom",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+		SetDuke3D:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("PigCopTankArch",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetMarathon:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("M2EnforcerMajorSpawnerInv",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetNull:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("BerzerkRobotGreen",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		Death:
+			BZBL A 70
+			Stop
+	}
+}
+
+ACTOR CyberDemonSpawner //replaces CyberDemon
+{
+	Health 0x7fffffff
+	Height 110
+	Radius 40
+	Mass 0x7fffffff
+	+COUNTKILL
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	+BOSSDEATH
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0,2)
+		SetDoom:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Cyberdemon3",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetHeretic:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Minotaur3",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetHexen:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Heresiarch2",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetChex:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("OldSnotfolus",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetWolf3D:
+			TNT1 A 0 A_Jump(256,"Wolf1","Wolf2","Wolf3")
+			SODM1:
+				TNT1 A 0 A_Jump(256,"Wolf1","Wolf2")
+			SODM2:
+				TNT1 A 0 A_Jump(256,"Wolf1","Wolf3")
+			Wolf1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("DoctorSchabbs",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+			Wolf2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("AngelofDeath",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+			Wolf3:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("DevilIncarnate",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+		SetDuke3D:
+			TNT1 A 0 A_Jump(256,"Duke1","Duke2")
+			Duke1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("OverlordDoom",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+			Duke2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("CycloidEmperorDoom",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+		SetMarathon:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("JuggernautMajorSpawnerInv",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetNull:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("EvilOtto",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		Death:
+			BZBL A 2100
+			TNT1 A 0 A_BossDeath
+			Stop
+	}
+}
+
+ACTOR SpiderMastermindSpawner //replaces SpiderMastermind
+{
+	Health 0x7fffffff
+	Height 100
+	Radius 100
+	Mass 0x7fffffff
+	+COUNTKILL
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	+BOSSDEATH
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0,2)
+		SetDoom:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("SpiderMastermind3",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetHeretic:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Sorcerer5",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetHexen:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Korax3",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetChex:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Flembomination2",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetWolf3D:
+			TNT1 A 0 A_Jump(256,"Wolf1","Wolf2","Wolf3","Wolf4","Wolf5","Wolf6","Wolf7","Wolf8")
+			SODM1:
+				TNT1 A 0 A_Jump(256,"Wolf1","Wolf2","Wolf3","Wolf4","Wolf5")
+			SODM2:
+				TNT1 A 0 A_Jump(256,"Wolf1","Wolf5","Wolf6","Wolf7","Wolf8")
+			Wolf1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("GeneralFettgesicht",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+			Wolf2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("BarnacleWilhelm",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+			Wolf3:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("UberMutant",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+			Wolf4:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("WDeathKnight",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+			Wolf5:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("MechaHitler",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+			Wolf6:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("Robot",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+			Wolf7:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("ProfessorQuarkblitz",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+			Wolf8:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("TheAxe",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+		SetDuke3D:
+			TNT1 A 0 A_Jump(256,"Duke1","Duke2")
+			Duke1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("BattlelordDoom",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+			Duke2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("AlienQueenDoom",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+		SetMarathon:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("M1JuggernautSpawnerInv",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetNull:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("EvilOtto",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		Death:
+			BZBL A 2100
+			TNT1 A 0 A_BossDeath
+			Stop
+	}
+}
+
+ACTOR WolfensteinSSSpawner
+{
+	Health 0x7fffffff
+	Height 56
+	Radius 20
+	Mass 0x7fffffff
+	+COUNTKILL
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0,2)
+		Deciding:
+			TNT1 A 1
+			Loop
+		SetDoom:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Nazi3",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetHeretic:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Chicken3",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetHexen:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Pig3",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetChex:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("FlemMine2",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetWolf3D:
+			TNT1 A 0 A_Jump(256,"Wolf1","Wolf2")
+			SODM1:
+				TNT1 A 0 A_Jump(256,"Wolf1")
+			SODM2:
+				TNT1 A 0 A_Jump(256,"Wolf2")
+			Wolf1:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("WolfSS",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+			Wolf2:
+				TNT1 A 0 A_UnsetSolid
+				TNT1 A 0 A_NoBlocking
+				TNT1 A 1 A_SpawnItemEx("SODSS",0,0,0,0,0,0,0,288)
+				TNT1 A 1 A_Die
+				Goto Death
+		SetDuke3D:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("SentryDrone",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetMarathon:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("Nazi3",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetNull:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("BerzerkRobotBlue",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		Death:
+			BZBL A 70
+			Stop
+	}
+}
+
+//Skulltag replacements
+
+ACTOR BloodDemonSpawner replaces BloodDemon 
+{
+	Health 0x7fffffff
+	Height 64
+	Radius 30
+	Mass 0x7fffffff
+	+COUNTKILL
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0,2)
+		Deciding:
+			TNT1 A 1
+			Loop
+		SetDoom:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("BloodDemon2",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetHeretic:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("BloodDemon2",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetHexen:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("BloodDemon2",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetChex:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("BloodDemon2",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetWolf3D:
+		SODM1:
+		SODM2:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("BloodDemon2",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetDuke3D:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("BlueProtectorDrone",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetMarathon:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("BloodDemon2",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		SetNull:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 1 A_SpawnItemEx("BerzerkRobotYellow",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		Death:
+			BZBL A 70
+			Stop
+	}
+}
+
+//==============================================================================
 // INVASION
 //==============================================================================
 
+ACTOR NewZombieManSpot : CustomMonsterInvasionSpot replaces ZombieManSpot
+{
+	dropitem "ZombiemanSpawner"
+}
+
 ACTOR NewImpSpot : CustomMonsterInvasionSpot replaces ImpSpot
 {
-	dropitem "DoomImp3" 255 2 //Doom
-	dropitem "MummyLeader3" 255 2 //Heretic
-	dropitem "Bishop2" 255 2 //Hexen
-	dropitem "ArmoredFlemoidusBipedicus2" 255 2 //Chex Quest
-	dropitem "WolfOfficer" 255 2 //Wolf3D
-	dropitem "SODOfficer" 255 2 //Wolf3D
+	dropitem "DoomImpSpawner" 255 2 //Doom
 }
 
 ACTOR NewDemonSpot : CustomMonsterInvasionSpot replaces DemonSpot
 {
-	dropitem "DoomDemon3" 255 2 //Doom
-	dropitem "Knight3" 255 2 //Heretic
-	dropitem "Centaur2" 255 2 //Hexen
-	dropitem "FlemoidusStridicus2" 255 2 //Chex Quest
-	dropitem "WolfDog" 255 2 //Wolf3D
-	dropitem "SODDog" 255 2 //Wolf3D
-	dropitem "ProtectorDrone" 255 2 //Duke3D
+	dropitem "DemonSpawner" 255 2 //Doom
 }
 
 ACTOR NewSpectreSpot : CustomMonsterInvasionSpot replaces SpectreSpot
 {
-	dropitem "Spectre3" 255 6 //Doom
-	dropitem "KnightGhost3" 255 2 //Heretic
-	dropitem "MummyGhost3" 255 2 //Heretic
-	dropitem "MummyLeaderGhost3" 255 2 //Heretic
-	dropitem "CentaurLeader2" 255 6 //Hexen
-	dropitem "FlemoidusCycloptisCommonus2" 255 3 //Chex Quest
-	dropitem "Larva2" 255 3 //Chex Quest
-	dropitem "WolfDog" 255 6 //Wolf3D
-	dropitem "SODDog" 255 2 //Wolf3D
-	dropitem "ProtectorDrone" 255 2 //Duke3D
-}
-
-ACTOR NewZombieManSpot : CustomMonsterInvasionSpot replaces ZombieManSpot
-{
-	dropitem "Zombieman3" 255 2 //Doom
-	dropitem "Mummy3" 255 2 //Heretic
-	dropitem "Ettin2" 255 2 //Hexen
-	dropitem "FlemoidusCommonus3" 255 2 //Chex Quest
-	dropitem "WolfGuard" 255 2 //Wolf3D
-	dropitem "SODGuard" 255 2 //Wolf3D
+	dropitem "SpectreSpawner" 255 6 //Doom
 }
 
 ACTOR NewShotgunGuySpot : CustomMonsterInvasionSpot replaces ShotgunGuySpot
 {
-	dropitem "ShotGunGuy3" 255 2 //Doom
-	dropitem "MummyLeader3" 255 2 //Heretic
-	dropitem "Ettin2" 255 2 //Hexen
-	dropitem "FlemoidusBipedicus3" 255 2 //Chex Quest
-	dropitem "WolfOfficer" 255 2 //Wolf3D
-	dropitem "SODOfficer" 255 2 //Wolf3D
-	dropitem "PigCop" 255 2 //Duke3D
+	dropitem "ShotGunGuySpawner" 255 2 //Doom
 }
 
 ACTOR NewChaingunGuySpot : CustomMonsterInvasionSpot replaces ChaingunGuySpot
 {
-	dropitem "ChaingunGuy3" 255 2 //Doom
-	dropitem "Knight3" 255 2 //Heretic
-	dropitem "Ettin2" 255 2 //Hexen
-	dropitem "ArmoredFlemoidusBipedicus2" 255 2 //Chex Quest
-	dropitem "WolfSS" 255 2 //Wolf3D
-	dropitem "SODSS" 255 2 //Wolf3D
-	dropitem "AssaultEnforcer" 255 2 //Duke3D
+	dropitem "ChaingunGuySpawner" 255 2 //Doom
 }
 
 ACTOR NewCacodemonSpot : CustomMonsterInvasionSpot replaces CacodemonSpot
 {
-	dropitem "Cacodemon3" 255 2 //Doom
-	dropitem "Wizard3" 255 2 //Heretic
-	dropitem "Wraith2" 255 2 //Hexen
-	dropitem "SuperCycloptis2" 255 2 //Chex Quest
-	dropitem "FakeHitler" 255 2 //Wolf3D
-	dropitem "AssaultCommander" 255 2 //Duke3D
+	dropitem "CacodemonSpawner" 255 2 //Doom
 }
 
 ACTOR NewRevenantSpot : CustomMonsterInvasionSpot replaces RevenantSpot
 {
-	dropitem "Revenant3" 255 2 //Doom
-	dropitem "Snake3" 255 2 //Heretic
-	dropitem "FireDemon2" 255 2 //Hexen
-	dropitem "Quadrumpus2" 255 2 //Chex Quest
-	dropitem "WolfMutant" 255 2 //Wolf3D
-	dropitem "AssaultCommander" 255 2 //Duke3D
+	dropitem "RevenantSpawner" 255 2 //Doom
 }
 
 ACTOR NewFatsoSpot : CustomMonsterInvasionSpot replaces FatsoSpot
 {
-	dropitem "Fatso3" 255 2 //Doom
-	dropitem "Beast3" 255 2 //Heretic
-	dropitem "IceGuy2" 255 2 //Hexen
-	//dropitem "Flembrane2" 255 2 //Chex Quest
-	dropitem "OttoGiftmacher" 255 2 //Wolf3D
+	dropitem "FatsoSpawner" 255 2 //Doom
 }
 
 ACTOR NewArachnotronSpot : CustomMonsterInvasionSpot replaces ArachnotronSpot
 {
-	dropitem "Arachnotron3" 255 2 //Doom
-	dropitem "Clink3" 255 2 //Heretic
-	dropitem "CentaurLeader2" 255 2 //Hexen
-	//dropitem "Flembrane2" 255 2 //Chex Quest
-	dropitem "OttoGiftmacher" 255 2 //Wolf3D
+	dropitem "ArachnotronSpawner" 255 2 //Doom
 }
 
 ACTOR NewHellKnightSpot : CustomMonsterInvasionSpot replaces HellKnightSpot
 {
-	dropitem "HellKnight3" 255 2 //Doom
-	dropitem "Clink3" 255 2 //Heretic
-	dropitem "Demon1B" 255 2 //Hexen
-	dropitem "Quadrumpus2" 255 2 //Chex Quest
-	dropitem "WolfMutant" 255 2 //Wolf3D
+	dropitem "HellKnightSpawner" 255 2 //Doom
 }
 
 ACTOR NewBaronOfHellSpot : CustomMonsterInvasionSpot replaces BaronOfHellSpot
 {
-	dropitem "BaronOfHell3" 255 3 //Doom
-	dropitem "Beast3" 255 3 //Heretic
-	dropitem "Demon2B" 255 3 //Hexen
-	dropitem "Quadrumpus2" 255 2 //Chex Quest
-	dropitem "HansGrosse" 255 1 //Wolf3D
-	dropitem "GretelGrosse" 255 1 //Wolf3D
-	dropitem "TransGrosse" 255 1 //Wolf3D
-	dropitem "SubmarineWilly" 255 1 //Wolf3D
-	dropitem "MiniBattlelord" 255 1 //Duke3D
+	dropitem "BaronOfHellSpawner" 255 3 //Doom
 }
 
 ACTOR NewLostSoulSpot : CustomMonsterInvasionSpot replaces LostSoulSpot
 {
-	dropitem "LostSoul2" 255 2 //Doom
-	dropitem "HereticImpLeader3" 255 2 //Heretic
-	dropitem "FireDemon2" 255 2 //Hexen
-	dropitem "FlemMine2" 255 2 //Chex Quest
-	dropitem "SODBat" 255 2 //Wolf3D
-	//dropitem "SentryDrone" 255 2 //Duke3D
+	dropitem "LostSoulSpawner" 255 2 //Doom
 }
 
 ACTOR NewPainElementalSpot : CustomMonsterInvasionSpot replaces PainElementalSpot
 {
-	dropitem "PainElemental3" 255 2 //Doom
-	dropitem "IronLich3" 255 2 //Heretic
-	dropitem "WraithBuried2" 255 2 //Hexen
-	dropitem "SuperCycloptis2" 255 2 //Chex Quest
-	dropitem "FakeHitler" 255 2 //Wolf3D
-	dropitem "AssaultCommander" 255 2 //Duke3D
+	dropitem "PainElementalSpawner" 255 2 //Doom
 }
 
 ACTOR NewCyberdemonSpot : CustomMonsterInvasionSpot replaces CyberdemonSpot
 {
-	dropitem "CyberDemon3" 255 24 //Doom
-	dropitem "Minotaur3" 255 18 //Heretic
-	dropitem "Heresiarch2" 255 8 //Hexen
-	dropitem "ClericBoss2" 255 1 //Hexen
-	dropitem "MageBoss2" 255 1 //Hexen
-	dropitem "FighterBoss2" 255 1 //Hexen
-	dropitem "Snotfolus2" 255 12 //Chex Quest
-	dropitem "DoctorSchabbs" 255 8 //Wolf3D
-	dropitem "AngelOfDeath" 255 8//Wolf3D
-	dropitem "DevilIncarnate" 255 8 //Wolf3D
-	dropitem "Overlord" 255 12 //Duke3D
-	dropitem "CycloidEmperor" 255 12 //Duke3D
+	dropitem "CyberDemonSpawner" 255 24 //Doom
 }
 
 ACTOR NewSpiderMastermindSpot : CustomMonsterInvasionSpot replaces SpiderMastermindSpot
 {
-	dropitem "SpiderMastermind3" 255 36 //Doom
-	dropitem "Sorcerer5" 255 24 //Heretic
-	dropitem "Korax2" 255 12 //Hexen
-	dropitem "ClericBoss2" 255 1 //Hexen
-	dropitem "MageBoss2" 255 1 //Hexen
-	dropitem "FighterBoss2" 255 1 //Hexen
-	dropitem "Flembomination2" 255 24 //Chex Quest
-	dropitem "GeneralFettgesicht" 255 8 //Wolf3D
-	dropitem "BarnacleWilhelm" 255 8 //Wolf3D
-	dropitem "Ubermutant" 255 8 //Wolf3D
-	dropitem "DeathKnight" 255 8 //Wolf3D
-	dropitem "MechaHitler" 255 8 //Wolf3D
-	dropitem "Robot" 255 8 //Wolf3D
-	dropitem "ProfessorQuarkblitz" 255 8 //Wolf3D
-	dropitem "TheAxe" 255 8 //Wolf3D
-	dropitem "Battlelord" 255 16 //Duke3D
-	dropitem "AlienQueen" 255 16 //Duke3D
+	dropitem "SpiderMastermindSpawner" 255 36 //Doom
 }
 
 ACTOR NewArchvileSpot : CustomMonsterInvasionSpot replaces ArchvileSpot
 {
-	dropitem "Archvile3" 255 2 //Doom
-	dropitem "Ironlich3" 255 2 //Heretic
-	dropitem "WraithBuried2" 255 2 //Hexen
-	dropitem "FlemoidusMaximus2" 255 2 //Chex Quest
+	dropitem "ArchvileSpawner" 255 2 //Doom
 }
 
 ACTOR NewWolfensteinSSSpot : CustomMonsterInvasionSpot replaces WolfensteinSSSpot
 {
-	dropitem "Nazi2" 255 2 //Doom
-	dropitem "Chicken2" 255 2 //Heretic
-	dropitem "Pig2" 255 2 //Hexen
-	dropitem "FlemMine2" 255 2 //Chex Quest
-	dropitem "WolfSS" 255 2 //Wolf3D
-	dropitem "SODSS" 255 2 //Wolf3D
+	dropitem "WolfensteinSSSpawner" 255 2 //Doom
 }

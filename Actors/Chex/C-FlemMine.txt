@@ -5,6 +5,7 @@ actor FlemMine2 : FlemMine replaces FlemMine
 	PainSound "cqskull/pain"
 	DeathSound "cqskull/death"
 	ActiveSound "cqskull/active"
+	DropItem "DefaultPinataPop"
     Bloodcolor "Green"
     States
     {
@@ -29,15 +30,17 @@ actor FlemMine2 : FlemMine replaces FlemMine
         Goto See
 
       Pain.ZorchPistol:
-
       Pain.Zorch:
+	  Pain.PhasingZorch:
+	  Pain.ZorchKamikaze:
         SKUC E 3 
         SKUC E 3 A_Pain
         Goto See
 
       Death.ZorchPistol:
-
       Death.Zorch:
+      Death.PhasingZorch:
+	  Death.ZorchKamikaze:
         TNT1 A 0 A_GiveToTarget("KillCount",1)
         SKUC F 6 
         SKUC G 6 A_Scream
@@ -48,9 +51,7 @@ actor FlemMine2 : FlemMine replaces FlemMine
         Stop
 
       Death.DukeExplosive:
-
       Death.DukeDamage:
-
       Death.DukePistol:
         TNT1 A 0 A_Jump(218,"Death")
         TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
@@ -103,4 +104,10 @@ actor FlemMine2 : FlemMine replaces FlemMine
         SKUC A 16 A_Pain
         Goto See
     }
+}
+
+ACTOR MultiFlemMine2 : FlemMine2
+{
+	Species "FlemMine"
+	+THRUSPECIES
 }
