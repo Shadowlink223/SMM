@@ -273,8 +273,7 @@ ACTOR SubmarineWillyDoom : SubmarineWilly
 {
 	Height 56
 	Radius 20
-	XScale 0.67
-	YScale 0.88
+	Scale 0.9
 }
 
 ACTOR MultiSubmarineWillyDoom : SubmarineWillyDoom
