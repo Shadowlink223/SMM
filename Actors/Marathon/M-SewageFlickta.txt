@@ -229,9 +229,8 @@ ACTOR SewageFlickta
 		XDeathDuke2:
 			SFDG A 1
 			TNT1 A 0 A_UnsetSolid
-			SFDG A 1 A_SpawnDebris("NewDukeGibs1")
+			SFDG A 1 A_SpawnDebris("NewDukeGibs1_FlicktaGreen")
 			TNT1 A 0 A_SpawnDebris("NewDukeGibs2")
-			TNT1 A 0 A_SpawnDebris("NewDukeGibs2_FlicktaGreen")
 			TNT1 A 0 A_SpawnDebris("NewDukeGibs3")
 			TNT1 A 0 A_SpawnDebris("NewDukeGibs3_FlicktaGreen")
 			TNT1 AA 0 A_SpawnDebris("NewDukeGibs4")

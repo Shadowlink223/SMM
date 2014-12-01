@@ -538,11 +538,11 @@ ACTOR TrooperGrenadeNightmare : TrooperGrenade { Speed 12.998 }
 
 ACTOR NewDukeGibs1_Pfhor : NewDukeGibs1 //Thanks to PresidentPeople for the pretty yellow gibs
 {
-    //Health 2
+    Health 1
 	States
 	{
 		Spawn:
-			DPG2 ABCD 5
+			DPG1 ABCD 5
 			Loop
 		Death:
 			TNT1 A 0 A_Gravity
@@ -557,6 +557,7 @@ ACTOR NewDukeGibs1_Pfhor : NewDukeGibs1 //Thanks to PresidentPeople for the pret
 
 ACTOR NewDukeGibs2_Pfhor : NewDukeGibs1  // eyes
 {
+	Health 1
 	States
 	{
 		Spawn:
@@ -575,6 +576,7 @@ ACTOR NewDukeGibs2_Pfhor : NewDukeGibs1  // eyes
 
 ACTOR NewDukeGibs3_Pfhor : NewDukeGibs1
 {
+	Health 1
 	States
 	{
 		Spawn:
@@ -593,6 +595,7 @@ ACTOR NewDukeGibs3_Pfhor : NewDukeGibs1
 
 ACTOR NewDukeGibs4_Pfhor : NewDukeGibs1
 {
+	Health 1
 	States
 	{
 		Spawn:
@@ -611,6 +614,7 @@ ACTOR NewDukeGibs4_Pfhor : NewDukeGibs1
 
 ACTOR NewDukeGibs5_Pfhor : NewDukeGibs1
 {
+	Health 1
 	States
 	{
 		Spawn:
@@ -629,6 +633,7 @@ ACTOR NewDukeGibs5_Pfhor : NewDukeGibs1
 
 ACTOR NewDukeGibs6_Pfhor : NewDukeGibs1
 {
+	Health 1
 	States
 	{
 		Spawn:
@@ -643,6 +648,24 @@ ACTOR NewDukeGibs6_Pfhor : NewDukeGibs1
 			DPG6 CDEFGH 5
 			DPG6 H 2100
 			Goto Death2+6
+	}
+}
+
+ACTOR NewDukeGibs2_M2Enforcer : NewDukeGibs2_Pfhor
+{
+	States
+	{
+		Spawn:
+			DEG2 ABCD 5
+			Loop
+		Death:
+			TNT1 A 0 A_Gravity
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(SAMSARA_DECORATE,31) == 1, "Death2")
+			DPG6 ABCDEF 5
+			Stop
+		Death2:
+			DEG2 E 2100
+			Loop
 	}
 }
 
