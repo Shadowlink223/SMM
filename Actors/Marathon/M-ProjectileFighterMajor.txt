@@ -250,7 +250,7 @@ ACTOR ProjectileFighterMajor
 		DukeGibStart:
 			TNT1 A 0 A_UnsetSolid
 			PFMA O 1 A_SpawnDebris("NewDukeGibs1_Pfhor")
-			TNT1 AAA 0 A_SpawnDebris("NewDukeGibs2_Pfhor")
+			TNT1 A 0 A_SpawnDebris("NewDukeGibs2_Pfhor")
 			TNT1 AA 0 A_SpawnDebris("NewDukeGibs3_Pfhor")
 			TNT1 AAA 0 A_SpawnDebris("NewDukeGibs4_Pfhor")
 			TNT1 AA 0 A_SpawnDebris("NewDukeGibs5_Pfhor")

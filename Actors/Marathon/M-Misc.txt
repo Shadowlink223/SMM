@@ -688,16 +688,6 @@ ACTOR NewDukeGibs2_M2Enforcer : NewDukeGibs2_Pfhor
 	}
 }
 
-ACTOR NewDukeGibs2_M2Enforcer : NewDukeGibs2_Pfhor
-{
-	States
-	{
-		Spawn:
-			DEG2 ABCD 5
-			Loop
-	}
-}
-
 actor NewDukeGibs1_FlicktaBlue : NewDukeGibs1
 {
 	Health 1
