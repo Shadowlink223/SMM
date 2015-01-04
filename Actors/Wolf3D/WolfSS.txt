@@ -25,7 +25,7 @@ ACTOR WolfSS
 	DamageFactor "WolfEnemyBullet", 0.0
     PainChance "MightyBoot", 255
 	PainChance "MarathonStun", 255
-	Dropitem "WolfClip"
+	Dropitem "SSDrop"
 	Decal BulletChip
 	States 
 	{

@@ -168,10 +168,34 @@ ACTOR SODClip : WolfClip
 	}
 }
 
-/*ACTOR SSDrop : CustomInventory
+ACTOR SSDrop : SamsaraSlotFourDrop
 {
-	
-}*/
+	+DROPPED
+	Scale 1.1
+	States
+    {
+		Spawn:
+			WSDR A -1
+			stop
+		Pickup:
+			TNT1 A 0 A_JumpIfInventory("WolfenClass",1,"BJPickup")
+			TNT1 A 0 A_JumpIf((ACS_ExecuteWithResult(229, 4, 1) & 1) == 1, "PickupSuccess")
+			goto PickupFailure
+		BJPickup:
+			TNT1 A 0 A_JumpIf((ACS_ExecuteWithResult(229, 2, 1) & 1) == 1, "PickupSuccess")
+			goto PickupFailure
+    }
+}
+
+ACTOR SSDrop2 : SSDrop //SOD M2/3 graphic
+{
+	States
+	{
+		Spawn:
+			SSDR A -1
+			stop
+	}
+}
 
 ACTOR WolfGoldKey : CustomInventory
 {
