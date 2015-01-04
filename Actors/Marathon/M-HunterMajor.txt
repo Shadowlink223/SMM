@@ -280,7 +280,6 @@ ACTOR HunterMajor
 			TNT1 A 0 A_GiveToTarget("KillCount",1)
 			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
 			TNT1 A 0 A_NoBlocking
-			//TNT1 A 0 A_SpawnItem("GuardFrozen")
 			HUMA E 0 A_GenericFreezeDeath
 			HUMA E 70 A_UnsetSolid
 			HUMA E 0 A_IceGuyDie

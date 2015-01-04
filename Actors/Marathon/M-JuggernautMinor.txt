@@ -208,6 +208,7 @@ ACTOR JuggernautMinor
 			JUMI G 0 A_Stop
 			JUMI G 0 A_NoBlocking
 			JUMI G 0 A_Scream
+			JUMI G 0 A_GiveToTarget("JuggernautDeathFlash")
 			JUMI G 1 A_SpawnItemEx("JuggernautExplosion",0,0,32,0,0,0,0,1,0)
 			JUMI G 30
 			JUMI G -1 A_KillMaster
