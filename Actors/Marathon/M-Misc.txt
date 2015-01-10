@@ -33,6 +33,34 @@ ACTOR JuggernautExplosion
 	}
 }
 
+ACTOR HunterExplosion : JuggernautExplosion
+{
+	Obituary "A Pfhor Hunter took %o with it"
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			Goto Death
+		Death:
+			TNT1 A 0 A_Explode(60 + random(1,30),256,1)
+			stop
+	}
+}
+
+ACTOR CyborgExplosion : JuggernautExplosion
+{
+	Obituary "%o couldn't stay away from a Cyborg"
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			Goto Death
+		Death:
+			TNT1 A 0 A_Explode(60,128,1)
+			stop
+	}
+}
+
 actor JuggernautDeathFlash : CustomInventory
 {
     Inventory.MaxAmount 0
