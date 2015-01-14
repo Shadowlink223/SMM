@@ -1967,7 +1967,7 @@ ACTOR WolfensteinSSSpawnerCoop replaces WolfensteinSS
 			Stop
 		SetChex:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyChex")
-			TNT1 A 1 A_SpawnItemEx("FlemMine2",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_SpawnItemEx("YellowArmoredFlemoid",0,0,0,0,0,0,0,288)
 			Stop
 		SetWolf3D:
 			TNT1 A 0 A_Jump(256,"Wolf1","Wolf2")
@@ -2011,7 +2011,7 @@ ACTOR WolfensteinSSSpawnerCoop replaces WolfensteinSS
 			Stop
 		MultiplyChex:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
-			TNT1 A 1 A_SpawnItemEx("MultiFlemMine2",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 1 A_SpawnItemEx("MultiYellowArmoredFlemoid",0,0,0,random(-1,1),random(-1,1),0,0,288)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyChex")
 			Stop
 		MultiplyWolf1:

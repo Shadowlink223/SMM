@@ -122,6 +122,21 @@ ACTOR OldArmoredFlemoidusBipedicus : NewArmoredFlemoidusBipedicus
 	}
 }
 
+ACTOR YellowArmoredFlemoid : NewArmoredFlemoidusBipedicus
+{
+	Translation "112:127=[243,254,80]:[21,22,0]"
+	BloodColor Yellow
+	States
+	{
+		Melee:
+		Missile:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TROC EF 6 A_FaceTarget
+			TROC G 6 A_CustomComboAttack("YellowBipedicusBall2", 32, random[TROCpattack](1,8)*3, "cqimp/melee", "flem")
+			Goto See
+	}
+}
+
 ACTOR MultiNewArmoredFlemoidusBipedicus : OldArmoredFlemoidusBipedicus
 {
 	Species "ArmoredBipedicus"
@@ -131,5 +146,11 @@ ACTOR MultiNewArmoredFlemoidusBipedicus : OldArmoredFlemoidusBipedicus
 ACTOR MultiOldArmoredFlemoidusBipedicus : NewArmoredFlemoidusBipedicus
 {
 	Species "ArmoredBipedicus"
+	+THRUSPECIES
+}
+
+ACTOR MultiYellowArmoredFlemoid : YellowArmoredFlemoid
+{
+	Species "YellowBipedicus"
 	+THRUSPECIES
 }
