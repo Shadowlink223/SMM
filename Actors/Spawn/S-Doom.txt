@@ -880,7 +880,7 @@ ACTOR ArachnotronSpawnerCoop replaces Arachnotron
 			Goto BossWait
 		SetDuke3D:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDuke3D")
-			TNT1 A 1 A_SpawnItemEx("PigCopTank",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			TNT1 A 1 A_SpawnItemEx("ScorpionTank",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
 			Goto BossWait
 		SetMarathon:
 			TNT1 A 1 A_SpawnItemEx("M2EnforcerMajorSpawner",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
@@ -936,7 +936,7 @@ ACTOR ArachnotronSpawnerCoop replaces Arachnotron
 			Goto BossWait
 		MultiplyDuke3D:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
-			TNT1 A 1 A_SpawnItemEx("MultiPigCopTank",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			TNT1 A 1 A_SpawnItemEx("MultiScorpionTank",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
 			Goto MultiplyDuke3D_2
 		MultiplyDuke3D_2:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)

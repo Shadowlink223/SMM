@@ -36,11 +36,12 @@ Tweaks:\n\
 - Changed some obituaries that were bothering me.";
 
 global int 2:alreadyshowedbs;
+global int 3:randomallclear;
 
 Script 667 OPEN 
 {
 
-	if (!GetCVar("smm_init"))	
+	if (!GetCVar("smm_init"))
 	{
 	//Basic monster toggles
 		if (!GetCVar("smm_doom"))
@@ -216,6 +217,11 @@ Script 668 (int spawncode, int override)
 		}
 		else
 		{
+			if(GetCvar("smm_randomcycle") > 0)
+			{
+				until (randomallclear == 1) { Delay(5); }
+			}
+			
 			setselect = random(1,7);
 			if(setselect == 1)
 			{
@@ -391,6 +397,9 @@ Script 669 (void)
 				else { ConsoleCommand("set smm_marathon 1"); selectloop++; }
 			}
 		}
+		randomallclear = 1;
+		delay(175);
+		randomallclear = 0;
 	}
 	else
 	{
