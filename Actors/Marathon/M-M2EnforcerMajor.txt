@@ -247,6 +247,7 @@ ACTOR M2EnforcerMajor
 			ENMA P 5
 			ENMA Q -1 A_KillMaster
 			Stop
+		Death.WolfenFlamethrower:
 		Death.HexGreenFire:
 		Death.QuakeFire:
 		Death.FireExplosive:

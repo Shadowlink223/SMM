@@ -271,6 +271,7 @@ ACTOR M1EnforcerMinor
 			1EMI P 5 A_PlaySoundEx("marathon/splash","body",0,0)
 			1EMI Q -1
 			Stop*/
+		Death.WolfenFlamethrower:
 		Death.HexGreenFire:
 		Death.QuakeFire:
 		Death.FireExplosive:

@@ -32,6 +32,7 @@ ACTOR SphtMajor
 	DamageFactor "MarathonPlasmaFire", 0.74
 	DamageFactor "MarathonFusion", 1.8
 	DamageFactor "Fire", 0.0
+	DamageFactor "WolfenFlamethrower", 0.0
 	DamageFactor "HexGreenFire", 0.0
 	DamageFactor "FireExplosive", 0.0
 	Decal BulletChip

@@ -237,6 +237,7 @@ ACTOR M1EnforcerMajor
 			EDG2 C 4
 			EDG2 D -1
 			Stop
+		Death.WolfenFlamethrower:
 		Death.HexGreenFire:
 		Death.QuakeFire:
 		Death.FireExplosive:

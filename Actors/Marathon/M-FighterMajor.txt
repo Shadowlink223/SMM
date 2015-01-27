@@ -217,6 +217,7 @@ ACTOR FighterMajor
 			PFDG CD 4
 			PFDG E -1
 			Stop
+		Death.WolfenFlamethrower:
 		Death.HexGreenFire:
 		Death.QuakeFire:
 		Death.FireExplosive:

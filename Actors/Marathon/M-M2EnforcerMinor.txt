@@ -249,6 +249,7 @@ ACTOR M2EnforcerMinor
 			ENMI P 5
 			ENMI Q -1 A_KillMaster
 			Stop
+		Death.WolfenFlamethrower:
 		Death.HexGreenFire:
 		Death.QuakeFire:
 		Death.FireExplosive:
