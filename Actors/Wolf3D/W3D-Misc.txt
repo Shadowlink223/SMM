@@ -98,7 +98,6 @@ ACTOR DevilBlast : AngelBlast
 }
 
 ACTOR OrbsFired : Inventory { Inventory.MaxAmount 6 }
-ACTOR HitlerKill : Inventory { Inventory.MaxAmount 1 }
 
 ACTOR WolfSyringe 
 {
@@ -146,6 +145,25 @@ ACTOR FakeHitlerBall
 ACTOR FakeHitlerBallFast : FakeHitlerBall
 {
 	Speed 9
+}
+
+ACTOR MageBall
+{
+	Radius 6
+	Height 8
+	Speed 9
+	Damage (random (6,7))
+	PROJECTILE
+	DeathSound "c3dproj/death"
+	States
+	{
+		Spawn:
+			C3DP AB 5 Bright
+			Loop
+		Death:
+			TNT1 A 1
+			Stop
+	}
 }
 
 ACTOR WolfClip : Clip2

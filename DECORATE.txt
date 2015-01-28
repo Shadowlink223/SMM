@@ -36,6 +36,7 @@
 #include "actors/Wolf3D/GretelGrosse.txt"
 #include "actors/Wolf3D/HansGrosse.txt"
 #include "actors/Wolf3D/Hitler.txt"
+#include "actors/Wolf3D/Mage.txt"
 #include "actors/Wolf3D/OttoGiftmacher.txt"
 #include "actors/Wolf3D/ProfessorQuarkblitz.txt"
 #include "actors/Wolf3D/Robot.txt"

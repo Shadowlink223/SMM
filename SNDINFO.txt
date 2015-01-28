@@ -835,6 +835,10 @@ devilinc/death			soddide
 sodss/fire				sodssfi
 sdog/bite				soddgat
 
+c3dmage/pain			c3dmagpn
+c3dmage/death			c3dmagdt
+c3dproj/death			c3dprodt
+
 /* *************************************************************************/
 /*
 /* DUKE NUKEM 3D SOUNDS
