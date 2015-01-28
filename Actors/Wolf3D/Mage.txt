@@ -76,12 +76,15 @@ ACTOR Mage
 		DukeGibStart:
 			C3DM A 1
 			C3DM A 0 A_UnsetSolid
-			C3DM A 1 A_SpawnDebris("DukeShrapnel1")
-			TNT1 AAAAAAA 0 A_SpawnDebris("DukeShrapnel1")
-			TNT1 AAAA 0 A_SpawnDebris("DukeShrapnel2")
-			TNT1 AAAAAAA 0 A_SpawnDebris("DukeShrapnel3")
-			TNT1 A 0 A_Jump(96,"Death")
-			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)//TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
+			C3DM A 1 A_SpawnDebris("DukeGibs1")
+			TNT1 A 0 A_SpawnDebris("DukeGibs2")
+			TNT1 A 0 A_SpawnDebris("DukeGibs3")
+			TNT1 A 0 A_SpawnDebris("DukeGibs4")
+			TNT1 A 0 A_SpawnDebris("DukeGibs5")
+			TNT1 A 0 A_SpawnDebris("DukeGibs6")
+			TNT1 A 0 A_PlaySound("duke/enemygib")
+			TNT1 A 0 A_Jump(96,"XDeath")
+			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
 			Goto Death
 		Death:
 		XDeath:
