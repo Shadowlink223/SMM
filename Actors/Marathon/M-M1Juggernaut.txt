@@ -27,7 +27,7 @@ ACTOR M1Juggernaut
 	AttackSound ""
 	Dropitem "DefaultPinataPop"
 	Dropitem "DefaultPinataPop"
-	Obituary "%o was crushed from the might of the Pfhor Juggernaut."
+	Obituary "%o was crushed from the might of the Mk I Pfhor Juggernaut."
     DamageFactor "Mace", 1.1
     DamageFactor "DragonClaw", 1.5
 	DamageFactor "MarathonShotgun", 2.0

@@ -21,7 +21,7 @@ ACTOR SewageFlickta
 	ActiveSound ""
 	AttackSound ""
 	Dropitem "DefaultPinataPop"
-	Obituary "%o had rocks slung at %h for intruding on a Sewage F'lickta's territory."
+	Obituary "%o was beaten by rocks for intruding on a Sewage F'lickta's territory."
 	HitObituary "%o was lacerated for intruding on a Sewage F'lickta's territory."
     DamageFactor "Mace", 1.1
     DamageFactor "DragonClaw", 1.5

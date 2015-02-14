@@ -747,6 +747,11 @@ ACTOR BaronOfHellSpawnerCoop replaces BaronOfHell
 			TNT1 A 1 A_SpawnItemEx("MiniBattlelordDoom",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
 			Goto BossWait
 		SetMarathon:
+			TNT1 A 1 A_Jump(220,4)
+			TNT1 A 1 A_Jump(220,3)
+			TNT1 A 1 A_Jump(220,2)
+			TNT1 A 1 A_SpawnItemEx("MotherofAllHuntersSpawner",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
 			TNT1 A 1 A_SpawnItemEx("HunterMajorSpawner",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
 			Goto Bosswait
 		SetNull:

@@ -70,6 +70,7 @@
 #include "actors/Duke3D/ReconPatrolVehicle.txt"
 #include "actors/Duke3D/ScorpionTank.txt"
 #include "actors/Duke3D/SentryDrone.txt"
+#include "actors/Duke3D/HighGuard.txt"
 #include "actors/Duke3D/DN-ST.txt"
 
 #include "actors/Marathon/M-M1EnforcerMinor.txt"
@@ -78,6 +79,7 @@
 #include "actors/Marathon/M-M2EnforcerMajor.txt"
 #include "actors/Marathon/M-HunterMinor.txt"
 #include "actors/Marathon/M-HunterMajor.txt"
+#include "actors/Marathon/M-MotherofAllHunters.txt"
 #include "actors/Marathon/M-FighterMinor.txt"
 #include "actors/Marathon/M-FighterMajor.txt"
 #include "actors/Marathon/M-ProjectileFighterMinor.txt"

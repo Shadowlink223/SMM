@@ -290,7 +290,7 @@ ACTOR FlameCyborgMinor
 			TNT1 A 0 A_GiveToTarget("KillCount",1)
 			TNT1 A 0 A_Recoil(5)
 			CYMI F 6 Bright A_NoBlocking
-			TNT1 A 0 A_Explode(60,128)
+			TNT1 A 0 A_SpawnItemEx("CyborgExplosion",0,0,32,0,0,0,0,1,0)
 			CYMI G 6 Bright A_Scream
 			CYMI HIJKL 6 Bright
 			CYMI L -1 A_KillMaster
