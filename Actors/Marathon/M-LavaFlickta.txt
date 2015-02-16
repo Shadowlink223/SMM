@@ -242,16 +242,16 @@ ACTOR LavaFlickta
 		XDeathDuke2:
 			SFDG A 1
 			TNT1 A 0 A_UnsetSolid
-			SFDG A 1 A_SpawnDebris("NewDukeGibs1_FlicktaOrange")
+			SFDG A 1 A_SpawnDebris("NewDukeGibs1_FlicktaLava")
 			TNT1 A 0 A_SpawnDebris("NewDukeGibs2")
 			TNT1 A 0 A_SpawnDebris("NewDukeGibs3")
-			TNT1 A 0 A_SpawnDebris("NewDukeGibs3_FlicktaOrange")
+			TNT1 A 0 A_SpawnDebris("NewDukeGibs3_FlicktaLava")
 			TNT1 AA 0 A_SpawnDebris("NewDukeGibs4")
-			TNT1 A 0 A_SpawnDebris("NewDukeGibs4_FlicktaOrange")
+			TNT1 A 0 A_SpawnDebris("NewDukeGibs4_FlicktaLava")
 			TNT1 A 0 A_SpawnDebris("NewDukeGibs5")
-			TNT1 A 0 A_SpawnDebris("NewDukeGibs5_FlicktaOrange")
+			TNT1 A 0 A_SpawnDebris("NewDukeGibs5_FlicktaLava")
 			TNT1 AA 0 A_SpawnDebris("NewDukeGibs6")
-			TNT1 A 0 A_SpawnDebris("NewDukeGibs6_FlicktaOrange")
+			TNT1 A 0 A_SpawnDebris("NewDukeGibs6_FlicktaLava")
 			TNT1 A 0 A_PlaySound("duke/enemygib",5)
 			TNT1 A 0 A_Jump(96,2)
 			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
