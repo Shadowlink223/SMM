@@ -961,6 +961,7 @@ flickta/melee1			flikmel1
 flickta/melee2			flikmel2
 flickta/rock			flikmiss
 flickta/rockhit			flikmhit
+flickta/firehit			lflimhit
 flickta/death			flikdeth
 spht/attack				sphtattk
 spht/pain				sphtpain

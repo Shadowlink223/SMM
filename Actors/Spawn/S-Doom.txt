@@ -238,6 +238,11 @@ ACTOR DoomImpSpawnerCoop replaces DoomImp
 			TNT1 A 1 A_SpawnItemEx("AssaultCaptain",0,0,0,0,0,0,0,288)
 			Stop
 		SetMarathon:
+			TNT1 A 1 A_Jump(160,4)
+			TNT1 A 1 A_Jump(160,3)
+			TNT1 A 1 A_Jump(160,2)
+			TNT1 A 1 A_SpawnItemEx("LavaFlicktaSpawner",0,0,0,0,0,0,0,288)
+			Stop
 			TNT1 A 1 A_SpawnItemEx("SewageFlicktaSpawner",0,0,0,0,0,0,0,288)
 			Stop
 		SetNull:

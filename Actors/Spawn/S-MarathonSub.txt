@@ -845,6 +845,95 @@ ACTOR WaterFlicktaSpawner
 	}
 }
 
+ACTOR LavaFlicktaSpawner
+{
+	Health 0x7fffffff
+	Height 0
+	Radius 0
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(668,0,3)
+			TNT1 A 1 ACS_ExecuteAlways(671,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+		Kindergarten:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKindergarten")
+			TNT1 A 1 A_SpawnItemEx("LavaFlicktaITYTD",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		Easy:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy")
+			TNT1 A 1 A_SpawnItemEx("LavaFlicktaHNTR",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		Normal:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNormal")
+			TNT1 A 1 A_SpawnItemEx("LavaFlickta",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		MajorDamage:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajorDamage")
+			TNT1 A 1 A_SpawnItemEx("LavaFlicktaUV",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		TotalCarnage:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyTotalCarnage")
+			TNT1 A 1 A_SpawnItemEx("LavaFlicktaNightmare",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyKindergarten:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiLavaFlicktaITYTD",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyKindergarten")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyEasy:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiLavaFlicktaHNTR",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyEasy")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyNormal:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiLavaFlickta",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNormal")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyMajorDamage:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiLavaFlicktaUV",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMajorDamage")
+			TNT1 A 1 A_Die
+			Goto Death
+		MultiplyTotalCarnage:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiLavaFlicktaNightmare",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyTotalCarnage")
+			TNT1 A 1 A_Die
+			Goto Death
+		Death:
+			BZBL A 70
+			Stop
+	}
+}
+
 ACTOR DroneMinorSpawner
 {
 	Health 0x7fffffff
@@ -3339,6 +3428,21 @@ ACTOR SewageFlicktaSpawnerInv : SewageFlicktaSpawner
 ACTOR WaterFlicktaSpawnerInv : WaterFlicktaSpawner
 {
 	Height 20
+	Radius 56
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 ACS_ExecuteAlways(671,0)
+		Deciding:
+			TNT1 A 1
+			Loop
+	}
+}
+
+ACTOR LavaFlicktaSpawnerInv : LavaFlicktaSpawner
+{
+	Height 18
 	Radius 56
 	States
 	{

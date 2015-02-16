@@ -88,6 +88,7 @@
 #include "actors/Marathon/M-JuggernautMajor.txt"
 #include "actors/Marathon/M-SewageFlickta.txt"
 #include "actors/Marathon/M-WaterFlickta.txt"
+#include "actors/Marathon/M-LavaFlickta.txt"
 #include "actors/Marathon/M-SphtMinor.txt"
 #include "actors/Marathon/M-SphtMajor.txt"
 #include "actors/Marathon/M-SphtKrMinor.txt"

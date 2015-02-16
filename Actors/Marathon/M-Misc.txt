@@ -411,10 +411,40 @@ ACTOR FlicktaProjectile
 	}
 }
 
+ACTOR LavaFlicktaProjectile
+{
+	Radius 6
+	Height 8
+	Speed 6.525
+	Scale 0.49
+	Damage (random (31, 40))
+	DamageType Fire
+	PROJECTILE
+	SeeSound ""
+	DeathSound "flickta/firehit"
+	States 
+	{
+		Spawn:
+			LFPR AB 5
+			Loop
+		Death:
+			LFPR C 6
+			LFPR D 6
+			LFPR E 6
+			LFPR F 6
+			Stop
+	}
+}
+
 ACTOR FlicktaProjectileITYTD : FlicktaProjectile { Speed 5.74 }
 ACTOR FlicktaProjectileHNTR : FlicktaProjectile { Speed 6.125 }
 ACTOR FlicktaProjectileUV : FlicktaProjectile { Speed 7.5 }
 ACTOR FlicktaProjectileNightmare : FlicktaProjectile { Speed 8.155 }
+
+ACTOR LavaFlicktaProjectileITYTD : LavaFlicktaProjectile { Speed 5.74 }
+ACTOR LavaFlicktaProjectileHNTR : LavaFlicktaProjectile { Speed 6.125 }
+ACTOR LavaFlicktaProjectileUV : LavaFlicktaProjectile { Speed 7.5 }
+ACTOR LavaFlicktaProjectileNightmare : LavaFlicktaProjectile { Speed 8.155 }
 
 
 ACTOR EnforcerShotEnemy : EnforcerShot
@@ -812,6 +842,78 @@ actor NewDukeGibs6_FlicktaBlue : NewDukeGibs6
 {
 	Health 1
 	Translation "16:47=[0,200,204]:[0,64,64]"
+	States
+	{
+		Spawn:
+			DKG6 AB 5
+			Loop
+	}
+}
+
+actor NewDukeGibs1_FlicktaLava : NewDukeGibs1
+{
+	Health 1
+	Translation "16:47=[230,151,115]:[90,45,27]"
+	States
+	{
+		Spawn:
+			DKG1 ABCD 5
+			Loop
+	}
+}
+
+actor NewDukeGibs2_FlicktaLava : NewDukeGibs2
+{
+	Health 1
+	Translation "16:47=[230,151,115]:[90,45,27]"
+	States
+	{
+		Spawn:
+			DKG2 ABCD 5
+			Loop
+	}
+}
+
+actor NewDukeGibs3_FlicktaLava : NewDukeGibs3
+{
+	Health 1
+	Translation "16:47=[230,151,115]:[90,45,27]"
+	States
+	{
+		Spawn:
+			DKG3 ABCD 5
+			Loop
+	}
+}
+
+actor NewDukeGibs4_FlicktaLava : NewDukeGibs4
+{
+	Health 1
+	Translation "16:47=[230,151,115]:[90,45,27]"
+	States
+	{
+		Spawn:
+			DKG4 ABCD 5
+			Loop
+	}
+}
+
+actor NewDukeGibs5_FlicktaLava : NewDukeGibs5
+{
+	Health 1
+	Translation "16:47=[230,151,115]:[90,45,27]"
+	States
+	{
+		Spawn:
+			DKG5 ABCD 5
+			Loop
+	}
+}
+
+actor NewDukeGibs6_FlicktaLava : NewDukeGibs6
+{
+	Health 1
+	Translation "16:47=[230,151,115]:[90,45,27]"
 	States
 	{
 		Spawn:
