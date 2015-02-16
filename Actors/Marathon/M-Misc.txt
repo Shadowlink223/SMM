@@ -192,6 +192,7 @@ ACTOR CyborgFlameShot : FlameShot
 {
 	-RIPPER
 	Damage (random(8,12))
+	Speed 30
 }
 
 ACTOR FighterProjectile

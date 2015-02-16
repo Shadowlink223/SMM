@@ -5,7 +5,7 @@ ACTOR FlameCyborgMajor
 	Height 56
 	Speed 4.779
 	Mass 1000
-	PainChance 0
+	PainChance 255
 	MaxDropOffHeight 96
 	Gravity 0.15
 	MinMissileChance 10
@@ -238,6 +238,10 @@ ACTOR FlameCyborgMajor
 		Missile2End:
 			TNT1 A 0 A_TakeInventory("AttackReps",16)
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			Goto See
+		Pain:
+			CYMI A 6
+			TNT1 A 0 A_TakeInventory("AttackReps",16)
 			Goto See
 		Pain.MightyBoot:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
