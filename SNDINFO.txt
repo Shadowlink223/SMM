@@ -923,6 +923,15 @@ duke/thud				dukethud
 $pitchshift prodrone/pain 4
 $pitchshift prodrone/death 4
 
+hguard/fire				hgpamp40
+$random hguard/sight { hguard/sight1 hguard/sight2 }
+hguard/sight1			hgsight1
+hguard/sight2			hgsight2
+hguard/pain				hgpain
+hguard/death			hgdeath
+rottgib/splash			agibspl
+rottgib/squish			asquish
+
 /* *************************************************************************/
 /*
 /* MARATHON SOUNDS

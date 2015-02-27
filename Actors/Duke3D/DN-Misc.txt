@@ -563,6 +563,159 @@ actor NewDukeGibs6_DukeOrange : NewDukeGibs6 replaces DukeGibs6_DukeOrange
 	}
 }
 
+ACTOR ROTTGibs1 : NewDukeGibs1 //Organ
+{
+	Health 1
+	Gravity 0.35
+	States
+	{
+		Spawn:
+			RTG2 ABCD 3
+			Loop
+		Death:
+			TNT1 A 0 A_LowGravity
+			TNT1 A 0 A_PlaySound("rottgib/splash")
+			RTG2 EFGHIJKL 2
+			Stop
+	}
+}
+
+ACTOR ROTTGibs2 : NewDukeGibs1 //Rib
+{
+	Health 1
+	Gravity 0.35
+	States
+	{
+		Spawn:
+			RTG3 ABCD 3
+			Loop
+		Death:
+			TNT1 A 0 A_LowGravity
+			TNT1 A 0 A_PlaySound("rottgib/splash")
+			RTG3 EFGHIJKL 2
+			Stop
+	}
+}
+
+ACTOR ROTTGibs3 : NewDukeGibs1 //GPink, w/e that is.
+{
+	Health 1
+	Gravity 0.35
+	States
+	{
+		Spawn:
+			RTG4 ABCD 3
+			Loop
+		Death:
+			TNT1 A 0 A_LowGravity
+			TNT1 A 0 A_PlaySound("rottgib/splash")
+			RTG4 EFGHIJKL 2
+			Stop
+	}
+}
+
+ACTOR ROTTGibs4 : NewDukeGibs1 //Head
+{
+	Health 1
+	Gravity 0.35
+	States
+	{
+		Spawn:
+			RTG5 ABCD 3
+			Loop
+		Death:
+			TNT1 A 0 A_LowGravity
+			TNT1 A 0 A_PlaySound("rottgib/splash")
+			RTG5 EFGHIJKL 2
+			Stop
+	}
+}
+
+ACTOR ROTTGibs5 : NewDukeGibs1 //Middle Finger
+{
+	Health 1
+	Gravity 0.35
+	States
+	{
+		Spawn:
+			RTG6 ABCD 3
+			Loop
+		Death:
+			TNT1 A 0 A_LowGravity
+			TNT1 A 0 A_PlaySound("rottgib/splash")
+			RTG6 EFGHIJKL 2
+			Stop
+	}
+}
+
+ACTOR ROTTGibs6 : NewDukeGibs1 //Leg
+{
+	Health 1
+	Gravity 0.35
+	States
+	{
+		Spawn:
+			RTG7 ABCD 3
+			Loop
+		Death:
+			TNT1 A 0 A_LowGravity
+			TNT1 A 0 A_PlaySound("rottgib/splash")
+			RTG7 EFGHIJKL 2
+			Stop
+	}
+}
+
+ACTOR ROTTGibs7 : NewDukeGibs1 //Humerus
+{
+	Health 1
+	Gravity 0.35
+	States
+	{
+		Spawn:
+			RTG8 ABCD 3
+			Loop
+		Death:
+			TNT1 A 0 A_LowGravity
+			TNT1 A 0 A_PlaySound("rottgib/splash")
+			RTG8 EFGHIJKL 2
+			Stop
+	}
+}
+
+ACTOR ROTTGibs8 : NewDukeGibs1 //Hip
+{
+	Health 1
+	Gravity 0.35
+	States
+	{
+		Spawn:
+			RTG9 ABCD 3
+			Loop
+		Death:
+			TNT1 A 0 A_LowGravity
+			TNT1 A 0 A_PlaySound("rottgib/splash")
+			RTG9 EFGHIJKL 2
+			Stop
+	}
+}
+
+ACTOR ROTTGibs9 : NewDukeGibs1 //Limb
+{
+	Health 1
+	Gravity 0.35
+	States
+	{
+		Spawn:
+			RTG0 ABCD 3
+			Loop
+		Death:
+			TNT1 A 0 A_LowGravity
+			TNT1 A 0 A_PlaySound("rottgib/splash")
+			RTG0 EFGHIJKL 2
+			Stop
+	}
+}
+
 Actor PigDrop : SamsaraSlotTwoDrop
 {
 	+DROPPED
