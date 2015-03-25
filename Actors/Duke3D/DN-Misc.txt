@@ -11,6 +11,91 @@ ACTOR DukeEnemyBullet : DoomEnemyBullet
 	}
 }
 
+ACTOR DukeBlood : Blood
+{
+	States
+	{
+		Spawn:
+			TNT1 AAA 0
+			TNT1 A 1 A_SpawnItemEx("Switchable_FlyingBlood",0,0,0,random(-350,350)/100.00,random(-350,350)/100.00,random(500,1000)/100.00,random(-180,180),33)
+			TNT1 A 1 A_SpawnItemEx("DukeJibs6")
+			Stop
+	}
+}
+
+ACTOR DukeBloodAC : Blood
+{
+	States
+	{
+		Spawn:
+			TNT1 AAA 0
+			TNT1 A 1 A_SpawnItemEx("Switchable_FlyingBlood",0,0,0,random(-350,350)/100.00,random(-350,350)/100.00,random(500,1000)/100.00,random(-180,180),33)
+			TNT1 AA 1 A_SpawnItemEx("DukeJibs6",0,0,0,random(-350,350)/100.00,random(-350,350)/100.00,random(500,1000)/100.00,random(-180,180),33)
+			Stop
+	}
+}
+
+ACTOR DukeBloodBoss : Blood
+{
+	States
+	{
+		Spawn:
+			TNT1 AAA 0
+			TNT1 A 1 A_SpawnItemEx("Switchable_FlyingBlood",0,0,0,random(-350,350)/100.00,random(-350,350)/100.00,random(500,1000)/100.00,random(-180,180),33)
+			TNT1 AA 1 A_SpawnItemEx("DukeJibs6",0,0,0,random(-350,350)/100.00,random(-350,350)/100.00,random(500,1000)/100.00,random(-180,180),33)
+			TNT1 A 0 A_SpawnItemEx("DukeShrapnel1",0,0,0,random(-350,350)/100.00,random(-350,350)/100.00,random(500,1000)/100.00,random(-180,180),33)
+			Stop
+	}
+}
+
+ACTOR DukeBloodQueen : Blood
+{
+	States
+	{
+		Spawn:
+			TNT1 AAA 0
+			TNT1 A 1 A_SpawnItemEx("Switchable_FlyingBlood",0,0,0,random(-350,350)/100.00,random(-350,350)/100.00,random(500,1000)/100.00,random(-180,180),33)
+			TNT1 A 1 A_SpawnItemEx("DukeJibs6",0,0,0,random(-350,350)/100.00,random(-350,350)/100.00,random(500,1000)/100.00,random(-180,180),32)
+			TNT1 A 1 A_SpawnItemEx("ProtectorDroneGibs6",0,0,0,random(-350,350)/100.00,random(-350,350)/100.00,random(500,1000)/100.00,random(-180,180),32)
+			TNT1 A 0 A_SpawnItemEx("QueenShrapnel1",0,0,0,random(-350,350)/100.00,random(-350,350)/100.00,random(500,1000)/100.00,random(-180,180),33)
+			Stop
+	}
+}
+
+ACTOR QueenShrapnel1 : NewDukeGibs1
+{
+	Health 1
+	States
+	{
+		Spawn:
+			AQS2 ABCD 5
+			Loop
+		Death:
+			TNT1 A 0 A_Gravity
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(SAMSARA_DECORATE,31) == 1, "Death2")
+			TNT1 A 1
+			Stop
+		Death2:
+			AQS2 B 2100
+			Loop
+	}
+}
+
+ACTOR ProDroneBlood : Blood
+{
+	+NOGRAVITY
+	Scale 0.65
+	States
+	{
+		Spawn:
+			TNT1 AAA 0
+			TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
+			TNT1 A 1 A_SpawnItemEx("Switchable_FlyingBlood",0,0,0,random(-350,350)/100.00,random(-350,350)/100.00,random(500,1000)/100.00,random(-180,180),33)
+			PDBL ABCD 4
+			Stop
+	}
+}
+
 ACTOR TrooperLaser
 {
   Radius 13
@@ -412,6 +497,11 @@ ACTOR DukeJibs6 : DukeJibs1
 		Spawn:
 			DJ06 ABCD 5
 			Loop
+		Death:
+			TNT1 A 0 A_Gravity
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(SAMSARA_DECORATE,31) == 1, "Death2")
+			DJ06 ABCDEFGH 5
+			Stop
 		Death2:
 			DJ06 CDEFGH 5
 			DJ06 H 2100
@@ -877,3 +967,4 @@ ACTOR OctabrainProjectile
 
 ACTOR PigCopBullet : DukeEnemyBullet { Damage (10) }
 ACTOR PigProneBullet : DukeEnemyBullet { Damage (6) }
+ACTOR HighGuardBullet : DukeEnemyBullet { Damage (10) }

@@ -7,7 +7,7 @@ ACTOR Octabrain
 	Speed 10
 	PainChance 30
 	Scale 0.65
-	MinMissileChance 180
+	MinMissileChance 210
 	MONSTER
 	+FLOORCLIP
     +NOTDMATCH
@@ -27,6 +27,7 @@ ACTOR Octabrain
     DamageFactor "DragonClaw", 1.5
     PainChance "MightyBoot", 255
 	PainChance "MarathonStun", 255
+	BloodType "DukeBlood"
 	States 
 	{
 		Spawn:

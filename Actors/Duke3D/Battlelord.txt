@@ -32,6 +32,7 @@ ACTOR Battlelord
     DamageFactor "DragonClaw", 1.6
     DamageFactor "WMCNade", 0.75
 	DamageFactor "CorvusHellstaffTomed", 0.2
+	BloodType "DukeBloodBoss"
 	Decal BulletChip 
 	States 
 	{
@@ -245,6 +246,7 @@ ACTOR MiniBattlelord : Battlelord
 	Health 1000
 	Height 64
 	Radius 32
+	Speed 25
 	Scale 0.65
 	-DONTMORPH
 	-BOSS

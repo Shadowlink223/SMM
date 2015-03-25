@@ -25,6 +25,7 @@ ACTOR AlienQueen
 	Obituary "%o was shocked to death by the Alien Queen."
     DamageFactor "Mace", 1.1
     DamageFactor "DragonClaw", 1.5
+	BloodType "DukeBloodQueen"
 	Bloodcolor Green
 	States
 	{

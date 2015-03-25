@@ -26,13 +26,15 @@ ACTOR AssaultCommander
 	DamageFactor "MarathonFusion", 2.0
     PainChance "MightyBoot", 255
 	PainChance "MarathonStun", 255
+	BloodType "DukeBloodAC"
 	States 
 	{
 		Spawn:
 			ASCO A 2 A_Look
 			Loop
 		See:
-			ASCO AAAAABBBBBCCCCC 1 A_Chase
+			ASCO AAAAA 1 A_Chase
+			ASCO BBBBBCCCCC 1 A_Chase("","",CHF_NOPLAYACTIVE)
 			Loop
 		Missile:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
