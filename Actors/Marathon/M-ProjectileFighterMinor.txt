@@ -15,6 +15,7 @@ ACTOR ProjectileFighterMinor
 	+DONTRIP
 	+MISSILEMORE
 	+MISSILEEVENMORE
+	+QUICKTORETALIATE
 	SeeSound "pfhorfighter/sight"
 	PainSound ""
 	DeathSound "pfhor/death"

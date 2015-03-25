@@ -14,6 +14,7 @@ ACTOR M1EnforcerMajor
 	+DONTRIP
 	+MISSILEMORE
 	+MISSILEEVENMORE
+	+QUICKTORETALIATE
 	SeeSound "m2enforcer/sight"
 	PainSound ""
 	DeathSound "m1pfhor/death"

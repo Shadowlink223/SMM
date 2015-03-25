@@ -637,13 +637,9 @@ ACTOR HellKnightSpawnerCoop replaces HellKnight
 			TNT1 A 1 A_SpawnItemEx("Demon1CDoom",0,0,0,0,0,0,0,288)
 			Stop
 		SetChex:
-			//TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,4) == 1, "SetChex_2")
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyChex")
 			TNT1 A 1 A_SpawnItemEx("NewQuadrumpus",0,0,0,0,0,0,0,288)
 			Stop
-		/*SetChex_2:
-			TNT1 A 1 A_SpawnItemEx("NewQuadrumpus",0,0,0,0,0,0,0,288)
-			Stop*/
 		SetWolf3D:
 		SODM1:
 		SODM2:
@@ -875,13 +871,9 @@ ACTOR ArachnotronSpawnerCoop replaces Arachnotron
 			TNT1 A 1 A_SpawnItemEx("CentaurLeader3Doom",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
 			Goto BossWait
 		SetChex:
-			//TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,4) == 1, "SetChex_2")
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyChex")
 			TNT1 A 1 A_SpawnItemEx("NewQuadrumpus",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
 			Goto BossWait
-		/*SetChex_2:
-			TNT1 A 1 A_SpawnItemEx("NewQuadrumpus",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
-			Goto BossWait*/
 		SetWolf3D:
 		SODM1:
 		SODM2:
@@ -1002,13 +994,9 @@ ACTOR FatsoSpawnerCoop replaces Fatso
 			TNT1 A 1 A_SpawnItemEx("IceGuy3Doom",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
 			Goto BossWait
 		SetChex:
-			//TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,4) == 1, "SetChex_2")
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyChex")
 			TNT1 A 1 A_SpawnItemEx("NewQuadrumpus",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
 			Goto BossWait
-		/*SetChex_2:
-			TNT1 A 1 A_SpawnItemEx("NewQuadrumpus",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
-			Goto BossWait*/
 		SetWolf3D:
 		SODM1:
 		SODM2:
@@ -1373,13 +1361,9 @@ ACTOR RevenantSpawnerCoop replaces Revenant
 			TNT1 A 1 A_SpawnItemEx("FireDemon3Doom",0,0,0,0,0,0,0,288)
 			Stop
 		SetChex:
-			//TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,4) == 1, "SetChex_2")
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyChex")
 			TNT1 A 1 A_SpawnItemEx("NewQuadrumpus",0,0,0,0,0,0,0,288)
 			Stop
-		/*SetChex_2:
-			TNT1 A 1 A_SpawnItemEx("NewQuadrumpus",0,0,0,0,0,0,0,288)
-			Stop*/
 		SetWolf3D:
 		SODM1:
 		SODM2:

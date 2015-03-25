@@ -15,6 +15,7 @@ ACTOR WaterFlickta
 	+DONTRIP
 	+MISSILEMORE
 	+MISSILEEVENMORE
+	+QUICKTORETALIATE
 	SeeSound ""
 	PainSound ""
 	DeathSound "flickta/death"

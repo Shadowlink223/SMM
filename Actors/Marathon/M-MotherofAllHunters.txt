@@ -17,6 +17,7 @@ ACTOR MotherofAllHunters
 	+NOBLOOD
 	+MISSILEMORE
 	+MISSILEEVENMORE
+	+QUICKTORETALIATE
 	SeeSound ""
 	PainSound ""
 	DeathSound "hunter/crash"

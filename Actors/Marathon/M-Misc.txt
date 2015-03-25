@@ -425,13 +425,13 @@ ACTOR LavaFlicktaProjectile
 	States 
 	{
 		Spawn:
-			LFPR AB 5
+			LFPR AB 5 Bright
 			Loop
 		Death:
-			LFPR C 6
-			LFPR D 6
-			LFPR E 6
-			LFPR F 6
+			LFPR C 6 Bright
+			LFPR D 6 Bright
+			LFPR E 6 Bright
+			LFPR F 6 Bright
 			Stop
 	}
 }
@@ -485,10 +485,10 @@ ACTOR HunterShot
 			HUPR A 4 Bright
 			Loop
 		Death:
-			HUEX A 1 bright
-			HUEX B 2 bright
-			HUEX C 3 bright
-			HUEX D 2 bright
+			HUEX A 1 Bright
+			HUEX B 2 Bright
+			HUEX C 3 Bright
+			HUEX D 2 Bright
 			Stop
 	}
 }

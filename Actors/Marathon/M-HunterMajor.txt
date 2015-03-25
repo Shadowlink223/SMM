@@ -17,6 +17,7 @@ ACTOR HunterMajor
 	+NOBLOOD
 	+MISSILEMORE
 	+MISSILEEVENMORE
+	+QUICKTORETALIATE
 	SeeSound ""
 	PainSound ""
 	DeathSound "hunter/crash"

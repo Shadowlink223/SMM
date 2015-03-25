@@ -17,6 +17,7 @@ ACTOR FlameCyborgMinor
 	+DONTRIP
 	+MISSILEMORE
 	+MISSILEEVENMORE
+	+QUICKTORETALIATE
 	+DONTHURTSPECIES
 	SeeSound ""
 	PainSound "cyborg/pain"

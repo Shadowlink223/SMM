@@ -15,6 +15,7 @@ ACTOR SewageFlickta
 	+DONTRIP
 	+MISSILEMORE
 	+MISSILEEVENMORE
+	+QUICKTORETALIATE
 	SeeSound ""
 	PainSound ""
 	DeathSound "flickta/death"
