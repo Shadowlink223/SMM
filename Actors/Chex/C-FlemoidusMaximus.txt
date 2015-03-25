@@ -169,6 +169,7 @@ ACTOR NewFlemoidusMaximusArch : NewFlemoidusMaximus
 {
 	Radius 20
 	Height 56
+	Health 700
 }
 
 ACTOR OldFlemoidusMaximus : NewFlemoidusMaximus
