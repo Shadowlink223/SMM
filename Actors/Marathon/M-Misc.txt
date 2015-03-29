@@ -28,7 +28,7 @@ ACTOR JuggernautExplosion
 			TNT1 A 0
 			Goto Death
 		Death:
-			TNT1 A 0 A_Explode(350 + random(1,50),640,1)
+			TNT1 A 0 A_Explode(350 + random(1,50),640,1,1,1)
 			stop
 	}
 }
@@ -42,7 +42,7 @@ ACTOR HunterExplosion : JuggernautExplosion
 			TNT1 A 0
 			Goto Death
 		Death:
-			TNT1 A 0 A_Explode(60 + random(1,30),256,1)
+			TNT1 A 0 A_Explode(60 + random(1,30),256,1,1,256)
 			stop
 	}
 }
@@ -55,7 +55,7 @@ ACTOR MotherHunterExplosion : JuggernautExplosion
 			TNT1 A 0
 			Goto Death
 		Death:
-			TNT1 A 0 A_Explode(140 + random(1,50),512,1)
+			TNT1 A 0 A_Explode(140 + random(1,50),512,1,1,512)
 			stop
 	}
 }
@@ -69,7 +69,7 @@ ACTOR CyborgExplosion : JuggernautExplosion
 			TNT1 A 0
 			Goto Death
 		Death:
-			TNT1 A 0 A_Explode(60,128,1)
+			TNT1 A 0 A_Explode(60,128,1,0,128)
 			stop
 	}
 }
@@ -145,7 +145,7 @@ ACTOR CyborgGrenade //Copied over most of this from the code PresidentPeople sen
 			Loop
 		Death:
 			TNT1 A 0 A_NoGravity
-			XPLD A 4 Bright A_Explode(20+random(0,10),128)
+			XPLD A 4 Bright A_Explode(20+random(0,10),128,1,1,128)
 			XPLD B 4 Bright 
 			XPLD C 4 Bright
 			XPLD D 4 Bright
@@ -168,7 +168,7 @@ ACTOR SeekerCyborgGrenade : CyborgGrenade
 			Loop
 		Death:
 			TNT1 A 0 A_NoGravity
-			XPLD A 4 Bright A_Explode(40+random(0,10),128)
+			XPLD A 4 Bright A_Explode(40+random(0,10),128,1,1,128)
 			XPLD B 4 Bright 
 			XPLD C 4 Bright
 			XPLD D 4 Bright
@@ -554,7 +554,7 @@ ACTOR JuggernautRocket
 			Loop
 		Death:
 			TNT1 A 0 A_NoGravity
-			XPLD A 4 Bright A_Explode(40+random(0,20),96)
+			XPLD A 4 Bright A_Explode(40+random(0,20),96,1,1,96)
 			XPLD B 4 Bright 
 			XPLD C 4 Bright
 			XPLD D 4 Bright
@@ -588,7 +588,7 @@ ACTOR M1JuggernautRocket
 			Loop
 		Death:
 			TNT1 A 0 A_NoGravity
-			XPLD A 4 Bright A_Explode(40+random(0,20),96)
+			XPLD A 4 Bright A_Explode(40+random(0,20),96,1,1,96)
 			XPLD B 4 Bright 
 			XPLD C 4 Bright
 			XPLD D 4 Bright
@@ -629,7 +629,7 @@ ACTOR TrooperGrenade : MarathonGrenade
         
 		Death:
 			TNT1 A 0 A_NoGravity
-			XPLD A 4 Bright A_Explode(40+random(0, 20), 128)
+			XPLD A 4 Bright A_Explode(40+random(0, 20), 128,1,1,128)
 			XPLD B 4 Bright 
 			XPLD C 4 Bright
 			XPLD D 4 Bright
