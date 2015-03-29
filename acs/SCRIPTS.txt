@@ -19,28 +19,33 @@ int SMMCHANGES =
 "From 0.17 to 0.17b\n\
 \n\
 Fixes:\n\
-- Fixed an incorrect sprite name on The Axe causing him to disappear for a moment during his death state.\n\
-- Drops done with smm_pinataparty would respawn if sv_itemrespawn was enabled, a change in method fixes this.\n\
-- Runes by default have +NOGRAVITY and because of that would fly to the top of maps and never come back when spawned by DefaultPinataPop. The random spawner now has versions without that flag.\n\
+- The script for smm_randomcycle would sometimes outrun the spawners on monster heavy maps, it has been reworked so the spawners stand by until randomcycle is finished setting up.\n\
+- Changed the sprite name for the Super Cycloptis as it caused a conflict with Naraka.\n\
+- Fixed a loophole where BJ could kill Marathon monsters that were invulnerable to fire with his flamethrower.\n\
 - D'Sparil spawning in monsters was causing problems in Invasion mode, the spawning method has been changed to A_SpawnItemEx.\n\
 - DukeJibs4 had a wrong sprite name in the Death2 state, renamed to fix.\n\
 - Marathon Juggernauts could get stuck on other actors during its death state, so it wouldn't be able to die. Added THRUACTORS in the Death state to fix this.\n\
 - Finally remembered to fix a long existing issue involving some of the SoD Mission 2 bosses using incorrect projectile sprites.\n\
 Additions:\n\
-- CVar info string.\n\
-- Chex Quest support.\n\
+- Throwback monsters for each set. Includes a yellow armored flemoid for Chex, the High Guard from Rise of the Triad, and the Mage from Catacomb 3-D\n\
+- Rare monster spawns for the Marathon set.\n\
 Tweaks:\n\
-- Made the Protector Drone not play its active sound so often.\n\
-- The Battlelord, Cycloid Emperor, and Overlord now have a footstep sound.\n\
-- Explosives should now always send a Marathon monster into it's XDeath state.\m\
-- Changed some obituaries that were bothering me.";
+- Added +QUICKTORETALIATE to the Marathon set to improve monster accuracy.\n\
+- Lowered the movement speed on the Mini-Battlelord so it's less jittery.\n\
+- Major Juggernauts now fire missiles 2 times per attack state to match Marathon.\n\
+- Cyborgs from Marathon can now be stunned by sustained fire.\n\
+- The M2 Enforcer now replaces the Arachnotron instead of the Cyborg.\n\
+- Hunters now go boom on XDeath, dealing 61-90 damage.\n\
+- Juggernauts from Marathon cause a blinding flash after they explode.\n\
+- Wolfenstein SS now drops a weapon when killed. (Slot 2 for BJ, slot 4 for the rest)";
 
 global int 2:alreadyshowedbs;
 global int 3:randomallclear;
+global int 4:lastchosen;
 
 Script 667 OPEN 
 {
-
+	randomallclear = 0;
 	if (!GetCVar("smm_init"))
 	{
 	//Basic monster toggles
@@ -363,43 +368,41 @@ Script 669 (void)
 			
 			if (randnum == 1)
 			{
-				if(GetCVar("smm_doom")||GetCVar("smm_bandoom")) { }
-				else { ConsoleCommand("set smm_doom 1"); selectloop++; }
+				if(GetCVar("smm_doom")||GetCVar("smm_bandoom")||lastchosen == 1) { }
+				else { ConsoleCommand("set smm_doom 1"); selectloop++; lastchosen = 1; }
 			}
 			if (randnum == 2)
 			{
-				if(GetCVar("smm_heretic")||GetCVar("smm_banheretic")) { }
-				else { ConsoleCommand("set smm_heretic 1"); selectloop++; }
+				if(GetCVar("smm_heretic")||GetCVar("smm_banheretic")||lastchosen == 2) { }
+				else { ConsoleCommand("set smm_heretic 1"); selectloop++; lastchosen = 2; }
 			}
 			if (randnum == 3)
 			{
-				if(GetCVar("smm_hexen")||GetCVar("smm_banhexen")) { }
-				else { ConsoleCommand("set smm_hexen 1"); selectloop++; }
+				if(GetCVar("smm_hexen")||GetCVar("smm_banhexen")||lastchosen == 3) { }
+				else { ConsoleCommand("set smm_hexen 1"); selectloop++; lastchosen = 3; }
 			}
 			if (randnum == 4)
 			{
-				if(GetCVar("smm_chex")||GetCVar("smm_banchex")) { }
-				else { ConsoleCommand("set smm_chex 1"); selectloop++; }
+				if(GetCVar("smm_chex")||GetCVar("smm_banchex")||lastchosen == 4) { }
+				else { ConsoleCommand("set smm_chex 1"); selectloop++; lastchosen = 4; }
 			}
 			if (randnum == 5)
 			{
-				if(GetCVar("smm_wolf3d")||GetCVar("smm_banwolf3d")) { }
-				else { ConsoleCommand("set smm_wolf3d 1"); selectloop++; }
+				if(GetCVar("smm_wolf3d")||GetCVar("smm_banwolf3d")||lastchosen == 5) { }
+				else { ConsoleCommand("set smm_wolf3d 1"); selectloop++; lastchosen = 5; }
 			}
 			if (randnum == 6)
 			{
-				if(GetCVar("smm_duke3d")||GetCVar("smm_banduke3d")) { }
-				else { ConsoleCommand("set smm_duke3d 1"); selectloop++; }
+				if(GetCVar("smm_duke3d")||GetCVar("smm_banduke3d")||lastchosen == 6) { }
+				else { ConsoleCommand("set smm_duke3d 1"); selectloop++; lastchosen = 6; }
 			}
 			if (randnum == 7)
 			{
-				if(GetCVar("smm_marathon")||GetCVar("smm_banmarathon")) { }
-				else { ConsoleCommand("set smm_marathon 1"); selectloop++; }
+				if(GetCVar("smm_marathon")||GetCVar("smm_banmarathon")||lastchosen == 7) { }
+				else { ConsoleCommand("set smm_marathon 1"); selectloop++; lastchosen = 7; }
 			}
 		}
 		randomallclear = 1;
-		delay(175);
-		randomallclear = 0;
 	}
 	else
 	{
@@ -411,11 +414,12 @@ Script 670 OPEN
 {
 	While(GetCvar("invasion") > 0)
 	{
-		if(GetInvasionState() == 4)
+		Until(GetInvasionState() == 4)
 		{
-			ACS_Execute(669, 0, 0, 0, 0);
+			Delay(35);
 		}
-		Delay(280);
+		ACS_Execute(669, 0, 0, 0, 0);
+		Delay(350);
 	}
 }
 
