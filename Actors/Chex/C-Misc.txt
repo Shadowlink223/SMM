@@ -233,3 +233,16 @@ actor CycloptisBall2 : CycloptisBall replaces CycloptisBall
         Stop
     }
 }
+
+ACTOR YellowCycloptisBall : CycloptisBall2
+{
+	Translation "112:127=[243,254,80]:[21,22,0]"
+	Speed 20
+}
+
+ACTOR DarkCycloptisBall : CycloptisBall2
+{
+	Translation "112:127=[150,150,150]:[50,50,50]"
+	Speed 20
+	Damage 10
+}

@@ -112,6 +112,39 @@ actor SuperCycloptis2 : SuperCycloptis replaces SuperCycloptis
     }
 }
 
+ACTOR YellowCycloptis : SuperCycloptis2
+{
+	Translation "112:127=[243,254,80]:[21,22,0]"
+	BloodColor Yellow
+	Health 800
+	States
+	{
+		Missile:
+        TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+        SCYC B 5 A_FaceTarget
+        SCYC C 5 A_FaceTarget
+        SCYC D 5 A_CustomComboAttack("YellowCycloptisBall", 32, random[SCYCattack](1,6)*10, "", "flem")
+        Goto See
+	}
+}
+
+ACTOR DarkCycloptis : SuperCycloptis2
+{
+	Translation "112:127=[80,80,80]:[20,20,20]"
+	BloodColor DarkGray
+	Health 1200
+	States
+	{
+		Missile:
+        TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+        SCYC BC 5 A_FaceTarget
+        SCYC D 5 A_CustomComboAttack("DarkCycloptisBall", 32, random[SCYCattack](1,6)*10, "", "flem")
+		SCYC BC 5 A_FaceTarget
+        SCYC D 5 A_CustomComboAttack("DarkCycloptisBall", 32, random[SCYCattack](1,6)*10, "", "flem")
+        Goto See
+	}
+}
+
 ACTOR MultiSuperCycloptis2 : SuperCycloptis2
 {
 	Species "SuperCycloptis"
