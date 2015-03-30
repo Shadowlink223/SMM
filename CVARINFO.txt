@@ -1,0 +1,32 @@
+//Main monster set toggles
+
+server bool smm_doom = true;
+server bool smm_heretic = true;
+server bool smm_hexen = true;
+server bool smm_chex = true;
+server bool smm_wolf3d = true;
+server bool smm_duke3d = true;
+server bool smm_marathon = false;
+//server bool smm_quake = true;
+
+//Mode toggles
+
+server int smm_wolfmode = 2;
+server bool smm_fakehitlerfire = false;
+server bool smm_wolffastdeath = false;
+server int smm_randomcycle = 0;
+server int smm_skilloverride = 5;
+server bool smm_bandoom = false;
+server bool smm_banheretic = false;
+server bool smm_banhexen = false;
+server bool smm_banchex = false;
+server bool smm_banwolf3d = false;
+server bool smm_banduke3d = false;
+server bool smm_banmarathon = true;
+server int smm_multiply = 0;
+server bool smm_pinataparty = false;
+server bool smm_newchex = false;
+server bool smm_init = true;
+//server bool smm_dropdefault = false;
+//server bool smm_assholemode = false;
+//server bool smm_invisiblemode = false;

@@ -48,132 +48,30 @@ Script 667 OPEN
 	randomallclear = 0;
 	if (!GetCVar("smm_init"))
 	{
-	//Basic monster toggles
-		if (!GetCVar("smm_doom"))
-		{	ConsoleCommand("set smm_doom 1");
-		Consolecommand ("archivecvar smm_doom"); }
-	
-		if (!GetCVar("smm_heretic"))
-		{	ConsoleCommand("set smm_heretic 1");
-		Consolecommand ("archivecvar smm_heretic"); }
-	
-		if (!GetCVar("smm_hexen"))
-		{	ConsoleCommand("set smm_hexen 1");
-		Consolecommand ("archivecvar smm_hexen"); }
-	
-		if (!GetCVar("smm_chex"))
-		{	ConsoleCommand("set smm_chex 1");
-		Consolecommand ("archivecvar smm_chex"); }
-	
-		if (!GetCVar("smm_wolf3d"))
-		{	ConsoleCommand("set smm_wolf3d 1");
-		Consolecommand ("archivecvar smm_wolf3d"); }
-	
-		if (!GetCVar("smm_duke3d"))
-		{	ConsoleCommand("set smm_duke3d 1");
-		Consolecommand ("archivecvar smm_duke3d"); }
-	
-		if (!GetCVar("smm_marathon"))
-		{	ConsoleCommand("set smm_marathon 0");
-		Consolecommand ("archivecvar smm_marathon"); }
-	
-		/*if (!GetCVar("smm_quake"))
-		{	ConsoleCommand("set smm_quake 0");
-		Consolecommand ("archivecvar smm_quake"); }*/
+		SetCVar("smm_doom", true);
+		SetCVar("smm_heretic", true);
+		SetCVar("smm_hexen", true);
+		SetCVar("smm_chex", true);
+		SetCVar("smm_wolf3d", true);
+		SetCVar("smm_duke3d", true);
+		SetCVar("smm_marathon", false);
+		SetCVar("smm_wolfmode", 2);
+		SetCVar("smm_fakehitlerfire", false);
+		SetCVar("smm_wolffastdeath", false);
+		SetCVar("smm_randomcycle", 0);
+		SetCVar("smm_skilloverride", 5);
+		SetCVar("smm_bandoom", false);
+		SetCVar("smm_banheretic", false);
+		SetCVar("smm_banhexen", false);
+		SetCVar("smm_banchex", false);
+		SetCVar("smm_banwolf3d", false);
+		SetCVar("smm_banduke3d", false);
+		SetCVar("smm_banmarathon", true);
+		SetCVar("smm_multiply", 0);
+		SetCVar("smm_newchex", false);
+		SetCVar("smm_pinataparty", false);
 		
-		/*if (!GetCVar("smm_unreal"))
-		{	ConsoleCommand("set smm_unreal 0");
-		Consolecommand ("archivecvar smm_unreal"); }*/
-
-	//Mode toggles
-
-		/*if (!GetCVar("smm_invisiblemode"))
-		{	ConsoleCommand("set smm_invisiblemode 0");
-		Consolecommand ("archivecvar smm_invisiblemode"); }*/
-	
-		/*if (!GetCVar("smm_assholemode"))
-		{	ConsoleCommand("set smm_assholemode 0");
-		Consolecommand ("archivecvar smm_assholemode"); }*/
-		
-		if (!GetCVar("smm_wolfmode"))
-		{	ConsoleCommand("set smm_wolfmode 2");
-		Consolecommand ("archivecvar smm_wolfmode"); }
-		
-		if (!GetCVar("smm_fakehitlerfire"))
-		{	ConsoleCommand("set smm_fakehitlerfire 0");
-		Consolecommand ("archivecvar smm_fakehitlerfire"); }
-		
-		if (!GetCVar("smm_wolffastdeath"))
-		{	ConsoleCommand("set smm_wolffastdeath 0");
-		Consolecommand ("archivecvar smm_wolffastdeath"); }
-		
-		if (!GetCVar("smm_randomcycle"))
-		{	ConsoleCommand("set smm_randomcycle 0");
-		Consolecommand ("archivecvar smm_randomcycle"); }
-		
-		if (!GetCVar("smm_skilloverride"))
-		{	ConsoleCommand("set smm_skilloverride 5");
-		Consolecommand ("archivecvar smm_skilloverride"); }
-		
-		/*if (!GetCVar("smm_dropdefault"))
-		{	ConsoleCommand("set smm_dropdefault 0");
-		Consolecommand ("archivecvar smm_dropdefault"); }*/
-		
-		if (!GetCVar("smm_bandoom"))
-		{	ConsoleCommand("set smm_bandoom 0");
-		Consolecommand ("archivecvar smm_bandoom"); }
-		
-		if (!GetCVar("smm_banheretic"))
-		{	ConsoleCommand("set smm_banheretic 0");
-		Consolecommand ("archivecvar smm_banheretic"); }
-		
-		if (!GetCVar("smm_banhexen"))
-		{	ConsoleCommand("set smm_banhexen 0");
-		Consolecommand ("archivecvar smm_banhexen"); }
-		
-		if (!GetCVar("smm_banchex"))
-		{	ConsoleCommand("set smm_banchex 0");
-		Consolecommand ("archivecvar smm_banchex"); }
-		
-		if (!GetCVar("smm_banwolf3d"))
-		{	ConsoleCommand("set smm_banwolf3d 0");
-		Consolecommand ("archivecvar smm_banwolf3d"); }
-		
-		if (!GetCVar("smm_banduke3d"))
-		{	ConsoleCommand("set smm_banduke3d 0");
-		Consolecommand ("archivecvar smm_banduke3d"); }
-		
-		if (!GetCVar("smm_banmarathon"))
-		{	ConsoleCommand("set smm_banmarathon 1");
-		Consolecommand ("archivecvar smm_banmarathon"); }
-		
-		if (!GetCVar("smm_multiply"))
-		{	ConsoleCommand("set smm_multiply 0");
-		Consolecommand ("archivecvar smm_multiply"); }
-		
-		/*if (!GetCVar("smm_mara_allminors"))
-		{	ConsoleCommand("set smm_mara_allminors 0");
-		Consolecommand ("archivecvar smm_mara_allminors"); }
-		
-		if (!GetCVar("smm_mara_allmajors"))
-		{	ConsoleCommand("set smm_mara_allmajors 0");
-		Consolecommand ("archivecvar smm_mara_allmajors"); }*/
-		
-		/*if (!GetCVar("smm_mara_simplified"))
-		{	ConsoleCommand("set smm_mara_simplified 0");
-		Consolecommand ("archivecvar smm_mara_simplified"); }*/
-		
-		if (!GetCVar("smm_pinataparty"))
-		{	ConsoleCommand("set smm_pinataparty 0");
-		Consolecommand ("archivecvar smm_pinataparty"); }
-		
-		if (!GetCVar("smm_newchex"))
-		{	ConsoleCommand("set smm_newchex 0");
-		Consolecommand ("archivecvar smm_newchex"); }
-		
-	//Init CVar
-		ConsoleCommand ("set smm_init 1");
-		Consolecommand ("archivecvar smm_init");
+		SetCVar("smm_init", true);
 	}
 	ACS_Execute(669, 0, 0, 0, 0);
 	
@@ -354,13 +252,13 @@ Script 669 (void)
 	{
 		selectloop = 0;
 		randomvalue = GetCvar("smm_randomcycle");
-		ConsoleCommand("set smm_doom 0");
-		ConsoleCommand("set smm_heretic 0");
-		ConsoleCommand("set smm_hexen 0");
-		ConsoleCommand("set smm_chex 0");
-		ConsoleCommand("set smm_wolf3d 0");
-		ConsoleCommand("set smm_duke3d 0");
-		ConsoleCommand("set smm_marathon 0");
+		SetCVar("smm_doom", false);
+		SetCVar("smm_heretic", false);
+		SetCVar("smm_hexen", false);
+		SetCVar("smm_chex", false);
+		SetCVar("smm_wolf3d", false);
+		SetCVar("smm_duke3d", false);
+		SetCVar("smm_marathon", false);
 		
 		While (selectloop < randomvalue)
 		{
@@ -369,37 +267,37 @@ Script 669 (void)
 			if (randnum == 1)
 			{
 				if(GetCVar("smm_doom")||GetCVar("smm_bandoom")||lastchosen == 1) { }
-				else { ConsoleCommand("set smm_doom 1"); selectloop++; lastchosen = 1; }
+				else { SetCVar("smm_doom", true); selectloop++; lastchosen = 1; }
 			}
 			if (randnum == 2)
 			{
 				if(GetCVar("smm_heretic")||GetCVar("smm_banheretic")||lastchosen == 2) { }
-				else { ConsoleCommand("set smm_heretic 1"); selectloop++; lastchosen = 2; }
+				else { SetCVar("smm_heretic", true); selectloop++; lastchosen = 2; }
 			}
 			if (randnum == 3)
 			{
 				if(GetCVar("smm_hexen")||GetCVar("smm_banhexen")||lastchosen == 3) { }
-				else { ConsoleCommand("set smm_hexen 1"); selectloop++; lastchosen = 3; }
+				else { SetCVar("smm_hexen", true); selectloop++; lastchosen = 3; }
 			}
 			if (randnum == 4)
 			{
 				if(GetCVar("smm_chex")||GetCVar("smm_banchex")||lastchosen == 4) { }
-				else { ConsoleCommand("set smm_chex 1"); selectloop++; lastchosen = 4; }
+				else { SetCVar("smm_chex", true); selectloop++; lastchosen = 4; }
 			}
 			if (randnum == 5)
 			{
 				if(GetCVar("smm_wolf3d")||GetCVar("smm_banwolf3d")||lastchosen == 5) { }
-				else { ConsoleCommand("set smm_wolf3d 1"); selectloop++; lastchosen = 5; }
+				else { SetCVar("smm_wolf3d", true); selectloop++; lastchosen = 5; }
 			}
 			if (randnum == 6)
 			{
 				if(GetCVar("smm_duke3d")||GetCVar("smm_banduke3d")||lastchosen == 6) { }
-				else { ConsoleCommand("set smm_duke3d 1"); selectloop++; lastchosen = 6; }
+				else { SetCVar("smm_duke3d", true); selectloop++; lastchosen = 6; }
 			}
 			if (randnum == 7)
 			{
 				if(GetCVar("smm_marathon")||GetCVar("smm_banmarathon")||lastchosen == 7) { }
-				else { ConsoleCommand("set smm_marathon 1"); selectloop++; lastchosen = 7; }
+				else { SetCVar("smm_marathon", true); selectloop++; lastchosen = 7; }
 			}
 		}
 		randomallclear = 1;
