@@ -108,63 +108,63 @@ ACTOR M1EnforcerMinor
 			TNT1 A 0 A_TakeInventory("FrameTicCounter",20)
 			TNT1 A 0 A_GiveInventory("AttackFrequency",420)
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
-			TNT1 A 0 A_JumpIfInventory("EnforcerShotToken",3,"MissileEnd")
+			TNT1 A 0 A_JumpIfInventory("AttackReps",3,"MissileEnd")
 			1EMI B 2 A_FaceTarget
 			TNT1 A 0 A_PlaySound("m1enforcer/shoot", CHAN_WEAPON)
 			1EMI D 2 Bright A_CustomMissile("M1EnforcerBullet", 50, 0, Random(-10,10), 0, Random(-10,10))
-			TNT1 A 0 A_GiveInventory("EnforcerShotToken",1)
+			TNT1 A 0 A_GiveInventory("AttackReps",1)
 			Goto MissileITYTD+2
 		MissileHNTR:
 			TNT1 A 0 A_TakeInventory("FrameTicCounter",20)
 			TNT1 A 0 A_GiveInventory("AttackFrequency",280)
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
-			TNT1 A 0 A_JumpIfInventory("EnforcerShotToken",3,"MissileEnd")
+			TNT1 A 0 A_JumpIfInventory("AttackReps",3,"MissileEnd")
 			1EMI B 2 A_FaceTarget
 			TNT1 A 0 A_PlaySound("m1enforcer/shoot", CHAN_WEAPON)
 			1EMI D 2 Bright A_CustomMissile("M1EnforcerBullet", 50, 0, Random(-10,10), 0, Random(-10,10))
-			TNT1 A 0 A_GiveInventory("EnforcerShotToken",1)
+			TNT1 A 0 A_GiveInventory("AttackReps",1)
 			Goto MissileHNTR+2
 		MissileHMP:
 			TNT1 A 0 A_TakeInventory("FrameTicCounter",20)
 			TNT1 A 0 A_GiveInventory("AttackFrequency",140)
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
-			TNT1 A 0 A_JumpIfInventory("EnforcerShotToken",4,"MissileEnd")
+			TNT1 A 0 A_JumpIfInventory("AttackReps",4,"MissileEnd")
 			1EMI B 2 A_FaceTarget
 			TNT1 A 0 A_PlaySound("m1enforcer/shoot", CHAN_WEAPON)
 			1EMI D 2 Bright A_CustomMissile("M1EnforcerBullet", 50, 0, Random(-10,10), 0, Random(-10,10))
-			TNT1 A 0 A_GiveInventory("EnforcerShotToken",1)
+			TNT1 A 0 A_GiveInventory("AttackReps",1)
 			Goto MissileHMP+2
 		MissileUV:
 			TNT1 A 0 A_TakeInventory("FrameTicCounter",20)
 			TNT1 A 0 A_GiveInventory("AttackFrequency",70)
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
-			TNT1 A 0 A_JumpIfInventory("EnforcerShotToken",5,"MissileEnd")
+			TNT1 A 0 A_JumpIfInventory("AttackReps",5,"MissileEnd")
 			1EMI B 2 A_FaceTarget
 			TNT1 A 0 A_PlaySound("m1enforcer/shoot", CHAN_WEAPON)
 			1EMI D 2 Bright A_CustomMissile("M1EnforcerBullet", 50, 0, Random(-10,10), 0, Random(-10,10))
-			TNT1 A 0 A_GiveInventory("EnforcerShotToken",1)
+			TNT1 A 0 A_GiveInventory("AttackReps",1)
 			Goto MissileUV+2
 		MissileNightmare:
 			TNT1 A 0 A_TakeInventory("FrameTicCounter",20)
 			TNT1 A 0 A_GiveInventory("AttackFrequency",35)
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-			TNT1 A 0 A_JumpIfInventory("EnforcerShotToken",5,"MissileEnd")
+			TNT1 A 0 A_JumpIfInventory("AttackReps",5,"MissileEnd")
 			1EMI B 2 A_FaceTarget
 			TNT1 A 0 A_PlaySound("m1enforcer/shoot", CHAN_WEAPON)
 			1EMI D 2 Bright A_CustomMissile("M1EnforcerBullet", 50, 0, Random(-10,10), 0, Random(-10,10))
-			TNT1 A 0 A_GiveInventory("EnforcerShotToken",1)
+			TNT1 A 0 A_GiveInventory("AttackReps",1)
 			Goto MissileNightmare+2
 		MissileEnd:
-			TNT1 A 0 A_TakeInventory("EnforcerShotToken",5)
+			TNT1 A 0 A_TakeInventory("AttackReps",5)
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			Goto See
 		Pain:
 			1EMI A 1
-			TNT1 A 0 A_TakeInventory("EnforcerShotToken",5)
+			TNT1 A 0 A_TakeInventory("AttackReps",5)
 			Goto See
 		Pain.MightyBoot:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-			TNT1 A 0 A_TakeInventory("EnforcerShotToken",5)
+			TNT1 A 0 A_TakeInventory("AttackReps",5)
 			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
 			1EMI A 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)
@@ -172,7 +172,7 @@ ACTOR M1EnforcerMinor
 			Goto See
 		Pain.MarathonStun:
 			TNT1 A 0 A_Stop
-			TNT1 A 0 A_TakeInventory("EnforcerShotToken",8)
+			TNT1 A 0 A_TakeInventory("AttackReps",8)
 			TNT1 A 0 A_GiveInventory("NothingSpeed")
 			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
 			1EMI B 5 A_FaceTarget

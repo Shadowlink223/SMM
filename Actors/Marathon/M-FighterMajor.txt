@@ -125,7 +125,6 @@ ACTOR FighterMajor
 			Goto See
 		Pain.MightyBoot:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-			TNT1 A 0 A_TakeInventory("HunterShotToken",12)
 			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
 			FIMA J 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)

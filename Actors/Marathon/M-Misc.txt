@@ -1126,6 +1126,4 @@ actor Counter : Inventory
 ACTOR FrameTicCounter : Counter {}
 ACTOR AttackFrequency : Counter {}
 ACTOR AttackReps : Counter {}
-ACTOR EnforcerShotToken : Inventory { Inventory.MaxAmount 12 }
-ACTOR HunterShotToken : Inventory { Inventory.MaxAmount 6 }
 ACTOR MarathonDukeGib : Inventory { Inventory.MaxAmount 1 }
