@@ -41,19 +41,19 @@ ACTOR HighGuard
 		Missile:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			HG2S G 4 A_FaceTarget
-			HG2S H 3 Bright A_CustomBulletAttack(12,12,1,5,"DukeBulletPuff",0,CBAF_NORANDOM)
+			HG2S H 3 Bright A_CustomBulletAttack(12,12,1,random(5,6),"DukeBulletPuff",0,CBAF_NORANDOM)
 			HG2S I 2 A_FaceTarget
 			HG2S H 5 Bright //A_CustomBulletAttack(12,12,1,5,"DukeBulletPuff",0,CBAF_NORANDOM)
 			HG2S I 1 A_FaceTarget
-			HG2S H 2 Bright A_CustomBulletAttack(12,12,1,5,"DukeBulletPuff",0,CBAF_NORANDOM)
+			HG2S H 2 Bright A_CustomBulletAttack(12,12,1,random(5,6),"DukeBulletPuff",0,CBAF_NORANDOM)
 			HG2S I 2 A_FaceTarget
 			HG2S H 3 Bright //A_CustomBulletAttack(12,12,1,5,"DukeBulletPuff",0,CBAF_NORANDOM)
 			HG2S I 2 A_FaceTarget
-			HG2S H 4 Bright A_CustomBulletAttack(12,12,1,5,"DukeBulletPuff",0,CBAF_NORANDOM)
+			HG2S H 4 Bright A_CustomBulletAttack(12,12,1,random(5,6),"DukeBulletPuff",0,CBAF_NORANDOM)
 			HG2S I 1 A_FaceTarget
 			HG2S H 3 Bright //A_CustomBulletAttack(12,12,1,5,"DukeBulletPuff",0,CBAF_NORANDOM)
 			HG2S I 3 A_FaceTarget
-			HG2S H 2 Bright A_CustomBulletAttack(12,12,1,5,"DukeBulletPuff",0,CBAF_NORANDOM)
+			HG2S H 2 Bright A_CustomBulletAttack(12,12,1,random(5,6),"DukeBulletPuff",0,CBAF_NORANDOM)
 			HG2S I 2 A_FaceTarget
 			Goto See
 		Pain:

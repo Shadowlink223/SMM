@@ -310,7 +310,7 @@ ACTOR M2EnforcerMinor
 			ENMA D 70 A_UnsetSolid
 			ENMA D 0 A_IceGuyDie
 			ENMA D 1 A_IceGuyDie
-			TNT1 A -1
+			TNT1 A -1 A_KillMaster
 			stop
 		Raise:
 			TNT1 A 0 A_JumpIfInventory("EnemyZorched",1,"ZorchRaise")
