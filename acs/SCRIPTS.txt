@@ -70,6 +70,7 @@ Script 667 OPEN
 		SetCVar("smm_multiply", 0);
 		SetCVar("smm_newchex", false);
 		SetCVar("smm_pinataparty", false);
+		SetCVar("smm_rarespawns", false);
 		
 		SetCVar("smm_init", true);
 	}
@@ -395,11 +396,15 @@ Script 680 (int pick)
 		break;
 		
 		case 7:
-		response = GetCvar("smm_mara_simplified");
+		response = GetCvar("smm_rarespawns");
 		break;
 		
 		case 8:
 		response = GetCvar("smm_invisiblemode");
+		break;
+		
+		case 9:
+		response = GetCvar("smm_fullradiusdmg");
 		break;
 	}
 	SetResultValue(response);
