@@ -21,6 +21,7 @@ ACTOR JuggernautExplosion
 	Speed 0
 	+NOCLIP
 	PROJECTILE
+	DamageType "Explosive"
 	Obituary "%o didn't think about warning alarms, explosions and small spaces."
 	States
 	{
@@ -38,6 +39,7 @@ ACTOR JuggernautExplosion
 
 ACTOR HunterExplosion : JuggernautExplosion
 {
+	DamageType "Explosive"
 	Obituary "A Pfhor Hunter took %o with it."
 	States
 	{
@@ -71,6 +73,7 @@ ACTOR MotherHunterExplosion : JuggernautExplosion
 
 ACTOR CyborgExplosion : JuggernautExplosion
 {
+	DamageType "Explosive"
 	Obituary "%o couldn't stay away from a Cyborg."
 	States
 	{
@@ -137,6 +140,7 @@ ACTOR CyborgGrenade //Copied over most of this from the code PresidentPeople sen
 	BounceFactor 0.92
 	BounceType Classic
 	PROJECTILE
+	DamageType "Explosive"
 	SeeSound "cyborggrenade/bounce"
 	//BounceSound "cyborggrenade/bounce"
 	DeathSound "marathon/rifle/nadexpl"
@@ -567,6 +571,7 @@ ACTOR JuggernautRocket
 	PROJECTILE
 	+SEEKERMISSILE
 	+DONTSEEKINVISIBLE
+	DamageType "Explosive"
 	DeathSound "marathon/rifle/nadexpl"
 	States
 	{
@@ -606,6 +611,7 @@ ACTOR M1JuggernautRocket
 	PROJECTILE
 	+SEEKERMISSILE
 	+DONTSEEKINVISIBLE
+	DamageType "Explosive"
 	DeathSound "marathon/rifle/nadexpl"
 	States
 	{
@@ -1095,6 +1101,78 @@ actor NewDukeGibs6_MajorHunter : NewDukeGibs6
 {
 	Health 1
 	Translation "16:47=[164,173,235]:[37,40,54]", "189:190=[102,106,145]:[101,105,144]"
+	States
+	{
+		Spawn:
+			DKG6 AB 5
+			Loop
+	}
+}
+
+actor NewDukeGibs1_Colgate : NewDukeGibs1
+{
+	Health 1
+	Translation "16:47=[164,173,235]:[37,40,54]", "189:190=[102,106,145]:[101,105,144]"
+	States
+	{
+		Spawn:
+			DKG1 ABCD 5
+			Loop
+	}
+}
+
+actor NewDukeGibs2_Colgate : NewDukeGibs2
+{
+	Health 1
+	Translation "16:47=[57,228,139]:[10,80,40]", "189:190=[57,228,139]:[10,80,40]"
+	States
+	{
+		Spawn:
+			DKG2 ABCD 5
+			Loop
+	}
+}
+
+actor NewDukeGibs3_Colgate : NewDukeGibs3
+{
+	Health 1
+	Translation "16:47=[57,228,139]:[10,80,40]", "189:190=[57,228,139]:[10,80,40]"
+	States
+	{
+		Spawn:
+			DKG3 ABCD 5
+			Loop
+	}
+}
+
+actor NewDukeGibs4_Colgate : NewDukeGibs4
+{
+	Health 1
+	Translation "16:47=[57,228,139]:[10,80,40]", "189:190=[57,228,139]:[10,80,40]"
+	States
+	{
+		Spawn:
+			DKG4 ABCD 5
+			Loop
+	}
+}
+
+actor NewDukeGibs5_Colgate : NewDukeGibs5
+{
+	Health 1
+	Translation "16:47=[57,228,139]:[10,80,40]", "189:190=[57,228,139]:[10,80,40]"
+	States
+	{
+		Spawn:
+			DKG5 ABCD 5
+			Loop
+	}
+}
+
+actor NewDukeGibs6_Colgate : NewDukeGibs6
+{
+	Health 1
+	Translation "16:47=[57,228,139]:[10,80,40]", "189:190=[57,228,139]:[10,80,40]"
 	States
 	{
 		Spawn:

@@ -592,6 +592,381 @@ brightmap sprite BTLOG2G8
 	map "brightmaps/btlog2g8.png"
 }
 
+brightmap sprite SEDRA1
+{
+	map "brightmaps/sedra1.png"
+}
+
+brightmap sprite SEDRA2A8
+{
+	map "brightmaps/sedra2a8.png"
+}
+
+brightmap sprite SEDRA3A7
+{
+	map "brightmaps/sedra3a7.png"
+}
+
+brightmap sprite SEDRA4A6
+{
+	map "brightmaps/sedra4a6.png"
+}
+
+brightmap sprite SEDRA5
+{
+	map "brightmaps/sedra5.png"
+}
+
+brightmap sprite PIGAA1
+{
+	map "brightmaps/pigaa1.png"
+}
+
+brightmap sprite PIGAA2A8
+{
+	map "brightmaps/pigaa2a8.png"
+}
+
+brightmap sprite PIGAA3A7
+{
+	map "brightmaps/pigaa3a7.png"
+}
+
+brightmap sprite PIGAA4A6
+{
+	map "brightmaps/pigaa4a6.png"
+}
+
+brightmap sprite PIGAB1
+{
+	map "brightmaps/pigab1.png"
+}
+
+brightmap sprite PIGAB2B8
+{
+	map "brightmaps/pigab2b8.png"
+}
+
+brightmap sprite PIGAB3B7
+{
+	map "brightmaps/pigab3b7.png"
+}
+
+brightmap sprite PIGAB4B6
+{
+	map "brightmaps/pigab4b6.png"
+}
+
+brightmap sprite PIGCA1
+{
+	map "brightmaps/pigca1.png"
+}
+
+brightmap sprite PIGCA2A8
+{
+	map "brightmaps/pigca2a8.png"
+}
+
+brightmap sprite PIGCA3A7
+{
+	map "brightmaps/pigca3a7.png"
+}
+
+brightmap sprite PIGCB1
+{
+	map "brightmaps/pigcb1.png"
+}
+
+brightmap sprite PIGCB2B8
+{
+	map "brightmaps/pigcb2b8.png"
+}
+
+brightmap sprite PIGCB3B7
+{
+	map "brightmaps/pigcb3b7.png"
+}
+
+brightmap sprite PIGCC1
+{
+	map "brightmaps/pigcc1.png"
+}
+
+brightmap sprite PIGCC2C8
+{
+	map "brightmaps/pigcc2c8.png"
+}
+
+brightmap sprite PIGCC3C7
+{
+	map "brightmaps/pigcc3c7.png"
+}
+
+brightmap sprite PIGCD1
+{
+	map "brightmaps/pigcd1.png"
+}
+
+brightmap sprite PIGCD2D8
+{
+	map "brightmaps/pigcd2d8.png"
+}
+
+brightmap sprite PIGCD3D7
+{
+	map "brightmaps/pigcd3d7.png"
+}
+
+brightmap sprite PIGCE1
+{
+	map "brightmaps/pigce1.png"
+}
+
+brightmap sprite PIGCE2E8
+{
+	map "brightmaps/pigce2e8.png"
+}
+
+brightmap sprite PIGCE3E7
+{
+	map "brightmaps/pigce3e7.png"
+}
+
+brightmap sprite PIGCF1
+{
+	map "brightmaps/pigcf1.png"
+}
+
+brightmap sprite PIGCF2F8
+{
+	map "brightmaps/pigcf2f8.png"
+}
+
+brightmap sprite PIGCF3F7
+{
+	map "brightmaps/pigcf3f7.png"
+}
+
+brightmap sprite PIGCG1
+{
+	map "brightmaps/pigcg1.png"
+}
+
+brightmap sprite PIGCG2G8
+{
+	map "brightmaps/pigcg2g8.png"
+}
+
+brightmap sprite PIGCG3G7
+{
+	map "brightmaps/pigcg3g7.png"
+}
+
+brightmap sprite PIGCH1
+{
+	map "brightmaps/pigch1.png"
+}
+
+brightmap sprite PIGCH2H8
+{
+	map "brightmaps/pigch2h8.png"
+}
+
+brightmap sprite PIGCH3H7
+{
+	map "brightmaps/pigch3h7.png"
+}
+
+brightmap sprite PIGCI1
+{
+	map "brightmaps/pigci1.png"
+}
+
+brightmap sprite PIGCI2I8
+{
+	map "brightmaps/pigci2i8.png"
+}
+
+brightmap sprite PIGCI3I7
+{
+	map "brightmaps/pigci3i7.png"
+}
+
+brightmap sprite PIGCJ1
+{
+	map "brightmaps/pigcj1.png"
+}
+
+brightmap sprite PIGCJ2J8
+{
+	map "brightmaps/pigcj2j8.png"
+}
+
+brightmap sprite PIGCK0
+{
+	map "brightmaps/pigck0.png"
+}
+
+brightmap sprite PIGCO0
+{
+	map "brightmaps/pigco0.png"
+}
+
+brightmap sprite PIGCP0
+{
+	map "brightmaps/pigcp0.png"
+}
+
+brightmap sprite PIGSA1
+{
+	map "brightmaps/pigsa1.png"
+}
+
+brightmap sprite PIGSA2A8
+{
+	map "brightmaps/pigsa2a8.png"
+}
+
+brightmap sprite PIGTA1
+{
+	map "brightmaps/pigta1.png"
+}
+
+brightmap sprite PIGTA2A8
+{
+	map "brightmaps/pigta2a8.png"
+}
+
+brightmap sprite PIGTA3A7
+{
+	map "brightmaps/pigta3a7.png"
+}
+
+brightmap sprite PIGTB1
+{
+	map "brightmaps/pigtb1.png"
+}
+
+brightmap sprite PIGTB2B8
+{
+	map "brightmaps/pigtb2b8.png"
+}
+
+brightmap sprite PIGTB3B7
+{
+	map "brightmaps/pigtb3b7.png"
+}
+
+brightmap sprite PIGTC1
+{
+	map "brightmaps/pigtc1.png"
+}
+
+brightmap sprite PIGTC2C8
+{
+	map "brightmaps/pigtc2c8.png"
+}
+
+brightmap sprite QUEEI1
+{
+	map "brightmaps/queei1.png"
+}
+
+brightmap sprite QUEEI2I8
+{
+	map "brightmaps/queei2i8.png"
+}
+
+brightmap sprite QUEEI3I7
+{
+	map "brightmaps/queei3i7.png"
+}
+
+brightmap sprite QUEEI4I6
+{
+	map "brightmaps/queei4i6.png"
+}
+
+brightmap sprite QUEEI5
+{
+	map "brightmaps/queei5.png"
+}
+
+brightmap sprite QUEEJ1
+{
+	map "brightmaps/queej1.png"
+}
+
+brightmap sprite QUEEJ2J8
+{
+	map "brightmaps/queej2j8.png"
+}
+
+brightmap sprite QUEEJ3J7
+{
+	map "brightmaps/queej3j7.png"
+}
+
+brightmap sprite QUEEJ4J6
+{
+	map "brightmaps/queej4j6.png"
+}
+
+brightmap sprite QUEEJ5
+{
+	map "brightmaps/queej5.png"
+}
+
+brightmap sprite QUEEK0
+{
+	map "brightmaps/queek0.png"
+}
+
+brightmap sprite QUEEL0
+{
+	map "brightmaps/queel0.png"
+}
+
+brightmap sprite QUEEM0
+{
+	map "brightmaps/queem0.png"
+}
+
+brightmap sprite QUEEN0
+{
+	map "brightmaps/queen0.png"
+}
+
+brightmap sprite QUEEO0
+{
+	map "brightmaps/queeo0.png"
+}
+
+brightmap sprite QUEEP0
+{
+	map "brightmaps/queep0.png"
+}
+
+brightmap sprite QUEEQ0
+{
+	map "brightmaps/queeq0.png"
+}
+
+brightmap sprite QUEER0
+{
+	map "brightmaps/queer0.png"
+}
+
+brightmap sprite QUEES0
+{
+	map "brightmaps/quees0.png"
+}
+
+brightmap sprite QUEET0
+{
+	map "brightmaps/queet0.png"
+}
+
 //Marathon
 
 brightmap sprite JUMIA1
@@ -842,4 +1217,1604 @@ brightmap sprite JUMAF0
 brightmap sprite JUMAG0
 {
 	map "brightmaps/jumig0.png"
+}
+
+brightmap sprite FIMIA1
+{
+	map "brightmaps/fimia1.png"
+}
+
+brightmap sprite FIMIF1
+{
+	map "brightmaps/fimia1.png"
+}
+
+brightmap sprite FIMIA2A8
+{
+	map "brightmaps/fimia2a8.png"
+}
+
+brightmap sprite FIMIF2F8
+{
+	map "brightmaps/fimia2a8.png"
+}
+
+brightmap sprite FIMIF3F7
+{
+	map "brightmaps/fimia2a8.png"
+}
+
+brightmap sprite FIMIA3A7
+{
+	map "brightmaps/fimia3a7.png"
+}
+
+brightmap sprite FIMIA4A6
+{
+	map "brightmaps/fimia4a6.png"
+}
+
+brightmap sprite FIMIF4F6
+{
+	map "brightmaps/fimia4a6.png"
+}
+
+brightmap sprite FIMIF5
+{
+	map "brightmaps/fimia4a6.png"
+}
+
+brightmap sprite FIMIA5
+{
+	map "brightmaps/fimia5.png"
+}
+
+brightmap sprite FIMIB1
+{
+	map "brightmaps/fimib1.png"
+}
+
+brightmap sprite FIMIB2B8
+{
+	map "brightmaps/fimib2b8.png"
+}
+
+brightmap sprite FIMIB3B7
+{
+	map "brightmaps/fimib3b7.png"
+}
+
+brightmap sprite FIMIB4B6
+{
+	map "brightmaps/fimib4b6.png"
+}
+
+brightmap sprite FIMIB5
+{
+	map "brightmaps/fimib5.png"
+}
+
+brightmap sprite FIMIC1
+{
+	map "brightmaps/fimic1.png"
+}
+
+brightmap sprite FIMIC2C8
+{
+	map "brightmaps/fimic2c8.png"
+}
+
+brightmap sprite FIMIC3C7
+{
+	map "brightmaps/fimic3c7.png"
+}
+
+brightmap sprite FIMIC4C6
+{
+	map "brightmaps/fimic4c6.png"
+}
+
+brightmap sprite FIMIC5
+{
+	map "brightmaps/fimic5.png"
+}
+
+brightmap sprite FIMID1
+{
+	map "brightmaps/fimid1.png"
+}
+
+brightmap sprite FIMID2D8
+{
+	map "brightmaps/fimid2d8.png"
+}
+
+brightmap sprite FIMID3D7
+{
+	map "brightmaps/fimid3d7.png"
+}
+
+brightmap sprite FIMID4D6
+{
+	map "brightmaps/fimid4d6.png"
+}
+
+brightmap sprite FIMID5
+{
+	map "brightmaps/fimid5.png"
+}
+
+brightmap sprite FIMIE1
+{
+	map "brightmaps/fimie1.png"
+}
+
+brightmap sprite FIMIE2E8
+{
+	map "brightmaps/fimie2e8.png"
+}
+
+brightmap sprite FIMIE3E7
+{
+	map "brightmaps/fimie3e7.png"
+}
+
+brightmap sprite FIMIE4E6
+{
+	map "brightmaps/fimie4e6.png"
+}
+
+brightmap sprite FIMIE5
+{
+	map "brightmaps/fimie5.png"
+}
+
+brightmap sprite FIMIB1
+{
+	map "brightmaps/fimib1.png"
+}
+
+brightmap sprite FIMIB2B8
+{
+	map "brightmaps/fimib2b8.png"
+}
+
+brightmap sprite FIMIB3B7
+{
+	map "brightmaps/fimib3b7.png"
+}
+
+brightmap sprite FIMIB4B6
+{
+	map "brightmaps/fimib4b6.png"
+}
+
+brightmap sprite FIMIJ1J5
+{
+	map "brightmaps/fimij1j5.png"
+}
+
+brightmap sprite FIMIJ3J7
+{
+	map "brightmaps/fimij1j5.png"
+}
+
+brightmap sprite FIMIJ2J8
+{
+	map "brightmaps/fimij2j8.png"
+}
+
+brightmap sprite FIMIJ4J6
+{
+	map "brightmaps/fimij2j8.png"
+}
+
+brightmap sprite FIMIK1
+{
+	map "brightmaps/fimik1.png"
+}
+
+brightmap sprite FIMIK2K8
+{
+	map "brightmaps/fimik1.png"
+}
+
+brightmap sprite FIMIK7K3
+{
+	map "brightmaps/fimik7k3.png"
+}
+
+brightmap sprite FIMIK4K6
+{
+	map "brightmaps/fimik4k6.png"
+}
+
+brightmap sprite FIMIK5
+{
+	map "brightmaps/fimik4k6.png"
+}
+
+brightmap sprite FIMIL1
+{
+	map "brightmaps/fimil1.png"
+}
+
+brightmap sprite FIMIL2L8
+{
+	map "brightmaps/fimil1.png"
+}
+
+brightmap sprite FIMIL7L3
+{
+	map "brightmaps/fimil7l3.png"
+}
+
+brightmap sprite FIMIL4L6
+{
+	map "brightmaps/fimil4l6.png"
+}
+
+brightmap sprite FIMIL5
+{
+	map "brightmaps/fimil4l6.png"
+}
+
+brightmap sprite FIMIM1
+{
+	map "brightmaps/fimim1.png"
+}
+
+brightmap sprite FIMIM2M8
+{
+	map "brightmaps/fimim1.png"
+}
+
+brightmap sprite FIMIM7M3
+{
+	map "brightmaps/fimim7m3.png"
+}
+
+brightmap sprite FIMIM4M6
+{
+	map "brightmaps/fimim4m6.png"
+}
+
+brightmap sprite FIMIM5
+{
+	map "brightmaps/fimim4m6.png"
+}
+
+brightmap sprite FIMIN1
+{
+	map "brightmaps/fimin1.png"
+}
+
+brightmap sprite FIMIN2N8
+{
+	map "brightmaps/fimin1.png"
+}
+
+brightmap sprite FIMIN4N6
+{
+	map "brightmaps/fimin5.png"
+}
+
+brightmap sprite FIMIN5
+{
+	map "brightmaps/fimin5.png"
+}
+
+brightmap sprite FIMIO0
+{
+	map "brightmaps/fimio0.png"
+}
+
+brightmap sprite FIMIP0
+{
+	map "brightmaps/fimip0.png"
+}
+
+brightmap sprite FIMIQ0
+{
+	map "brightmaps/fimiq0.png"
+}
+
+brightmap sprite FIMAA1
+{
+	map "brightmaps/fimia1.png"
+}
+
+brightmap sprite FIMAF1
+{
+	map "brightmaps/fimia1.png"
+}
+
+brightmap sprite FIMAA2A8
+{
+	map "brightmaps/fimia2a8.png"
+}
+
+brightmap sprite FIMAF2F8
+{
+	map "brightmaps/fimia2a8.png"
+}
+
+brightmap sprite FIMAF3F7
+{
+	map "brightmaps/fimia2a8.png"
+}
+
+brightmap sprite FIMAA3A7
+{
+	map "brightmaps/fimia3a7.png"
+}
+
+brightmap sprite FIMAA4A6
+{
+	map "brightmaps/fimia4a6.png"
+}
+
+brightmap sprite FIMAF4F6
+{
+	map "brightmaps/fimia4a6.png"
+}
+
+brightmap sprite FIMAF5
+{
+	map "brightmaps/fimia4a6.png"
+}
+
+brightmap sprite FIMAA5
+{
+	map "brightmaps/fimia5.png"
+}
+
+brightmap sprite FIMAB1
+{
+	map "brightmaps/fimib1.png"
+}
+
+brightmap sprite FIMAB2B8
+{
+	map "brightmaps/fimib2b8.png"
+}
+
+brightmap sprite FIMAB3B7
+{
+	map "brightmaps/fimib3b7.png"
+}
+
+brightmap sprite FIMAB4B6
+{
+	map "brightmaps/fimib4b6.png"
+}
+
+brightmap sprite FIMAB5
+{
+	map "brightmaps/fimib5.png"
+}
+
+brightmap sprite FIMAC1
+{
+	map "brightmaps/fimic1.png"
+}
+
+brightmap sprite FIMAC2C8
+{
+	map "brightmaps/fimic2c8.png"
+}
+
+brightmap sprite FIMAC3C7
+{
+	map "brightmaps/fimic3c7.png"
+}
+
+brightmap sprite FIMAC4C6
+{
+	map "brightmaps/fimic4c6.png"
+}
+
+brightmap sprite FIMAC5
+{
+	map "brightmaps/fimic5.png"
+}
+
+brightmap sprite FIMAD1
+{
+	map "brightmaps/fimid1.png"
+}
+
+brightmap sprite FIMAD2D8
+{
+	map "brightmaps/fimid2d8.png"
+}
+
+brightmap sprite FIMAD3D7
+{
+	map "brightmaps/fimid3d7.png"
+}
+
+brightmap sprite FIMAD4D6
+{
+	map "brightmaps/fimid4d6.png"
+}
+
+brightmap sprite FIMAD5
+{
+	map "brightmaps/fimid5.png"
+}
+
+brightmap sprite FIMAE1
+{
+	map "brightmaps/fimie1.png"
+}
+
+brightmap sprite FIMAE2E8
+{
+	map "brightmaps/fimie2e8.png"
+}
+
+brightmap sprite FIMAE3E7
+{
+	map "brightmaps/fimie3e7.png"
+}
+
+brightmap sprite FIMAE4E6
+{
+	map "brightmaps/fimie4e6.png"
+}
+
+brightmap sprite FIMAE5
+{
+	map "brightmaps/fimie5.png"
+}
+
+brightmap sprite FIMAB1
+{
+	map "brightmaps/fimib1.png"
+}
+
+brightmap sprite FIMAB2B8
+{
+	map "brightmaps/fimib2b8.png"
+}
+
+brightmap sprite FIMAB3B7
+{
+	map "brightmaps/fimib3b7.png"
+}
+
+brightmap sprite FIMAB4B6
+{
+	map "brightmaps/fimib4b6.png"
+}
+
+brightmap sprite FIMAJ1J5
+{
+	map "brightmaps/fimij1j5.png"
+}
+
+brightmap sprite FIMAJ3J7
+{
+	map "brightmaps/fimij1j5.png"
+}
+
+brightmap sprite FIMAJ2J8
+{
+	map "brightmaps/fimij2j8.png"
+}
+
+brightmap sprite FIMAJ4J6
+{
+	map "brightmaps/fimij2j8.png"
+}
+
+brightmap sprite FIMAK1
+{
+	map "brightmaps/fimik1.png"
+}
+
+brightmap sprite FIMAK2K8
+{
+	map "brightmaps/fimik1.png"
+}
+
+brightmap sprite FIMAK7K3
+{
+	map "brightmaps/fimik7k3.png"
+}
+
+brightmap sprite FIMAK4K6
+{
+	map "brightmaps/fimik4k6.png"
+}
+
+brightmap sprite FIMAK5
+{
+	map "brightmaps/fimik4k6.png"
+}
+
+brightmap sprite FIMAL1
+{
+	map "brightmaps/fimil1.png"
+}
+
+brightmap sprite FIMAL2L8
+{
+	map "brightmaps/fimil1.png"
+}
+
+brightmap sprite FIMAL7L3
+{
+	map "brightmaps/fimil7l3.png"
+}
+
+brightmap sprite FIMAL4L6
+{
+	map "brightmaps/fimil4l6.png"
+}
+
+brightmap sprite FIMAL5
+{
+	map "brightmaps/fimil4l6.png"
+}
+
+brightmap sprite FIMAM1
+{
+	map "brightmaps/fimim1.png"
+}
+
+brightmap sprite FIMAM2M8
+{
+	map "brightmaps/fimim1.png"
+}
+
+brightmap sprite FIMAM7M3
+{
+	map "brightmaps/fimim7m3.png"
+}
+
+brightmap sprite FIMAM4M6
+{
+	map "brightmaps/fimim4m6.png"
+}
+
+brightmap sprite FIMAM5
+{
+	map "brightmaps/fimim4m6.png"
+}
+
+brightmap sprite FIMAN1
+{
+	map "brightmaps/fimin1.png"
+}
+
+brightmap sprite FIMAN2N8
+{
+	map "brightmaps/fimin1.png"
+}
+
+brightmap sprite FIMAN4N6
+{
+	map "brightmaps/fimin5.png"
+}
+
+brightmap sprite FIMAN5
+{
+	map "brightmaps/fimin5.png"
+}
+
+brightmap sprite FIMAO0
+{
+	map "brightmaps/fimio0.png"
+}
+
+brightmap sprite FIMAP0
+{
+	map "brightmaps/fimip0.png"
+}
+
+brightmap sprite FIMAQ0
+{
+	map "brightmaps/fimiq0.png"
+}
+
+brightmap sprite PFMIA1
+{
+	map "brightmaps/fimia1.png"
+}
+
+brightmap sprite PFMIF1
+{
+	map "brightmaps/fimia1.png"
+}
+
+brightmap sprite PFMIA2A8
+{
+	map "brightmaps/fimia2a8.png"
+}
+
+brightmap sprite PFMIF2F8
+{
+	map "brightmaps/fimia2a8.png"
+}
+
+brightmap sprite PFMIF3F7
+{
+	map "brightmaps/fimia2a8.png"
+}
+
+brightmap sprite PFMIA3A7
+{
+	map "brightmaps/fimia3a7.png"
+}
+
+brightmap sprite PFMIA4A6
+{
+	map "brightmaps/fimia4a6.png"
+}
+
+brightmap sprite PFMIF4F6
+{
+	map "brightmaps/fimia4a6.png"
+}
+
+brightmap sprite PFMIF5
+{
+	map "brightmaps/fimia4a6.png"
+}
+
+brightmap sprite PFMIA5
+{
+	map "brightmaps/fimia5.png"
+}
+
+brightmap sprite PFMIB1
+{
+	map "brightmaps/fimib1.png"
+}
+
+brightmap sprite PFMIB2B8
+{
+	map "brightmaps/fimib2b8.png"
+}
+
+brightmap sprite PFMIB3B7
+{
+	map "brightmaps/fimib3b7.png"
+}
+
+brightmap sprite PFMIB4B6
+{
+	map "brightmaps/fimib4b6.png"
+}
+
+brightmap sprite PFMIB5
+{
+	map "brightmaps/fimib5.png"
+}
+
+brightmap sprite PFMIC1
+{
+	map "brightmaps/fimic1.png"
+}
+
+brightmap sprite PFMIC2C8
+{
+	map "brightmaps/fimic2c8.png"
+}
+
+brightmap sprite PFMIC3C7
+{
+	map "brightmaps/fimic3c7.png"
+}
+
+brightmap sprite PFMIC4C6
+{
+	map "brightmaps/fimic4c6.png"
+}
+
+brightmap sprite PFMIC5
+{
+	map "brightmaps/fimic5.png"
+}
+
+brightmap sprite PFMID1
+{
+	map "brightmaps/fimid1.png"
+}
+
+brightmap sprite PFMID2D8
+{
+	map "brightmaps/fimid2d8.png"
+}
+
+brightmap sprite PFMID3D7
+{
+	map "brightmaps/fimid3d7.png"
+}
+
+brightmap sprite PFMID4D6
+{
+	map "brightmaps/fimid4d6.png"
+}
+
+brightmap sprite PFMID5
+{
+	map "brightmaps/fimid5.png"
+}
+
+brightmap sprite PFMIE1
+{
+	map "brightmaps/fimie1.png"
+}
+
+brightmap sprite PFMIE2E8
+{
+	map "brightmaps/fimie2e8.png"
+}
+
+brightmap sprite PFMIE3E7
+{
+	map "brightmaps/fimie3e7.png"
+}
+
+brightmap sprite PFMIE4E6
+{
+	map "brightmaps/fimie4e6.png"
+}
+
+brightmap sprite PFMIE5
+{
+	map "brightmaps/fimie5.png"
+}
+
+brightmap sprite PFMIB1
+{
+	map "brightmaps/fimib1.png"
+}
+
+brightmap sprite PFMIB2B8
+{
+	map "brightmaps/fimib2b8.png"
+}
+
+brightmap sprite PFMIB3B7
+{
+	map "brightmaps/fimib3b7.png"
+}
+
+brightmap sprite PFMIB4B6
+{
+	map "brightmaps/fimib4b6.png"
+}
+
+brightmap sprite PFMIJ1J5
+{
+	map "brightmaps/fimij1j5.png"
+}
+
+brightmap sprite PFMIJ3J7
+{
+	map "brightmaps/fimij1j5.png"
+}
+
+brightmap sprite PFMIJ2J8
+{
+	map "brightmaps/fimij2j8.png"
+}
+
+brightmap sprite PFMIJ4J6
+{
+	map "brightmaps/fimij2j8.png"
+}
+
+brightmap sprite PFMIK1
+{
+	map "brightmaps/fimik1.png"
+}
+
+brightmap sprite PFMIK2K8
+{
+	map "brightmaps/fimik1.png"
+}
+
+brightmap sprite PFMIK7K3
+{
+	map "brightmaps/fimik7k3.png"
+}
+
+brightmap sprite PFMIK4K6
+{
+	map "brightmaps/fimik4k6.png"
+}
+
+brightmap sprite PFMIK5
+{
+	map "brightmaps/fimik4k6.png"
+}
+
+brightmap sprite PFMIL1
+{
+	map "brightmaps/fimil1.png"
+}
+
+brightmap sprite PFMIL2L8
+{
+	map "brightmaps/fimil1.png"
+}
+
+brightmap sprite PFMIL7L3
+{
+	map "brightmaps/fimil7l3.png"
+}
+
+brightmap sprite PFMIL4L6
+{
+	map "brightmaps/fimil4l6.png"
+}
+
+brightmap sprite PFMIL5
+{
+	map "brightmaps/fimil4l6.png"
+}
+
+brightmap sprite PFMIM1
+{
+	map "brightmaps/fimim1.png"
+}
+
+brightmap sprite PFMIM2M8
+{
+	map "brightmaps/fimim1.png"
+}
+
+brightmap sprite PFMIM7M3
+{
+	map "brightmaps/fimim7m3.png"
+}
+
+brightmap sprite PFMIM4M6
+{
+	map "brightmaps/fimim4m6.png"
+}
+
+brightmap sprite PFMIM5
+{
+	map "brightmaps/fimim4m6.png"
+}
+
+brightmap sprite PFMIN1
+{
+	map "brightmaps/fimin1.png"
+}
+
+brightmap sprite PFMIN2N8
+{
+	map "brightmaps/fimin1.png"
+}
+
+brightmap sprite PFMIN4N6
+{
+	map "brightmaps/fimin5.png"
+}
+
+brightmap sprite PFMIN5
+{
+	map "brightmaps/fimin5.png"
+}
+
+brightmap sprite PFMIO0
+{
+	map "brightmaps/fimio0.png"
+}
+
+brightmap sprite PFMIP0
+{
+	map "brightmaps/fimip0.png"
+}
+
+brightmap sprite PFMIQ0
+{
+	map "brightmaps/fimiq0.png"
+}
+
+brightmap sprite PFMAA1
+{
+	map "brightmaps/fimia1.png"
+}
+
+brightmap sprite PFMAF1
+{
+	map "brightmaps/fimia1.png"
+}
+
+brightmap sprite PFMAA2A8
+{
+	map "brightmaps/fimia2a8.png"
+}
+
+brightmap sprite PFMAF2F8
+{
+	map "brightmaps/fimia2a8.png"
+}
+
+brightmap sprite PFMAF3F7
+{
+	map "brightmaps/fimia2a8.png"
+}
+
+brightmap sprite PFMAA3A7
+{
+	map "brightmaps/fimia3a7.png"
+}
+
+brightmap sprite PFMAA4A6
+{
+	map "brightmaps/fimia4a6.png"
+}
+
+brightmap sprite PFMAF4F6
+{
+	map "brightmaps/fimia4a6.png"
+}
+
+brightmap sprite PFMAF5
+{
+	map "brightmaps/fimia4a6.png"
+}
+
+brightmap sprite PFMAA5
+{
+	map "brightmaps/fimia5.png"
+}
+
+brightmap sprite PFMAB1
+{
+	map "brightmaps/fimib1.png"
+}
+
+brightmap sprite PFMAB2B8
+{
+	map "brightmaps/fimib2b8.png"
+}
+
+brightmap sprite PFMAB3B7
+{
+	map "brightmaps/fimib3b7.png"
+}
+
+brightmap sprite PFMAB4B6
+{
+	map "brightmaps/fimib4b6.png"
+}
+
+brightmap sprite PFMAB5
+{
+	map "brightmaps/fimib5.png"
+}
+
+brightmap sprite PFMAC1
+{
+	map "brightmaps/fimic1.png"
+}
+
+brightmap sprite PFMAC2C8
+{
+	map "brightmaps/fimic2c8.png"
+}
+
+brightmap sprite PFMAC3C7
+{
+	map "brightmaps/fimic3c7.png"
+}
+
+brightmap sprite PFMAC4C6
+{
+	map "brightmaps/fimic4c6.png"
+}
+
+brightmap sprite PFMAC5
+{
+	map "brightmaps/fimic5.png"
+}
+
+brightmap sprite PFMAD1
+{
+	map "brightmaps/fimid1.png"
+}
+
+brightmap sprite PFMAD2D8
+{
+	map "brightmaps/fimid2d8.png"
+}
+
+brightmap sprite PFMAD3D7
+{
+	map "brightmaps/fimid3d7.png"
+}
+
+brightmap sprite PFMAD4D6
+{
+	map "brightmaps/fimid4d6.png"
+}
+
+brightmap sprite PFMAD5
+{
+	map "brightmaps/fimid5.png"
+}
+
+brightmap sprite PFMAE1
+{
+	map "brightmaps/fimie1.png"
+}
+
+brightmap sprite PFMAE2E8
+{
+	map "brightmaps/fimie2e8.png"
+}
+
+brightmap sprite PFMAE3E7
+{
+	map "brightmaps/fimie3e7.png"
+}
+
+brightmap sprite PFMAE4E6
+{
+	map "brightmaps/fimie4e6.png"
+}
+
+brightmap sprite PFMAE5
+{
+	map "brightmaps/fimie5.png"
+}
+
+brightmap sprite PFMAB1
+{
+	map "brightmaps/fimib1.png"
+}
+
+brightmap sprite PFMAB2B8
+{
+	map "brightmaps/fimib2b8.png"
+}
+
+brightmap sprite PFMAB3B7
+{
+	map "brightmaps/fimib3b7.png"
+}
+
+brightmap sprite PFMAB4B6
+{
+	map "brightmaps/fimib4b6.png"
+}
+
+brightmap sprite PFMAJ1J5
+{
+	map "brightmaps/fimij1j5.png"
+}
+
+brightmap sprite PFMAJ3J7
+{
+	map "brightmaps/fimij1j5.png"
+}
+
+brightmap sprite PFMAJ2J8
+{
+	map "brightmaps/fimij2j8.png"
+}
+
+brightmap sprite PFMAJ4J6
+{
+	map "brightmaps/fimij2j8.png"
+}
+
+brightmap sprite PFMAK1
+{
+	map "brightmaps/fimik1.png"
+}
+
+brightmap sprite PFMAK2K8
+{
+	map "brightmaps/fimik1.png"
+}
+
+brightmap sprite PFMAK7K3
+{
+	map "brightmaps/fimik7k3.png"
+}
+
+brightmap sprite PFMAK4K6
+{
+	map "brightmaps/fimik4k6.png"
+}
+
+brightmap sprite PFMAK5
+{
+	map "brightmaps/fimik4k6.png"
+}
+
+brightmap sprite PFMAL1
+{
+	map "brightmaps/fimil1.png"
+}
+
+brightmap sprite PFMAL2L8
+{
+	map "brightmaps/fimil1.png"
+}
+
+brightmap sprite PFMAL7L3
+{
+	map "brightmaps/fimil7l3.png"
+}
+
+brightmap sprite PFMAL4L6
+{
+	map "brightmaps/fimil4l6.png"
+}
+
+brightmap sprite PFMAL5
+{
+	map "brightmaps/fimil4l6.png"
+}
+
+brightmap sprite PFMAM1
+{
+	map "brightmaps/fimim1.png"
+}
+
+brightmap sprite PFMAM2M8
+{
+	map "brightmaps/fimim1.png"
+}
+
+brightmap sprite PFMAM7M3
+{
+	map "brightmaps/fimim7m3.png"
+}
+
+brightmap sprite PFMAM4M6
+{
+	map "brightmaps/fimim4m6.png"
+}
+
+brightmap sprite PFMAM5
+{
+	map "brightmaps/fimim4m6.png"
+}
+
+brightmap sprite PFMAN1
+{
+	map "brightmaps/fimin1.png"
+}
+
+brightmap sprite PFMAN2N8
+{
+	map "brightmaps/fimin1.png"
+}
+
+brightmap sprite PFMAN4N6
+{
+	map "brightmaps/fimin5.png"
+}
+
+brightmap sprite PFMAN5
+{
+	map "brightmaps/fimin5.png"
+}
+
+brightmap sprite PFMAO0
+{
+	map "brightmaps/fimio0.png"
+}
+
+brightmap sprite PFMAP0
+{
+	map "brightmaps/fimip0.png"
+}
+
+brightmap sprite PFMAQ0
+{
+	map "brightmaps/fimiq0.png"
+}
+
+brightmap sprite ENMIA1
+{
+	map "brightmaps/enmia1.png"
+}
+
+brightmap sprite ENMIA2A8
+{
+	map "brightmaps/enmia2a8.png"
+}
+
+brightmap sprite ENMIA3A7
+{
+	map "brightmaps/enmia3a7.png"
+}
+
+brightmap sprite ENMIA4A6
+{
+	map "brightmaps/enmia4a6.png"
+}
+
+brightmap sprite ENMIA5
+{
+	map "brightmaps/enmia5.png"
+}
+
+brightmap sprite ENMIB1
+{
+	map "brightmaps/enmib1.png"
+}
+
+brightmap sprite ENMIB2B8
+{
+	map "brightmaps/enmib2b8.png"
+}
+
+brightmap sprite ENMIB3B7
+{
+	map "brightmaps/enmib3b7.png"
+}
+
+brightmap sprite ENMIB4B6
+{
+	map "brightmaps/enmib4b6.png"
+}
+
+brightmap sprite ENMIB5
+{
+	map "brightmaps/enmib5.png"
+}
+
+brightmap sprite ENMIC1
+{
+	map "brightmaps/enmic1.png"
+}
+
+brightmap sprite ENMIC2C8
+{
+	map "brightmaps/enmic2c8.png"
+}
+
+brightmap sprite ENMIC3C7
+{
+	map "brightmaps/enmic3c7.png"
+}
+
+brightmap sprite ENMIC4C6
+{
+	map "brightmaps/enmic4c6.png"
+}
+
+brightmap sprite ENMIC5
+{
+	map "brightmaps/enmia5.png"
+}
+
+brightmap sprite ENMID1
+{
+	map "brightmaps/enmid1.png"
+}
+
+brightmap sprite ENMID2D8
+{
+	map "brightmaps/enmid2d8.png"
+}
+
+brightmap sprite ENMID3D7
+{
+	map "brightmaps/enmid3d7.png"
+}
+
+brightmap sprite ENMID4D6
+{
+	map "brightmaps/enmid4d6.png"
+}
+
+brightmap sprite ENMID5
+{
+	map "brightmaps/enmid5.png"
+}
+
+brightmap sprite ENMIE1
+{
+	map "brightmaps/enmie1.png"
+}
+
+brightmap sprite ENMIE2E8
+{
+	map "brightmaps/enmie2e8.png"
+}
+
+brightmap sprite ENMIE3E7
+{
+	map "brightmaps/enmie3e7.png"
+}
+
+brightmap sprite ENMIE4E6
+{
+	map "brightmaps/enmie4e6.png"
+}
+
+brightmap sprite ENMIE5
+{
+	map "brightmaps/enmie5.png"
+}
+
+brightmap sprite ENMIG1
+{
+	map "brightmaps/enmig1.png"
+}
+
+brightmap sprite ENMIG2G8
+{
+	map "brightmaps/enmig1.png"
+}
+
+brightmap sprite ENMIG3G7
+{
+	map "brightmaps/enmig3g7.png"
+}
+
+brightmap sprite ENMIG4G6
+{
+	map "brightmaps/enmig4g6.png"
+}
+
+brightmap sprite ENMIG5
+{
+	map "brightmaps/enmig4g6.png"
+}
+
+brightmap sprite ENMIH0
+{
+	map "brightmaps/enmih0.png"
+}
+
+brightmap sprite ENMII0
+{
+	map "brightmaps/enmii0.png"
+}
+
+brightmap sprite ENMIJ0
+{
+	map "brightmaps/enmij0.png"
+}
+
+brightmap sprite ENMIK0
+{
+	map "brightmaps/enmik0.png"
+}
+
+brightmap sprite ENMIL0
+{
+	map "brightmaps/enmil0.png"
+}
+
+brightmap sprite ENMIM0
+{
+	map "brightmaps/enmim0.png"
+}
+
+brightmap sprite ENMIN0
+{
+	map "brightmaps/enmin0.png"
+}
+
+brightmap sprite ENMIO0
+{
+	map "brightmaps/enmio0.png"
+}
+
+brightmap sprite ENMIP0
+{
+	map "brightmaps/enmip0.png"
+}
+
+brightmap sprite ENMIQ0
+{
+	map "brightmaps/enmiq0.png"
+}
+
+brightmap sprite ENMAA1
+{
+	map "brightmaps/enmia1.png"
+}
+
+brightmap sprite ENMAA2A8
+{
+	map "brightmaps/enmia2a8.png"
+}
+
+brightmap sprite ENMAA3A7
+{
+	map "brightmaps/enmia3a7.png"
+}
+
+brightmap sprite ENMAA4A6
+{
+	map "brightmaps/enmia4a6.png"
+}
+
+brightmap sprite ENMAA5
+{
+	map "brightmaps/enmia5.png"
+}
+
+brightmap sprite ENMAB1
+{
+	map "brightmaps/enmib1.png"
+}
+
+brightmap sprite ENMAB2B8
+{
+	map "brightmaps/enmib2b8.png"
+}
+
+brightmap sprite ENMAB3B7
+{
+	map "brightmaps/enmib3b7.png"
+}
+
+brightmap sprite ENMAB4B6
+{
+	map "brightmaps/enmib4b6.png"
+}
+
+brightmap sprite ENMAB5
+{
+	map "brightmaps/enmib5.png"
+}
+
+brightmap sprite ENMAC1
+{
+	map "brightmaps/enmic1.png"
+}
+
+brightmap sprite ENMAC2C8
+{
+	map "brightmaps/enmic2c8.png"
+}
+
+brightmap sprite ENMAC3C7
+{
+	map "brightmaps/enmic3c7.png"
+}
+
+brightmap sprite ENMAC4C6
+{
+	map "brightmaps/enmic4c6.png"
+}
+
+brightmap sprite ENMAC5
+{
+	map "brightmaps/enmia5.png"
+}
+
+brightmap sprite ENMAD1
+{
+	map "brightmaps/enmid1.png"
+}
+
+brightmap sprite ENMAD2D8
+{
+	map "brightmaps/enmid2d8.png"
+}
+
+brightmap sprite ENMAD3D7
+{
+	map "brightmaps/enmid3d7.png"
+}
+
+brightmap sprite ENMAD4D6
+{
+	map "brightmaps/enmid4d6.png"
+}
+
+brightmap sprite ENMAD5
+{
+	map "brightmaps/enmid5.png"
+}
+
+brightmap sprite ENMAE1
+{
+	map "brightmaps/enmie1.png"
+}
+
+brightmap sprite ENMAE2E8
+{
+	map "brightmaps/enmie2e8.png"
+}
+
+brightmap sprite ENMAE3E7
+{
+	map "brightmaps/enmie3e7.png"
+}
+
+brightmap sprite ENMAE4E6
+{
+	map "brightmaps/enmie4e6.png"
+}
+
+brightmap sprite ENMAE5
+{
+	map "brightmaps/enmie5.png"
+}
+
+brightmap sprite ENMAG1
+{
+	map "brightmaps/enmig1.png"
+}
+
+brightmap sprite ENMAG2G8
+{
+	map "brightmaps/enmig1.png"
+}
+
+brightmap sprite ENMAG3G7
+{
+	map "brightmaps/enmig3g7.png"
+}
+
+brightmap sprite ENMAG4G6
+{
+	map "brightmaps/enmig4g6.png"
+}
+
+brightmap sprite ENMAG5
+{
+	map "brightmaps/enmig4g6.png"
+}
+
+brightmap sprite ENMAH0
+{
+	map "brightmaps/enmih0.png"
+}
+
+brightmap sprite ENMAI0
+{
+	map "brightmaps/enmii0.png"
+}
+
+brightmap sprite ENMAJ0
+{
+	map "brightmaps/enmij0.png"
+}
+
+brightmap sprite ENMAK0
+{
+	map "brightmaps/enmik0.png"
+}
+
+brightmap sprite ENMAL0
+{
+	map "brightmaps/enmil0.png"
+}
+
+brightmap sprite ENMAM0
+{
+	map "brightmaps/enmim0.png"
+}
+
+brightmap sprite ENMAN0
+{
+	map "brightmaps/enmin0.png"
+}
+
+brightmap sprite ENMAO0
+{
+	map "brightmaps/enmio0.png"
+}
+
+brightmap sprite ENMAP0
+{
+	map "brightmaps/enmip0.png"
+}
+
+brightmap sprite ENMAQ0
+{
+	map "brightmaps/enmiq0.png"
 }

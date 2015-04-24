@@ -206,12 +206,12 @@ ACTOR MotherofAllHunters
 		DukeGibStart:
 			HUMO K 1
 			TNT1 A 0 A_UnsetSolid
-			HUMO K 1 A_SpawnDebris("NewDukeGibs1_MajorHunter")
-			TNT1 A 0 A_SpawnDebris("NewDukeGibs2_MajorHunter")
-			TNT1 AA 0 A_SpawnDebris("NewDukeGibs3_MajorHunter")
-			TNT1 AAA 0 A_SpawnDebris("NewDukeGibs4_MajorHunter")
-			TNT1 AA 0 A_SpawnDebris("NewDukeGibs5_MajorHunter")
-			TNT1 AAA 0 A_SpawnDebris("NewDukeGibs6_MajorHunter")
+			HUMO K 1 A_SpawnDebris("NewDukeGibs1_Colgate")
+			TNT1 A 0 A_SpawnDebris("NewDukeGibs2_Colgate")
+			TNT1 AA 0 A_SpawnDebris("NewDukeGibs3_Colgate")
+			TNT1 AAA 0 A_SpawnDebris("NewDukeGibs4_Colgate")
+			TNT1 AA 0 A_SpawnDebris("NewDukeGibs5_Colgate")
+			TNT1 AAA 0 A_SpawnDebris("NewDukeGibs6_Colgate")
 			TNT1 A 0 A_PlaySound("duke/enemygib",5)
 			TNT1 A 0 A_TakeInventory("MarathonDukeGib",1)
 			TNT1 A 0 A_Jump(96,"XDeath2")
