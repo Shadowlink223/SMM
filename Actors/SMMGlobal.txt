@@ -240,3 +240,162 @@ ACTOR DukeShrapnel3 : NewDukeGibs1
 			Loop
 	}
 }
+
+//New Bloodyhell gib colors
+
+Actor Switchable_FlyingBlood_AltYellow : Switchable_FlyingBlood { Translation "16:47=[255, 255, 0]:[100, 100, 0]", "176:191=[255, 255, 0]:[100, 100, 0]" }
+Actor Switchable_FlyingBlood_DarkCyan : Switchable_FlyingBlood { Translation "16:47=[0, 150, 150]:[0, 50, 50]", "176:191=[0, 150, 150]:[0, 50, 50]" }
+Actor Switchable_FlyingBlood_Copper : Switchable_FlyingBlood { Translation "16:47=[210, 127, 91]:[160, 77, 41]", "176:191=[210, 127, 91]:[160, 77, 41]" }
+Actor Switchable_FlyingBlood_Purple : Switchable_FlyingBlood { Translation "16:47=[200,0,204]:[64,0,64]", "176:191=[200,0,204]:[64,0,64]" }
+Actor Switchable_FlyingBlood_Lime : Switchable_FlyingBlood { Translation "16:47=[150,195,0]:[60,80,0]", "176:191=[150,195,0]:[60,80,0]" }
+Actor Switchable_FlyingBlood_Perano : Switchable_FlyingBlood { Translation "16:47=[164,173,235]:[70,80,100]", "176:191=[164,173,235]:[70,80,100]" }
+Actor Switchable_FlyingBlood_Colgate : Switchable_FlyingBlood { Translation "16:47=[57,228,139]:[10,80,40]", "176:191=[57,228,139]:[10,80,40]" }
+
+//Nashgore
+Actor Nashgore_GibGenerator_AltYellow : Nashgore_GibGenerator { Translation "16:47=[255, 255, 0]:[100, 100, 0]", "176:191=[255, 255, 0]:[100, 100, 0]" }
+Actor Nashgore_Gib9_AltYellow : Nashgore_Gib9 { Translation "16:47=[255, 255, 0]:[100, 100, 0]", "176:191=[255, 255, 0]:[100, 100, 0]" }
+Actor Nashgore_Gib10_AltYellow : Nashgore_Gib10 { Translation "16:47=[255, 255, 0]:[100, 100, 0]", "176:191=[255, 255, 0]:[100, 100, 0]" }
+Actor Nashgore_Gib11_AltYellow : Nashgore_Gib11 { Translation "16:47=[255, 255, 0]:[100, 100, 0]", "176:191=[255, 255, 0]:[100, 100, 0]" }
+
+Actor Nashgore_GibGenerator_DarkCyan : Nashgore_GibGenerator { Translation "16:47=[0, 150, 150]:[0, 50, 50]", "176:191=[0, 150, 150]:[0, 50, 50]" }
+Actor Nashgore_Gib9_DarkCyan : Nashgore_Gib9 { Translation "16:47=[0, 150, 150]:[0, 50, 50]", "176:191=[0, 150, 150]:[0, 50, 50]" }
+Actor Nashgore_Gib10_DarkCyan : Nashgore_Gib10 { Translation "16:47=[0, 150, 150]:[0, 50, 50]", "176:191=[0, 150, 150]:[0, 50, 50]" }
+Actor Nashgore_Gib11_DarkCyan : Nashgore_Gib11 { Translation "16:47=[0, 150, 150]:[0, 50, 50]", "176:191=[0, 150, 150]:[0, 50, 50]" }
+
+Actor Nashgore_GibGenerator_Copper : Nashgore_GibGenerator { Translation "16:47=[210, 127, 91]:[160, 77, 41]", "176:191=[210, 127, 91]:[160, 77, 41]" }
+Actor Nashgore_Gib9_Copper : Nashgore_Gib9 { Translation "16:47=[210, 127, 91]:[160, 77, 41]", "176:191=[210, 127, 91]:[160, 77, 41]" }
+Actor Nashgore_Gib10_Copper : Nashgore_Gib10 { Translation "16:47=[210, 127, 91]:[160, 77, 41]", "176:191=[210, 127, 91]:[160, 77, 41]" }
+Actor Nashgore_Gib11_Copper : Nashgore_Gib11 { Translation "16:47=[210, 127, 91]:[160, 77, 41]", "176:191=[210, 127, 91]:[160, 77, 41]" }
+
+Actor Nashgore_GibGenerator_Purple : Nashgore_GibGenerator { Translation "16:47=[200,0,204]:[64,0,64]", "176:191=[200,0,204]:[64,0,64]" }
+Actor Nashgore_Gib9_Purple : Nashgore_Gib9 { Translation "16:47=[200,0,204]:[64,0,64]", "176:191=[200,0,204]:[64,0,64]" }
+Actor Nashgore_Gib10_Purple : Nashgore_Gib10 { Translation "16:47=[200,0,204]:[64,0,64]", "176:191=[200,0,204]:[64,0,64]" }
+Actor Nashgore_Gib11_Purple : Nashgore_Gib11 { Translation "16:47=[200,0,204]:[64,0,64]", "176:191=[200,0,204]:[64,0,64]" }
+
+Actor Nashgore_GibGenerator_Lime : Nashgore_GibGenerator { Translation "16:47=[150,195,0]:[60,80,0]", "176:191=[150,195,0]:[60,80,0]" }
+Actor Nashgore_Gib9_Lime : Nashgore_Gib9 { Translation "16:47=[150,195,0]:[60,80,0]", "176:191=[150,195,0]:[60,80,0]" }
+Actor Nashgore_Gib10_Lime : Nashgore_Gib10 { Translation "16:47=[150,195,0]:[60,80,0]", "176:191=[150,195,0]:[60,80,0]" }
+Actor Nashgore_Gib11_Lime : Nashgore_Gib11 { Translation "16:47=[150,195,0]:[60,80,0]", "176:191=[150,195,0]:[60,80,0]" }
+
+Actor Nashgore_GibGenerator_Perano : Nashgore_GibGenerator { Translation "16:47=[164,173,235]:[70,80,100]", "176:191=[164,173,235]:[70,80,100]" }
+Actor Nashgore_Gib9_Perano : Nashgore_Gib9 { Translation "16:47=[164,173,235]:[70,80,100]", "176:191=[164,173,235]:[70,80,100]" }
+Actor Nashgore_Gib10_Perano : Nashgore_Gib10 { Translation "16:47=[164,173,235]:[70,80,100]", "176:191=[164,173,235]:[70,80,100]" }
+Actor Nashgore_Gib11_Perano : Nashgore_Gib11 { Translation "16:47=[164,173,235]:[70,80,100]", "176:191=[164,173,235]:[70,80,100]" }
+
+Actor Nashgore_GibGenerator_Colgate : Nashgore_GibGenerator { Translation "16:47=[57,228,139]:[10,80,40]", "176:191=[57,228,139]:[10,80,40]" }
+Actor Nashgore_Gib9_Colgate : Nashgore_Gib9 { Translation "16:47=[57,228,139]:[10,80,40]", "176:191=[57,228,139]:[10,80,40]" }
+Actor Nashgore_Gib10_Colgate : Nashgore_Gib10 { Translation "16:47=[57,228,139]:[10,80,40]", "176:191=[57,228,139]:[10,80,40]" }
+Actor Nashgore_Gib11_Colgate : Nashgore_Gib11 { Translation "16:47=[57,228,139]:[10,80,40]", "176:191=[57,228,139]:[10,80,40]" }
+
+//Brutal Gore
+Actor AltYellowMist : RedMist { Translation "16:47=[255, 255, 0]:[100, 100, 0]", "176:191=[255, 255, 0]:[100, 100, 0]" }
+Actor AltYellowMistTrail : RedMistTrail { Translation "16:47=[255, 255, 0]:[100, 100, 0]", "176:191=[255, 255, 0]:[100, 100, 0]" }
+Actor AltYellowMistIntense : RedMistIntense { Translation "16:47=[255, 255, 0]:[100, 100, 0]", "176:191=[255, 255, 0]:[100, 100, 0]" }
+Actor AltYellowMistIntenseTrail : RedMistIntenseTrail { Translation "16:47=[255, 255, 0]:[100, 100, 0]", "176:191=[255, 255, 0]:[100, 100, 0]" }
+Actor BrutalSkull_AltYellow : BrutalSkull { Translation "16:47=[255, 255, 0]:[100, 100, 0]", "176:191=[255, 255, 0]:[100, 100, 0]" }
+Actor BrutalRedOrgan_AltYellow : BrutalRedOrgan { Translation "16:47=[255, 255, 0]:[100, 100, 0]", "176:191=[255, 255, 0]:[100, 100, 0]" }
+Actor BrutalBrownOrgan_AltYellow : BrutalBrownOrgan { Translation "16:47=[255, 255, 0]:[100, 100, 0]", "176:191=[255, 255, 0]:[100, 100, 0]" }
+Actor BrutalTinyBouncyBone_AltYellow : BrutalTinyBouncyBone { Translation "16:47=[255, 255, 0]:[100, 100, 0]", "176:191=[255, 255, 0]:[100, 100, 0]" }
+Actor BrutalChunk_AltYellow : BrutalChunk { Translation "16:47=[255, 255, 0]:[100, 100, 0]", "176:191=[255, 255, 0]:[100, 100, 0]" }
+Actor BrutalChunkHuge_AltYellow : BrutalChunkHuge { Translation "16:47=[255, 255, 0]:[100, 100, 0]", "176:191=[255, 255, 0]:[100, 100, 0]" }
+Actor BrutalChunkBouncy1_AltYellow : BrutalChunkBouncy1 { Translation "16:47=[255, 255, 0]:[100, 100, 0]", "176:191=[255, 255, 0]:[100, 100, 0]" }
+Actor BrutalChunkBouncy2_AltYellow : BrutalChunkBouncy2 { Translation "16:47=[255, 255, 0]:[100, 100, 0]", "176:191=[255, 255, 0]:[100, 100, 0]" }
+Actor BrutalChunkBouncy3_AltYellow : BrutalChunkBouncy3 { Translation "16:47=[255, 255, 0]:[100, 100, 0]", "176:191=[255, 255, 0]:[100, 100, 0]" }
+Actor BrutalChunkTiny_AltYellow : BrutalChunkTiny { Translation "16:47=[255, 255, 0]:[100, 100, 0]", "176:191=[255, 255, 0]:[100, 100, 0]" }
+Actor BrutalChunkTinier_AltYellow : BrutalChunkTinier { Translation "16:47=[255, 255, 0]:[100, 100, 0]", "176:191=[255, 255, 0]:[100, 100, 0]" }
+
+Actor DarkCyanMist : RedMist { Translation "16:47=[0, 150, 150]:[0, 50, 50]", "176:191=[0, 150, 150]:[0, 50, 50]" }
+Actor DarkCyanMistTrail : RedMistTrail { Translation "16:47=[0, 150, 150]:[0, 50, 50]", "176:191=[0, 150, 150]:[0, 50, 50]" }
+Actor DarkCyanMistIntense : RedMistIntense { Translation "16:47=[0, 150, 150]:[0, 50, 50]", "176:191=[0, 150, 150]:[0, 50, 50]" }
+Actor DarkCyanMistIntenseTrail : RedMistIntenseTrail { Translation "16:47=[0, 150, 150]:[0, 50, 50]", "176:191=[0, 150, 150]:[0, 50, 50]" }
+Actor BrutalSkull_DarkCyan : BrutalSkull { Translation "16:47=[0, 150, 150]:[0, 50, 50]", "176:191=[0, 150, 150]:[0, 50, 50]" }
+Actor BrutalRedOrgan_DarkCyan : BrutalRedOrgan { Translation "16:47=[0, 150, 150]:[0, 50, 50]", "176:191=[0, 150, 150]:[0, 50, 50]" }
+Actor BrutalBrownOrgan_DarkCyan : BrutalBrownOrgan { Translation "16:47=[0, 150, 150]:[0, 50, 50]", "176:191=[0, 150, 150]:[0, 50, 50]" }
+Actor BrutalTinyBouncyBone_DarkCyan : BrutalTinyBouncyBone { Translation "16:47=[0, 150, 150]:[0, 50, 50]", "176:191=[0, 150, 150]:[0, 50, 50]" }
+Actor BrutalChunk_DarkCyan : BrutalChunk { Translation "16:47=[0, 150, 150]:[0, 50, 50]", "176:191=[0, 150, 150]:[0, 50, 50]" }
+Actor BrutalChunkHuge_DarkCyan : BrutalChunkHuge { Translation "16:47=[0, 150, 150]:[0, 50, 50]", "176:191=[0, 150, 150]:[0, 50, 50]" }
+Actor BrutalChunkBouncy1_DarkCyan : BrutalChunkBouncy1 { Translation "16:47=[0, 150, 150]:[0, 50, 50]", "176:191=[0, 150, 150]:[0, 50, 50]" }
+Actor BrutalChunkBouncy2_DarkCyan : BrutalChunkBouncy2 { Translation "16:47=[0, 150, 150]:[0, 50, 50]", "176:191=[0, 150, 150]:[0, 50, 50]" }
+Actor BrutalChunkBouncy3_DarkCyan : BrutalChunkBouncy3 { Translation "16:47=[0, 150, 150]:[0, 50, 50]", "176:191=[0, 150, 150]:[0, 50, 50]" }
+Actor BrutalChunkTiny_DarkCyan : BrutalChunkTiny { Translation "16:47=[0, 150, 150]:[0, 50, 50]", "176:191=[0, 150, 150]:[0, 50, 50]" }
+Actor BrutalChunkTinier_DarkCyan : BrutalChunkTinier { Translation "16:47=[0, 150, 150]:[0, 50, 50]", "176:191=[0, 150, 150]:[0, 50, 50]" }
+
+Actor CopperMist : RedMist { Translation "16:47=[210, 127, 91]:[160, 77, 41]", "176:191=[210, 127, 91]:[160, 77, 41]" }
+Actor CopperMistTrail : RedMistTrail { Translation "16:47=[210, 127, 91]:[160, 77, 41]", "176:191=[210, 127, 91]:[160, 77, 41]" }
+Actor CopperMistIntense : RedMistIntense { Translation "16:47=[210, 127, 91]:[160, 77, 41]", "176:191=[210, 127, 91]:[160, 77, 41]" }
+Actor CopperMistIntenseTrail : RedMistIntenseTrail { Translation "16:47=[210, 127, 91]:[160, 77, 41]", "176:191=[210, 127, 91]:[160, 77, 41]" }
+Actor BrutalSkull_Copper : BrutalSkull { Translation "16:47=[210, 127, 91]:[160, 77, 41]", "176:191=[210, 127, 91]:[160, 77, 41]" }
+Actor BrutalRedOrgan_Copper : BrutalRedOrgan { Translation "16:47=[210, 127, 91]:[160, 77, 41]", "176:191=[210, 127, 91]:[160, 77, 41]" }
+Actor BrutalBrownOrgan_Copper : BrutalBrownOrgan { Translation "16:47=[210, 127, 91]:[160, 77, 41]", "176:191=[210, 127, 91]:[160, 77, 41]" }
+Actor BrutalTinyBouncyBone_Copper : BrutalTinyBouncyBone { Translation "16:47=[210, 127, 91]:[160, 77, 41]", "176:191=[210, 127, 91]:[160, 77, 41]" }
+Actor BrutalChunk_Copper : BrutalChunk { Translation "16:47=[210, 127, 91]:[160, 77, 41]", "176:191=[210, 127, 91]:[160, 77, 41]" }
+Actor BrutalChunkHuge_Copper : BrutalChunkHuge { Translation "16:47=[210, 127, 91]:[160, 77, 41]", "176:191=[210, 127, 91]:[160, 77, 41]" }
+Actor BrutalChunkBouncy1_Copper : BrutalChunkBouncy1 { Translation "16:47=[210, 127, 91]:[160, 77, 41]", "176:191=[210, 127, 91]:[160, 77, 41]" }
+Actor BrutalChunkBouncy2_Copper : BrutalChunkBouncy2 { Translation "16:47=[210, 127, 91]:[160, 77, 41]", "176:191=[210, 127, 91]:[160, 77, 41]" }
+Actor BrutalChunkBouncy3_Copper : BrutalChunkBouncy3 { Translation "16:47=[210, 127, 91]:[160, 77, 41]", "176:191=[210, 127, 91]:[160, 77, 41]" }
+Actor BrutalChunkTiny_Copper : BrutalChunkTiny { Translation "16:47=[210, 127, 91]:[160, 77, 41]", "176:191=[210, 127, 91]:[160, 77, 41]" }
+Actor BrutalChunkTinier_Copper : BrutalChunkTinier { Translation "16:47=[210, 127, 91]:[160, 77, 41]", "176:191=[210, 127, 91]:[160, 77, 41]" }
+
+Actor PurpleMist : RedMist { Translation "16:47=[200,0,204]:[64,0,64]", "176:191=[200,0,204]:[64,0,64]" }
+Actor PurpleMistTrail : RedMistTrail { Translation "16:47=[200,0,204]:[64,0,64]", "176:191=[200,0,204]:[64,0,64]" }
+Actor PurpleMistIntense : RedMistIntense { Translation "16:47=[200,0,204]:[64,0,64]", "176:191=[200,0,204]:[64,0,64]" }
+Actor PurpleMistIntenseTrail : RedMistIntenseTrail { Translation "16:47=[200,0,204]:[64,0,64]", "176:191=[200,0,204]:[64,0,64]" }
+Actor BrutalSkull_Purple : BrutalSkull { Translation "16:47=[200,0,204]:[64,0,64]", "176:191=[200,0,204]:[64,0,64]" }
+Actor BrutalRedOrgan_Purple : BrutalRedOrgan { Translation "16:47=[200,0,204]:[64,0,64]", "176:191=[200,0,204]:[64,0,64]" }
+Actor BrutalBrownOrgan_Purple : BrutalBrownOrgan { Translation "16:47=[200,0,204]:[64,0,64]", "176:191=[200,0,204]:[64,0,64]" }
+Actor BrutalTinyBouncyBone_Purple : BrutalTinyBouncyBone { Translation "16:47=[200,0,204]:[64,0,64]", "176:191=[200,0,204]:[64,0,64]" }
+Actor BrutalChunk_Purple : BrutalChunk { Translation "16:47=[200,0,204]:[64,0,64]", "176:191=[200,0,204]:[64,0,64]" }
+Actor BrutalChunkHuge_Purple : BrutalChunkHuge { Translation "16:47=[200,0,204]:[64,0,64]", "176:191=[200,0,204]:[64,0,64]" }
+Actor BrutalChunkBouncy1_Purple : BrutalChunkBouncy1 { Translation "16:47=[200,0,204]:[64,0,64]", "176:191=[200,0,204]:[64,0,64]" }
+Actor BrutalChunkBouncy2_Purple : BrutalChunkBouncy2 { Translation "16:47=[200,0,204]:[64,0,64]", "176:191=[200,0,204]:[64,0,64]" }
+Actor BrutalChunkBouncy3_Purple : BrutalChunkBouncy3 { Translation "16:47=[200,0,204]:[64,0,64]", "176:191=[200,0,204]:[64,0,64]" }
+Actor BrutalChunkTiny_Purple : BrutalChunkTiny { Translation "16:47=[200,0,204]:[64,0,64]", "176:191=[200,0,204]:[64,0,64]" }
+Actor BrutalChunkTinier_Purple : BrutalChunkTinier { Translation "16:47=[200,0,204]:[64,0,64]", "176:191=[200,0,204]:[64,0,64]" }
+
+Actor LimeMist : RedMist { Translation "16:47=[150,195,0]:[60,80,0]", "176:191=[150,195,0]:[60,80,0]" }
+Actor LimeMistTrail : RedMistTrail { Translation "16:47=[150,195,0]:[60,80,0]", "176:191=[150,195,0]:[60,80,0]" }
+Actor LimeMistIntense : RedMistIntense { Translation "16:47=[150,195,0]:[60,80,0]", "176:191=[150,195,0]:[60,80,0]" }
+Actor LimeMistIntenseTrail : RedMistIntenseTrail { Translation "16:47=[150,195,0]:[60,80,0]", "176:191=[150,195,0]:[60,80,0]" }
+Actor BrutalSkull_Lime : BrutalSkull { Translation "16:47=[150,195,0]:[60,80,0]", "176:191=[150,195,0]:[60,80,0]" }
+Actor BrutalRedOrgan_Lime : BrutalRedOrgan { Translation "16:47=[150,195,0]:[60,80,0]", "176:191=[150,195,0]:[60,80,0]" }
+Actor BrutalBrownOrgan_Lime : BrutalBrownOrgan { Translation "16:47=[150,195,0]:[60,80,0]", "176:191=[150,195,0]:[60,80,0]" }
+Actor BrutalTinyBouncyBone_Lime : BrutalTinyBouncyBone { Translation "16:47=[150,195,0]:[60,80,0]", "176:191=[150,195,0]:[60,80,0]" }
+Actor BrutalChunk_Lime : BrutalChunk { Translation "16:47=[150,195,0]:[60,80,0]", "176:191=[150,195,0]:[60,80,0]" }
+Actor BrutalChunkHuge_Lime : BrutalChunkHuge { Translation "16:47=[150,195,0]:[60,80,0]", "176:191=[150,195,0]:[60,80,0]" }
+Actor BrutalChunkBouncy1_Lime : BrutalChunkBouncy1 { Translation "16:47=[150,195,0]:[60,80,0]", "176:191=[150,195,0]:[60,80,0]" }
+Actor BrutalChunkBouncy2_Lime : BrutalChunkBouncy2 { Translation "16:47=[150,195,0]:[60,80,0]", "176:191=[150,195,0]:[60,80,0]" }
+Actor BrutalChunkBouncy3_Lime : BrutalChunkBouncy3 { Translation "16:47=[150,195,0]:[60,80,0]", "176:191=[150,195,0]:[60,80,0]" }
+Actor BrutalChunkTiny_Lime : BrutalChunkTiny { Translation "16:47=[150,195,0]:[60,80,0]", "176:191=[150,195,0]:[60,80,0]" }
+Actor BrutalChunkTinier_Lime : BrutalChunkTinier { Translation "16:47=[150,195,0]:[60,80,0]", "176:191=[150,195,0]:[60,80,0]" }
+
+Actor PeranoMist : RedMist { Translation "16:47=[164,173,235]:[70,80,100]", "176:191=[164,173,235]:[70,80,100]" }
+Actor PeranoMistTrail : RedMistTrail { Translation "16:47=[164,173,235]:[70,80,100]", "176:191=[164,173,235]:[70,80,100]" }
+Actor PeranoMistIntense : RedMistIntense { Translation "16:47=[164,173,235]:[70,80,100]", "176:191=[164,173,235]:[70,80,100]" }
+Actor PeranoMistIntenseTrail : RedMistIntenseTrail { Translation "16:47=[164,173,235]:[70,80,100]", "176:191=[164,173,235]:[70,80,100]" }
+Actor BrutalSkull_Perano : BrutalSkull { Translation "16:47=[164,173,235]:[70,80,100]", "176:191=[164,173,235]:[70,80,100]" }
+Actor BrutalRedOrgan_Perano : BrutalRedOrgan { Translation "16:47=[164,173,235]:[70,80,100]", "176:191=[164,173,235]:[70,80,100]" }
+Actor BrutalBrownOrgan_Perano : BrutalBrownOrgan { Translation "16:47=[164,173,235]:[70,80,100]", "176:191=[164,173,235]:[70,80,100]" }
+Actor BrutalTinyBouncyBone_Perano : BrutalTinyBouncyBone { Translation "16:47=[164,173,235]:[70,80,100]", "176:191=[164,173,235]:[70,80,100]" }
+Actor BrutalChunk_Perano : BrutalChunk { Translation "16:47=[164,173,235]:[70,80,100]", "176:191=[164,173,235]:[70,80,100]" }
+Actor BrutalChunkHuge_Perano : BrutalChunkHuge { Translation "16:47=[164,173,235]:[70,80,100]", "176:191=[164,173,235]:[70,80,100]" }
+Actor BrutalChunkBouncy1_Perano : BrutalChunkBouncy1 { Translation "16:47=[164,173,235]:[70,80,100]", "176:191=[164,173,235]:[70,80,100]" }
+Actor BrutalChunkBouncy2_Perano : BrutalChunkBouncy2 { Translation "16:47=[164,173,235]:[70,80,100]", "176:191=[164,173,235]:[70,80,100]" }
+Actor BrutalChunkBouncy3_Perano : BrutalChunkBouncy3 { Translation "16:47=[164,173,235]:[70,80,100]", "176:191=[164,173,235]:[70,80,100]" }
+Actor BrutalChunkTiny_Perano : BrutalChunkTiny { Translation "16:47=[164,173,235]:[70,80,100]", "176:191=[164,173,235]:[70,80,100]" }
+Actor BrutalChunkTinier_Perano : BrutalChunkTinier { Translation "16:47=[164,173,235]:[70,80,100]", "176:191=[164,173,235]:[70,80,100]" }
+
+Actor ColgateMist : RedMist { Translation "16:47=[57,228,139]:[10,80,40]", "176:191=[57,228,139]:[10,80,40]" }
+Actor ColgateMistTrail : RedMistTrail { Translation "16:47=[57,228,139]:[10,80,40]", "176:191=[57,228,139]:[10,80,40]" }
+Actor ColgateMistIntense : RedMistIntense { Translation "16:47=[57,228,139]:[10,80,40]", "176:191=[57,228,139]:[10,80,40]" }
+Actor ColgateMistIntenseTrail : RedMistIntenseTrail { Translation "16:47=[57,228,139]:[10,80,40]", "176:191=[57,228,139]:[10,80,40]" }
+Actor BrutalSkull_Colgate : BrutalSkull { Translation "16:47=[57,228,139]:[10,80,40]", "176:191=[57,228,139]:[10,80,40]" }
+Actor BrutalRedOrgan_Colgate : BrutalRedOrgan { Translation "16:47=[57,228,139]:[10,80,40]", "176:191=[57,228,139]:[10,80,40]" }
+Actor BrutalBrownOrgan_Colgate : BrutalBrownOrgan { Translation "16:47=[57,228,139]:[10,80,40]", "176:191=[57,228,139]:[10,80,40]" }
+Actor BrutalTinyBouncyBone_Colgate : BrutalTinyBouncyBone { Translation "16:47=[57,228,139]:[10,80,40]", "176:191=[57,228,139]:[10,80,40]" }
+Actor BrutalChunk_Colgate : BrutalChunk { Translation "16:47=[57,228,139]:[10,80,40]", "176:191=[57,228,139]:[10,80,40]" }
+Actor BrutalChunkHuge_Colgate : BrutalChunkHuge { Translation "16:47=[57,228,139]:[10,80,40]", "176:191=[57,228,139]:[10,80,40]" }
+Actor BrutalChunkBouncy1_Colgate : BrutalChunkBouncy1 { Translation "16:47=[57,228,139]:[10,80,40]", "176:191=[57,228,139]:[10,80,40]" }
+Actor BrutalChunkBouncy2_Colgate : BrutalChunkBouncy2 { Translation "16:47=[57,228,139]:[10,80,40]", "176:191=[57,228,139]:[10,80,40]" }
+Actor BrutalChunkBouncy3_Colgate : BrutalChunkBouncy3 { Translation "16:47=[57,228,139]:[10,80,40]", "176:191=[57,228,139]:[10,80,40]" }
+Actor BrutalChunkTiny_Colgate : BrutalChunkTiny { Translation "16:47=[57,228,139]:[10,80,40]", "176:191=[57,228,139]:[10,80,40]" }
+Actor BrutalChunkTinier_Colgate : BrutalChunkTinier { Translation "16:47=[57,228,139]:[10,80,40]", "176:191=[57,228,139]:[10,80,40]" }

@@ -248,6 +248,7 @@ ACTOR ProjectileFighterMinor
 		Death2:
 			PFMI L 7 A_Stop
 			PFMI M 7 A_NoBlocking
+			TNT1 A 0 ACS_ExecuteAlways(SAMSARA_CLIENT_DECORATE,0,11)
 			PFMI N 0 A_PlaySoundEx("marathon/splash","body",0,0)
 			PFMI N -1
 			Stop
@@ -262,14 +263,16 @@ ACTOR ProjectileFighterMinor
 			PFMI K 2 A_CheckFloor("XDeath2")
 			Goto XDeath+5
 		XDeath2:
-			PFMI O 1 A_JumpIfInventory("MarathonDukeGib",1,"DukeGibStart")
-			PFMI O 2 A_PlaySoundEx("pfhor/xdeath","body",0,0)
+			TNT1 A 0
+			TNT1 A 0 ACS_ExecuteAlways(SAMSARA_CLIENT_DECORATE,0,10)
+			PFMI O 3 A_PlaySoundEx("pfhor/xdeath","body",0,0)
 			PFMI P 3 A_Stop
 			PFMI Q 3 A_NoBlocking
 			PFMI R 3
 			PFMI S -1
 		XDeathDuke:
 			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 A_GiveInventory("MarathonDukeGib",1)
 			TNT1 A 0 A_FaceTarget
 			TNT1 A 0 A_Recoil(10)
 			TNT1 A 0 A_Scream
@@ -280,6 +283,7 @@ ACTOR ProjectileFighterMinor
 		XDeathDuke2:
 			PFDG A 1
 			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 ACS_ExecuteAlways(SAMSARA_CLIENT_DECORATE,0,10)
 			PFDG A 1 A_SpawnDebris("NewDukeGibs1_Pfhor")
 			TNT1 A 0 A_SpawnDebris("NewDukeGibs2_Pfhor")
 			TNT1 AA 0 A_SpawnDebris("NewDukeGibs3_Pfhor")
@@ -354,7 +358,6 @@ ACTOR ProjectileFighterMinor
 			TNT1 A 0 A_GiveToTarget("KillCount",1)
 			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
 			TNT1 A 0 A_NoBlocking
-			//TNT1 A 0 A_SpawnItem("GuardFrozen")
 			PFMI J 0 A_GenericFreezeDeath
 			PFMI J 70 A_UnsetSolid
 			PFMI J 0 A_IceGuyDie
@@ -382,6 +385,67 @@ ACTOR ProjectileFighterMinor
 			PFMI A 3 A_SetTranslucent(1,0)
 			PFMI A 1 A_SetShootable
 			Goto See
+		DeathHappyfun:
+			TNT1 A 0
+			TNT1 AAAAA 0 A_SpawnItemEx("RainbowSparkleSound",random(-10,10),random(-10,10),random(0,8),0,0,0,0,32)
+			TNT1 AAAA 0 A_SpawnItemEx("WhiteSpark",0,0,random(0,8),random(-60,60)/20.0,random(-60,60)/20.0,random(30,60)/20.0,random(-180,180),32)
+			TNT1 A 0 A_SpawnItemEx("RainbowSparkHuge",0,0,random(0,8),random(-60,60)/20.0,random(-60,60)/20.0,random(30,60)/20.0,random(-180,180),32)
+			TNT1 AAAAAA 0 A_SpawnItemEx("RainbowSpark",0,0,random(0,8),random(-60,60)/20.0,random(-60,60)/20.0,random(30,60)/20.0,random(-180,180),32)
+			TNT1 AAA 0 A_SpawnItemEx("RainbowSparkTiny",random(-5,5),random(-5,5),random(0,8),random(-80,80)/10.00,random(-30,60)/10.0,random(3,6),random(-180,180),160)
+			Goto Death2+3
+		DeathBrutal:
+			TNT1 A 0
+			TNT1 AA 0 A_SpawnItemEx("AltYellowMistTrail",random(-5,5),random(-5,5),random(0,8),random(-80,80)/10.00,random(-30,60)/10.0,random(4,8),random(-180,180),160)
+			TNT1 AAA 0 A_SpawnItemEx("BrutalTinyBone",random(-5,5),random(-5,5),random(0,8),random(-80,80)/10.00,random(-30,60)/10.0,random(4,8),random(-180,180),160)
+			TNT1 AAA 0 A_SpawnItemEx("BrutalChunkTinier_AltYellow",random(-5,5),random(-5,5),random(0,8),random(-80,80)/10.00,random(-30,60)/10.0,random(4,8),random(-180,180),160)
+			TNT1 AAA 0 A_SpawnItemEx("BrutalChunkTiny_AltYellow",random(-5,5),random(-5,5),random(0,8),random(-80,80)/10.00,random(-30,60)/10.0,random(4,8),random(-180,180),160)
+			TNT1 A 0 A_SpawnItemEx("AltYellowMistIntenseTrail",random(-5,5),random(-5,5),random(0,8),random(-80,80)/10.00,random(-30,60)/10.0,random(4,8),random(-180,180),160)
+			TNT1 AA 0 A_SpawnItemEx("Switchable_FlyingBlood_AltYellow",random(-5,5),random(-5,5),random(0,8),random(-80,80)/10.00,random(-30,60)/10.0,random(4,8),random(-180,180),160)
+			TNT1 A 0 A_SpawnItemEx("BrutalOnlineSound2",0,0,0,0,0,0,0,160)
+			Goto Death2+3
+		XDeathHappyfun:
+			TNT1 A 0
+			TNT1 AAA 0 A_SpawnItemEx("RainbowSparkleSound",random(-10,10),random(-10,10),random(32,40),0,0,0,0,32)
+			TNT1 AAAA 0 A_SpawnItemEx("WhiteSpark",0,0,random(32,40),random(-60,60)/20.0,random(-60,60)/20.0,random(-40,40)/20.0,random(-180,180),32)
+			TNT1 AAAAA 0 A_SpawnItemEx("RainbowSparkHuge",0,0,random(32,40),random(-60,60)/20.0,random(-60,60)/20.0,random(-40,40)/20.0,random(-180,180),32)
+			TNT1 AAAAAAA 0 A_SpawnItemEx("RainbowSpark",0,0,random(32,40),random(-60,60)/20.0,random(-60,60)/20.0,random(-40,40)/20.0,random(-180,180),32)
+			TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("RainbowSparkTiny",random(-5,5),random(-5,5),random(25,30),random(-80,80)/10.00,random(-80,80)/10.0,random(-3,3),random(-180,180),160)
+			TNT1 AAAAAAAAAAAAAA 0 A_SpawnItemEx("FancyWhiteSmoke",random(-10,10),random(-10,10),random(-10,-10),random(-200,200)/100.00,random(-200,200)/100.00,random(200,600)/100.00,random(-180,180),160)
+			TNT1 A 0 A_SpawnItemEx("HappyOnlineSound",0,0,0,0,0,0,0,160)
+			TNT1 A 0 A_JumpIfInventory("MarathonDukeGib",1,1)
+			Goto XDeath2+2
+			TNT1 A 0
+			Goto XDeathDuke2+3
+		XDeathNashgore:
+			TNT1 A 0
+			TNT1 AAAA 0 A_SpawnItemEx("NashGore_Gib9_AltYellow",random(-10,10),random(-10,10),random(12,40),random(-350,350)/100.00,random(-350,350)/100.00,random(300,700)/100.00,random(-180,180),160)
+			TNT1 A 0 A_SpawnItemEx("NashGore_Gib10_AltYellow",random(-10,10),random(-10,10),random(12,40),random(-350,350)/100.00,random(-350,350)/100.00,random(300,700)/100.00,random(-180,180),160)
+			TNT1 AA 0 A_SpawnItemEx("NashGore_Gib11_AltYellow",random(-10,10),random(-10,10),random(12,40),random(-350,350)/100.00,random(-350,350)/100.00,random(300,700)/100.00,random(-180,180),160)
+			TNT1 AAAAAAAA 0 A_SpawnItem("NashGore_GibGenerator_AltYellow",0,0,0,0)
+			TNT1 A 0 A_JumpIfInventory("MarathonDukeGib",1,1)
+			Goto XDeath2+2
+			TNT1 A 0
+			Goto XDeathDuke2+3
+		XDeathBrutal:
+			TNT1 A 0
+			TNT1 A 0 A_SpawnItemEx("BrutalChunkBouncy1_AltYellow",random(-10,10),random(-10,10),random(12,40),random(-700,700)/100.00,random(-700,700)/100.00,random(600,1400)/100.00,random(-180,180),160)
+			TNT1 A 0 A_SpawnItemEx("BrutalChunkBouncy2_AltYellow",random(-10,10),random(-10,10),random(12,40),random(-700,700)/100.00,random(-700,700)/100.00,random(600,1400)/100.00,random(-180,180),160)
+			TNT1 A 0 A_SpawnItemEx("BrutalChunkBouncy3_AltYellow",random(-10,10),random(-10,10),random(12,40),random(-700,700)/100.00,random(-700,700)/100.00,random(600,1400)/100.00,random(-180,180),160)
+			TNT1 A 0 A_SpawnItemEx("BrutalBrownOrgan_AltYellow",random(-10,10),random(-10,10),random(12,40),random(-700,700)/100.00,random(-700,700)/100.00,random(600,1400)/100.00,random(-180,180),160)
+			TNT1 A 0 A_SpawnItemEx("BrutalRedOrgan_AltYellow",random(-10,10),random(-10,10),random(12,40),random(-700,700)/100.00,random(-700,700)/100.00,random(600,1400)/100.00,random(-180,180),160)
+			TNT1 AAAA 0 A_SpawnItemEx("BrutalChunk_AltYellow",random(-10,10),random(-10,10),random(12,40),random(-500,500)/100.00,random(-500,500)/100.00,random(300,1000)/100.00,random(-180,180),160)
+			TNT1 AA 0 A_SpawnItemEx("BrutalChunkHuge_AltYellow",random(-10,10),random(-10,10),random(12,40),random(-700,700)/100.00,random(-700,700)/100.00,random(600,1400)/100.00,random(-180,180),160)
+			TNT1 AAA 0 A_SpawnItemEx("BrutalTinyBone",random(-5,5),random(-5,5),random(12,40),random(-400,400)/100.00,random(-400,400)/100.00,random(300,800)/100.00,random(-180,180),160)
+			TNT1 AAAA 0 A_SpawnItemEx("BrutalTinyBouncyBone_AltYellow",random(-5,5),random(-5,5),random(12,40),random(-400,400)/100.00,random(-400,400)/100.00,random(300,800)/100.00,random(-180,180),160)
+			TNT1 AAAAAAAAAA 0 A_SpawnItemEx("AltYellowMist",random(-10,10),random(-10,10),random(12,40),random(-800,800)/100.00,random(-800,800)/100.00,random(600,1200)/100.00,random(-180,180),160)
+			TNT1 AAAAAAAAAA 0 A_SpawnItemEx("BrutalChunkTiny_AltYellow",random(-10,10),random(-10,10),random(12,40),random(-800,800)/100.00,random(-800,800)/100.00,random(600,1200)/100.00,random(-180,180),160)
+			TNT1 AAAAA 0 A_SpawnItemEx("AltYellowMistIntense",random(-10,10),random(-10,10),random(12,40),random(-800,800)/100.00,random(-800,800)/100.00,random(600,1200)/100.00,random(-180,180),160)
+			TNT1 AAAAAAAAAAAAAAA 0 A_SpawnItemEx("Switchable_FlyingBlood_AltYellow",random(-10,10),random(-10,10),random(12,40),random(-700,700)/100.00,random(-700,700)/100.00,random(600,1400)/100.00,random(-180,180),160)
+			TNT1 A 0 A_SpawnItemEx("BrutalOnlineSound",0,0,0,0,0,0,0,160)
+			TNT1 A 0 A_JumpIfInventory("MarathonDukeGib",1,1)
+			Goto XDeath2+2
+			TNT1 A 0
+			Goto XDeathDuke2+3
 	}
 }
 

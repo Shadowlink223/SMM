@@ -17,7 +17,7 @@ ACTOR DukeBlood : Blood
 	{
 		Spawn:
 			TNT1 AAA 0
-			TNT1 A 1 A_SpawnItemEx("Switchable_FlyingBlood",0,0,0,random(-350,350)/100.00,random(-350,350)/100.00,random(500,1000)/100.00,random(-180,180),33)
+			TNT1 A 1 A_SpawnItemEx("Switchable_FlyingBlood_DukeOrange",0,0,0,random(-350,350)/100.00,random(-350,350)/100.00,random(500,1000)/100.00,random(-180,180),32)
 			TNT1 A 1 A_SpawnItemEx("DukeJibs6")
 			Stop
 	}
@@ -29,8 +29,8 @@ ACTOR DukeBloodAC : Blood
 	{
 		Spawn:
 			TNT1 AAA 0
-			TNT1 A 1 A_SpawnItemEx("Switchable_FlyingBlood",0,0,0,random(-350,350)/100.00,random(-350,350)/100.00,random(500,1000)/100.00,random(-180,180),33)
-			TNT1 AA 1 A_SpawnItemEx("DukeJibs6",0,0,0,random(-350,350)/100.00,random(-350,350)/100.00,random(500,1000)/100.00,random(-180,180),33)
+			TNT1 A 1 A_SpawnItemEx("Switchable_FlyingBlood_DukeOrange",0,0,0,random(-350,350)/100.00,random(-350,350)/100.00,random(500,1000)/100.00,random(-180,180),32)
+			TNT1 AA 1 A_SpawnItemEx("DukeJibs6",0,0,0,random(-350,350)/100.00,random(-350,350)/100.00,random(500,1000)/100.00,random(-180,180),32)
 			Stop
 	}
 }
@@ -41,9 +41,9 @@ ACTOR DukeBloodBoss : Blood
 	{
 		Spawn:
 			TNT1 AAA 0
-			TNT1 A 1 A_SpawnItemEx("Switchable_FlyingBlood",0,0,0,random(-350,350)/100.00,random(-350,350)/100.00,random(500,1000)/100.00,random(-180,180),33)
-			TNT1 AA 1 A_SpawnItemEx("DukeJibs6",0,0,0,random(-350,350)/100.00,random(-350,350)/100.00,random(500,1000)/100.00,random(-180,180),33)
-			TNT1 A 0 A_SpawnItemEx("DukeShrapnel1",0,0,0,random(-350,350)/100.00,random(-350,350)/100.00,random(500,1000)/100.00,random(-180,180),33)
+			TNT1 A 1 A_SpawnItemEx("Switchable_FlyingBlood_DukeOrange",0,0,0,random(-350,350)/100.00,random(-350,350)/100.00,random(500,1000)/100.00,random(-180,180),32)
+			TNT1 AA 1 A_SpawnItemEx("DukeJibs6",0,0,0,random(-350,350)/100.00,random(-350,350)/100.00,random(500,1000)/100.00,random(-180,180),32)
+			TNT1 A 0 A_SpawnItemEx("DukeShrapnel1",0,0,0,random(-350,350)/100.00,random(-350,350)/100.00,random(500,1000)/100.00,random(-180,180),32)
 			Stop
 	}
 }
@@ -54,10 +54,10 @@ ACTOR DukeBloodQueen : Blood
 	{
 		Spawn:
 			TNT1 AAA 0
-			TNT1 A 1 A_SpawnItemEx("Switchable_FlyingBlood",0,0,0,random(-350,350)/100.00,random(-350,350)/100.00,random(500,1000)/100.00,random(-180,180),33)
+			TNT1 A 1 A_SpawnItemEx("Switchable_FlyingBlood_Green",0,0,0,random(-350,350)/100.00,random(-350,350)/100.00,random(500,1000)/100.00,random(-180,180),32)
 			TNT1 A 1 A_SpawnItemEx("DukeJibs6",0,0,0,random(-350,350)/100.00,random(-350,350)/100.00,random(500,1000)/100.00,random(-180,180),32)
 			TNT1 A 1 A_SpawnItemEx("ProtectorDroneGibs6",0,0,0,random(-350,350)/100.00,random(-350,350)/100.00,random(500,1000)/100.00,random(-180,180),32)
-			TNT1 A 0 A_SpawnItemEx("QueenShrapnel1",0,0,0,random(-350,350)/100.00,random(-350,350)/100.00,random(500,1000)/100.00,random(-180,180),33)
+			TNT1 A 0 A_SpawnItemEx("QueenShrapnel1",0,0,0,random(-350,350)/100.00,random(-350,350)/100.00,random(500,1000)/100.00,random(-180,180),32)
 			Stop
 	}
 }
@@ -84,13 +84,14 @@ ACTOR QueenShrapnel1 : NewDukeGibs1
 ACTOR ProDroneBlood : Blood
 {
 	+NOGRAVITY
+	+DONTTRANSLATE
 	Scale 0.65
 	States
 	{
 		Spawn:
 			TNT1 AAA 0
 			TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
-			TNT1 A 1 A_SpawnItemEx("Switchable_FlyingBlood",0,0,0,random(-350,350)/100.00,random(-350,350)/100.00,random(500,1000)/100.00,random(-180,180),33)
+			TNT1 A 1 A_SpawnItemEx("Switchable_FlyingBlood_Green",0,0,0,random(-350,350)/100.00,random(-350,350)/100.00,random(500,1000)/100.00,random(-180,180),32)
 			PDBL ABCD 4
 			Stop
 	}

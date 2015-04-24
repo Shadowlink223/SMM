@@ -128,7 +128,7 @@ ACTOR Overlord
             TNT1 AAAAA 0 A_SpawnItemEx("BrutalChunkTiny_DukeOrange",random(-20,20),random(-20,20),random(12,60),random(-400,400)/100.00,random(-400,400)/100.00,random(300,600)/100.00,random(-180,180),160)
             TNT1 A 0 A_SpawnItemEx("DukeOrangeMistIntenseTrail",random(-20,20),random(-20,20),random(12,60),random(-400,400)/100.00,random(-400,400)/100.00,random(300,600)/100.00,random(-180,180),160)
             TNT1 AAA 0 A_SpawnItemEx("Switchable_FlyingBlood_DukeOrange",random(-20,20),random(-20,20),random(12,60),random(-350,350)/100.00,random(-350,350)/100.00,random(300,700)/100.00,random(-180,180),160)
-            TNT1 AA 0 A_SpawnItemEx("BrutalOnlineSound2",0,0,0,0,0,0,0,160) // Apparently A_PlaySound doesn't work, so I have to spawn the item. Weird!
+            TNT1 AA 0 A_SpawnItemEx("BrutalOnlineSound2",0,0,0,0,0,0,0,160)
             OVRL I 8 A_Scream
             TNT1 AAA 0 A_SpawnItemEx("Switchable_FlyingBlood_DukeOrange",random(-20,20),random(-20,20),random(50,60),random(-350,350)/100.00,random(-350,350)/100.00,random(300,700)/100.00,random(-180,180),160)
             OVRL J 8 A_NoBlocking
@@ -145,8 +145,7 @@ ACTOR Overlord
             TNT1 AAA 0 A_SpawnItemEx("Switchable_FlyingBlood_DukeOrange",random(-20,20),random(-20,20),random(10,20),random(-350,350)/100.00,random(-350,350)/100.00,random(200,400)/100.00,random(-180,180),160)
             TNT1 AA 0 A_SpawnItemEx("DukeOrangeMistTrail",random(-20,20),random(-20,20),random(12,60),random(-400,400)/100.00,random(-400,400)/100.00,random(300,600)/100.00,random(-180,180),160)
             TNT1 A 0 A_SpawnItemEx("DukeOrangeMistIntenseTrail",random(-20,20),random(-20,20),random(12,60),random(-400,400)/100.00,random(-400,400)/100.00,random(300,600)/100.00,random(-180,180),160)
-            TNT1 A 0 A_SpawnItemEx("BrutalOnlineSound2",0,0,0,0,0,0,0,160) // Apparently A_PlaySound doesn't work, so I have to spawn the item. Weird!
-            OVRL Q 8
+            TNT1 A 0 A_SpawnItemEx("BrutalOnlineSound2",0,0,0,0,0,0,0,160)
             OVRL R 8
             OVRL R 22
             OVRL R -1 A_KillMaster
