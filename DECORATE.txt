@@ -53,6 +53,7 @@
 #include "actors/Wolf3D/WolfMutant.txt"
 #include "actors/Wolf3D/WolfOfficer.txt"
 #include "actors/Wolf3D/WolfSS.txt"
+#include "actors/Wolf3D/W3D-ST.txt"
 
 
 #include "actors/Duke3D/AlienQueen.txt"

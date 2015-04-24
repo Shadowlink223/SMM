@@ -66,6 +66,12 @@ actor BipedicusBall2 : BipedicusBallV3 replaces BipedicusBallV3
 
 ACTOR YellowBipedicusBall2 : BipedicusBall2 { Translation "112:127=[243,254,80]:[21,22,0]" }
 
+ACTOR DarkBipedicusBall : BipedicusBall2
+{
+	Translation "112:127=[150,150,150]:[50,50,50]"
+	Speed 20
+}
+
 ACTOR MaximusBall
 {
 	Radius 6
