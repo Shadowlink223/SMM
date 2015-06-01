@@ -136,15 +136,15 @@ ACTOR HighGuard
 			TNT1 A 0 ACS_ExecuteAlways(SAMSARA_CLIENT_DECORATE,0,10)
 			RTGB A 1 A_NoBlocking
 			RTGB A 0 A_UnsetSolid
-			TNT1 A 0 A_SpawnDebris("ROTTGibs1")
-			TNT1 A 0 A_SpawnDebris("ROTTGibs2")
-			TNT1 A 0 A_SpawnDebris("ROTTGibs3")
-			TNT1 A 0 A_SpawnDebris("ROTTGibs4")
-			TNT1 A 0 A_SpawnDebris("ROTTGibs5")
-			TNT1 A 0 A_SpawnDebris("ROTTGibs6")
+			TNT1 A 0 A_SpawnItemEx("ROTTGibs1",0,0,12,random(3,6),random(3,6),random(3,6),random(-180,180),SXF_ABSOLUTEANGLE|SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_SpawnItemEx("ROTTGibs2",0,0,12,random(3,6),random(3,6),random(3,6),random(-180,180),SXF_ABSOLUTEANGLE|SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_SpawnItemEx("ROTTGibs3",0,0,12,random(3,6),random(3,6),random(3,6),random(-180,180),SXF_ABSOLUTEANGLE|SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_SpawnItemEx("ROTTGibs4",0,0,12,random(3,6),random(3,6),random(3,6),random(-180,180),SXF_ABSOLUTEANGLE|SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_SpawnItemEx("ROTTGibs5",0,0,12,random(3,6),random(3,6),random(3,6),random(-180,180),SXF_ABSOLUTEANGLE|SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_SpawnItemEx("ROTTGibs6",0,0,12,random(3,6),random(3,6),random(3,6),random(-180,180),SXF_ABSOLUTEANGLE|SXF_NOCHECKPOSITION)
 			TNT1 A 0 A_Jump(200,48)
-			TNT1 AAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnDebris("ROTTGibs1")
-			TNT1 AAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnDebris("ROTTGibs2")
+			TNT1 AAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("ROTTGibs1",0,0,12,random(3,6),random(3,6),random(3,6),random(-180,180),SXF_ABSOLUTEANGLE|SXF_NOCHECKPOSITION)
+			TNT1 AAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("ROTTGibs2",0,0,12,random(3,6),random(3,6),random(3,6),random(-180,180),SXF_ABSOLUTEANGLE|SXF_NOCHECKPOSITION)	
 			TNT1 A 0 A_Scream
 			RTGB A 1 A_PlaySound("rottgib/squish",5)
 			RTGB B 2 

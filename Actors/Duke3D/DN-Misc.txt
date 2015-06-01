@@ -656,8 +656,8 @@ actor NewDukeGibs6_DukeOrange : NewDukeGibs6 replaces DukeGibs6_DukeOrange
 
 ACTOR ROTTGibs1 : NewDukeGibs1 //Organ
 {
+	+LOWGRAVITY
 	Health 1
-	Gravity 0.35
 	States
 	{
 		Spawn:
@@ -671,10 +671,10 @@ ACTOR ROTTGibs1 : NewDukeGibs1 //Organ
 	}
 }
 
-ACTOR ROTTGibs2 : NewDukeGibs1 //Rib
+ACTOR ROTTGibs2 : ROTTGibs1 //Rib
 {
 	Health 1
-	Gravity 0.35
+	//Gravity 0.35
 	States
 	{
 		Spawn:
@@ -688,10 +688,10 @@ ACTOR ROTTGibs2 : NewDukeGibs1 //Rib
 	}
 }
 
-ACTOR ROTTGibs3 : NewDukeGibs1 //GPink, w/e that is.
+ACTOR ROTTGibs3 : ROTTGibs1 //GPink, w/e that is.
 {
 	Health 1
-	Gravity 0.35
+	//Gravity 0.35
 	States
 	{
 		Spawn:
@@ -705,10 +705,10 @@ ACTOR ROTTGibs3 : NewDukeGibs1 //GPink, w/e that is.
 	}
 }
 
-ACTOR ROTTGibs4 : NewDukeGibs1 //Head
+ACTOR ROTTGibs4 : ROTTGibs1 //Head
 {
 	Health 1
-	Gravity 0.35
+	//Gravity 0.35
 	States
 	{
 		Spawn:
@@ -722,10 +722,10 @@ ACTOR ROTTGibs4 : NewDukeGibs1 //Head
 	}
 }
 
-ACTOR ROTTGibs5 : NewDukeGibs1 //Middle Finger
+ACTOR ROTTGibs5 : ROTTGibs1 //Middle Finger
 {
 	Health 1
-	Gravity 0.35
+	//Gravity 0.35
 	States
 	{
 		Spawn:
@@ -739,10 +739,10 @@ ACTOR ROTTGibs5 : NewDukeGibs1 //Middle Finger
 	}
 }
 
-ACTOR ROTTGibs6 : NewDukeGibs1 //Leg
+ACTOR ROTTGibs6 : ROTTGibs1 //Leg
 {
 	Health 1
-	Gravity 0.35
+	//Gravity 0.35
 	States
 	{
 		Spawn:
@@ -756,10 +756,10 @@ ACTOR ROTTGibs6 : NewDukeGibs1 //Leg
 	}
 }
 
-ACTOR ROTTGibs7 : NewDukeGibs1 //Humerus
+ACTOR ROTTGibs7 : ROTTGibs1 //Humerus
 {
 	Health 1
-	Gravity 0.35
+	//Gravity 0.35
 	States
 	{
 		Spawn:
@@ -773,10 +773,10 @@ ACTOR ROTTGibs7 : NewDukeGibs1 //Humerus
 	}
 }
 
-ACTOR ROTTGibs8 : NewDukeGibs1 //Hip
+ACTOR ROTTGibs8 : ROTTGibs1 //Hip
 {
 	Health 1
-	Gravity 0.35
+	//Gravity 0.35
 	States
 	{
 		Spawn:
@@ -790,10 +790,10 @@ ACTOR ROTTGibs8 : NewDukeGibs1 //Hip
 	}
 }
 
-ACTOR ROTTGibs9 : NewDukeGibs1 //Limb
+ACTOR ROTTGibs9 : ROTTGibs1 //Limb
 {
 	Health 1
-	Gravity 0.35
+	//Gravity 0.35
 	States
 	{
 		Spawn:
