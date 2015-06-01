@@ -1455,30 +1455,35 @@ ACTOR Bishop3Doom : Bishop3
 	Scale 0.9
 	Radius 20
 	Height 56
+	-TELESTOMP
 }
 
 ACTOR Centaur3Doom : Centaur3
 {
 	Scale 0.9
 	Height 56
+	-TELESTOMP
 }
 
 ACTOR CentaurLeader3Doom : CentaurLeader3
 {
 	Scale 0.9
 	Height 56
+	-TELESTOMP
 }
 
 ACTOR Demon1CDoom : Demon1C 
 {
 	Scale 0.9
 	Radius 24
+	-TELESTOMP
 }
 
 ACTOR Demon2CDoom : Demon2C 
 {
 	Scale 0.9
 	Radius 24
+	-TELESTOMP
 }
 
 ACTOR Ettin3Doom : Ettin3
@@ -1486,6 +1491,7 @@ ACTOR Ettin3Doom : Ettin3
 	Scale 0.8
 	Radius 20
 	Height 56
+	-TELESTOMP
 }
 
 ACTOR FireDemon3Doom : FireDemon3 
@@ -1493,17 +1499,24 @@ ACTOR FireDemon3Doom : FireDemon3
 	Scale 0.9
 	Radius 16
 	Height 56
+	-TELESTOMP
 }
 
 ACTOR IceGuy3Doom : IceGuy3 
 {
 	Height 64
+	-TELESTOMP
 }
 
 ACTOR Korax3Doom : Korax3
 {
 	Height 100
+	-TELESTOMP
 }
+
+ACTOR Heresiarch3Doom : Heresiarch3 { -TELESTOMP }
+ACTOR Wraith3Doom : Wraith3 { -TELESTOMP }
+ACTOR WraithBuried3Doom : WraithBuried3 { -TELESTOMP }
 
 //smm_multiply
 
@@ -1552,6 +1565,30 @@ ACTOR MultiFireDemon3Doom : FireDemon3Doom
 ACTOR MultiIceGuy3Doom : IceGuy3Doom 
 {
 	Species "IceGuy"
+	+THRUSPECIES
+}
+
+ACTOR MultiKorax3Doom : Korax3Doom
+{
+	Species "Korax"
+	+THRUSPECIES
+}
+
+ACTOR MultiHeresiarch3Doom : Heresiarch3Doom
+{
+	Species "Heresiarch"
+	+THRUSPECIES
+}
+
+ACTOR MultiWraith3Doom : Wraith3Doom
+{
+	Species "Wraith"
+	+THRUSPECIES
+}
+
+ACTOR MultiWraithBuried3Doom : WraithBuried3Doom
+{
+	Species "Wraith"
 	+THRUSPECIES
 }
 
