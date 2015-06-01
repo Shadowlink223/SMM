@@ -41,11 +41,14 @@ ACTOR MotherofAllHunters
 	States 
 	{
 		Spawn:
-			HUMO A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 0, "SpawnITYTD")
-			HUMO A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 1, "SpawnHNTR")
-			HUMO A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 2, "SpawnHMP")
-			HUMO A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 3, "SpawnUV")
-			HUMO A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 4, "SpawnNightmare")
+			HUMO A 0
+			HUMO A 1 A_JumpIfInventory("AlreadySpawned",1,2)
+			HUMO A 1 ACS_ExecuteAlways(668,0,1,0)
+			HUMO A 0 A_GiveInventory("AlreadySpawned",1)
+			HUMO A 0 A_JumpIfInventory("DifficultyToken",4,"SpawnNightmare")
+			HUMO A 0 A_JumpIfInventory("DifficultyToken",3,"SpawnUV")
+			HUMO A 0 A_JumpIfInventory("DifficultyToken",2,"SpawnHMP")
+			HUMO A 0 A_JumpIfInventory("DifficultyToken",1,"SpawnHNTR")
 			Goto SpawnITYTD
 		SpawnITYTD:
 			TNT1 A 0 A_GiveInventory("AttackFrequency",210)
@@ -107,11 +110,10 @@ ACTOR MotherofAllHunters
 			Goto See
 		Missile:
 			HUMO A 3 A_FaceTarget
-			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 0, "MissileITYTD")
-			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 1, "MissileHNTR")
-			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 2, "MissileHMP")
-			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 3, "MissileUV")
-			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 4, "MissileNightmare")
+			TNT1 A 0 A_JumpIfInventory("DifficultyToken",4,"MissileNightmare")
+			TNT1 A 0 A_JumpIfInventory("DifficultyToken",3,"MissileUV")
+			TNT1 A 0 A_JumpIfInventory("DifficultyToken",2,"MissileHMP")
+			TNT1 A 0 A_JumpIfInventory("DifficultyToken",1,"MissileHNTR")
 		MissileITYTD:
 			TNT1 A 0 A_TakeInventory("FrameTicCounter",24)
 			TNT1 A 0 A_GiveInventory("AttackFrequency",210)
@@ -230,8 +232,9 @@ ACTOR MotherofAllHunters
 		XDeath2:
 			TNT1 A 0 A_JumpIfInventory("MarathonDukeGib",1,"DukeGibStart")
 			TNT1 A 0 ACS_ExecuteAlways(SAMSARA_CLIENT_DECORATE,0,10)
+			HUMO K 1
 			TNT1 A 0 A_SpawnItemEx("MotherHunterExplosion",0,0,32,0,0,0,0,1,0)
-			HUMO K 5 Bright A_PlaySoundEx("hunter/explode","body",0,0)
+			HUMO K 4 Bright A_PlaySoundEx("hunter/explode","body",0,0)
 			HUMO L 4 Bright A_Stop
 			HUMO MN 5 Bright A_NoBlocking
 			HUMO O -1 A_KillMaster

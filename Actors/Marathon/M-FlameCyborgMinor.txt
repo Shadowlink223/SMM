@@ -39,26 +39,29 @@ ACTOR FlameCyborgMinor
 	States 
 	{
 		Spawn:
-			CYMI A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 0, "SpawnITYTD")
-			CYMI A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 1, "SpawnHNTR")
-			CYMI A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 2, "SpawnHMP")
-			CYMI A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 3, "SpawnUV")
-			CYMI A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 4, "SpawnNightmare")
+			CYMI A 0
+			CYMI A 1 A_JumpIfInventory("AlreadySpawned",1,2)
+			CYMI A 1 ACS_ExecuteAlways(668,0,1,0)
+			CYMI A 0 A_GiveInventory("AlreadySpawned",1)
+			CYMI A 0 A_JumpIfInventory("DifficultyToken",4,"SpawnNightmare")
+			CYMI A 0 A_JumpIfInventory("DifficultyToken",3,"SpawnUV")
+			CYMI A 0 A_JumpIfInventory("DifficultyToken",2,"SpawnHMP")
+			CYMI A 0 A_JumpIfInventory("DifficultyToken",1,"SpawnHNTR")
 			Goto SpawnITYTD
 		SpawnITYTD:
-			TNT1 A 1 A_GiveInventory("AttackFrequency",210)
+			TNT1 A 0 A_GiveInventory("AttackFrequency",420)
 			Goto Spawn2
 		SpawnHNTR:
-			TNT1 A 1 A_GiveInventory("AttackFrequency",140)
+			TNT1 A 0 A_GiveInventory("AttackFrequency",280)
 			Goto Spawn2
 		SpawnHMP:
-			TNT1 A 1 A_GiveInventory("AttackFrequency",70)
+			TNT1 A 0 A_GiveInventory("AttackFrequency",140)
 			Goto Spawn2
 		SpawnUV:
-			TNT1 A 1 A_GiveInventory("AttackFrequency",35)
+			TNT1 A 0 A_GiveInventory("AttackFrequency",70)
 			Goto Spawn2
 		SpawnNightmare:
-			TNT1 A 1 A_GiveInventory("AttackFrequency",17) //17.5
+			TNT1 A 0 A_GiveInventory("AttackFrequency",35)
 			Goto Spawn2
 		Spawn2:
 			CYMI A 12 A_Look
@@ -110,14 +113,13 @@ ACTOR FlameCyborgMinor
 			Goto Missile1
 		Missile1:
 			CYMI D 0 A_FaceTarget
-			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 0, "Missile1ITYTD")
-			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 1, "Missile1HNTR")
-			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 2, "Missile1HMP")
-			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 3, "Missile1UV")
-			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 4, "Missile1Nightmare")
+			TNT1 A 0 A_JumpIfInventory("DifficultyToken",4,"Missile1Nightmare")
+			TNT1 A 0 A_JumpIfInventory("DifficultyToken",3,"Missile1UV")
+			TNT1 A 0 A_JumpIfInventory("DifficultyToken",2,"Missile1HMP")
+			TNT1 A 0 A_JumpIfInventory("DifficultyToken",1,"Missile1HNTR")
 		Missile1ITYTD:
 			TNT1 A 0 A_TakeInventory("FrameTicCounter",21)
-			TNT1 A 0 A_GiveInventory("AttackFrequency",210)
+			TNT1 A 0 A_GiveInventory("AttackFrequency",420)
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			TNT1 A 0 A_JumpIfInventory("AttackReps",1,"Missile1End")
 			CYMI DD 5 A_FaceTarget
@@ -128,7 +130,7 @@ ACTOR FlameCyborgMinor
 			Goto Missile1ITYTD+2
 		Missile1HNTR:
 			TNT1 A 0 A_TakeInventory("FrameTicCounter",21)
-			TNT1 A 0 A_GiveInventory("AttackFrequency",140)
+			TNT1 A 0 A_GiveInventory("AttackFrequency",280)
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			TNT1 A 0 A_JumpIfInventory("AttackReps",1,"Missile1End")
 			CYMI DD 5 A_FaceTarget
@@ -139,7 +141,7 @@ ACTOR FlameCyborgMinor
 			Goto Missile1HNTR+2
 		Missile1HMP:
 			TNT1 A 0 A_TakeInventory("FrameTicCounter",21)
-			TNT1 A 0 A_GiveInventory("AttackFrequency",70)
+			TNT1 A 0 A_GiveInventory("AttackFrequency",140)
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			TNT1 A 0 A_JumpIfInventory("AttackReps",1,"Missile1End")
 			CYMI DD 5 A_FaceTarget
@@ -150,7 +152,7 @@ ACTOR FlameCyborgMinor
 			Goto Missile1HMP+2
 		Missile1UV:
 			TNT1 A 0 A_TakeInventory("FrameTicCounter",21)
-			TNT1 A 0 A_GiveInventory("AttackFrequency",35)
+			TNT1 A 0 A_GiveInventory("AttackFrequency",70)
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			TNT1 A 0 A_JumpIfInventory("AttackReps",1,"Missile1End")
 			CYMI DD 5 A_FaceTarget
@@ -161,7 +163,7 @@ ACTOR FlameCyborgMinor
 			Goto Missile1UV+2
 		Missile1Nightmare:
 			TNT1 A 0 A_TakeInventory("FrameTicCounter",21)
-			TNT1 A 0 A_GiveInventory("AttackFrequency",17)
+			TNT1 A 0 A_GiveInventory("AttackFrequency",35)
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
 			TNT1 A 0 A_JumpIfInventory("AttackReps",1,"Missile1End")
 			CYMI DD 5 A_FaceTarget
@@ -176,11 +178,10 @@ ACTOR FlameCyborgMinor
 			Goto See
 		Missile2:
 			CYMI D 5 A_FaceTarget
-			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 0, "Missile2ITYTD")
-			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 1, "Missile2HNTR")
-			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 2, "Missile2HMP")
-			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 3, "Missile2UV")
-			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 4, "Missile2Nightmare")
+			TNT1 A 0 A_JumpIfInventory("DifficultyToken",4,"Missile2Nightmare")
+			TNT1 A 0 A_JumpIfInventory("DifficultyToken",3,"Missile2UV")
+			TNT1 A 0 A_JumpIfInventory("DifficultyToken",2,"Missile2HMP")
+			TNT1 A 0 A_JumpIfInventory("DifficultyToken",1,"Missile2HNTR")
 		Missile2ITYTD:
 			TNT1 A 0 A_TakeInventory("FrameTicCounter",21)
 			TNT1 A 0 A_GiveInventory("AttackFrequency",420)

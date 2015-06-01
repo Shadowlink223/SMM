@@ -38,11 +38,14 @@ ACTOR JuggernautMinor
 	States 
 	{
 		Spawn:
-			JUMI A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 0, "SpawnITYTD")
-			JUMI A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 1, "SpawnHNTR")
-			JUMI A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 2, "SpawnHMP")
-			JUMI A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 3, "SpawnUV")
-			JUMI A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 4, "SpawnNightmare")
+			JUMI A 0
+			JUMI A 1 A_JumpIfInventory("AlreadySpawned",1,2)
+			JUMI A 1 ACS_ExecuteAlways(668,0,1,0)
+			JUMI A 0 A_GiveInventory("AlreadySpawned",1)
+			JUMI A 0 A_JumpIfInventory("DifficultyToken",4,"SpawnNightmare")
+			JUMI A 0 A_JumpIfInventory("DifficultyToken",3,"SpawnUV")
+			JUMI A 0 A_JumpIfInventory("DifficultyToken",2,"SpawnHMP")
+			JUMI A 0 A_JumpIfInventory("DifficultyToken",1,"SpawnHNTR")
 			Goto SpawnITYTD
 		SpawnITYTD:
 			TNT1 A 0 A_GiveInventory("AttackFrequency",210)
@@ -81,11 +84,10 @@ ACTOR JuggernautMinor
 			Goto Missile2
 		Missile1:
 			JUMI A 0 A_FaceTarget
-			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 0, "Missile1ITYTD")
-			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 1, "Missile1HNTR")
-			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 2, "Missile1HMP")
-			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 3, "Missile1UV")
-			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 4, "Missile1Nightmare")
+			TNT1 A 0 A_JumpIfInventory("DifficultyToken",4,"Missile1Nightmare")
+			TNT1 A 0 A_JumpIfInventory("DifficultyToken",3,"Missile1UV")
+			TNT1 A 0 A_JumpIfInventory("DifficultyToken",2,"Missile1HMP")
+			TNT1 A 0 A_JumpIfInventory("DifficultyToken",1,"Missile1HNTR")
 		Missile1ITYTD:
 			TNT1 A 0 A_GiveInventory("AttackFrequency",210)
 			TNT1 A 0 A_JumpIfInventory("AttackReps",6,"Missile1End")
@@ -141,16 +143,15 @@ ACTOR JuggernautMinor
 			Goto See
 		Missile2:
 			JUMI A 0 A_FaceTarget
-			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 0, "Missile2ITYTD")
-			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 1, "Missile2HNTR")
-			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 2, "Missile2HMP")
-			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 3, "Missile2UV")
-			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 4, "Missile2Nightmare")
+			TNT1 A 0 A_JumpIfInventory("DifficultyToken",4,"Missile2Nightmare")
+			TNT1 A 0 A_JumpIfInventory("DifficultyToken",3,"Missile2UV")
+			TNT1 A 0 A_JumpIfInventory("DifficultyToken",2,"Missile2HMP")
+			TNT1 A 0 A_JumpIfInventory("DifficultyToken",1,"Missile2HNTR")
 		Missile2ITYTD:
 			TNT1 A 0 A_GiveInventory("AttackFrequency",210)
 			TNT1 A 0 A_FaceTarget
 			JUMI C 12 A_PlaySound("Juggernaut/prep", CHAN_BODY)
-			JUMA CCC 4 A_FaceTarget
+			JUMI CCC 4 A_FaceTarget
 			TNT1 A 0 A_PlaySound("M2Jugger/fire", CHAN_WEAPON)
 			TNT1 A 0 A_CustomMissile("JuggernautRocketITYTD", 90, -40,0,0,0)
 			JUMI D 12 Bright A_CustomMissile("JuggernautRocketITYTD", 90, 40,0,0,0)
@@ -159,7 +160,7 @@ ACTOR JuggernautMinor
 			TNT1 A 0 A_GiveInventory("AttackFrequency",140)
 			TNT1 A 0 A_FaceTarget
 			JUMI C 12 A_PlaySound("Juggernaut/prep", CHAN_BODY)
-			JUMA CCC 4 A_FaceTarget
+			JUMI CCC 4 A_FaceTarget
 			TNT1 A 0 A_PlaySound("M2Jugger/fire", CHAN_WEAPON)
 			TNT1 A 0 A_CustomMissile("JuggernautRocketHNTR", 90, -40,0,0,0)
 			JUMI D 12 Bright A_CustomMissile("JuggernautRocketHNTR", 90, 40,0,0,0)
@@ -168,7 +169,7 @@ ACTOR JuggernautMinor
 			TNT1 A 0 A_GiveInventory("AttackFrequency",70)
 			TNT1 A 0 A_FaceTarget
 			JUMI C 12 A_PlaySound("Juggernaut/prep", CHAN_BODY)
-			JUMA CCC 4 A_FaceTarget
+			JUMI CCC 4 A_FaceTarget
 			TNT1 A 0 A_PlaySound("M2Jugger/fire", CHAN_WEAPON)
 			TNT1 A 0 A_CustomMissile("JuggernautRocket", 90, -40,0,0,0)
 			JUMI D 12 Bright A_CustomMissile("JuggernautRocket", 90, 40,0,0,0)
@@ -177,7 +178,7 @@ ACTOR JuggernautMinor
 			TNT1 A 0 A_GiveInventory("AttackFrequency",35)
 			TNT1 A 0 A_FaceTarget
 			JUMI C 12 A_PlaySound("Juggernaut/prep", CHAN_BODY)
-			JUMA CCC 4 A_FaceTarget
+			JUMI CCC 4 A_FaceTarget
 			TNT1 A 0 A_PlaySound("M2Jugger/fire", CHAN_WEAPON)
 			TNT1 A 0 A_CustomMissile("JuggernautRocketUV", 90, -40,0,0,0)
 			JUMI D 12 Bright A_CustomMissile("JuggernautRocketUV", 90, 40,0,0,0)
@@ -186,7 +187,7 @@ ACTOR JuggernautMinor
 			TNT1 A 0 A_GiveInventory("AttackFrequency",17)
 			TNT1 A 0 A_FaceTarget
 			JUMI C 12 A_PlaySound("Juggernaut/prep", CHAN_BODY)
-			JUMA CCC 4 A_FaceTarget
+			JUMI CCC 4 A_FaceTarget
 			TNT1 A 0 A_PlaySound("M2Jugger/fire", CHAN_WEAPON)
 			TNT1 A 0 A_CustomMissile("JuggernautRocketNightmare", 90, -40,0,0,0)
 			JUMI D 12 Bright A_CustomMissile("JuggernautRocketNightmare", 90, 40,0,0,0)

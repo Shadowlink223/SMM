@@ -101,6 +101,7 @@
 #include "actors/Marathon/M-CyborgMajor.txt"
 #include "actors/Marathon/M-FlameCyborgMinor.txt"
 #include "actors/Marathon/M-FlameCyborgMajor.txt"
+#include "actors/Marathon/M-MotherofAllCyborgs.txt"
 #include "actors/Marathon/M-TrooperMinor.txt"
 #include "actors/Marathon/M-TrooperMajor.txt"
 

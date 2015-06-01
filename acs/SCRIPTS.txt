@@ -2,7 +2,8 @@
 #include "zcommon.acs"
 
 int SMMCVARINFO = 
-"Samsara Monster Mixer adds some of its own console variables to pick from.\n\
+"\n\
+Samsara Monster Mixer adds some of its own console variables to pick from.\n\
 [set] = doom/heretic/hexen/chex/wolf3d/duke3d/marathon\n\
 smm_[set] 0/1: Enable or disable any monster set from being picked. Disable all of them to see something interesting.\n\
 smm_wolfmode [0-2]: sets which skin to spawn for the Wolf3D set. 0 uses anything from Spear of Destiny Mission one, 1 uses SoD mission two/three skins, and 2 randomly spawns either.\n\
@@ -13,7 +14,9 @@ smm_skilloverride [0-5]: Overrides the skill check for the Marathon set. Setting
 smm_ban[set] 0/1: Bans a set from being chosen when smm_randomcycle is active.\n\
 smm_multiply [0-12]: When enabled, makes monsters and ammo multiply based on the value. In invasion mode, it only works on ammo.\n\
 smm_pinataparty 0/1: When enabled, makes monsters that are killed drop 5 randomized items, 10 for bosses. Includes anything from ammo, weapons, health, armor, powerups, runes, and an ally spawning beacon.\n\
-smm_newchex 0/1: If set to 1 in Doom, makes the spawners use the Samsara version of Snotfolus rather than the old one. In Chex Quest, it chooses between the old chex3.wad versions or the updated Samsara versions.";
+smm_newchex 0/1: If set to 1 in Doom, makes the spawners use the Samsara version of Snotfolus rather than the old one. In Chex Quest, it chooses between the old chex3.wad versions or the updated Samsara versions.\n\
+smm_fullradiusdmg 0/1: If set to 0, disables the full radius damage dealt by the Marathon set explosions.\n\
+smm_rarespawns 0/1: If set to 0, disables the chance for rare Marathon monsters to spawn.";
 
 int SMMCHANGES =
 "From 0.17 to 0.17b\n\
@@ -102,14 +105,16 @@ Script 668 (int spawncode, int override)
 	Switch(spawncode)
 	{
 		case 1:
-		if(!GetCVar("smm_invisiblemode")/*&&!GetCVar("smm_assholemode")*/)
+		if(GetCVar("smm_skilloverride") < 5)
 		{
-			SetActorState(0,"SpawnDefault",true);
+			multitoken = GetCVar("smm_skilloverride");
+			GiveInventory("DifficultyToken", multitoken);
 			terminate;
 		}
 		else
 		{
-			SetActorState(0,"SpawnInvisible",true);
+			multitoken = GameSkill ();
+			GiveInventory("DifficultyToken", multitoken);
 			terminate;
 		}
 
@@ -211,18 +216,6 @@ Script 668 (int spawncode, int override)
 					terminate;
 				}
 				else{restart;}
-			}
-			if(setselect == 9)
-			{
-				if(GetCVar("smm_unreal"))
-				{
-					SetActorState(0,"SetUnreal",true);
-					terminate;
-				}
-				else {restart;}
-				{
-			
-				}
 			}*/
 				
 		}

@@ -34,11 +34,14 @@ ACTOR TrooperMinor
 	States 
 	{
 		Spawn:
-			TRMI A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 0, "SpawnITYTD")
-			TRMI A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 1, "SpawnHNTR")
-			TRMI A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 2, "SpawnHMP")
-			TRMI A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 3, "SpawnUV")
-			TRMI A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 4, "SpawnNightmare")
+			TRMI A 0
+			TRMI A 1 A_JumpIfInventory("AlreadySpawned",1,2)
+			TRMI A 1 ACS_ExecuteAlways(668,0,1,0)
+			TRMI A 0 A_GiveInventory("AlreadySpawned",1)
+			TRMI A 0 A_JumpIfInventory("DifficultyToken",4,"SpawnNightmare")
+			TRMI A 0 A_JumpIfInventory("DifficultyToken",3,"SpawnUV")
+			TRMI A 0 A_JumpIfInventory("DifficultyToken",2,"SpawnHMP")
+			TRMI A 0 A_JumpIfInventory("DifficultyToken",1,"SpawnHNTR")
 			Goto SpawnITYTD
 		SpawnITYTD:
 			TNT1 A 0 A_GiveInventory("AttackFrequency",420)
@@ -115,11 +118,10 @@ ACTOR TrooperMinor
 			Goto Missile1
 		Missile1:
 			TRMI A 0 A_FaceTarget
-			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 0, "Missile1ITYTD")
-			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 1, "Missile1HNTR")
-			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 2, "Missile1HMP")
-			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 3, "Missile1UV")
-			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 4, "Missile1Nightmare")
+			TNT1 A 0 A_JumpIfInventory("DifficultyToken",4,"Missile1Nightmare")
+			TNT1 A 0 A_JumpIfInventory("DifficultyToken",3,"Missile1UV")
+			TNT1 A 0 A_JumpIfInventory("DifficultyToken",2,"Missile1HMP")
+			TNT1 A 0 A_JumpIfInventory("DifficultyToken",1,"Missile1HNTR")
 		Missile1ITYTD:
 			TNT1 A 0 A_TakeInventory("FrameTicCounter",20)
 			TNT1 A 0 A_GiveInventory("AttackFrequency",420)

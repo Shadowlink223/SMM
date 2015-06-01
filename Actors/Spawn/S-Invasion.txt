@@ -854,6 +854,12 @@ ACTOR FatsoSpawner //replaces Fatso
 		SetMarathon:
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_Jump(220,5)
+			TNT1 A 0 A_Jump(220,4)
+			TNT1 A 0 A_Jump(220,3)
+			TNT1 A 1 A_SpawnItemEx("MotherofAllCyborgsSpawnerInv",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_Die
+			Goto Death
 			TNT1 A 1 A_SpawnItemEx("CyborgMajorSpawnerInv",0,0,0,0,0,0,0,288)
 			TNT1 A 1 A_Die
 			Goto Death

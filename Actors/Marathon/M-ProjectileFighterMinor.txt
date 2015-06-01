@@ -36,11 +36,14 @@ ACTOR ProjectileFighterMinor
 	States 
 	{
 		Spawn:
-			PFMI A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 0, "SpawnITYTD")
-			PFMI A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 1, "SpawnHNTR")
-			PFMI A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 2, "SpawnHMP")
-			PFMI A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 3, "SpawnUV")
-			PFMI A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 4, "SpawnNightmare")
+			PFMI A 0
+			PFMI A 1 A_JumpIfInventory("AlreadySpawned",1,2)
+			PFMI A 1 ACS_ExecuteAlways(668,0,1,0)
+			PFMI A 0 A_GiveInventory("AlreadySpawned",1)
+			PFMI A 0 A_JumpIfInventory("DifficultyToken",4,"SpawnNightmare")
+			PFMI A 0 A_JumpIfInventory("DifficultyToken",3,"SpawnUV")
+			PFMI A 0 A_JumpIfInventory("DifficultyToken",2,"SpawnHMP")
+			PFMI A 0 A_JumpIfInventory("DifficultyToken",1,"SpawnHNTR")
 			Goto SpawnITYTD
 		SpawnITYTD:
 			TNT1 A 0 A_GiveInventory("AttackFrequency",420)
@@ -102,11 +105,11 @@ ACTOR ProjectileFighterMinor
 		Melee:
 			TNT1 A 0
 			TNT1 A 0 A_JumpIfInventory("AttackFrequency",1,6)
-			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 0, "MeleeITYTD")
-			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 1, "MeleeHNTR")
-			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 2, "MeleeHMP")
-			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 3, "MeleeUV")
-			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 4, "MeleeNightmare")
+			TNT1 A 0 A_JumpIfInventory("DifficultyToken",4,"MeleeNightmare")
+			TNT1 A 0 A_JumpIfInventory("DifficultyToken",3,"MeleeUV")
+			TNT1 A 0 A_JumpIfInventory("DifficultyToken",2,"MeleeHMP")
+			TNT1 A 0 A_JumpIfInventory("DifficultyToken",1,"MeleeHNTR")
+			Goto MeleeITYTD
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			TNT1 A 0 A_TakeInventory("FrameTicCounter",32)
 			TNT1 A 0 A_TakeInventory("AttackFrequency",1)
@@ -155,11 +158,10 @@ ACTOR ProjectileFighterMinor
 		Missile:
 			TNT1 A 0 A_TakeInventory("FrameTicCounter",32)
 			TNT1 A 0 A_FaceTarget
-			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 0, "MissileITYTD")
-			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 1, "MissileHNTR")
-			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 2, "MissileHMP")
-			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 3, "MissileUV")
-			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 4, "MissileNightmare")
+			TNT1 A 0 A_JumpIfInventory("DifficultyToken",4,"MissileNightmare")
+			TNT1 A 0 A_JumpIfInventory("DifficultyToken",3,"MissileUV")
+			TNT1 A 0 A_JumpIfInventory("DifficultyToken",2,"MissileHMP")
+			TNT1 A 0 A_JumpIfInventory("DifficultyToken",1,"MissileHNTR")
 		MissileITYTD:
 			TNT1 A 0 A_GiveInventory("AttackFrequency",420)
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)

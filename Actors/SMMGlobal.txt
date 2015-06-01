@@ -1,4 +1,6 @@
 ACTOR MultiplyToken : Inventory { Inventory.MaxAmount 12 }
+ACTOR DifficultyToken : Inventory { Inventory.MaxAmount 4 }
+ACTOR AlreadySpawned : Inventory { Inventory.MaxAmount 1 }
 
 ACTOR PinataDrop : RandomSpawner
 {

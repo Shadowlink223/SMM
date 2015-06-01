@@ -34,11 +34,14 @@ ACTOR FighterMajor
 	States 
 	{
 		Spawn:
-			FIMA A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 0, "SpawnITYTD")
-			FIMA A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 1, "SpawnHNTR")
-			FIMA A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 2, "SpawnHMP")
-			FIMA A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 3, "SpawnUV")
-			FIMA A 1 A_JumpIf(ACS_ExecuteWithResult(680,3) == 4, "SpawnNightmare")
+			FIMA A 0
+			FIMA A 1 A_JumpIfInventory("AlreadySpawned",1,2)
+			FIMA A 1 ACS_ExecuteAlways(668,0,1,0)
+			FIMA A 0 A_GiveInventory("AlreadySpawned",1)
+			FIMA A 0 A_JumpIfInventory("DifficultyToken",4,"SpawnNightmare")
+			FIMA A 0 A_JumpIfInventory("DifficultyToken",3,"SpawnUV")
+			FIMA A 0 A_JumpIfInventory("DifficultyToken",2,"SpawnHMP")
+			FIMA A 0 A_JumpIfInventory("DifficultyToken",1,"SpawnHNTR")
 			Goto SpawnITYTD
 		SpawnITYTD:
 			TNT1 A 0 A_GiveInventory("AttackFrequency",210)
@@ -88,11 +91,11 @@ ACTOR FighterMajor
 		Melee:
 			TNT1 A 0
 			TNT1 A 0 A_JumpIfInventory("AttackFrequency",1,6)
-			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 0, "MeleeITYTD")
-			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 1, "MeleeHNTR")
-			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 2, "MeleeHMP")
-			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 3, "MeleeUV")
-			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,3) == 4, "MeleeNightmare")
+			TNT1 A 0 A_JumpIfInventory("DifficultyToken",4,"MeleeNightmare")
+			TNT1 A 0 A_JumpIfInventory("DifficultyToken",3,"MeleeUV")
+			TNT1 A 0 A_JumpIfInventory("DifficultyToken",2,"MeleeHMP")
+			TNT1 A 0 A_JumpIfInventory("DifficultyToken",1,"MeleeHNTR")
+			Goto MeleeITYTD
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			TNT1 A 0 A_TakeInventory("FrameTicCounter",32)
 			TNT1 A 0 A_TakeInventory("AttackFrequency",1)
