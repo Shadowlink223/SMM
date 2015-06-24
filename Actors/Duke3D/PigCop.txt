@@ -28,6 +28,14 @@ ACTOR PigCop
 	States 
 	{
 		Spawn:
+			PIGC A 0
+			PIGC A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+			PIGC A 1 ACS_ExecuteAlways(668,0,1,0)
+			PIGC A 0 A_GiveInventory("AlreadySpawned",1)
+			PIGC A 0 A_JumpIfInventory("InvisibleToken",1,2)
+			PIGC A 0 A_Jump(256,2)
+			PIGC A 0 A_ChangeFlag("STEALTH",1)
+		Spawn2:
 			PIGC A 1 A_Look
 			Loop
 		See:
@@ -177,6 +185,7 @@ ACTOR PigCop
 			TNT1 A -1
 			stop
 		Raise:
+			TNT1 A 0 A_JumpIfInventory("EnemyZorched",1,"ZorchRaise")
 			PIGC PONMLK 5
 			Goto See
 		ZorchRaise:

@@ -32,6 +32,14 @@ ACTOR ProtectorDrone
 	States
 	{
 		Spawn:
+			PRDR A 0
+			PRDR A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+			PRDR A 1 ACS_ExecuteAlways(668,0,1,0)
+			PRDR A 0 A_GiveInventory("AlreadySpawned",1)
+			PRDR A 0 A_JumpIfInventory("InvisibleToken",1,2)
+			PRDR A 0 A_Jump(256,2)
+			PRDR A 0 A_ChangeFlag("STEALTH",1)
+		Spawn2:
 			PRDR A 1 A_Look
 			Loop
 		See:
@@ -220,6 +228,7 @@ ACTOR ProtectorDrone
 			TNT1 A -1
 			stop
 		Raise:
+			TNT1 A 0 A_JumpIfInventory("EnemyZorched",1,"ZorchRaise")
 			PRDR WVUTSRQP 5
 			Goto See
 		ZorchRaise:

@@ -30,6 +30,14 @@ ACTOR SODOfficer
 	States 
 	{
 		Spawn:
+			SOFF A 0
+			SOFF A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+			SOFF A 1 ACS_ExecuteAlways(668,0,1,0)
+			SOFF A 0 A_GiveInventory("AlreadySpawned",1)
+			SOFF A 0 A_JumpIfInventory("InvisibleToken",1,2)
+			SOFF A 0 A_Jump(256,2)
+			SOFF A 0 A_ChangeFlag("STEALTH",1)
+		Spawn2:
 			SOFF A 1 A_Look
 			Loop
 		See:
@@ -173,6 +181,7 @@ ACTOR SODOfficer
 			TNT1 A -1
 			stop
 		Raise:
+			TNT1 A 0 A_JumpIfInventory("EnemyZorched",1,"ZorchRaise")
 			SOFF NMLK 5
 			Goto See
 		ZorchRaise:

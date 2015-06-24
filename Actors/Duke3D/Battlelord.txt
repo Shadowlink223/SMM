@@ -37,6 +37,14 @@ ACTOR Battlelord
 	States 
 	{
 		Spawn:
+			BTLO A 0
+			BTLO A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+			BTLO A 1 ACS_ExecuteAlways(668,0,1,0)
+			BTLO A 0 A_GiveInventory("AlreadySpawned",1)
+			BTLO A 0 A_JumpIfInventory("InvisibleToken",1,2)
+			BTLO A 0 A_Jump(256,2)
+			BTLO A 0 A_ChangeFlag("STEALTH",1)
+		Spawn2:
 			BTLO A 1 A_Look
 			Loop
 		See:
@@ -301,6 +309,7 @@ ACTOR MiniBattlelord : Battlelord
 			TNT1 A -1 A_KillMaster
 			stop
 		Raise:
+			TNT1 A 0 A_JumpIfInventory("EnemyZorched",1,"ZorchRaise")
 			BTLO NMLKJI 5
 			Goto See
 		ZorchRaise:

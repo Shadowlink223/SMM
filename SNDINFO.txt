@@ -835,6 +835,9 @@ devilinc/death			soddide
 sodss/fire				sodssfi
 sdog/bite				soddgat
 
+wolfspectre/sight		wspecsit
+wolfspectre/death		wspecdth
+
 c3dmage/pain			c3dmagpn
 c3dmage/death			c3dmagdt
 c3dproj/death			c3dprodt
@@ -931,6 +934,10 @@ hguard/pain				hgpain
 hguard/death			hgdeath
 rottgib/splash			agibspl
 rottgib/squish			asquish
+$random rott/ricochet { rott/ricochet1 rott/ricochet2 rott/ricochet3 }
+rott/ricochet1			rottric1
+rott/ricochet2			rottric2
+rott/ricochet3			rottric3
 
 /* *************************************************************************/
 /*

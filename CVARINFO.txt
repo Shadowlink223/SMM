@@ -1,34 +1,36 @@
 //Main monster set toggles
 
-server bool smm_doom = true;
-server bool smm_heretic = true;
-server bool smm_hexen = true;
-server bool smm_chex = true;
-server bool smm_wolf3d = true;
-server bool smm_duke3d = true;
-server bool smm_marathon = false;
-//server bool smm_quake = true;
+server bool mm_doom = true;
+server bool mm_heretic = true;
+server bool mm_hexen = true;
+server bool mm_chex = true;
+server bool mm_wolf3d = true;
+server bool mm_duke3d = true;
+server bool mm_marathon = false;
+//server bool mm_quake = true;
 
 //Mode toggles
 
-server int smm_wolfmode = 2;
-server bool smm_fakehitlerfire = false;
-server bool smm_wolffastdeath = false;
-server int smm_randomcycle = 0;
-server int smm_skilloverride = 5;
-server bool smm_bandoom = false;
-server bool smm_banheretic = false;
-server bool smm_banhexen = false;
-server bool smm_banchex = false;
-server bool smm_banwolf3d = false;
-server bool smm_banduke3d = false;
-server bool smm_banmarathon = true;
-server int smm_multiply = 0;
-server bool smm_pinataparty = false;
-server bool smm_newchex = false;
-server bool smm_rarespawns = false;
-server bool smm_fullradiusdmg = true;
-server bool smm_init = true;
-//server bool smm_dropdefault = false;
-//server bool smm_assholemode = false;
-//server bool smm_invisiblemode = false;
+server int mm_wolfmode = 2;
+server bool mm_fakehitlerfire = false;
+server bool mm_wolffastdeath = false;
+server int mm_randomcycle = 0;
+server int mm_skilloverride = 5;
+server bool mm_bandoom = false;
+server bool mm_banheretic = false;
+server bool mm_banhexen = false;
+server bool mm_banchex = false;
+server bool mm_banwolf3d = false;
+server bool mm_banduke3d = false;
+server bool mm_banmarathon = true;
+server int mm_multiply = 0;
+server bool mm_pinataparty = false;
+server bool mm_newchex = false;
+server bool mm_rarespawns = false;
+server bool mm_fullradiusdmg = true;
+server bool mm_init = true;
+server bool mm_invisiblemode = false;
+server bool mm_nobats = false;
+server bool mm_specpermdeath = false;
+//server bool mm_dropdefault = false;
+//server bool mm_assholemode = false;

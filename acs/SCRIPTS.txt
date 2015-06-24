@@ -3,35 +3,38 @@
 
 int SMMCVARINFO = 
 "\n\
+\n\
 Samsara Monster Mixer adds some of its own console variables to pick from.\n\
 [set] = doom/heretic/hexen/chex/wolf3d/duke3d/marathon\n\
-smm_[set] 0/1: Enable or disable any monster set from being picked. Disable all of them to see something interesting.\n\
-smm_wolfmode [0-2]: sets which skin to spawn for the Wolf3D set. 0 uses anything from Spear of Destiny Mission one, 1 uses SoD mission two/three skins, and 2 randomly spawns either.\n\
-smm_fakehitlerfire 0/1: Toggles the speed of the fake hitler fireballs. 0 is slow and 1 is fast. Fast mode is recommended for large maps.\n\
-smm_wolffastdeath 0/1: If set to 1, makes certain Wolf3D bosses instantly fall over upon death, otherwise plays the original animation.\n\
-smm_randomcycle [0-3]: When set to 1 or higher, randomly picks a set or sets for the next map or wave.\n\
-smm_skilloverride [0-5]: Overrides the skill check for the Marathon set. Setting it to 5 disables this. e.g. setting this to 4 while playing on skill 1 would spawn Nightmare level monsters on Hey Not Too Rough difficulty\n\
-smm_ban[set] 0/1: Bans a set from being chosen when smm_randomcycle is active.\n\
-smm_multiply [0-12]: When enabled, makes monsters and ammo multiply based on the value. In invasion mode, it only works on ammo.\n\
-smm_pinataparty 0/1: When enabled, makes monsters that are killed drop 5 randomized items, 10 for bosses. Includes anything from ammo, weapons, health, armor, powerups, runes, and an ally spawning beacon.\n\
-smm_newchex 0/1: If set to 1 in Doom, makes the spawners use the Samsara version of Snotfolus rather than the old one. In Chex Quest, it chooses between the old chex3.wad versions or the updated Samsara versions.\n\
-smm_fullradiusdmg 0/1: If set to 0, disables the full radius damage dealt by the Marathon set explosions.\n\
-smm_rarespawns 0/1: If set to 0, disables the chance for rare Marathon monsters to spawn.";
+mm_[set] 0/1: Enable or disable any monster set from being picked. Disable all of them to see something interesting.\n\
+mm_wolfmode [0-2]: sets which skin to spawn for the Wolf3D set. 0 uses anything from Spear of Destiny Mission one, 1 uses SoD mission two/three skins, and 2 randomly spawns either.\n\
+mm_fakehitlerfire 0/1: Toggles the speed of the fake hitler fireballs. 0 is slow and 1 is fast. Fast mode is recommended for large maps.\n\
+mm_wolffastdeath 0/1: If set to 1, makes certain Wolf3D bosses instantly fall over upon death, otherwise plays the original animation.\n\
+mm_randomcycle [0-3]: When set to 1 or higher, randomly picks a set or sets for the next map or wave.\n\
+mm_skilloverride [0-5]: Overrides the skill check for the Marathon set. Setting it to 5 disables this. e.g. setting this to 4 while playing on skill 1 would spawn Nightmare level monsters on Hey Not Too Rough difficulty\n\
+mm_ban[set] 0/1: Bans a set from being chosen when smm_randomcycle is active.\n\
+mm_multiply [0-12]: When enabled, makes monsters and ammo multiply based on the value. In invasion mode, it only works on ammo.\n\
+mm_pinataparty 0/1: When enabled, makes monsters that are killed drop 5 randomized items, 10 for bosses. Includes anything from ammo, weapons, health, armor, powerups, runes, and an ally spawning beacon.\n\
+mm_newchex 0/1: If set to 1 in Doom, makes the spawners use the Samsara version of Snotfolus rather than the old one. In Chex Quest, it chooses between the old chex3.wad versions or the updated Samsara versions.\n\
+mm_fullradiusdmg 0/1: If set to 0, disables the full radius damage dealt by the Marathon set explosions.\n\
+mm_rarespawns 0/1: If set to 0, disables the chance for rare Marathon monsters to spawn.\n\
+mm_invisiblemode 0/1: If set 1, makes all monsters completely invisible except when attacking, in pain, or dead.\n\
+mm_nobats 0/1: If set to 1, removes the gun bats from Wolf3D and replaces them with spectres from Spear of Destiny\n\
+mm_specpermdeath 0/1: If set to 1, makes the SoD Spectres die permanently instead of going dormant.";
 
 int SMMCHANGES =
-"From 0.17 to 0.17b\n\
+"From 0.17b to 0.18\n\
 \n\
 Fixes:\n\
 - The script for smm_randomcycle would sometimes outrun the spawners on monster heavy maps, it has been reworked so the spawners stand by until randomcycle is finished setting up.\n\
 - Changed the sprite name for the Super Cycloptis as it caused a conflict with Naraka.\n\
 - Fixed a loophole where BJ could kill Marathon monsters that were invulnerable to fire with his flamethrower.\n\
-- D'Sparil spawning in monsters was causing problems in Invasion mode, the spawning method has been changed to A_SpawnItemEx.\n\
-- DukeJibs4 had a wrong sprite name in the Death2 state, renamed to fix.\n\
-- Marathon Juggernauts could get stuck on other actors during its death state, so it wouldn't be able to die. Added THRUACTORS in the Death state to fix this.\n\
-- Finally remembered to fix a long existing issue involving some of the SoD Mission 2 bosses using incorrect projectile sprites.\n\
+- Fixed a problem with Doom monsters that wouldn't trigger A_BossDeath in single player while bloodyhell was enabled\n\
 Additions:\n\
 - Throwback monsters for each set. Includes a yellow armored flemoid for Chex, the High Guard from Rise of the Triad, and the Mage from Catacomb 3-D\n\
 - Rare monster spawns for the Marathon set.\n\
+- Invisible monsters mode.\n\
+- Added mm_nobats for the Wolf3D set for those who don't like the gun bats.\n\
 Tweaks:\n\
 - Added +QUICKTORETALIATE to the Marathon set to improve monster accuracy.\n\
 - Lowered the movement speed on the Mini-Battlelord so it's less jittery.\n\
@@ -40,7 +43,9 @@ Tweaks:\n\
 - The M2 Enforcer now replaces the Arachnotron instead of the Cyborg.\n\
 - Hunters now go boom on XDeath, dealing 61-90 damage.\n\
 - Juggernauts from Marathon cause a blinding flash after they explode.\n\
-- Wolfenstein SS now drops a weapon when killed. (Slot 2 for BJ, slot 4 for the rest)";
+- Wolfenstein SS now drops a weapon when killed. (Slot 2 for BJ, slot 4 for the rest)\n\
+- Added two new puffs for the High Guard and M1 Juggernaut.\n\
+- All CVARs now use the prefix mm_ instead of smm_";
 
 global int 2:alreadyshowedbs;
 global int 3:randomallclear;
@@ -49,33 +54,37 @@ global int 4:lastchosen;
 Script 667 OPEN 
 {
 	randomallclear = 0;
-	if (!GetCVar("smm_init"))
+	if (!GetCVar("mm_init"))
 	{
-		SetCVar("smm_doom", true);
-		SetCVar("smm_heretic", true);
-		SetCVar("smm_hexen", true);
-		SetCVar("smm_chex", true);
-		SetCVar("smm_wolf3d", true);
-		SetCVar("smm_duke3d", true);
-		SetCVar("smm_marathon", false);
-		SetCVar("smm_wolfmode", 2);
-		SetCVar("smm_fakehitlerfire", false);
-		SetCVar("smm_wolffastdeath", false);
-		SetCVar("smm_randomcycle", 0);
-		SetCVar("smm_skilloverride", 5);
-		SetCVar("smm_bandoom", false);
-		SetCVar("smm_banheretic", false);
-		SetCVar("smm_banhexen", false);
-		SetCVar("smm_banchex", false);
-		SetCVar("smm_banwolf3d", false);
-		SetCVar("smm_banduke3d", false);
-		SetCVar("smm_banmarathon", true);
-		SetCVar("smm_multiply", 0);
-		SetCVar("smm_newchex", false);
-		SetCVar("smm_pinataparty", false);
-		SetCVar("smm_rarespawns", false);
+		SetCVar("mm_doom", true);
+		SetCVar("mm_heretic", true);
+		SetCVar("mm_hexen", true);
+		SetCVar("mm_chex", true);
+		SetCVar("mm_wolf3d", true);
+		SetCVar("mm_duke3d", true);
+		SetCVar("mm_marathon", false);
+		SetCVar("mm_wolfmode", 2);
+		SetCVar("mm_fakehitlerfire", false);
+		SetCVar("mm_wolffastdeath", false);
+		SetCVar("mm_randomcycle", 0);
+		SetCVar("mm_skilloverride", 5);
+		SetCVar("mm_bandoom", false);
+		SetCVar("mm_banheretic", false);
+		SetCVar("mm_banhexen", false);
+		SetCVar("mm_banchex", false);
+		SetCVar("mm_banwolf3d", false);
+		SetCVar("mm_banduke3d", false);
+		SetCVar("mm_banmarathon", true);
+		SetCVar("mm_multiply", 0);
+		SetCVar("mm_newchex", false);
+		SetCVar("mm_pinataparty", false);
+		SetCVar("mm_rarespawns", false);
+		SetCVar("mm_fullradiusdmg", true);
+		SetCVar("mm_invisiblemode", false);
+		SetCVar("mm_nobats", false);
+		SetCVar("mm_specpermdeath", false);
 		
-		SetCVar("smm_init", true);
+		SetCVar("mm_init", true);
 	}
 	ACS_Execute(669, 0, 0, 0, 0);
 	
@@ -105,28 +114,34 @@ Script 668 (int spawncode, int override)
 	Switch(spawncode)
 	{
 		case 1:
-		if(GetCVar("smm_skilloverride") < 5)
+		if(GetCVar("mm_skilloverride") < 5)
 		{
-			multitoken = GetCVar("smm_skilloverride");
+			multitoken = GetCVar("mm_skilloverride");
 			GiveInventory("DifficultyToken", multitoken);
-			terminate;
 		}
 		else
 		{
 			multitoken = GameSkill ();
 			GiveInventory("DifficultyToken", multitoken);
-			terminate;
 		}
+		
+		if(GetCVar("mm_invisiblemode") == 1)
+		{
+			GiveInventory("InvisibleToken",1);
+			SetActorProperty(0,APROP_Alpha,0);
+		}
+		else { }
+		terminate;
 
 		case 2:
-		if(!GetCvar("smm_doom")&&!GetCvar("smm_heretic")&&!GetCvar("smm_hexen")&&!GetCvar("smm_chex")&&!GetCvar("smm_wolf3d")&&!GetCvar("smm_duke3d")&&!GetCvar("smm_marathon")/*&&!GetCvar("smm_quake*/) 
+		if(!GetCvar("mm_doom")&&!GetCvar("mm_heretic")&&!GetCvar("mm_hexen")&&!GetCvar("mm_chex")&&!GetCvar("mm_wolf3d")&&!GetCvar("mm_duke3d")&&!GetCvar("mm_marathon")/*&&!GetCvar("mm_quake*/) 
 		{
 			SetActorState(0,"SetNull",true);
 			terminate;
 		}
 		else
 		{
-			if(GetCvar("smm_randomcycle") > 0)
+			if(GetCvar("mm_randomcycle") > 0)
 			{
 				until (randomallclear == 1) { Delay(5); }
 			}
@@ -134,7 +149,7 @@ Script 668 (int spawncode, int override)
 			setselect = random(1,7);
 			if(setselect == 1)
 			{
-				if(GetCvar("smm_doom"))
+				if(GetCvar("mm_doom"))
 				{
 					SetActorState(0,"SetDoom",true);
 					terminate;
@@ -143,7 +158,7 @@ Script 668 (int spawncode, int override)
 			}
 			if(setselect == 2)
 			{
-				if(GetCvar("smm_heretic"))
+				if(GetCvar("mm_heretic"))
 				{
 					SetActorState(0,"SetHeretic",true);
 					terminate;
@@ -152,7 +167,7 @@ Script 668 (int spawncode, int override)
 			}
 			if(setselect == 3)
 			{
-				if(GetCvar("smm_hexen"))
+				if(GetCvar("mm_hexen"))
 				{
 					SetActorState(0,"SetHexen",true);
 					terminate;
@@ -161,7 +176,7 @@ Script 668 (int spawncode, int override)
 			}
 			if(setselect == 4)
 			{
-				if(GetCvar("smm_chex"))
+				if(GetCvar("mm_chex"))
 				{
 					SetActorState(0,"SetChex",true);
 					terminate;
@@ -170,19 +185,19 @@ Script 668 (int spawncode, int override)
 			}
 			if(setselect == 5)
 			{
-				if(GetCvar("smm_wolf3d"))
+				if(GetCvar("mm_wolf3d"))
 				{
-					if(GetCvar("smm_wolfmode") == 0)
+					if(GetCvar("mm_wolfmode") == 0)
 					{
 						SetActorState(0,"SODM1",true);
 						terminate;
 					}
-					if(GetCvar("smm_wolfmode") == 1)
+					if(GetCvar("mm_wolfmode") == 1)
 					{
 						SetActorState(0,"SODM2",true);
 						terminate;
 					}
-					if(GetCvar("smm_wolfmode") == 2)
+					if(GetCvar("mm_wolfmode") == 2)
 					{
 						SetActorState(0,"SetWolf3D",true);
 						terminate;
@@ -192,7 +207,7 @@ Script 668 (int spawncode, int override)
 			}
 			if(setselect == 6)
 			{
-				if(GetCvar("smm_duke3D"))
+				if(GetCvar("mm_duke3D"))
 				{
 					SetActorState(0,"SetDuke3D",true);
 					terminate;
@@ -201,7 +216,7 @@ Script 668 (int spawncode, int override)
 			}
 			if(setselect == 7)
 			{
-				if(GetCvar("smm_marathon"))
+				if(GetCvar("mm_marathon"))
 				{
 					SetActorState(0,"SetMarathon",true);
 					terminate;
@@ -210,7 +225,7 @@ Script 668 (int spawncode, int override)
 			}
 /*			if(setselect == 8)
 			{
-				if(GetCvar("smm_quake"))
+				if(GetCvar("mm_quake"))
 				{
 					SetActorState(0,"SetQuake",true);
 					terminate;
@@ -222,11 +237,11 @@ Script 668 (int spawncode, int override)
 		break;
 		
 		case 3:
-		if(GetCVar("smm_multiply") > 1)
+		if(GetCVar("mm_multiply") > 1)
 		{
 			if(GetCvar("invasion") == 0||override == 1)
 			{
-				multitoken = GetCvar("smm_multiply");
+				multitoken = GetCvar("mm_multiply");
 				GiveInventory("MultiplyToken", multitoken);
 				break;
 			}
@@ -242,17 +257,17 @@ Script 669 (void)
 	int randomvalue;
 	int randnum;
 	
-	if (GetCVar("smm_randomcycle"))
+	if (GetCVar("mm_randomcycle"))
 	{
 		selectloop = 0;
-		randomvalue = GetCvar("smm_randomcycle");
-		SetCVar("smm_doom", false);
-		SetCVar("smm_heretic", false);
-		SetCVar("smm_hexen", false);
-		SetCVar("smm_chex", false);
-		SetCVar("smm_wolf3d", false);
-		SetCVar("smm_duke3d", false);
-		SetCVar("smm_marathon", false);
+		randomvalue = GetCvar("mm_randomcycle");
+		SetCVar("mm_doom", false);
+		SetCVar("mm_heretic", false);
+		SetCVar("mm_hexen", false);
+		SetCVar("mm_chex", false);
+		SetCVar("mm_wolf3d", false);
+		SetCVar("mm_duke3d", false);
+		SetCVar("mm_marathon", false);
 		
 		While (selectloop < randomvalue)
 		{
@@ -260,38 +275,38 @@ Script 669 (void)
 			
 			if (randnum == 1)
 			{
-				if(GetCVar("smm_doom")||GetCVar("smm_bandoom")||lastchosen == 1) { }
-				else { SetCVar("smm_doom", true); selectloop++; lastchosen = 1; }
+				if(GetCVar("mm_doom")||GetCVar("mm_bandoom")||lastchosen == 1) { }
+				else { SetCVar("mm_doom", true); selectloop++; lastchosen = 1; }
 			}
 			if (randnum == 2)
 			{
-				if(GetCVar("smm_heretic")||GetCVar("smm_banheretic")||lastchosen == 2) { }
-				else { SetCVar("smm_heretic", true); selectloop++; lastchosen = 2; }
+				if(GetCVar("mm_heretic")||GetCVar("mm_banheretic")||lastchosen == 2) { }
+				else { SetCVar("mm_heretic", true); selectloop++; lastchosen = 2; }
 			}
 			if (randnum == 3)
 			{
-				if(GetCVar("smm_hexen")||GetCVar("smm_banhexen")||lastchosen == 3) { }
-				else { SetCVar("smm_hexen", true); selectloop++; lastchosen = 3; }
+				if(GetCVar("mm_hexen")||GetCVar("mm_banhexen")||lastchosen == 3) { }
+				else { SetCVar("mm_hexen", true); selectloop++; lastchosen = 3; }
 			}
 			if (randnum == 4)
 			{
-				if(GetCVar("smm_chex")||GetCVar("smm_banchex")||lastchosen == 4) { }
-				else { SetCVar("smm_chex", true); selectloop++; lastchosen = 4; }
+				if(GetCVar("mm_chex")||GetCVar("mm_banchex")||lastchosen == 4) { }
+				else { SetCVar("mm_chex", true); selectloop++; lastchosen = 4; }
 			}
 			if (randnum == 5)
 			{
-				if(GetCVar("smm_wolf3d")||GetCVar("smm_banwolf3d")||lastchosen == 5) { }
-				else { SetCVar("smm_wolf3d", true); selectloop++; lastchosen = 5; }
+				if(GetCVar("mm_wolf3d")||GetCVar("mm_banwolf3d")||lastchosen == 5) { }
+				else { SetCVar("mm_wolf3d", true); selectloop++; lastchosen = 5; }
 			}
 			if (randnum == 6)
 			{
-				if(GetCVar("smm_duke3d")||GetCVar("smm_banduke3d")||lastchosen == 6) { }
-				else { SetCVar("smm_duke3d", true); selectloop++; lastchosen = 6; }
+				if(GetCVar("mm_duke3d")||GetCVar("mm_banduke3d")||lastchosen == 6) { }
+				else { SetCVar("mm_duke3d", true); selectloop++; lastchosen = 6; }
 			}
 			if (randnum == 7)
 			{
-				if(GetCVar("smm_marathon")||GetCVar("smm_banmarathon")||lastchosen == 7) { }
-				else { SetCVar("smm_marathon", true); selectloop++; lastchosen = 7; }
+				if(GetCVar("mm_marathon")||GetCVar("mm_banmarathon")||lastchosen == 7) { }
+				else { SetCVar("mm_marathon", true); selectloop++; lastchosen = 7; }
 			}
 		}
 		randomallclear = 1;
@@ -358,17 +373,17 @@ Script 680 (int pick)
 	Switch (pick)
 	{
 		case 1:
-        response = GetCVar("smm_fakehitlerfire");
+        response = GetCVar("mm_fakehitlerfire");
         break;
 		
 		case 2:
-		response = GetCVar("smm_wolffastdeath");
+		response = GetCVar("mm_wolffastdeath");
 		break;
 		
 		case 3:
-		if(GetCVar("smm_skilloverride") < 5)
+		if(GetCVar("mm_skilloverride") < 5)
 		{
-			response = GetCVar("smm_skilloverride");
+			response = GetCVar("mm_skilloverride");
 		}
 		else
 		{
@@ -377,27 +392,35 @@ Script 680 (int pick)
 		break;
 		
 		case 4:
-		response = GetCVar("smm_dropdefault");
+		response = GetCVar("mm_dropdefault");
 		break;
 		
 		case 5:
-		response = GetCvar("smm_pinataparty");
+		response = GetCvar("mm_pinataparty");
 		break;
 		
 		case 6:
-		response = GetCvar("smm_newchex");
+		response = GetCvar("mm_newchex");
 		break;
 		
 		case 7:
-		response = GetCvar("smm_rarespawns");
+		response = GetCvar("mm_rarespawns");
 		break;
 		
 		case 8:
-		response = GetCvar("smm_invisiblemode");
+		response = GetCvar("mm_invisiblemode");
 		break;
 		
 		case 9:
-		response = GetCvar("smm_fullradiusdmg");
+		response = GetCvar("mm_fullradiusdmg");
+		break;
+		
+		case 10:
+		response = GetCvar("mm_nobats");
+		break;
+		
+		case 11:
+		response = GetCvar("mm_specpermdeath");
 		break;
 	}
 	SetResultValue(response);

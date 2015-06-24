@@ -34,6 +34,14 @@ ACTOR CycloidEmperor
 	States 
 	{
 		Spawn:
+			CYEM A 0
+			CYEM A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+			CYEM A 1 ACS_ExecuteAlways(668,0,1,0)
+			CYEM A 0 A_GiveInventory("AlreadySpawned",1)
+			CYEM A 0 A_JumpIfInventory("InvisibleToken",1,2)
+			CYEM A 0 A_Jump(256,2)
+			CYEM A 0 A_ChangeFlag("STEALTH",1)
+		Spawn2:
 			CYEM A 2 A_Look
 			Loop
 		See:

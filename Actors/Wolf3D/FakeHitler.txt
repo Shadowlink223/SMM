@@ -32,6 +32,14 @@ ACTOR FakeHitler
 	States 
 	{
 		Spawn:
+			WFAH A 0
+			WFAH A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+			WFAH A 1 ACS_ExecuteAlways(668,0,1,0)
+			WFAH A 0 A_GiveInventory("AlreadySpawned",1)
+			WFAH A 0 A_JumpIfInventory("InvisibleToken",1,2)
+			WFAH A 0 A_Jump(256,2)
+			WFAH A 0 A_ChangeFlag("STEALTH",1)
+		Spawn2:
 			WFAH AAABBCCCDD 2 A_Look
 			Loop
 		See:
@@ -190,6 +198,7 @@ ACTOR FakeHitler
 			TNT1 A -1
 			stop
 		Raise:
+			TNT1 A 0 A_JumpIfInventory("EnemyZorched",1,"ZorchRaise")
 			WFAH KJIHGF 5
 			Goto See
 		ZorchRaise:

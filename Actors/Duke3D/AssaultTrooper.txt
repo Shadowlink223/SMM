@@ -28,15 +28,56 @@ ACTOR AssaultTrooper
 	States 
 	{
 		Spawn:
+			ASTR A 0
+			ASTR A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+			ASTR A 1 ACS_ExecuteAlways(668,0,1,0)
+			ASTR A 0 A_GiveInventory("AlreadySpawned",1)
+			ASTR A 0 A_JumpIfInventory("InvisibleToken",1,2)
+			ASTR A 0 A_Jump(256,2)
+			ASTR A 0 A_ChangeFlag("STEALTH",1)
+		Spawn2:
 			ASTR A 1 A_Look
 			Loop
 		See:
 			ASTR ABCD 5 A_Chase
 			Loop
+		/*See:						Experimental stuff.
+			ASTR A 5 A_Chase
+			TNT1 A 0 A_CustomMissile("D3DHeightCheck")
+			TNT1 A 0 A_JumpIfInventory("JetpackToken",1,"JetpackStart")
+			ASTR B 5 A_Chase
+			TNT1 A 0 A_CustomMissile("D3DHeightCheck")
+			TNT1 A 0 A_JumpIfInventory("JetpackToken",1,"JetpackStart")
+			ASTR C 5 A_Chase
+			TNT1 A 0 A_CustomMissile("D3DHeightCheck")
+			TNT1 A 0 A_JumpIfInventory("JetpackToken",1,"JetpackStart")
+			ASTR D 5 A_Chase
+			TNT1 A 0 A_CustomMissile("D3DHeightCheck")
+			TNT1 A 0 A_JumpIfInventory("JetpackToken",1,"JetpackStart")
+			Loop
+		JetpackStart:
+			TNT1 A 0 A_ChangeFlag("FLOAT",1)
+			TNT1 A 0 A_ChangeFlag("NOGRAVITY",1)
+			ASTR FFFFFFFFFFFFFFFFFFFFFFFFFFFF 5 A_Chase(0,0)
+			Goto SeeFly
+		JetpackEnd:
+			TNT1 A 0 A_ChangeFlag("FLOAT",0)
+			TNT1 A 0 A_ChangeFlag("NOGRAVITY",0)
+			Goto See
+		SeeFly:
+			ASTR F 5 A_Chase
+			TNT1 A 0 A_JumpIf(Z - FloorZ < 32, "JetpackEnd")
+			Loop*/
 		Missile:
+			//TNT1 A 0 A_JumpIfInventory("JetpackToken",1,"FlyShot")
 			TNT1 A 0 A_Jump (64, "CrouchShot")
 			Goto StandShot
-		StandShot:
+		/*FlyShot:
+			TNT1 A 0 A_FaceTarget
+			TNT1 A 0 A_PlaySound("assaultcapt/fire", CHAN_WEAPON)
+			TNT1 A 0 Bright A_CustomMissile("TrooperLaser",32,10,0,8)
+			Goto SeeFly*/
+		StandShot:	
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			ASTR EE 9 A_Facetarget 
 			TNT1 A 0 A_PlaySound("assaultcapt/fire", CHAN_WEAPON)
@@ -180,6 +221,7 @@ ACTOR AssaultTrooper
 			TNT1 A -1
 			stop
 		Raise:
+			TNT1 A 0 A_JumpIfInventory("EnemyZorched",1,"ZorchRaise")
 			ASTR MLKJI 5
 			Goto See
 		ZorchRaise:

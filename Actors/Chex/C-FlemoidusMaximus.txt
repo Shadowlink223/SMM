@@ -39,7 +39,15 @@ ACTOR NewFlemoidusMaximus
     Bloodcolor "Green"
 	States
 	{
-	  Spawn:
+		Spawn:
+			BOSC A 0
+			BOSC A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+			BOSC A 1 ACS_ExecuteAlways(668,0,1,0)
+			BOSC A 0 A_GiveInventory("AlreadySpawned",1)
+			BOSC A 0 A_JumpIfInventory("InvisibleToken",1,2)
+			BOSC A 0 A_Jump(256,2)
+			BOSC A 0 A_ChangeFlag("STEALTH",1)
+	  Spawn2:
 		BOSC AB 10 A_Look 
 		Loop
 		
@@ -49,9 +57,9 @@ ACTOR NewFlemoidusMaximus
 		
 	  Melee:
 		BOSC EF 4 A_FaceTarget
-		BOSC G 4 A_CustomMeleeAttack(random[troopattack](1,8)*3, "spectre/melee", "spectre/melee", "flem")
+		BOSC G 4 A_CustomMeleeAttack(random[troopattack](1,8)*3, "cqspectre/melee", "cqspectre/melee", "flem")
 		FMAX IJ 4 A_FaceTarget
-		FMAX K 4 A_CustomMeleeAttack(random[troopattack](1,8)*3, "spectre/melee", "spectre/melee", "flem")
+		FMAX K 4 A_CustomMeleeAttack(random[troopattack](1,8)*3, "cqspectre/melee", "cqspectre/melee", "flem")
 		Goto See
 		
 	  Missile:
@@ -159,7 +167,8 @@ ACTOR NewFlemoidusMaximus
         TNT1 A 0 A_PlaySound("flemdie2")
         TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("FlemoidGib",random(-10,10),random(-10,10),random(36,46),random(-2,2),random(-2,2),random(5,25))
         TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("FlemoidGib",random(-10,10),random(-10,10),random(36,46),random(-2,2),random(-2,2),random(5,20))
-		FMAX DEFG 5 A_NoBlocking
+		FMAX DEF 5
+		FMAX G 5 A_NoBlocking
 		FMAX H -1 A_KillMaster
 		stop
 	}
@@ -261,7 +270,8 @@ ACTOR OldFlemoidusMaximusDoom : OldFlemoidusMaximus
 			TNT1 A 0 A_PlaySound("flemdie2")
 			TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("FlemoidGib",random(-10,10),random(-10,10),random(36,46),random(-2,2),random(-2,2),random(5,25))
 			TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("FlemoidGib",random(-10,10),random(-10,10),random(36,46),random(-2,2),random(-2,2),random(5,20))
-			FMAX DEFG 5
+			FMAX DEF 5
+			FMAX G 5 A_NoBlocking
 			FMAX H -1 A_KillMaster
 			stop
 	}

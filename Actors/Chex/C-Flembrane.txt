@@ -14,6 +14,16 @@ ACTOR NewFlembrane : FlembraneV3//NewFlemoidusMaximus
     Bloodcolor "Green"
 	States
 	{
+		Spawn:
+			FLMB A 0
+			FLMB A 1 A_JumpIfInventory("AlreadySpawned",1,"Super::Spawn")
+			FLMB A 1 ACS_ExecuteAlways(668,0,1,0)
+			FLMB A 0 A_GiveInventory("AlreadySpawned",1)
+			FLMB A 0 A_JumpIfInventory("InvisibleToken",1,2)
+			FLMB A 0 A_Jump(256,2)
+			FLMB A 0 A_ChangeFlag("STEALTH",1)
+			FLMB A 0
+			Goto "Super::Spawn"
 	See:
 		FLMB AABBAABB 3 A_Chase
         TNT1 A 0 A_CustomMissile("FlemSporeSummonball2",0,0,0)
@@ -130,6 +140,14 @@ ACTOR OldFlembrane : NewFlembrane
 	States
 	{
 		Spawn:
+			FLMB A 0
+			FLMB A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+			FLMB A 1 ACS_ExecuteAlways(668,0,1,0)
+			FLMB A 0 A_GiveInventory("AlreadySpawned",1)
+			FLMB A 0 A_JumpIfInventory("InvisibleToken",1,2)
+			FLMB A 0 A_Jump(256,2)
+			FLMB A 0 A_ChangeFlag("STEALTH",1)
+		Spawn2:
 			FLMB AB 10 A_Look 
 			Loop
 		See:

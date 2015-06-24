@@ -30,6 +30,14 @@ ACTOR AssaultCommander
 	States 
 	{
 		Spawn:
+			ASCO A 0
+			ASCO A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+			ASCO A 1 ACS_ExecuteAlways(668,0,1,0)
+			ASCO A 0 A_GiveInventory("AlreadySpawned",1)
+			ASCO A 0 A_JumpIfInventory("InvisibleToken",1,2)
+			ASCO A 0 A_Jump(256,2)
+			ASCO A 0 A_ChangeFlag("STEALTH",1)
+		Spawn2:
 			ASCO A 2 A_Look
 			Loop
 		See:
@@ -155,6 +163,7 @@ ACTOR AssaultCommander
 			TNT1 A -1
 			stop
 		Raise:
+			TNT1 A 0 A_JumpIfInventory("EnemyZorched",1,"ZorchRaise")
 			ASCO NMLKJIHG 5
 			Goto See
 		ZorchRaise:

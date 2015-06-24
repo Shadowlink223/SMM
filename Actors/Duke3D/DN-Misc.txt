@@ -97,6 +97,32 @@ ACTOR ProDroneBlood : Blood
 	}
 }
 
+ACTOR JetpackToken : Counter {}
+
+ACTOR D3DHeightCheck	//Thanks to PresidentPeople for this!
+{
+   Speed 1
+   Projectile
+   +NOCLIP
+   -ACTIVATEIMPACT
+   -ACTIVATEPCROSS
+   States
+   {
+      Spawn:
+       TNT1 A 0
+       TNT1 A 4 Bright A_JumpIf(momz > 0.05,"TargetHigher")
+        stop
+
+      TargetHigher:
+       BAL2 A 10 A_GiveToTarget("JetpackToken",1)
+        stop
+
+      Death:
+       TNT1 A 0
+        stop
+   }
+}
+
 ACTOR TrooperLaser
 {
   Radius 13
@@ -880,12 +906,14 @@ ACTOR DukeArmor : BasicArmorPickup
 
 ACTOR RandomPigDrop : RandomSpawner
 {
+	+DROPPED
 	dropitem "PigDrop" 255 4
 	dropitem "DukeArmor" 255 2
 }
 
 ACTOR RandomEnforcerDrop : RandomSpawner
 {
+	+DROPPED
 	dropitem "AEnforcerAmmoDrop" 255 4
 	dropitem "AEnforcerDrop" 255 2
 }
@@ -930,6 +958,19 @@ ACTOR BattleLordMortarAfterImage
 			TNT1 A 0
 			BLMR ABCD 2 A_FadeOut
 			Loop
+	}
+}
+
+ACTOR ROTTPuff : DukeBulletPuff
+{
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 A_Jump(219,2)
+			TNT1 A 0 A_PlaySound("rott/ricochet")
+			RTBP ABCDEFGH 2
+			Stop
 	}
 }
 

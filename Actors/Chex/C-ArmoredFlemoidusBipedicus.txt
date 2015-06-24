@@ -8,7 +8,15 @@ actor NewArmoredFlemoidusBipedicus : ArmoredFlemoidusBipedicusV3
     Bloodcolor "Green"
     States
     {
-      Spawn:
+		Spawn:
+			TROC A 0
+			TROC A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+			TROC A 1 ACS_ExecuteAlways(668,0,1,0)
+			TROC A 0 A_GiveInventory("AlreadySpawned",1)
+			TROC A 0 A_JumpIfInventory("InvisibleToken",1,2)
+			TROC A 0 A_Jump(256,2)
+			TROC A 0 A_ChangeFlag("STEALTH",1)
+      Spawn2:
         TROC AB 10 A_Look
         Loop
 

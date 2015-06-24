@@ -27,6 +27,14 @@ ACTOR WolfDog
 	States 
 	{
 		Spawn:
+			WDOG A 0
+			WDOG A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+			WDOG A 1 ACS_ExecuteAlways(668,0,1,0)
+			WDOG A 0 A_GiveInventory("AlreadySpawned",1)
+			WDOG A 0 A_JumpIfInventory("InvisibleToken",1,2)
+			WDOG A 0 A_Jump(256,2)
+			WDOG A 0 A_ChangeFlag("STEALTH",1)
+		Spawn2:
 			WDOG A 0 A_Look
 			WDOG A 2 A_Wander
 			WDOG A 0 A_Look
@@ -155,6 +163,7 @@ ACTOR WolfDog
 			TNT1 A -1
 			stop
 		Raise:
+			TNT1 A 0 A_JumpIfInventory("EnemyZorched",1,"ZorchRaise")
 			WDOG KJIH 5
 			Goto See
 		ZorchRaise:

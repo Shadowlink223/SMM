@@ -28,6 +28,14 @@ ACTOR AssaultCaptain
 	States 
 	{
 		Spawn:
+			ASCA A 0
+			ASCA A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+			ASCA A 1 ACS_ExecuteAlways(668,0,1,0)
+			ASCA A 0 A_GiveInventory("AlreadySpawned",1)
+			ASCA A 0 A_JumpIfInventory("InvisibleToken",1,2)
+			ASCA A 0 A_Jump(256,2)
+			ASCA A 0 A_ChangeFlag("STEALTH",1)
+		Spawn2:
 			ASCA A 1 A_Look
 			Loop
 		See:
@@ -220,6 +228,7 @@ ACTOR AssaultCaptain
 			TNT1 A -1
 			stop
 		Raise:
+			TNT1 A 0 A_JumpIfInventory("EnemyZorched",1,"ZorchRaise")
 			ASCA MLKJI 5
 			Goto See
 		ZorchRaise:

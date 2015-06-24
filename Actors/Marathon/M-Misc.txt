@@ -107,7 +107,7 @@ ACTOR MotherCyborgExplosion : JuggernautExplosion
 	}
 }
 
-actor JuggernautDeathFlash : CustomInventory
+ACTOR JuggernautDeathFlash : CustomInventory
 {
     Inventory.MaxAmount 0
     +AUTOACTIVATE
@@ -126,7 +126,7 @@ actor JuggernautDeathFlash : CustomInventory
     }
 }
 
-actor CyborgGrenadeSmoke // Copy/Pasted from Samsara, mostly
+ACTOR CyborgGrenadeSmoke // Copy/Pasted from Samsara, mostly
 {
     Radius 1
     Height 1
@@ -200,7 +200,7 @@ ACTOR SeekerCyborgGrenade : CyborgGrenade
 			CYP2 AAAABBBB 1 Bright A_SpawnItem("CyborgGrenadeSmoke")
 			CYP2 C 4 bright
 		Spawn2:
-			CYP2 ABC 4 Bright A_SeekerMissile(5,7.5)
+			CYP2 ABC 4 Bright A_Tracer2//SeekerMissile(5,7.5)
 			Loop
 		Death:
 			TNT1 A 0 A_NoGravity
@@ -510,6 +510,16 @@ ACTOR TrooperBullet : AlienWeaponBullet
 	Obituary ""
 }
 
+ACTOR M1JuggernautBullet : TrooperBullet
+{
+	States
+	{
+		Death:
+			TNT1 A 1 A_SpawnItem("M1JuggernautPuff")
+			Stop
+	}
+}
+
 ACTOR HunterShot
 {
 	Radius 6
@@ -620,7 +630,7 @@ ACTOR M1JuggernautRocket
 {
 	Radius 10
 	Height 10
-	Speed 10.399
+	Speed 12.998
 	Scale 1.2
 	Gravity 0.05
 	PROJECTILE
@@ -651,10 +661,10 @@ ACTOR M1JuggernautRocket
 	}
 }
 
-ACTOR M1JuggernautRocketITYTD : M1JuggernautRocket { Speed 9.151 }
-ACTOR M1JuggernautRocketHNTR : M1JuggernautRocket { Speed 9.775 }
-ACTOR M1JuggernautRocketUV : M1JuggernautRocket { Speed 11.75 }
-ACTOR M1JuggernautRocketNightmare : M1JuggernautRocket { -DONTSEEKINVISIBLE Speed 12.998 }
+ACTOR M1JuggernautRocketITYTD : M1JuggernautRocket { Speed 11.438 }
+ACTOR M1JuggernautRocketHNTR : M1JuggernautRocket { Speed 12.218 }
+ACTOR M1JuggernautRocketUV : M1JuggernautRocket { Speed 14.687 }
+ACTOR M1JuggernautRocketNightmare : M1JuggernautRocket { -DONTSEEKINVISIBLE Speed 16.247 }
 
 ACTOR M1JuggernautRocketTrail : MarathonGrenadeSmoke
 {
@@ -836,7 +846,7 @@ ACTOR NewDukeGibs2_M2Enforcer : NewDukeGibs2_Pfhor
 	}
 }
 
-actor NewDukeGibs1_FlicktaBlue : NewDukeGibs1
+ACTOR NewDukeGibs1_FlicktaBlue : NewDukeGibs1
 {
 	Health 1
 	Translation "16:47=[0,200,204]:[0,64,64]"
@@ -848,7 +858,7 @@ actor NewDukeGibs1_FlicktaBlue : NewDukeGibs1
 	}
 }
 
-actor NewDukeGibs2_FlicktaBlue : NewDukeGibs2
+ACTOR NewDukeGibs2_FlicktaBlue : NewDukeGibs2
 {
 	Health 1
 	Translation "16:47=[0,200,204]:[0,64,64]"
@@ -860,7 +870,7 @@ actor NewDukeGibs2_FlicktaBlue : NewDukeGibs2
 	}
 }
 
-actor NewDukeGibs3_FlicktaBlue : NewDukeGibs3
+ACTOR NewDukeGibs3_FlicktaBlue : NewDukeGibs3
 {
 	Health 1
 	Translation "16:47=[0,200,204]:[0,64,64]"
@@ -872,7 +882,7 @@ actor NewDukeGibs3_FlicktaBlue : NewDukeGibs3
 	}
 }
 
-actor NewDukeGibs4_FlicktaBlue : NewDukeGibs4
+ACTOR NewDukeGibs4_FlicktaBlue : NewDukeGibs4
 {
 	Health 1
 	Translation "16:47=[0,200,204]:[0,64,64]"
@@ -884,7 +894,7 @@ actor NewDukeGibs4_FlicktaBlue : NewDukeGibs4
 	}
 }
 
-actor NewDukeGibs5_FlicktaBlue : NewDukeGibs5
+ACTOR NewDukeGibs5_FlicktaBlue : NewDukeGibs5
 {
 	Health 1
 	Translation "16:47=[0,200,204]:[0,64,64]"
@@ -896,7 +906,7 @@ actor NewDukeGibs5_FlicktaBlue : NewDukeGibs5
 	}
 }
 
-actor NewDukeGibs6_FlicktaBlue : NewDukeGibs6
+ACTOR NewDukeGibs6_FlicktaBlue : NewDukeGibs6
 {
 	Health 1
 	Translation "16:47=[0,200,204]:[0,64,64]"
@@ -908,7 +918,7 @@ actor NewDukeGibs6_FlicktaBlue : NewDukeGibs6
 	}
 }
 
-actor NewDukeGibs1_FlicktaLava : NewDukeGibs1
+ACTOR NewDukeGibs1_FlicktaLava : NewDukeGibs1
 {
 	Health 1
 	Translation "16:47=[230,151,115]:[90,45,27]"
@@ -920,7 +930,7 @@ actor NewDukeGibs1_FlicktaLava : NewDukeGibs1
 	}
 }
 
-actor NewDukeGibs2_FlicktaLava : NewDukeGibs2
+ACTOR NewDukeGibs2_FlicktaLava : NewDukeGibs2
 {
 	Health 1
 	Translation "16:47=[230,151,115]:[90,45,27]"
@@ -932,7 +942,7 @@ actor NewDukeGibs2_FlicktaLava : NewDukeGibs2
 	}
 }
 
-actor NewDukeGibs3_FlicktaLava : NewDukeGibs3
+ACTOR NewDukeGibs3_FlicktaLava : NewDukeGibs3
 {
 	Health 1
 	Translation "16:47=[230,151,115]:[90,45,27]"
@@ -944,7 +954,7 @@ actor NewDukeGibs3_FlicktaLava : NewDukeGibs3
 	}
 }
 
-actor NewDukeGibs4_FlicktaLava : NewDukeGibs4
+ACTOR NewDukeGibs4_FlicktaLava : NewDukeGibs4
 {
 	Health 1
 	Translation "16:47=[230,151,115]:[90,45,27]"
@@ -956,7 +966,7 @@ actor NewDukeGibs4_FlicktaLava : NewDukeGibs4
 	}
 }
 
-actor NewDukeGibs5_FlicktaLava : NewDukeGibs5
+ACTOR NewDukeGibs5_FlicktaLava : NewDukeGibs5
 {
 	Health 1
 	Translation "16:47=[230,151,115]:[90,45,27]"
@@ -968,7 +978,7 @@ actor NewDukeGibs5_FlicktaLava : NewDukeGibs5
 	}
 }
 
-actor NewDukeGibs6_FlicktaLava : NewDukeGibs6
+ACTOR NewDukeGibs6_FlicktaLava : NewDukeGibs6
 {
 	Health 1
 	Translation "16:47=[230,151,115]:[90,45,27]"
@@ -980,7 +990,7 @@ actor NewDukeGibs6_FlicktaLava : NewDukeGibs6
 	}
 }
 
-actor NewDukeGibs1_FlicktaGreen : NewDukeGibs1
+ACTOR NewDukeGibs1_FlicktaGreen : NewDukeGibs1
 {
 	Health 1
 	Translation "16:47=112:127"
@@ -992,7 +1002,7 @@ actor NewDukeGibs1_FlicktaGreen : NewDukeGibs1
 	}
 }
 
-actor NewDukeGibs2_FlicktaGreen : NewDukeGibs2
+ACTOR NewDukeGibs2_FlicktaGreen : NewDukeGibs2
 {
 	Health 1
 	Translation "16:47=112:127"
@@ -1004,7 +1014,7 @@ actor NewDukeGibs2_FlicktaGreen : NewDukeGibs2
 	}
 }
 
-actor NewDukeGibs3_FlicktaGreen : NewDukeGibs3
+ACTOR NewDukeGibs3_FlicktaGreen : NewDukeGibs3
 {
 	Health 1
 	Translation "16:47=112:127"
@@ -1016,7 +1026,7 @@ actor NewDukeGibs3_FlicktaGreen : NewDukeGibs3
 	}
 }
 
-actor NewDukeGibs4_FlicktaGreen : NewDukeGibs4
+ACTOR NewDukeGibs4_FlicktaGreen : NewDukeGibs4
 {
 	Health 1
 	Translation "16:47=112:127"
@@ -1028,7 +1038,7 @@ actor NewDukeGibs4_FlicktaGreen : NewDukeGibs4
 	}
 }
 
-actor NewDukeGibs5_FlicktaGreen : NewDukeGibs5
+ACTOR NewDukeGibs5_FlicktaGreen : NewDukeGibs5
 {
 	Health 1
 	Translation "16:47=112:127"
@@ -1040,7 +1050,7 @@ actor NewDukeGibs5_FlicktaGreen : NewDukeGibs5
 	}
 }
 
-actor NewDukeGibs6_FlicktaGreen : NewDukeGibs6
+ACTOR NewDukeGibs6_FlicktaGreen : NewDukeGibs6
 {
 	Health 1
 	Translation "16:47=112:127"
@@ -1052,7 +1062,7 @@ actor NewDukeGibs6_FlicktaGreen : NewDukeGibs6
 	}
 }
 
-actor NewDukeGibs1_MajorHunter : NewDukeGibs1
+ACTOR NewDukeGibs1_MajorHunter : NewDukeGibs1
 {
 	Health 1
 	Translation "16:47=[164,173,235]:[37,40,54]", "189:190=[102,106,145]:[101,105,144]"
@@ -1064,7 +1074,7 @@ actor NewDukeGibs1_MajorHunter : NewDukeGibs1
 	}
 }
 
-actor NewDukeGibs2_MajorHunter : NewDukeGibs2
+ACTOR NewDukeGibs2_MajorHunter : NewDukeGibs2
 {
 	Health 1
 	Translation "16:47=[164,173,235]:[37,40,54]", "189:190=[102,106,145]:[101,105,144]"
@@ -1076,7 +1086,7 @@ actor NewDukeGibs2_MajorHunter : NewDukeGibs2
 	}
 }
 
-actor NewDukeGibs3_MajorHunter : NewDukeGibs3
+ACTOR NewDukeGibs3_MajorHunter : NewDukeGibs3
 {
 	Health 1
 	Translation "16:47=[164,173,235]:[37,40,54]", "189:190=[102,106,145]:[101,105,144]"
@@ -1088,7 +1098,7 @@ actor NewDukeGibs3_MajorHunter : NewDukeGibs3
 	}
 }
 
-actor NewDukeGibs4_MajorHunter : NewDukeGibs4
+ACTOR NewDukeGibs4_MajorHunter : NewDukeGibs4
 {
 	Health 1
 	Translation "16:47=[164,173,235]:[37,40,54]", "189:190=[102,106,145]:[101,105,144]"
@@ -1100,7 +1110,7 @@ actor NewDukeGibs4_MajorHunter : NewDukeGibs4
 	}
 }
 
-actor NewDukeGibs5_MajorHunter : NewDukeGibs5
+ACTOR NewDukeGibs5_MajorHunter : NewDukeGibs5
 {
 	Health 1
 	Translation "16:47=[164,173,235]:[37,40,54]", "189:190=[102,106,145]:[101,105,144]"
@@ -1112,7 +1122,7 @@ actor NewDukeGibs5_MajorHunter : NewDukeGibs5
 	}
 }
 
-actor NewDukeGibs6_MajorHunter : NewDukeGibs6
+ACTOR NewDukeGibs6_MajorHunter : NewDukeGibs6
 {
 	Health 1
 	Translation "16:47=[164,173,235]:[37,40,54]", "189:190=[102,106,145]:[101,105,144]"
@@ -1124,7 +1134,7 @@ actor NewDukeGibs6_MajorHunter : NewDukeGibs6
 	}
 }
 
-actor NewDukeGibs1_Colgate : NewDukeGibs1
+ACTOR NewDukeGibs1_Colgate : NewDukeGibs1
 {
 	Health 1
 	Translation "16:47=[164,173,235]:[37,40,54]", "189:190=[102,106,145]:[101,105,144]"
@@ -1136,7 +1146,7 @@ actor NewDukeGibs1_Colgate : NewDukeGibs1
 	}
 }
 
-actor NewDukeGibs2_Colgate : NewDukeGibs2
+ACTOR NewDukeGibs2_Colgate : NewDukeGibs2
 {
 	Health 1
 	Translation "16:47=[57,228,139]:[10,80,40]", "189:190=[57,228,139]:[10,80,40]"
@@ -1148,7 +1158,7 @@ actor NewDukeGibs2_Colgate : NewDukeGibs2
 	}
 }
 
-actor NewDukeGibs3_Colgate : NewDukeGibs3
+ACTOR NewDukeGibs3_Colgate : NewDukeGibs3
 {
 	Health 1
 	Translation "16:47=[57,228,139]:[10,80,40]", "189:190=[57,228,139]:[10,80,40]"
@@ -1160,7 +1170,7 @@ actor NewDukeGibs3_Colgate : NewDukeGibs3
 	}
 }
 
-actor NewDukeGibs4_Colgate : NewDukeGibs4
+ACTOR NewDukeGibs4_Colgate : NewDukeGibs4
 {
 	Health 1
 	Translation "16:47=[57,228,139]:[10,80,40]", "189:190=[57,228,139]:[10,80,40]"
@@ -1172,7 +1182,7 @@ actor NewDukeGibs4_Colgate : NewDukeGibs4
 	}
 }
 
-actor NewDukeGibs5_Colgate : NewDukeGibs5
+ACTOR NewDukeGibs5_Colgate : NewDukeGibs5
 {
 	Health 1
 	Translation "16:47=[57,228,139]:[10,80,40]", "189:190=[57,228,139]:[10,80,40]"
@@ -1184,7 +1194,7 @@ actor NewDukeGibs5_Colgate : NewDukeGibs5
 	}
 }
 
-actor NewDukeGibs6_Colgate : NewDukeGibs6
+ACTOR NewDukeGibs6_Colgate : NewDukeGibs6
 {
 	Health 1
 	Translation "16:47=[57,228,139]:[10,80,40]", "189:190=[57,228,139]:[10,80,40]"
@@ -1246,7 +1256,28 @@ ACTOR M1EnforcerDrop : SamsaraSlotFourDrop
     }
 }
 
-actor Counter : Inventory
+ACTOR M1JuggernautPuff : MarathonAlienPuff
+{
+	States
+	{
+		Spawn:
+			TNT1 A 0 A_PlaySound("alienweapon/hit")
+			M1BP ABCD 2 bright
+			stop
+
+		Crash:
+			TNT1 A 0 A_PlaySound("alienweapon/hit")
+			M1BP ABCD 2 bright
+			stop
+
+		Death:
+			TNT1 A 0 A_PlaySound("alienweapon/hit")
+			M1BP ABCD 2 bright
+			stop
+	}
+}
+
+ACTOR Counter : Inventory
 {
    Inventory.MaxAmount 0x7FFFFFFF
    +UNDROPPABLE

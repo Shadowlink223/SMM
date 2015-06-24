@@ -30,6 +30,14 @@ ACTOR WolfSS
 	States 
 	{
 		Spawn:
+			WSCH A 0
+			WSCH A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+			WSCH A 1 ACS_ExecuteAlways(668,0,1,0)
+			WSCH A 0 A_GiveInventory("AlreadySpawned",1)
+			WSCH A 0 A_JumpIfInventory("InvisibleToken",1,2)
+			WSCH A 0 A_Jump(256,2)
+			WSCH A 0 A_ChangeFlag("STEALTH",1)
+		Spawn2:
 			WSCH A 1 A_Look
 			Loop
 		See:
@@ -233,6 +241,7 @@ ACTOR WolfSS
 			TNT1 A -1
 			stop
 		Raise:
+			TNT1 A 0 A_JumpIfInventory("EnemyZorched",1,"ZorchRaise")
 			WSCH NMLK 5
 			Goto See
 		ZorchRaise:
