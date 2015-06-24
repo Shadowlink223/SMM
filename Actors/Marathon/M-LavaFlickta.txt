@@ -41,169 +41,169 @@ ACTOR LavaFlickta
 	States 
 	{
 		Spawn:
-			LFLI A 0
-			LFLI A 1 A_JumpIfInventory("AlreadySpawned",1,2)
-			LFLI A 1 ACS_ExecuteAlways(668,0,1,0)
-			LFLI A 0 A_GiveInventory("AlreadySpawned",1)
-			LFLI A 0 A_JumpIfInventory("InvisibleToken",1,2)
-			LFLI A 0 A_Jump(256,2)
-			LFLI A 0 A_ChangeFlag("STEALTH",1)
-			LFLI A 0 A_JumpIfInventory("DifficultyToken",4,"SpawnNightmare")
-			LFLI A 0 A_JumpIfInventory("DifficultyToken",3,"SpawnUV")
-			LFLI A 0 A_JumpIfInventory("DifficultyToken",2,"SpawnHMP")
-			LFLI A 0 A_JumpIfInventory("DifficultyToken",1,"SpawnHNTR")
+			LFLI A 0 Bright
+			LFLI A 1 Bright A_JumpIfInventory("AlreadySpawned",1,2)
+			LFLI A 1 Bright ACS_ExecuteAlways(668,0,1,0)
+			LFLI A 0 Bright A_GiveInventory("AlreadySpawned",1)
+			LFLI A 0 Bright A_JumpIfInventory("InvisibleToken",1,2)
+			LFLI A 0 Bright A_Jump(256,2)
+			LFLI A 0 Bright A_ChangeFlag("STEALTH",1)
+			LFLI A 0 Bright A_JumpIfInventory("DifficultyToken",4,"SpawnNightmare")
+			LFLI A 0 Bright A_JumpIfInventory("DifficultyToken",3,"SpawnUV")
+			LFLI A 0 Bright A_JumpIfInventory("DifficultyToken",2,"SpawnHMP")
+			LFLI A 0 Bright A_JumpIfInventory("DifficultyToken",1,"SpawnHNTR")
 			Goto SpawnITYTD
 		SpawnITYTD:
-			TNT1 A 0 A_GiveInventory("AttackFrequency",105)
+			TNT1 A 0 Bright A_GiveInventory("AttackFrequency",105)
 			Goto Spawn2
 		SpawnHNTR:
-			TNT1 A 0 A_GiveInventory("AttackFrequency",70)
+			TNT1 A 0 Bright A_GiveInventory("AttackFrequency",70)
 			Goto Spawn2
 		SpawnHMP:
-			TNT1 A 0 A_GiveInventory("AttackFrequency",35)
+			TNT1 A 0 Bright A_GiveInventory("AttackFrequency",35)
 			Goto Spawn2
 		SpawnUV:
-			TNT1 A 0 A_GiveInventory("AttackFrequency",17)
+			TNT1 A 0 Bright A_GiveInventory("AttackFrequency",17)
 			Goto Spawn2
 		SpawnNightmare:
-			TNT1 A 0 A_GiveInventory("AttackFrequency",9)
+			TNT1 A 0 Bright A_GiveInventory("AttackFrequency",9)
 			Goto Spawn2
 		Spawn2:
-			LFLI A 2 A_Look
+			LFLI A 2 Bright A_Look
 			Loop
 		See:
-			TNT1 A 0 A_JumpIfInventory("FrameTicCounter",5,"See2")
-			TNT1 A 0 A_TakeInventory("AttackFrequency",1)
-			TNT1 A 0 A_GiveInventory("FrameTicCounter",1)
-			TNT1 A 0 A_JumpIfInventory("AttackFrequency",1,2)
-			LFLI B 1 A_Chase("Melee","Missile")
+			TNT1 A 0 Bright A_JumpIfInventory("FrameTicCounter",5,"See2")
+			TNT1 A 0 Bright A_TakeInventory("AttackFrequency",1)
+			TNT1 A 0 Bright A_GiveInventory("FrameTicCounter",1)
+			TNT1 A 0 Bright A_JumpIfInventory("AttackFrequency",1,2)
+			LFLI B 1 Bright A_Chase("Melee","Missile")
 			Loop
-			LFLI B 1 A_Chase("Melee",0)
+			LFLI B 1 Bright A_Chase("Melee",0)
 			Loop
 		See2:
-			TNT1 A 0 A_JumpIfInventory("FrameTicCounter",10,"See3")
-			TNT1 A 0 A_TakeInventory("AttackFrequency",1)
-			TNT1 A 0 A_GiveInventory("FrameTicCounter",1)
-			TNT1 A 0 A_JumpIfInventory("AttackFrequency",1,2)
-			LFLI C 1 A_Chase("Melee","Missile")
+			TNT1 A 0 Bright A_JumpIfInventory("FrameTicCounter",10,"See3")
+			TNT1 A 0 Bright A_TakeInventory("AttackFrequency",1)
+			TNT1 A 0 Bright A_GiveInventory("FrameTicCounter",1)
+			TNT1 A 0 Bright A_JumpIfInventory("AttackFrequency",1,2)
+			LFLI C 1 Bright A_Chase("Melee","Missile")
 			Loop
-			LFLI C 1 A_Chase("Melee",0)
+			LFLI C 1 Bright A_Chase("Melee",0)
 			Loop
 		See3:
-			TNT1 A 0 A_JumpIfInventory("FrameTicCounter",15,"See4")
-			TNT1 A 0 A_TakeInventory("AttackFrequency",1)
-			TNT1 A 0 A_GiveInventory("FrameTicCounter",1)
-			TNT1 A 0 A_JumpIfInventory("AttackFrequency",1,2)
-			LFLI D 1 A_Chase("Melee","Missile")
+			TNT1 A 0 Bright A_JumpIfInventory("FrameTicCounter",15,"See4")
+			TNT1 A 0 Bright A_TakeInventory("AttackFrequency",1)
+			TNT1 A 0 Bright A_GiveInventory("FrameTicCounter",1)
+			TNT1 A 0 Bright A_JumpIfInventory("AttackFrequency",1,2)
+			LFLI D 1 Bright A_Chase("Melee","Missile")
 			Loop
-			LFLI D 1 A_Chase("Melee",0)
+			LFLI D 1 Bright A_Chase("Melee",0)
 			Loop
 		See4:
-			TNT1 A 0 A_JumpIfInventory("FrameTicCounter",20,"SeeEnd")
-			TNT1 A 0 A_TakeInventory("AttackFrequency",1)
-			TNT1 A 0 A_GiveInventory("FrameTicCounter",1)
-			TNT1 A 0 A_JumpIfInventory("AttackFrequency",1,2)
-			LFLI E 1 A_Chase("Melee","Missile")
+			TNT1 A 0 Bright A_JumpIfInventory("FrameTicCounter",20,"SeeEnd")
+			TNT1 A 0 Bright A_TakeInventory("AttackFrequency",1)
+			TNT1 A 0 Bright A_GiveInventory("FrameTicCounter",1)
+			TNT1 A 0 Bright A_JumpIfInventory("AttackFrequency",1,2)
+			LFLI E 1 Bright A_Chase("Melee","Missile")
 			Loop
-			LFLI E 1 A_Chase("Melee",0)
+			LFLI E 1 Bright A_Chase("Melee",0)
 			Loop
 		SeeEnd:
-			TNT1 A 0 A_TakeInventory("FrameTicCounter",20)
+			TNT1 A 0 Bright A_TakeInventory("FrameTicCounter",20)
 			Goto See
 		Melee:
-			TNT1 A 0
-			TNT1 A 0 A_JumpIfInventory("AttackFrequency",1,6)
-			TNT1 A 0 A_JumpIfInventory("DifficultyToken",4,"MeleeNightmare")
-			TNT1 A 0 A_JumpIfInventory("DifficultyToken",3,"MeleeUV")
-			TNT1 A 0 A_JumpIfInventory("DifficultyToken",2,"MeleeHMP")
-			TNT1 A 0 A_JumpIfInventory("DifficultyToken",1,"MeleeHNTR")
+			TNT1 A 0 Bright
+			TNT1 A 0 Bright A_JumpIfInventory("AttackFrequency",1,6)
+			TNT1 A 0 Bright A_JumpIfInventory("DifficultyToken",4,"MeleeNightmare")
+			TNT1 A 0 Bright A_JumpIfInventory("DifficultyToken",3,"MeleeUV")
+			TNT1 A 0 Bright A_JumpIfInventory("DifficultyToken",2,"MeleeHMP")
+			TNT1 A 0 Bright A_JumpIfInventory("DifficultyToken",1,"MeleeHNTR")
 			Goto MeleeITYTD
-			TNT1 A 0 A_TakeInventory("FrameTicCounter",32)
-			TNT1 A 0 A_TakeInventory("AttackFrequency",1)
-			LFLI A 1 A_FaceTarget
-			LFLI A 1 A_JumpIfCloser(75,"Melee")
+			TNT1 A 0 Bright A_TakeInventory("FrameTicCounter",32)
+			TNT1 A 0 Bright A_TakeInventory("AttackFrequency",1)
+			LFLI A 1 Bright A_FaceTarget
+			LFLI A 1 Bright A_JumpIfCloser(75,"Melee")
 			Goto See
 		MeleeITYTD:
-			TNT1 A 0 A_GiveInventory("AttackFrequency",105)
-			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
-			LFLI F 12 A_PlaySound("flickta/melee")
-			LFLI G 12 A_CustomMeleeAttack((random(20,25)),"flickta/hit",0)
+			TNT1 A 0 Bright A_GiveInventory("AttackFrequency",105)
+			TNT1 A 0 Bright A_ChangeFlag("NOPAIN",0)
+			LFLI F 12 Bright A_PlaySound("flickta/melee")
+			LFLI G 12 Bright A_CustomMeleeAttack((random(20,25)),"flickta/hit",0)
 			Goto See
 		MeleeHNTR:
-			TNT1 A 0 A_GiveInventory("AttackFrequency",70)
-			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
-			LFLI F 12 A_PlaySound("flickta/melee")
-			LFLI G 12 A_CustomMeleeAttack((random(20,25)),"flickta/hit",0)
+			TNT1 A 0 Bright A_GiveInventory("AttackFrequency",70)
+			TNT1 A 0 Bright A_ChangeFlag("NOPAIN",0)
+			LFLI F 12 Bright A_PlaySound("flickta/melee")
+			LFLI G 12 Bright A_CustomMeleeAttack((random(20,25)),"flickta/hit",0)
 			Goto See
 		MeleeHMP:
-			TNT1 A 0 A_GiveInventory("AttackFrequency",35)
-			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
-			LFLI F 12 A_PlaySound("flickta/melee")
-			LFLI G 12 A_CustomMeleeAttack((random(20,25)),"flickta/hit",0)
+			TNT1 A 0 Bright A_GiveInventory("AttackFrequency",35)
+			TNT1 A 0 Bright A_ChangeFlag("NOPAIN",0)
+			LFLI F 12 Bright A_PlaySound("flickta/melee")
+			LFLI G 12 Bright A_CustomMeleeAttack((random(20,25)),"flickta/hit",0)
 			Goto See
 		MeleeUV:
-			TNT1 A 0 A_GiveInventory("AttackFrequency",17)
-			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
-			LFLI F 12 A_PlaySound("flickta/melee")
-			LFLI G 12 A_CustomMeleeAttack((random(20,25)),"flickta/hit",0)
+			TNT1 A 0 Bright A_GiveInventory("AttackFrequency",17)
+			TNT1 A 0 Bright A_ChangeFlag("NOPAIN",0)
+			LFLI F 12 Bright A_PlaySound("flickta/melee")
+			LFLI G 12 Bright A_CustomMeleeAttack((random(20,25)),"flickta/hit",0)
 			Goto See
 		MeleeNightmare:
-			TNT1 A 0 A_GiveInventory("AttackFrequency",9)
-			LFLI F 12 A_PlaySound("flickta/melee")
-			LFLI G 12 A_CustomMeleeAttack((random(20,25)),"flickta/hit",0)
+			TNT1 A 0 Bright A_GiveInventory("AttackFrequency",9)
+			LFLI F 12 Bright A_PlaySound("flickta/melee")
+			LFLI G 12 Bright A_CustomMeleeAttack((random(20,25)),"flickta/hit",0)
 			Goto See
 		Missile:
-			TNT1 A 0 A_TakeInventory("FrameTicCounter",32)
-			TNT1 A 0 A_FaceTarget
-			TNT1 A 0 A_JumpIfInventory("DifficultyToken",4,"MissileNightmare")
-			TNT1 A 0 A_JumpIfInventory("DifficultyToken",3,"MissileUV")
-			TNT1 A 0 A_JumpIfInventory("DifficultyToken",2,"MissileHMP")
-			TNT1 A 0 A_JumpIfInventory("DifficultyToken",1,"MissileHNTR")
+			TNT1 A 0 Bright A_TakeInventory("FrameTicCounter",32)
+			TNT1 A 0 Bright A_FaceTarget
+			TNT1 A 0 Bright A_JumpIfInventory("DifficultyToken",4,"MissileNightmare")
+			TNT1 A 0 Bright A_JumpIfInventory("DifficultyToken",3,"MissileUV")
+			TNT1 A 0 Bright A_JumpIfInventory("DifficultyToken",2,"MissileHMP")
+			TNT1 A 0 Bright A_JumpIfInventory("DifficultyToken",1,"MissileHNTR")
 		MissileITYTD:
-			TNT1 A 0 A_GiveInventory("AttackFrequency",105)
-			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
-			LFLI F 12 A_PlaySound("flickta/rock")
-			LFLI G 12 A_CustomMissile("LavaFlicktaProjectileITYTD", 45, 0, Random(-1.5,1.5),0, Random(-1.5,1.5))
+			TNT1 A 0 Bright A_GiveInventory("AttackFrequency",105)
+			TNT1 A 0 Bright A_ChangeFlag("NOPAIN",0)
+			LFLI F 12 Bright A_PlaySound("flickta/rock")
+			LFLI G 12 Bright A_CustomMissile("LavaFlicktaProjectileITYTD", 45, 0, Random(-1.5,1.5),0, Random(-1.5,1.5))
 			Goto See
 		MissileHNTR:
-			TNT1 A 0 A_GiveInventory("AttackFrequency",70)
-			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
-			LFLI F 12 A_PlaySound("flickta/rock")
-			LFLI G 12 A_CustomMissile("LavaFlicktaProjectileHNTR", 45, 0, Random(-1.5,1.5),0, Random(-1.5,1.5))
-			LFLI F 12 A_PlaySound("flickta/rock")
-			LFLI G 12 A_CustomMissile("LavaFlicktaProjectileITYTD", 45, 0, Random(-1.5,1.5),0, Random(-1.5,1.5))
+			TNT1 A 0 Bright A_GiveInventory("AttackFrequency",70)
+			TNT1 A 0 Bright A_ChangeFlag("NOPAIN",0)
+			LFLI F 12 Bright A_PlaySound("flickta/rock")
+			LFLI G 12 Bright A_CustomMissile("LavaFlicktaProjectileHNTR", 45, 0, Random(-1.5,1.5),0, Random(-1.5,1.5))
+			LFLI F 12 Bright A_PlaySound("flickta/rock")
+			LFLI G 12 Bright A_CustomMissile("LavaFlicktaProjectileITYTD", 45, 0, Random(-1.5,1.5),0, Random(-1.5,1.5))
 			Goto See
 		MissileHMP:
-			TNT1 A 0 A_GiveInventory("AttackFrequency",35)
-			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
-			LFLI F 12 A_PlaySound("flickta/rock")
-			LFLI G 12 A_CustomMissile("LavaFlicktaProjectile", 45, 0, Random(-1.5,1.5),0, Random(-1.5,1.5))
-			LFLI F 12 A_PlaySound("flickta/rock")
-			LFLI G 12 A_CustomMissile("LavaFlicktaProjectileITYTD", 45, 0, Random(-1.5,1.5),0, Random(-1.5,1.5))
+			TNT1 A 0 Bright A_GiveInventory("AttackFrequency",35)
+			TNT1 A 0 Bright A_ChangeFlag("NOPAIN",0)
+			LFLI F 12 Bright A_PlaySound("flickta/rock")
+			LFLI G 12 Bright A_CustomMissile("LavaFlicktaProjectile", 45, 0, Random(-1.5,1.5),0, Random(-1.5,1.5))
+			LFLI F 12 Bright A_PlaySound("flickta/rock")
+			LFLI G 12 Bright A_CustomMissile("LavaFlicktaProjectileITYTD", 45, 0, Random(-1.5,1.5),0, Random(-1.5,1.5))
 			Goto See
 		MissileUV:
-			TNT1 A 0 A_GiveInventory("AttackFrequency",17)
-			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
-			LFLI F 12 A_PlaySound("flickta/rock")
-			LFLI G 12 A_CustomMissile("LavaFlicktaProjectileUV", 45, 0, Random(-1.5,1.5),0, Random(-1.5,1.5))
-			LFLI F 12 A_PlaySound("flickta/rock")
-			LFLI G 12 A_CustomMissile("LavaFlicktaProjectileITYTD", 45, 0, Random(-1.5,1.5),0, Random(-1.5,1.5))
+			TNT1 A 0 Bright A_GiveInventory("AttackFrequency",17)
+			TNT1 A 0 Bright A_ChangeFlag("NOPAIN",0)
+			LFLI F 12 Bright A_PlaySound("flickta/rock")
+			LFLI G 12 Bright A_CustomMissile("LavaFlicktaProjectileUV", 45, 0, Random(-1.5,1.5),0, Random(-1.5,1.5))
+			LFLI F 12 Bright A_PlaySound("flickta/rock")
+			LFLI G 12 Bright A_CustomMissile("LavaFlicktaProjectileITYTD", 45, 0, Random(-1.5,1.5),0, Random(-1.5,1.5))
 			Goto See
 		MissileNightmare:
-			TNT1 A 0 A_GiveInventory("AttackFrequency",9)
-			LFLI F 12 A_PlaySound("flickta/rock")
-			LFLI G 12 A_CustomMissile("LavaFlicktaProjectileNightmare", 45, 0, Random(-1.5,1.5),0, Random(-1.5,1.5))
-			LFLI F 12 A_PlaySound("flickta/rock")
-			LFLI G 12 A_CustomMissile("LavaFlicktaProjectileITYTD", 45, 0, Random(-1.5,1.5),0, Random(-1.5,1.5))
+			TNT1 A 0 Bright A_GiveInventory("AttackFrequency",9)
+			LFLI F 12 Bright A_PlaySound("flickta/rock")
+			LFLI G 12 Bright A_CustomMissile("LavaFlicktaProjectileNightmare", 45, 0, Random(-1.5,1.5),0, Random(-1.5,1.5))
+			LFLI F 12 Bright A_PlaySound("flickta/rock")
+			LFLI G 12 Bright A_CustomMissile("LavaFlicktaProjectileITYTD", 45, 0, Random(-1.5,1.5),0, Random(-1.5,1.5))
 			Goto See
 		Pain:
-			LFLI M 5
+			LFLI M 5 Bright
 			Goto See
 		Pain.MightyBoot:
-			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
-			LFLI M 2 A_FaceTarget
-			TNT1 A 0 A_Recoil(14)
+			TNT1 A 0 Bright A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 Bright A_PlaySoundEx("duke/kickhit","body",0,0)
+			LFLI M 2 Bright A_FaceTarget
+			TNT1 A 0 Bright A_Recoil(14)
 			LFLI M 16
 			Goto See
 		Death.DukeExplosive:
@@ -212,85 +212,85 @@ ACTOR LavaFlickta
 			Goto Death*/
 		Death.DukeDamage:
 		Death.DukePistol:
-			TNT1 A 0 A_Jump(218,"Death")
-			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
+			TNT1 A 0 Bright A_Jump(218,"Death")
+			TNT1 A 0 Bright A_GiveToTarget("DukeKillTaunt",1)
 			goto Death
 		Death.MightyBoot:
-			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
-			TNT1 A 0 A_Jump(64,"Death")
-			TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
+			TNT1 A 0 Bright A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 Bright A_Jump(64,"Death")
+			TNT1 A 0 Bright A_GiveToTarget("DukeBootTaunt",1)
 			goto Death
 		Death:
-			TNT1 A 0 A_GiveToTarget("KillCount",1)
-			TNT1 A 0 A_FaceTarget
-			TNT1 A 0 A_Recoil(5)
-			TNT1 A 0 A_Scream
-			LFLI H 13
-			LFLI HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH 2 A_JumpIf(momx < 0.8 && momy < 0.8 && momz == 0, "Death2")
-			LFLI H 2 A_CheckFloor("Death2")
+			TNT1 A 0 Bright A_GiveToTarget("KillCount",1)
+			TNT1 A 0 Bright A_FaceTarget
+			TNT1 A 0 Bright A_Recoil(5)
+			TNT1 A 0 Bright A_Scream
+			LFLI H 13 Bright
+			LFLI HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH 2 Bright A_JumpIf(momx < 0.8 && momy < 0.8 && momz == 0, "Death2")
+			LFLI H 2 Bright A_CheckFloor("Death2")
 			Goto Death+5
 		Death2:
-			LFLI I 5 A_Stop
-			LFLI J 5 A_NoBlocking
-			LFLI K 5
+			LFLI I 5 Bright A_Stop
+			LFLI J 5 Bright A_NoBlocking
+			LFLI K 5 Bright
 			TNT1 A 0 ACS_ExecuteAlways(SAMSARA_CLIENT_DECORATE,0,11)
-			LFLI L 5 A_PlaySoundEx("pfhor/xdeath","body",0,0)
+			LFLI L 5 Bright A_PlaySoundEx("pfhor/xdeath","body",0,0)
 			LFLI L -1
 			Stop
 		XDeathDuke:
-			TNT1 A 0 A_GiveToTarget("KillCount",1)
-			TNT1 A 0 A_FaceTarget
-			TNT1 A 0 A_Recoil(5)
-			TNT1 A 0 A_Scream
-			LFLI H 13
-			LFLI HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH 2 A_JumpIf(momx < 0.8 && momy < 0.8 && momz == 0, "XDeathDuke2")
-			LFLI H 2 A_CheckFloor("XDeathDuke2")
+			TNT1 A 0 Bright A_GiveToTarget("KillCount",1)
+			TNT1 A 0 Bright A_FaceTarget
+			TNT1 A 0 Bright A_Recoil(5)
+			TNT1 A 0 Bright A_Scream
+			LFLI H 13 Bright
+			LFLI HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH 2 Bright A_JumpIf(momx < 0.8 && momy < 0.8 && momz == 0, "XDeathDuke2")
+			LFLI H 2 Bright A_CheckFloor("XDeathDuke2")
 			Goto XDeathDuke+5
 		XDeathDuke2:
-			SFDG A 1
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 ACS_ExecuteAlways(SAMSARA_CLIENT_DECORATE,0,10)
-			SFDG A 1 A_SpawnDebris("NewDukeGibs1_FlicktaLava")
-			TNT1 A 0 A_SpawnDebris("NewDukeGibs2")
-			TNT1 A 0 A_SpawnDebris("NewDukeGibs3")
-			TNT1 A 0 A_SpawnDebris("NewDukeGibs3_FlicktaLava")
-			TNT1 AA 0 A_SpawnDebris("NewDukeGibs4")
-			TNT1 A 0 A_SpawnDebris("NewDukeGibs4_FlicktaLava")
-			TNT1 A 0 A_SpawnDebris("NewDukeGibs5")
-			TNT1 A 0 A_SpawnDebris("NewDukeGibs5_FlicktaLava")
-			TNT1 AA 0 A_SpawnDebris("NewDukeGibs6")
-			TNT1 A 0 A_SpawnDebris("NewDukeGibs6_FlicktaLava")
-			TNT1 A 0 A_PlaySound("duke/enemygib",5)
-			TNT1 A 0 A_Jump(96,2)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-			LFDG A 3 A_NoBlocking
-			LFDG B 4 A_Stop
-			LFDG CD 4
-			LFDG E -1
+			LFDG A 1 Bright
+			TNT1 A 0 Bright A_UnsetSolid
+			TNT1 A 0 Bright ACS_ExecuteAlways(SAMSARA_CLIENT_DECORATE,0,10)
+			LFDG A 1 Bright A_SpawnDebris("NewDukeGibs1_FlicktaLava")
+			TNT1 A 0 Bright A_SpawnDebris("NewDukeGibs2")
+			TNT1 A 0 Bright A_SpawnDebris("NewDukeGibs3")
+			TNT1 A 0 Bright A_SpawnDebris("NewDukeGibs3_FlicktaLava")
+			TNT1 AA 0 Bright A_SpawnDebris("NewDukeGibs4")
+			TNT1 A 0 Bright A_SpawnDebris("NewDukeGibs4_FlicktaLava")
+			TNT1 A 0 Bright A_SpawnDebris("NewDukeGibs5")
+			TNT1 A 0 Bright A_SpawnDebris("NewDukeGibs5_FlicktaLava")
+			TNT1 AA 0 Bright A_SpawnDebris("NewDukeGibs6")
+			TNT1 A 0 Bright A_SpawnDebris("NewDukeGibs6_FlicktaLava")
+			TNT1 A 0 Bright A_PlaySound("duke/enemygib",5)
+			TNT1 A 0 Bright A_Jump(96,2)
+			TNT1 A 0 Bright A_GiveToTarget("DukeGibTaunt",1)
+			LFDG A 3 Bright A_NoBlocking
+			LFDG B 4 Bright A_Stop
+			LFDG CD 4 Bright
+			LFDG E -1 Bright
 			Stop
 		Death.ZorchPistol:
 		Death.Zorch:
 		Death.ZorchKamikaze:
 		Death.PhasingZorch:
 		Death.ZorchSpectral:
-			TNT1 A 0 A_GiveToTarget("KillCount",1)
-			LFLI M 0 A_Stop
-			TNT1 A 0 A_ChangeFlag("DONTGIB",1)
-			TNT1 A 0 A_PlaySoundEx("chex/zorch","soundslot5",0,0)
-			LFLI M 3 A_SpawnItem("ZorchEffectSmall")
-			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
-			LFLI M 3 A_SetTranslucent(0.9,0)
-			LFLI M 0 A_Scream
-			LFLI M 3 A_SetTranslucent(0.8,0)
-			LFLI M 0 A_NoBlocking
-			LFLI M 3 A_SetTranslucent(0.7,0)
-			LFLI M 3 A_SetTranslucent(0.6,0)
-			LFLI M 3 A_SetTranslucent(0.5,0)
-			LFLI M 3 A_SetTranslucent(0.4,0)
-			LFLI M 3 A_SetTranslucent(0.3,0)
-			LFLI M 3 A_SetTranslucent(0.2,0)
-			LFLI M 3 A_SetTranslucent(0.1,0)
-			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A 0 Bright A_GiveToTarget("KillCount",1)
+			LFLI M 0 Bright A_Stop
+			TNT1 A 0 Bright A_ChangeFlag("DONTGIB",1)
+			TNT1 A 0 Bright A_PlaySoundEx("chex/zorch","soundslot5",0,0)
+			LFLI M 3 Bright A_SpawnItem("ZorchEffectSmall")
+			TNT1 A 0 Bright A_GiveInventory("EnemyZorched",1)
+			LFLI M 3 Bright A_SetTranslucent(0.9,0)
+			LFLI M 0 Bright A_Scream
+			LFLI M 3 Bright A_SetTranslucent(0.8,0)
+			LFLI M 0 Bright A_NoBlocking
+			LFLI M 3 Bright A_SetTranslucent(0.7,0)
+			LFLI M 3 Bright A_SetTranslucent(0.6,0)
+			LFLI M 3 Bright A_SetTranslucent(0.5,0)
+			LFLI M 3 Bright A_SetTranslucent(0.4,0)
+			LFLI M 3 Bright A_SetTranslucent(0.3,0)
+			LFLI M 3 Bright A_SetTranslucent(0.2,0)
+			LFLI M 3 Bright A_SetTranslucent(0.1,0)
+			TNT1 A 1 Bright A_SetTranslucent(1,0)
 			TNT1 A -1
 			stop
 		Death.DukeIce:
@@ -311,90 +311,90 @@ ACTOR LavaFlickta
 			TNT1 A -1
 			stop
 		Raise:
-			TNT1 A 0 A_JumpIfInventory("EnemyZorched",1,"ZorchRaise")
+			TNT1 A 0 Bright A_JumpIfInventory("EnemyZorched",1,"ZorchRaise")
 			LFLI KJIH 5
 			Goto See
 		ZorchRaise:
-			TNT1 A 1 A_UnsetShootable
-			TNT1 A 1 A_SpawnItem("SpawnFire2")
-			TNT1 A 0 A_PlaySound("archvile/resummon")
-			TNT1 A 1 A_TakeInventory("EnemyZorched",1)
-			TNT1 A 0 A_SetTranslucent(0.1,0)
-			LFLI A 3 A_SetTranslucent(0.2,0)
-			LFLI A 3 A_SetTranslucent(0.3,0)
-			LFLI A 3 A_SetTranslucent(0.4,0)
-			LFLI A 3 A_SetTranslucent(0.5,0)
-			LFLI A 3 A_SetTranslucent(0.6,0)
-			LFLI A 3 A_SetTranslucent(0.7,0)
-			LFLI A 3 A_SetTranslucent(0.8,0)
-			LFLI A 3 A_SetTranslucent(0.9,0)
-			LFLI A 3 A_SetTranslucent(1,0)
-			LFLI A 1 A_SetShootable
+			TNT1 A 1 Bright A_UnsetShootable
+			TNT1 A 1 Bright A_SpawnItem("SpawnFire2")
+			TNT1 A 0 Bright A_PlaySound("archvile/resummon")
+			TNT1 A 1 Bright A_TakeInventory("EnemyZorched",1)
+			TNT1 A 0 Bright A_SetTranslucent(0.1,0)
+			LFLI A 3 Bright A_SetTranslucent(0.2,0)
+			LFLI A 3 Bright A_SetTranslucent(0.3,0)
+			LFLI A 3 Bright A_SetTranslucent(0.4,0)
+			LFLI A 3 Bright A_SetTranslucent(0.5,0)
+			LFLI A 3 Bright A_SetTranslucent(0.6,0)
+			LFLI A 3 Bright A_SetTranslucent(0.7,0)
+			LFLI A 3 Bright A_SetTranslucent(0.8,0)
+			LFLI A 3 Bright A_SetTranslucent(0.9,0)
+			LFLI A 3 Bright A_SetTranslucent(1,0)
+			LFLI A 1 Bright A_SetShootable
 			Goto See
 		DeathHappyfun:
 			TNT1 A 0
-			TNT1 AAAAA 0 A_SpawnItemEx("RainbowSparkleSound",random(-10,10),random(-10,10),random(0,8),0,0,0,0,32)
-			TNT1 AAAA 0 A_SpawnItemEx("WhiteSpark",0,0,random(0,8),random(-60,60)/20.0,random(-60,60)/20.0,random(30,60)/20.0,random(-180,180),32)
-			TNT1 A 0 A_SpawnItemEx("RainbowSparkHuge",0,0,random(0,8),random(-60,60)/20.0,random(-60,60)/20.0,random(30,60)/20.0,random(-180,180),32)
-			TNT1 AAAAAA 0 A_SpawnItemEx("RainbowSpark",0,0,random(0,8),random(-60,60)/20.0,random(-60,60)/20.0,random(30,60)/20.0,random(-180,180),32)
-			TNT1 AAA 0 A_SpawnItemEx("RainbowSparkTiny",random(-5,5),random(-5,5),random(0,8),random(-80,80)/10.00,random(-30,60)/10.0,random(3,6),random(-180,180),160)
+			TNT1 AAAAA 0 Bright A_SpawnItemEx("RainbowSparkleSound",random(-10,10),random(-10,10),random(0,8),0,0,0,0,32)
+			TNT1 AAAA 0 Bright A_SpawnItemEx("WhiteSpark",0,0,random(0,8),random(-60,60)/20.0,random(-60,60)/20.0,random(30,60)/20.0,random(-180,180),32)
+			TNT1 A 0 Bright A_SpawnItemEx("RainbowSparkHuge",0,0,random(0,8),random(-60,60)/20.0,random(-60,60)/20.0,random(30,60)/20.0,random(-180,180),32)
+			TNT1 AAAAAA 0 Bright A_SpawnItemEx("RainbowSpark",0,0,random(0,8),random(-60,60)/20.0,random(-60,60)/20.0,random(30,60)/20.0,random(-180,180),32)
+			TNT1 AAA 0 Bright A_SpawnItemEx("RainbowSparkTiny",random(-5,5),random(-5,5),random(0,8),random(-80,80)/10.00,random(-30,60)/10.0,random(3,6),random(-180,180),160)
 			Goto Death2+4
 		DeathBrutal:
 			TNT1 A 0
-			TNT1 AA 0 A_SpawnItemEx("RedMistTrail",random(-5,5),random(-5,5),random(0,8),random(-80,80)/10.00,random(-30,60)/10.0,random(4,8),random(-180,180),160)
-			TNT1 AAA 0 A_SpawnItemEx("BrutalTinyBone",random(-5,5),random(-5,5),random(0,8),random(-80,80)/10.00,random(-30,60)/10.0,random(4,8),random(-180,180),160)
-			TNT1 AA 0 A_SpawnItemEx("BrutalChunkTinier",random(-5,5),random(-5,5),random(0,8),random(-80,80)/10.00,random(-30,60)/10.0,random(4,8),random(-180,180),160)
-			TNT1 A 0 A_SpawnItemEx("BrutalChunkTinier_Copper",random(-5,5),random(-5,5),random(0,8),random(-80,80)/10.00,random(-30,60)/10.0,random(4,8),random(-180,180),160)
-			TNT1 AA 0 A_SpawnItemEx("BrutalChunkTiny",random(-5,5),random(-5,5),random(0,8),random(-80,80)/10.00,random(-30,60)/10.0,random(4,8),random(-180,180),160)
-			TNT1 A 0 A_SpawnItemEx("BrutalChunkTiny_Copper",random(-5,5),random(-5,5),random(0,8),random(-80,80)/10.00,random(-30,60)/10.0,random(4,8),random(-180,180),160)
-			TNT1 A 0 A_SpawnItemEx("CopperMistIntenseTrail",random(-5,5),random(-5,5),random(0,8),random(-80,80)/10.00,random(-30,60)/10.0,random(4,8),random(-180,180),160)
-			TNT1 A 0 A_SpawnItemEx("Switchable_FlyingBlood",random(-5,5),random(-5,5),random(0,8),random(-80,80)/10.00,random(-30,60)/10.0,random(4,8),random(-180,180),160)
-			TNT1 A 0 A_SpawnItemEx("Switchable_FlyingBlood_Copper",random(-5,5),random(-5,5),random(0,8),random(-80,80)/10.00,random(-30,60)/10.0,random(4,8),random(-180,180),160)
-			TNT1 A 0 A_SpawnItemEx("BrutalOnlineSound2",0,0,0,0,0,0,0,160)
+			TNT1 AA 0 Bright A_SpawnItemEx("RedMistTrail",random(-5,5),random(-5,5),random(0,8),random(-80,80)/10.00,random(-30,60)/10.0,random(4,8),random(-180,180),160)
+			TNT1 AAA 0 Bright A_SpawnItemEx("BrutalTinyBone",random(-5,5),random(-5,5),random(0,8),random(-80,80)/10.00,random(-30,60)/10.0,random(4,8),random(-180,180),160)
+			TNT1 AA 0 Bright A_SpawnItemEx("BrutalChunkTinier",random(-5,5),random(-5,5),random(0,8),random(-80,80)/10.00,random(-30,60)/10.0,random(4,8),random(-180,180),160)
+			TNT1 A 0 Bright A_SpawnItemEx("BrutalChunkTinier_Copper",random(-5,5),random(-5,5),random(0,8),random(-80,80)/10.00,random(-30,60)/10.0,random(4,8),random(-180,180),160)
+			TNT1 AA 0 Bright A_SpawnItemEx("BrutalChunkTiny",random(-5,5),random(-5,5),random(0,8),random(-80,80)/10.00,random(-30,60)/10.0,random(4,8),random(-180,180),160)
+			TNT1 A 0 Bright A_SpawnItemEx("BrutalChunkTiny_Copper",random(-5,5),random(-5,5),random(0,8),random(-80,80)/10.00,random(-30,60)/10.0,random(4,8),random(-180,180),160)
+			TNT1 A 0 Bright A_SpawnItemEx("CopperMistIntenseTrail",random(-5,5),random(-5,5),random(0,8),random(-80,80)/10.00,random(-30,60)/10.0,random(4,8),random(-180,180),160)
+			TNT1 A 0 Bright A_SpawnItemEx("Switchable_FlyingBlood",random(-5,5),random(-5,5),random(0,8),random(-80,80)/10.00,random(-30,60)/10.0,random(4,8),random(-180,180),160)
+			TNT1 A 0 Bright A_SpawnItemEx("Switchable_FlyingBlood_Copper",random(-5,5),random(-5,5),random(0,8),random(-80,80)/10.00,random(-30,60)/10.0,random(4,8),random(-180,180),160)
+			TNT1 A 0 Bright A_SpawnItemEx("BrutalOnlineSound2",0,0,0,0,0,0,0,160)
 			Goto Death2+4
 		XDeathHappyfun:
 			TNT1 A 0
-			TNT1 AAA 0 A_SpawnItemEx("RainbowSparkleSound",random(-10,10),random(-10,10),random(32,40),0,0,0,0,32)
-			TNT1 AAAA 0 A_SpawnItemEx("WhiteSpark",0,0,random(32,40),random(-60,60)/20.0,random(-60,60)/20.0,random(-40,40)/20.0,random(-180,180),32)
-			TNT1 AAAAA 0 A_SpawnItemEx("RainbowSparkHuge",0,0,random(32,40),random(-60,60)/20.0,random(-60,60)/20.0,random(-40,40)/20.0,random(-180,180),32)
-			TNT1 AAAAAAA 0 A_SpawnItemEx("RainbowSpark",0,0,random(32,40),random(-60,60)/20.0,random(-60,60)/20.0,random(-40,40)/20.0,random(-180,180),32)
-			TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("RainbowSparkTiny",random(-5,5),random(-5,5),random(25,30),random(-80,80)/10.00,random(-80,80)/10.0,random(-3,3),random(-180,180),160)
-			TNT1 AAAAAAAAAAAAAA 0 A_SpawnItemEx("FancyWhiteSmoke",random(-10,10),random(-10,10),random(-10,-10),random(-200,200)/100.00,random(-200,200)/100.00,random(200,600)/100.00,random(-180,180),160)
-			TNT1 A 0 A_SpawnItemEx("HappyOnlineSound",0,0,0,0,0,0,0,160)
+			TNT1 AAA 0 Bright A_SpawnItemEx("RainbowSparkleSound",random(-10,10),random(-10,10),random(32,40),0,0,0,0,32)
+			TNT1 AAAA 0 Bright A_SpawnItemEx("WhiteSpark",0,0,random(32,40),random(-60,60)/20.0,random(-60,60)/20.0,random(-40,40)/20.0,random(-180,180),32)
+			TNT1 AAAAA 0 Bright A_SpawnItemEx("RainbowSparkHuge",0,0,random(32,40),random(-60,60)/20.0,random(-60,60)/20.0,random(-40,40)/20.0,random(-180,180),32)
+			TNT1 AAAAAAA 0 Bright A_SpawnItemEx("RainbowSpark",0,0,random(32,40),random(-60,60)/20.0,random(-60,60)/20.0,random(-40,40)/20.0,random(-180,180),32)
+			TNT1 AAAAAAAAAAAAAAAAAAAA 0 Bright A_SpawnItemEx("RainbowSparkTiny",random(-5,5),random(-5,5),random(25,30),random(-80,80)/10.00,random(-80,80)/10.0,random(-3,3),random(-180,180),160)
+			TNT1 AAAAAAAAAAAAAA 0 Bright A_SpawnItemEx("FancyWhiteSmoke",random(-10,10),random(-10,10),random(-10,-10),random(-200,200)/100.00,random(-200,200)/100.00,random(200,600)/100.00,random(-180,180),160)
+			TNT1 A 0 Bright A_SpawnItemEx("HappyOnlineSound",0,0,0,0,0,0,0,160)
 			Goto XDeathDuke2+3
 		XDeathNashgore:
 			TNT1 A 0
-			TNT1 AA 0 A_SpawnItemEx("NashGore_Gib9",random(-10,10),random(-10,10),random(12,40),random(-350,350)/100.00,random(-350,350)/100.00,random(300,700)/100.00,random(-180,180),160)
-			TNT1 AA 0 A_SpawnItemEx("NashGore_Gib9_Copper",random(-10,10),random(-10,10),random(12,40),random(-350,350)/100.00,random(-350,350)/100.00,random(300,700)/100.00,random(-180,180),160)
-			TNT1 A 0 A_SpawnItemEx("NashGore_Gib10",random(-10,10),random(-10,10),random(12,40),random(-350,350)/100.00,random(-350,350)/100.00,random(300,700)/100.00,random(-180,180),160)
-			TNT1 A 0 A_SpawnItemEx("NashGore_Gib11",random(-10,10),random(-10,10),random(12,40),random(-350,350)/100.00,random(-350,350)/100.00,random(300,700)/100.00,random(-180,180),160)
-			TNT1 A 0 A_SpawnItemEx("NashGore_Gib11_Copper",random(-10,10),random(-10,10),random(12,40),random(-350,350)/100.00,random(-350,350)/100.00,random(300,700)/100.00,random(-180,180),160)
-			TNT1 AAAA 0 A_SpawnItem("NashGore_GibGenerator",0,0,0,0)
-			TNT1 AAAA 0 A_SpawnItem("NashGore_GibGenerator_Copper",0,0,0,0)
+			TNT1 AA 0 Bright A_SpawnItemEx("NashGore_Gib9",random(-10,10),random(-10,10),random(12,40),random(-350,350)/100.00,random(-350,350)/100.00,random(300,700)/100.00,random(-180,180),160)
+			TNT1 AA 0 Bright A_SpawnItemEx("NashGore_Gib9_Copper",random(-10,10),random(-10,10),random(12,40),random(-350,350)/100.00,random(-350,350)/100.00,random(300,700)/100.00,random(-180,180),160)
+			TNT1 A 0 Bright A_SpawnItemEx("NashGore_Gib10",random(-10,10),random(-10,10),random(12,40),random(-350,350)/100.00,random(-350,350)/100.00,random(300,700)/100.00,random(-180,180),160)
+			TNT1 A 0 Bright A_SpawnItemEx("NashGore_Gib11",random(-10,10),random(-10,10),random(12,40),random(-350,350)/100.00,random(-350,350)/100.00,random(300,700)/100.00,random(-180,180),160)
+			TNT1 A 0 Bright A_SpawnItemEx("NashGore_Gib11_Copper",random(-10,10),random(-10,10),random(12,40),random(-350,350)/100.00,random(-350,350)/100.00,random(300,700)/100.00,random(-180,180),160)
+			TNT1 AAAA 0 Bright A_SpawnItem("NashGore_GibGenerator",0,0,0,0)
+			TNT1 AAAA 0 Bright A_SpawnItem("NashGore_GibGenerator_Copper",0,0,0,0)
 			Goto XDeathDuke2+3
 		XDeathBrutal:
 			TNT1 A 0
-			TNT1 A 0 A_SpawnItemEx("BrutalChunkBouncy1",random(-10,10),random(-10,10),random(12,40),random(-700,700)/100.00,random(-700,700)/100.00,random(600,1400)/100.00,random(-180,180),160)
-			TNT1 A 0 A_SpawnItemEx("BrutalChunkBouncy2",random(-10,10),random(-10,10),random(12,40),random(-700,700)/100.00,random(-700,700)/100.00,random(600,1400)/100.00,random(-180,180),160)
-			TNT1 A 0 A_SpawnItemEx("BrutalChunkBouncy3_Copper",random(-10,10),random(-10,10),random(12,40),random(-700,700)/100.00,random(-700,700)/100.00,random(600,1400)/100.00,random(-180,180),160)
-			TNT1 A 0 A_SpawnItemEx("BrutalBrownOrgan",random(-10,10),random(-10,10),random(12,40),random(-700,700)/100.00,random(-700,700)/100.00,random(600,1400)/100.00,random(-180,180),160)
-			TNT1 A 0 A_SpawnItemEx("BrutalRedOrgan_Copper",random(-10,10),random(-10,10),random(12,40),random(-700,700)/100.00,random(-700,700)/100.00,random(600,1400)/100.00,random(-180,180),160)
-			TNT1 AAA 0 A_SpawnItemEx("BrutalChunk",random(-10,10),random(-10,10),random(12,40),random(-500,500)/100.00,random(-500,500)/100.00,random(300,1000)/100.00,random(-180,180),160)
-			TNT1 A 0 A_SpawnItemEx("BrutalChunk_Copper",random(-10,10),random(-10,10),random(12,40),random(-500,500)/100.00,random(-500,500)/100.00,random(300,1000)/100.00,random(-180,180),160)
-			TNT1 A 0 A_SpawnItemEx("BrutalChunkHuge",random(-10,10),random(-10,10),random(12,40),random(-700,700)/100.00,random(-700,700)/100.00,random(600,1400)/100.00,random(-180,180),160)
-			TNT1 A 0 A_SpawnItemEx("BrutalChunkHuge_Copper",random(-10,10),random(-10,10),random(12,40),random(-700,700)/100.00,random(-700,700)/100.00,random(600,1400)/100.00,random(-180,180),160)
-			TNT1 AAA 0 A_SpawnItemEx("BrutalTinyBone",random(-5,5),random(-5,5),random(12,40),random(-400,400)/100.00,random(-400,400)/100.00,random(300,800)/100.00,random(-180,180),160)
-			TNT1 AAA 0 A_SpawnItemEx("BrutalTinyBouncyBone",random(-5,5),random(-5,5),random(12,40),random(-400,400)/100.00,random(-400,400)/100.00,random(300,800)/100.00,random(-180,180),160)
-			TNT1 A 0 A_SpawnItemEx("BrutalTinyBouncyBone_Copper",random(-5,5),random(-5,5),random(12,40),random(-400,400)/100.00,random(-400,400)/100.00,random(300,800)/100.00,random(-180,180),160)
-			TNT1 AAAAAAA 0 A_SpawnItemEx("RedMist",random(-10,10),random(-10,10),random(12,40),random(-800,800)/100.00,random(-800,800)/100.00,random(600,1200)/100.00,random(-180,180),160)
-			TNT1 AAA 0 A_SpawnItemEx("CopperMist",random(-10,10),random(-10,10),random(12,40),random(-800,800)/100.00,random(-800,800)/100.00,random(600,1200)/100.00,random(-180,180),160)
-			TNT1 AAAAAAA 0 A_SpawnItemEx("BrutalChunkTiny",random(-10,10),random(-10,10),random(12,40),random(-800,800)/100.00,random(-800,800)/100.00,random(600,1200)/100.00,random(-180,180),160)
-			TNT1 AAA 0 A_SpawnItemEx("BrutalChunkTiny_Copper",random(-10,10),random(-10,10),random(12,40),random(-800,800)/100.00,random(-800,800)/100.00,random(600,1200)/100.00,random(-180,180),160)
-			TNT1 AAAA 0 A_SpawnItemEx("RedMistIntense",random(-10,10),random(-10,10),random(12,40),random(-800,800)/100.00,random(-800,800)/100.00,random(600,1200)/100.00,random(-180,180),160)
-			TNT1 AA 0 A_SpawnItemEx("CopperMistIntense",random(-10,10),random(-10,10),random(12,40),random(-800,800)/100.00,random(-800,800)/100.00,random(600,1200)/100.00,random(-180,180),160)
-			TNT1 AAAAAAAAA 0 A_SpawnItemEx("Switchable_FlyingBlood",random(-10,10),random(-10,10),random(12,40),random(-700,700)/100.00,random(-700,700)/100.00,random(600,1400)/100.00,random(-180,180),160)
-			TNT1 AAAAA 0 A_SpawnItemEx("Switchable_FlyingBlood_Copper",random(-10,10),random(-10,10),random(12,40),random(-700,700)/100.00,random(-700,700)/100.00,random(600,1400)/100.00,random(-180,180),160)
-			TNT1 A 0 A_SpawnItemEx("BrutalOnlineSound",0,0,0,0,0,0,0,160)
+			TNT1 A 0 Bright A_SpawnItemEx("BrutalChunkBouncy1",random(-10,10),random(-10,10),random(12,40),random(-700,700)/100.00,random(-700,700)/100.00,random(600,1400)/100.00,random(-180,180),160)
+			TNT1 A 0 Bright A_SpawnItemEx("BrutalChunkBouncy2",random(-10,10),random(-10,10),random(12,40),random(-700,700)/100.00,random(-700,700)/100.00,random(600,1400)/100.00,random(-180,180),160)
+			TNT1 A 0 Bright A_SpawnItemEx("BrutalChunkBouncy3_Copper",random(-10,10),random(-10,10),random(12,40),random(-700,700)/100.00,random(-700,700)/100.00,random(600,1400)/100.00,random(-180,180),160)
+			TNT1 A 0 Bright A_SpawnItemEx("BrutalBrownOrgan",random(-10,10),random(-10,10),random(12,40),random(-700,700)/100.00,random(-700,700)/100.00,random(600,1400)/100.00,random(-180,180),160)
+			TNT1 A 0 Bright A_SpawnItemEx("BrutalRedOrgan_Copper",random(-10,10),random(-10,10),random(12,40),random(-700,700)/100.00,random(-700,700)/100.00,random(600,1400)/100.00,random(-180,180),160)
+			TNT1 AAA 0 Bright A_SpawnItemEx("BrutalChunk",random(-10,10),random(-10,10),random(12,40),random(-500,500)/100.00,random(-500,500)/100.00,random(300,1000)/100.00,random(-180,180),160)
+			TNT1 A 0 Bright A_SpawnItemEx("BrutalChunk_Copper",random(-10,10),random(-10,10),random(12,40),random(-500,500)/100.00,random(-500,500)/100.00,random(300,1000)/100.00,random(-180,180),160)
+			TNT1 A 0 Bright A_SpawnItemEx("BrutalChunkHuge",random(-10,10),random(-10,10),random(12,40),random(-700,700)/100.00,random(-700,700)/100.00,random(600,1400)/100.00,random(-180,180),160)
+			TNT1 A 0 Bright A_SpawnItemEx("BrutalChunkHuge_Copper",random(-10,10),random(-10,10),random(12,40),random(-700,700)/100.00,random(-700,700)/100.00,random(600,1400)/100.00,random(-180,180),160)
+			TNT1 AAA 0 Bright A_SpawnItemEx("BrutalTinyBone",random(-5,5),random(-5,5),random(12,40),random(-400,400)/100.00,random(-400,400)/100.00,random(300,800)/100.00,random(-180,180),160)
+			TNT1 AAA 0 Bright A_SpawnItemEx("BrutalTinyBouncyBone",random(-5,5),random(-5,5),random(12,40),random(-400,400)/100.00,random(-400,400)/100.00,random(300,800)/100.00,random(-180,180),160)
+			TNT1 A 0 Bright A_SpawnItemEx("BrutalTinyBouncyBone_Copper",random(-5,5),random(-5,5),random(12,40),random(-400,400)/100.00,random(-400,400)/100.00,random(300,800)/100.00,random(-180,180),160)
+			TNT1 AAAAAAA 0 Bright A_SpawnItemEx("RedMist",random(-10,10),random(-10,10),random(12,40),random(-800,800)/100.00,random(-800,800)/100.00,random(600,1200)/100.00,random(-180,180),160)
+			TNT1 AAA 0 Bright A_SpawnItemEx("CopperMist",random(-10,10),random(-10,10),random(12,40),random(-800,800)/100.00,random(-800,800)/100.00,random(600,1200)/100.00,random(-180,180),160)
+			TNT1 AAAAAAA 0 Bright A_SpawnItemEx("BrutalChunkTiny",random(-10,10),random(-10,10),random(12,40),random(-800,800)/100.00,random(-800,800)/100.00,random(600,1200)/100.00,random(-180,180),160)
+			TNT1 AAA 0 Bright A_SpawnItemEx("BrutalChunkTiny_Copper",random(-10,10),random(-10,10),random(12,40),random(-800,800)/100.00,random(-800,800)/100.00,random(600,1200)/100.00,random(-180,180),160)
+			TNT1 AAAA 0 Bright A_SpawnItemEx("RedMistIntense",random(-10,10),random(-10,10),random(12,40),random(-800,800)/100.00,random(-800,800)/100.00,random(600,1200)/100.00,random(-180,180),160)
+			TNT1 AA 0 Bright A_SpawnItemEx("CopperMistIntense",random(-10,10),random(-10,10),random(12,40),random(-800,800)/100.00,random(-800,800)/100.00,random(600,1200)/100.00,random(-180,180),160)
+			TNT1 AAAAAAAAA 0 Bright A_SpawnItemEx("Switchable_FlyingBlood",random(-10,10),random(-10,10),random(12,40),random(-700,700)/100.00,random(-700,700)/100.00,random(600,1400)/100.00,random(-180,180),160)
+			TNT1 AAAAA 0 Bright A_SpawnItemEx("Switchable_FlyingBlood_Copper",random(-10,10),random(-10,10),random(12,40),random(-700,700)/100.00,random(-700,700)/100.00,random(600,1400)/100.00,random(-180,180),160)
+			TNT1 A 0 Bright A_SpawnItemEx("BrutalOnlineSound",0,0,0,0,0,0,0,160)
 			Goto XDeathDuke2+3
 	}
 }
