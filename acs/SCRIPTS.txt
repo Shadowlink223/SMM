@@ -35,6 +35,7 @@ Additions:\n\
 - Rare monster spawns for the Marathon set.\n\
 - Invisible monsters mode.\n\
 - Added mm_nobats for the Wolf3D set for those who don't like the gun bats.\n\
+- Added more brightmaps\n\
 Tweaks:\n\
 - Added +QUICKTORETALIATE to the Marathon set to improve monster accuracy.\n\
 - Lowered the movement speed on the Mini-Battlelord so it's less jittery.\n\
@@ -45,7 +46,8 @@ Tweaks:\n\
 - Juggernauts from Marathon cause a blinding flash after they explode.\n\
 - Wolfenstein SS now drops a weapon when killed. (Slot 2 for BJ, slot 4 for the rest)\n\
 - Added two new puffs for the High Guard and M1 Juggernaut.\n\
-- All CVARs now use the prefix mm_ instead of smm_";
+- All CVARs now use the prefix mm_ instead of smm_\n\
+- Removed the Centaur Leader from the Spectre slot in favor of a normal Centaur";
 
 global int 2:alreadyshowedbs;
 global int 3:randomallclear;
