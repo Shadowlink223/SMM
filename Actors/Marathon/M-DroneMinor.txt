@@ -114,8 +114,8 @@ ACTOR DroneMinor
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
 			DRMI B 5 A_PlaySound("drone/prep")
 			DRMI BBBBB 2 A_FaceTarget
-			DRMI C 5 A_CustomMissile("DroneBoltNightmare", 10, 0, 0,0, 0)
-			TNT1 A 0 Bright A_ChangeFlag("NOPAIN",0)
+			DRMI C 5 Bright A_CustomMissile("DroneBoltNightmare", 10, 0, 0,0, 0)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			Goto See
 		Pain:
 			TNT1 A 0
@@ -148,9 +148,9 @@ ACTOR DroneMinor
 			TNT1 A 0 A_SpawnItem("MarathonRocketSmoke")
 			Goto Death+3
 		Death2:
-			DRMI F 4 A_Scream
-			DRMI G 4 A_Stop
-			DRMI H 4 A_NoBlocking
+			DRMI F 4 Bright A_Scream
+			DRMI G 4 Bright A_Stop
+			DRMI H 4 Bright A_NoBlocking
 			DRMI I -1
 			Stop
 		Death.ZorchPistol:

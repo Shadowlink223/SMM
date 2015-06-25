@@ -162,9 +162,9 @@ ACTOR DroneMajor
 			TNT1 A 0 A_SpawnItem("MarathonRocketSmoke")
 			Goto Death+3
 		Death2:
-			DRMA F 4 A_Scream
-			DRMA G 4 A_Stop
-			DRMA H 4 A_NoBlocking
+			DRMA F 4 Bright A_Scream
+			DRMA G 4 Bright A_Stop
+			DRMA H 4 Bright A_NoBlocking
 			DRMA I -1
 			Stop
 		Death.ZorchPistol:

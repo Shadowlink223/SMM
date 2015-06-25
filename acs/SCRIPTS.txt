@@ -31,12 +31,14 @@ Fixes:\n\
 - Fixed a loophole where BJ could kill Marathon monsters that were invulnerable to fire with his flamethrower.\n\
 - Fixed a problem with Doom monsters that wouldn't trigger A_BossDeath in single player while bloodyhell was enabled\n\
 Additions:\n\
-- Throwback monsters for each set. Includes a yellow armored flemoid for Chex, the High Guard from Rise of the Triad, and the Mage from Catacomb 3-D\n\
+- Bloodyhell support added for the Wolf3D, Duke3D, and Marathon sets. (Modes -1 through 2 only)\n\
+- Throwback monsters for a few sets. Includes a yellow armored flemoid for Chex, the High Guard from Rise of the Triad, and the Mage from Catacomb 3-D\n\
 - Rare monster spawns for the Marathon set.\n\
 - Invisible monsters mode.\n\
 - Added mm_nobats for the Wolf3D set for those who don't like the gun bats.\n\
 - Added more brightmaps\n\
 Tweaks:\n\
+- Reworked the Marathon difficulty system to be token based instead of multiple ACS calls so this will hopefully use less bandwidth\n\
 - Added +QUICKTORETALIATE to the Marathon set to improve monster accuracy.\n\
 - Lowered the movement speed on the Mini-Battlelord so it's less jittery.\n\
 - Major Juggernauts now fire missiles 2 times per attack state to match Marathon.\n\
