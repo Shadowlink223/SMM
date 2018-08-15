@@ -12,11 +12,8 @@ actor NewFlemoidusStridicus : FlemoidusStridicus
 		Spawn:
 			SARC A 0
 			SARC A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
-			SARC A 1 ACS_ExecuteAlways(668,0,1,0)
+			SARC A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,1,0)
 			SARC A 0 A_GiveInventory("AlreadySpawned",1)
-			SARC A 0 A_JumpIfInventory("InvisibleToken",1,2)
-			SARC A 0 A_Jump(256,2)
-			SARC A 0 A_ChangeFlag("STEALTH",1)
       Spawn2:
         SARC AB 10 A_Look
         Loop
@@ -26,6 +23,7 @@ actor NewFlemoidusStridicus : FlemoidusStridicus
         Loop
 
       Melee:
+		TNT1 A 0 A_JumpIfInventory("NoPainToken",0,2)
         TNT1 A 0 A_ChangeFlag("NOPAIN",0)
         SARC EF 6 A_FaceTarget
         SARC G 6 A_CustomMeleeAttack(random[SARCattack](1,10)*4, "", "", "Flem")
@@ -124,6 +122,7 @@ ACTOR OldFlemoidusStridicus : NewFlemoidusStridicus
 	States
 	{
 		Melee:
+		TNT1 A 0 A_JumpIfInventory("NoPainToken",0,2)
         TNT1 A 0 A_ChangeFlag("NOPAIN",0)
         SARC EF 8 A_FaceTarget
         SARC G 8 A_CustomMeleeAttack(random[SARCattack](1,10)*4, "", "", "Flem")

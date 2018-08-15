@@ -1,1 +1,75 @@
-//
+ACTOR QVore
+{
+	Health 10490
+	Radius 20
+	Height 56
+	Speed 4
+	Mass 0x7FFFFFFF
+	PainChance 200
+	Scale 0.5
+	WoundHealth 10090
+	MONSTER
+	+FLOORCLIP
+    +NOTDMATCH
+    +THRUGHOST
+	+MISSILEMORE
+	SeeSound "vore/sight"
+	PainSound "vore/pain"
+	DeathSound "vore/death"
+	ActiveSound "vore/active"
+	Dropitem "DefaultPinataPop"
+	Obituary "%o was exploded by a Vore."
+    DamageFactor "Mace", 1.1
+    DamageFactor "DragonClaw", 1.5
+    PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
+	States
+	{
+		Spawn:
+			QVO1 A 0
+			QVO1 A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+			QVO1 A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,1,0)
+			QVO1 A 0 A_GiveInventory("AlreadySpawned",1)
+		Spawn2:
+			QVO1 A 4 A_Look
+			Loop
+		See:
+			QVO1 ABCDEFGHIJKL 4 A_Chase
+			Loop
+		Pain:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_Pain
+			QVO1 XYZ 4
+			QVO2 AB 4
+			TNT1 A 0 A_JumpIfInventory("NoPainToken",0,2)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0
+			Goto See
+		Missile:
+			QVO1 M 3 A_PlaySound("vore/attack",2)
+			QVO1 NOPQRST 3 A_FaceTarget
+			QVO1 U 3 A_CustomMissile("VoreTracer",32)
+			QVO1 VW 3
+			Goto See
+		Wound:
+			QGR4 P 1 A_JumpIfHealthLower(10000,2)
+			TNT1 A 0 A_Die
+			TNT1 A 0 A_Die("QuakeGib")
+			Goto Death
+		Death:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 A_Scream
+			QVO2 CDEFGHI 3
+			TNT1 A 0 A_NoBlocking
+			QVO2 I -1
+			Stop
+		Death.QuakeGib:
+		XDeath:
+			TNT1 A 1 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 DamageThing(20000)
+			TNT1 A 0 A_PlaySound("quake/gib", CHAN_VOICE)
+			TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("Blood", 0, 0, random(8, 56), random(-4, 4), 0, random(0, 6))
+			TNT1 A 0 A_SpawnItemEx("QuakeSmallGibDropper",0,0,random(20,40),0,0,0,0,1)
+			Stop
+	}
+}

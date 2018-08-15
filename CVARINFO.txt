@@ -7,7 +7,7 @@ server bool mm_chex = true;
 server bool mm_wolf3d = true;
 server bool mm_duke3d = true;
 server bool mm_marathon = false;
-//server bool mm_quake = true;
+server bool mm_quake = true;
 
 //Mode toggles
 
@@ -23,6 +23,7 @@ server bool mm_banchex = false;
 server bool mm_banwolf3d = false;
 server bool mm_banduke3d = false;
 server bool mm_banmarathon = true;
+server bool mm_banquake = false;
 server int mm_multiply = 0;
 server bool mm_pinataparty = false;
 server bool mm_newchex = false;
@@ -32,5 +33,8 @@ server bool mm_init = true;
 server bool mm_invisiblemode = false;
 server bool mm_nobats = false;
 server bool mm_specpermdeath = false;
+server bool mm_maratele = true;
+server bool mm_monstersdiewhentheyarekilled = false;
+server bool mm_nopain = false;
 //server bool mm_dropdefault = false;
 //server bool mm_assholemode = false;

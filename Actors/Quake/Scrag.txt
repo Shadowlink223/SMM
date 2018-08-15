@@ -1,1 +1,79 @@
-//
+ACTOR QScrag
+{
+	Health 10120
+	Radius 16
+	Height 56
+	Speed 15
+	Mass 0x7FFFFFFF
+	PainChance 128
+	Scale 0.5
+	WoundHealth 10040
+	MONSTER
+	+FLOORCLIP
+    +NOTDMATCH
+    +THRUGHOST
+	+MISSILEMORE
+	+MISSILEEVENMORE
+	+NOGRAVITY
+	+FLOAT
+	SeeSound "scrag/sight"
+	PainSound "scrag/pain"
+	DeathSound "scrag/death"
+	ActiveSound "scrag/active"
+	Dropitem "DefaultPinataPop"
+	Obituary "%o was scragged by a Scrag."
+    DamageFactor "Mace", 1.1
+    DamageFactor "DragonClaw", 1.5
+    PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
+	States
+	{
+		Spawn:
+			QSC1 A 0
+			QSC1 A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+			QSC1 A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,1,0)
+			QSC1 A 0 A_GiveInventory("AlreadySpawned",1)
+		Spawn2:
+			QSC1 ABCDEFGHIJKLMNO 3 A_Look
+			Loop
+		See:
+			QSC1 PQRSTUVWXYZ 3 A_Chase
+			QSC2 ABC 3 A_Chase
+			Loop
+		Missile:
+			QSC2 DEF 3 A_FaceTarget
+			QSC2 G 3 A_CustomMissile("ScragProjectile",32)
+			QSC2 DEF 3 A_FaceTarget
+			QSC2 G 3 A_CustomMissile("ScragProjectile",32)
+			Goto See
+		Pain:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			QSC2 Q 3 A_Pain
+			QSC2 RST 3
+			TNT1 A 0 A_JumpIfInventory("NoPainToken",0,2)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0
+			Goto See
+		Wound:
+			QSC2 U 1 A_JumpIfHealthLower(10000,2)
+			TNT1 A 0 A_Die
+			TNT1 A 0 A_Die("QuakeGib")
+			Goto Death
+		Death:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 A_Scream
+			TNT1 A 0 A_NoBlocking
+			QSC2 UVWXYZ 3
+			QSC3 AB 3
+			QSC3 B -1
+			Stop
+		Death.QuakeGib:
+		XDeath:
+			TNT1 A 1 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 DamageThing(20000)
+			TNT1 A 0 A_PlaySound("quake/gib", CHAN_VOICE)
+			TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("Blood", 0, 0, random(8, 56), random(-4, 4), 0, random(0, 6))
+			TNT1 A 0 A_SpawnItemEx("QuakeSmallGibDropper",0,0,random(20,40),0,0,0,0,1)
+			Stop
+	}
+}

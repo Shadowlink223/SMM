@@ -1,0 +1,692 @@
+pointlight CYBGREN
+{
+	color 0.4 0.0 0.0
+    size 16
+}
+
+pointlight CYBGREN2
+{
+	color 0.0 0.4 0.0
+    size 16
+}
+
+pointlight TRGREN
+{
+    color 1.0 0.7 0.0
+    size 32
+}
+
+pointlight TRGREN_X1
+{
+    color 1.0 0.7 0.0
+    size 48
+}
+
+pointlight TRGREN_X2
+{
+    color 1.0 0.7 0.0
+    size 52
+}
+
+pointlight TRGREN_X3
+{
+    color 0.5 0.1 0.0
+    size 56
+}
+
+pointlight TRGREN_X4
+{
+    color 0.3 0.0 0.0
+    size 70
+}
+
+pointlight FIPROJ
+{
+    color 0.5 0.7 0.0
+    size 32
+}
+
+flickerlight FIPROJ_X1
+{
+    color 0.4 1.0 0.0
+    size 48
+    secondarySize 50
+    chance 0.4
+}
+
+flickerlight FIPROJ_X2
+{
+    color 0.5 0.9 0.0
+    size 50
+    secondarySize 52	
+    chance 0.4
+}
+
+flickerlight FIPROJ_X3
+{
+    color 0.4 0.6 0.0
+    size 52
+    secondarySize 54
+    chance 0.4
+}
+
+flickerlight FIPROJ_X4
+{
+    color 0.3 0.5 0.0
+    size 54
+    secondarySize 56
+    chance 0.4
+}
+
+flickerlight FIPROJ_X5
+{
+    color 0.4 0.8 0.0
+    size 56
+    secondarySize 58
+    chance 0.4
+}
+
+pointlight HUPROJ
+{
+    color 0.0 0.6 0.0
+    size 32
+}
+
+flickerlight HUPROJ_X1
+{
+    color 0.5 0.7 0.0
+    size 48
+    secondarySize 50
+    chance 0.4
+}
+
+flickerlight HUPROJ_X2
+{
+    color 0.3 0.5 0.0
+    size 50
+    secondarySize 52
+    chance 0.4
+}
+
+flickerlight HUPROJ_X3
+{
+    color 0.4 0.6 0.0
+    size 52
+    secondarySize 54
+    chance 0.4
+}
+
+flickerlight HUPROJ_X4
+{
+    color 0.4 0.5 0.0
+    size 54
+    secondarySize 56
+    chance 0.4
+}
+
+flickerlight TOZT1
+{
+	color 1.0 0.7 0.0
+	size 32
+	secondarysize 38
+	chance 0.7
+}
+
+flickerlight TOZT2
+{
+	color 1.0 0.5 0.0
+	size 40
+	secondarysize 48
+	chance 0.7
+}
+
+flickerlight TOZT3
+{
+	color 1.0 0.4 0.0
+	size 52
+	secondarysize 60
+	chance 0.7
+}
+
+flickerlight TOZT4
+{
+	color 1.0 0.3 0.0
+	size 64
+	secondarysize 72
+	chance 0.7
+}
+
+flickerlight TOZT5
+{
+	color 1.0 0.2 0.0
+	size 74
+	secondarysize 82
+	chance 0.7
+}
+
+flickerlight TOZT6
+{
+	color 0.85 0.1 0.0
+	size 86
+	secondarysize 94
+	chance 0.7
+}
+
+flickerlight TOZT7
+{
+	color 0.7 0.0 0.0
+	size 96
+	secondarysize 104
+	chance 0.7
+}
+
+pointlight M2ENSHOT
+{
+    color 1.0 0.7 0.0
+    size 40
+}
+
+pointlight M2ENS_X1 
+{
+	color 1.0 0.7 0.0
+	size 40
+}
+
+pointlight M2ENS_X2
+{
+	color 0.8 0.4 0.0
+	size 44
+}
+
+pointlight M2ENS_X3
+{
+	color 0.6 0.2 0.0
+	size 48
+}
+
+pointlight M2ENS_X4
+{
+	color 0.2 0.0 0.0
+	size 56
+}
+
+
+
+//Thanks to Medicris for the grenade lights
+object TrooperGrenade
+{
+    frame TRGRA { light TRGREN }
+    frame TRGRB { light TRGREN }
+	frame XPLDA { light TRGREN_X1 }
+    frame XPLDB { light TRGREN_X2 }
+	frame XPLDC { light TRGREN_X3 }
+    frame XPLDD { light TRGREN_X4 }
+    frame XPLDE { light TRGREN_X4 }
+	frame XPLDF { light TRGREN_X4 }
+}
+
+object TrooperGrenadeITYTD
+{
+    frame TRGRA { light TRGREN }
+    frame TRGRB { light TRGREN }
+	frame XPLDA { light TRGREN_X1 }
+    frame XPLDB { light TRGREN_X2 }
+	frame XPLDC { light TRGREN_X3 }
+    frame XPLDD { light TRGREN_X4 }
+    frame XPLDE { light TRGREN_X4 }
+	frame XPLDF { light TRGREN_X4 }
+}
+
+object TrooperGrenadeHNTR
+{
+    frame TRGRA { light TRGREN }
+    frame TRGRB { light TRGREN }
+	frame XPLDA { light TRGREN_X1 }
+    frame XPLDB { light TRGREN_X2 }
+	frame XPLDC { light TRGREN_X3 }
+    frame XPLDD { light TRGREN_X4 }
+    frame XPLDE { light TRGREN_X4 }
+	frame XPLDF { light TRGREN_X4 }
+}
+
+object TrooperGrenadeUV
+{
+    frame TRGRA { light TRGREN }
+    frame TRGRB { light TRGREN }
+	frame XPLDA { light TRGREN_X1 }
+    frame XPLDB { light TRGREN_X2 }
+	frame XPLDC { light TRGREN_X3 }
+    frame XPLDD { light TRGREN_X4 }
+    frame XPLDE { light TRGREN_X4 }
+	frame XPLDF { light TRGREN_X4 }
+}
+
+object TrooperGrenadeNightmare
+{
+    frame TRGRA { light TRGREN }
+    frame TRGRB { light TRGREN }
+	frame XPLDA { light TRGREN_X1 }
+    frame XPLDB { light TRGREN_X2 }
+	frame XPLDC { light TRGREN_X3 }
+    frame XPLDD { light TRGREN_X4 }
+    frame XPLDE { light TRGREN_X4 }
+	frame XPLDF { light TRGREN_X4 }
+}
+
+
+object FighterProjectile
+{
+    frame FIPRA { light FIPROJ }
+    frame FIPRB { light FIPROJ }
+	frame FPREA { light FIPROJ_X1 }
+    frame FPREB { light FIPROJ_X2 }
+	frame FPREC { light FIPROJ_X3 }
+    frame FPRED { light FIPROJ_X4 }
+    frame FPREE { light FIPROJ_X5 }
+}
+
+object FighterProjectileITYTD
+{
+    frame FIPRA { light FIPROJ }
+    frame FIPRB { light FIPROJ }
+	frame FPREA { light FIPROJ_X1 }
+    frame FPREB { light FIPROJ_X2 }
+	frame FPREC { light FIPROJ_X3 }
+    frame FPRED { light FIPROJ_X4 }
+    frame FPREE { light FIPROJ_X5 }
+}
+
+object FighterProjectileHNTR
+{
+    frame FIPRA { light FIPROJ }
+    frame FIPRB { light FIPROJ }
+	frame FPREA { light FIPROJ_X1 }
+    frame FPREB { light FIPROJ_X2 }
+	frame FPREC { light FIPROJ_X3 }
+    frame FPRED { light FIPROJ_X4 }
+    frame FPREE { light FIPROJ_X5 }
+}
+
+object FighterProjectileUV
+{
+    frame FIPRA { light FIPROJ }
+    frame FIPRB { light FIPROJ }
+	frame FPREA { light FIPROJ_X1 }
+    frame FPREB { light FIPROJ_X2 }
+	frame FPREC { light FIPROJ_X3 }
+    frame FPRED { light FIPROJ_X4 }
+    frame FPREE { light FIPROJ_X5 }
+}
+
+object FighterProjectileNightmare
+{
+    frame FIPRA { light FIPROJ }
+    frame FIPRB { light FIPROJ }
+	frame FPREA { light FIPROJ_X1 }
+    frame FPREB { light FIPROJ_X2 }
+	frame FPREC { light FIPROJ_X3 }
+    frame FPRED { light FIPROJ_X4 }
+    frame FPREE { light FIPROJ_X5 }
+}
+
+object HunterShot
+{
+    frame HUPRA { light HUPROJ }
+	frame HUEXA { light HUPROJ_X1 }
+	frame HUEXB { light HUPROJ_X2 }
+	frame HUEXC { light HUPROJ_X3 }
+	frame HUEXD { light HUPROJ_X4 }
+}
+
+object HunterShotITYTD
+{
+    frame HUPRA { light HUPROJ }
+	frame HUEXA { light HUPROJ_X1 }
+	frame HUEXB { light HUPROJ_X2 }
+	frame HUEXC { light HUPROJ_X3 }
+	frame HUEXD { light HUPROJ_X4 }
+}
+
+object HunterShotHNTR
+{
+    frame HUPRA { light HUPROJ }
+	frame HUEXA { light HUPROJ_X1 }
+	frame HUEXB { light HUPROJ_X2 }
+	frame HUEXC { light HUPROJ_X3 }
+	frame HUEXD { light HUPROJ_X4 }
+}
+
+object HunterShotUV
+{
+    frame HUPRA { light HUPROJ }
+	frame HUEXA { light HUPROJ_X1 }
+	frame HUEXB { light HUPROJ_X2 }
+	frame HUEXC { light HUPROJ_X3 }
+	frame HUEXD { light HUPROJ_X4 }
+}
+
+object HunterShotNightmare
+{
+    frame HUPRA { light HUPROJ }
+	frame HUEXA { light HUPROJ_X1 }
+	frame HUEXB { light HUPROJ_X2 }
+	frame HUEXC { light HUPROJ_X3 }
+	frame HUEXD { light HUPROJ_X4 }
+}
+
+object M1JuggernautRocket
+{
+	frame J1MIA { light ROCKET }
+	frame XPLDA { light TRGREN_X1 }
+    frame XPLDB { light TRGREN_X2 }
+	frame XPLDC { light TRGREN_X3 }
+    frame XPLDD { light TRGREN_X4 }
+    frame XPLDE { light TRGREN_X4 }
+	frame XPLDF { light TRGREN_X4 }
+}
+
+object M1JuggernautRocketITYTD
+{
+	frame J1MIA { light ROCKET }
+	frame XPLDA { light TRGREN_X1 }
+    frame XPLDB { light TRGREN_X2 }
+	frame XPLDC { light TRGREN_X3 }
+    frame XPLDD { light TRGREN_X4 }
+    frame XPLDE { light TRGREN_X4 }
+	frame XPLDF { light TRGREN_X4 }
+}
+
+object M1JuggernautRocketHNTR
+{
+	frame J1MIA { light ROCKET }
+	frame XPLDA { light TRGREN_X1 }
+    frame XPLDB { light TRGREN_X2 }
+	frame XPLDC { light TRGREN_X3 }
+    frame XPLDD { light TRGREN_X4 }
+    frame XPLDE { light TRGREN_X4 }
+	frame XPLDF { light TRGREN_X4 }
+}
+
+object M1JuggernautRocketUV
+{
+	frame J1MIA { light ROCKET }
+	frame XPLDA { light TRGREN_X1 }
+    frame XPLDB { light TRGREN_X2 }
+	frame XPLDC { light TRGREN_X3 }
+    frame XPLDD { light TRGREN_X4 }
+    frame XPLDE { light TRGREN_X4 }
+	frame XPLDF { light TRGREN_X4 }
+}
+
+object M1JuggernautRocketNightmare
+{
+	frame J1MIA { light ROCKET }
+	frame XPLDA { light TRGREN_X1 }
+    frame XPLDB { light TRGREN_X2 }
+	frame XPLDC { light TRGREN_X3 }
+    frame XPLDD { light TRGREN_X4 }
+    frame XPLDE { light TRGREN_X4 }
+	frame XPLDF { light TRGREN_X4 }
+}
+
+object JuggernautRocket
+{
+	frame JMISA { light TOZT6 }
+	frame XPLDA { light TRGREN_X1 }
+    frame XPLDB { light TRGREN_X2 }
+	frame XPLDC { light TRGREN_X3 }
+    frame XPLDD { light TRGREN_X4 }
+    frame XPLDE { light TRGREN_X4 }
+	frame XPLDF { light TRGREN_X4 }
+}
+
+object JuggernautRocketITYTD
+{
+	frame JMISA { light TOZT6 }
+	frame XPLDA { light TRGREN_X1 }
+    frame XPLDB { light TRGREN_X2 }
+	frame XPLDC { light TRGREN_X3 }
+    frame XPLDD { light TRGREN_X4 }
+    frame XPLDE { light TRGREN_X4 }
+	frame XPLDF { light TRGREN_X4 }
+}
+
+object JuggernautRocketHNTR
+{
+	frame JMISA { light TOZT6 }
+	frame XPLDA { light TRGREN_X1 }
+    frame XPLDB { light TRGREN_X2 }
+	frame XPLDC { light TRGREN_X3 }
+    frame XPLDD { light TRGREN_X4 }
+    frame XPLDE { light TRGREN_X4 }
+	frame XPLDF { light TRGREN_X4 }
+}
+
+object JuggernautRocketUV
+{
+	frame JMISA { light TOZT6 }
+	frame XPLDA { light TRGREN_X1 }
+    frame XPLDB { light TRGREN_X2 }
+	frame XPLDC { light TRGREN_X3 }
+    frame XPLDD { light TRGREN_X4 }
+    frame XPLDE { light TRGREN_X4 }
+	frame XPLDF { light TRGREN_X4 }
+}
+
+object JuggernautRocketNightmare
+{
+	frame JMISA { light TOZT6 }
+	frame XPLDA { light TRGREN_X1 }
+    frame XPLDB { light TRGREN_X2 }
+	frame XPLDC { light TRGREN_X3 }
+    frame XPLDD { light TRGREN_X4 }
+    frame XPLDE { light TRGREN_X4 }
+	frame XPLDF { light TRGREN_X4 }
+}
+
+object JuggernautRocketTrail
+{
+	frame FLMEC { light TOZT3 }
+	frame FLMEE { light TOZT5 }
+}
+
+object CyborgFlameShot
+{
+	frame FLMEA { light TOZT1 }
+	frame FLMEC { light TOZT3 }
+	frame FLMEE { light TOZT5 }
+	frame FLMEG { light TOZT7 }
+}
+
+object CyborgGrenade
+{
+	frame CYPRA { light CYBGREN }
+	frame CYPRB { light CYBGREN }
+	frame CYPRC { light CYBGREN }
+	frame XPLDA { light TRGREN_X1 }
+    frame XPLDB { light TRGREN_X2 }
+	frame XPLDC { light TRGREN_X3 }
+    frame XPLDD { light TRGREN_X4 }
+    frame XPLDE { light TRGREN_X4 }
+	frame XPLDF { light TRGREN_X4 }
+}
+
+object CyborgGrenadeITYTD
+{
+	frame CYPRA { light CYBGREN }
+	frame CYPRB { light CYBGREN }
+	frame CYPRC { light CYBGREN }
+	frame XPLDA { light TRGREN_X1 }
+    frame XPLDB { light TRGREN_X2 }
+	frame XPLDC { light TRGREN_X3 }
+    frame XPLDD { light TRGREN_X4 }
+    frame XPLDE { light TRGREN_X4 }
+	frame XPLDF { light TRGREN_X4 }
+}
+
+object CyborgGrenadeHNTR
+{
+	frame CYPRA { light CYBGREN }
+	frame CYPRB { light CYBGREN }
+	frame CYPRC { light CYBGREN }
+	frame XPLDA { light TRGREN_X1 }
+    frame XPLDB { light TRGREN_X2 }
+	frame XPLDC { light TRGREN_X3 }
+    frame XPLDD { light TRGREN_X4 }
+    frame XPLDE { light TRGREN_X4 }
+	frame XPLDF { light TRGREN_X4 }
+}
+
+object CyborgGrenadeUV
+{
+	frame CYPRA { light CYBGREN }
+	frame CYPRB { light CYBGREN }
+	frame CYPRC { light CYBGREN }
+	frame XPLDA { light TRGREN_X1 }
+    frame XPLDB { light TRGREN_X2 }
+	frame XPLDC { light TRGREN_X3 }
+    frame XPLDD { light TRGREN_X4 }
+    frame XPLDE { light TRGREN_X4 }
+	frame XPLDF { light TRGREN_X4 }
+}
+
+object CyborgGrenadeNightmare
+{
+	frame CYPRA { light CYBGREN }
+	frame CYPRB { light CYBGREN }
+	frame CYPRC { light CYBGREN }
+	frame XPLDA { light TRGREN_X1 }
+    frame XPLDB { light TRGREN_X2 }
+	frame XPLDC { light TRGREN_X3 }
+    frame XPLDD { light TRGREN_X4 }
+    frame XPLDE { light TRGREN_X4 }
+	frame XPLDF { light TRGREN_X4 }
+}
+
+object SeekerCyborgGrenade
+{
+	frame CYP2A { light CYBGREN2 }
+	frame CYP2B { light CYBGREN2 }
+	frame CYP2C { light CYBGREN2 }
+	frame XPLDA { light TRGREN_X1 }
+    frame XPLDB { light TRGREN_X2 }
+	frame XPLDC { light TRGREN_X3 }
+    frame XPLDD { light TRGREN_X4 }
+    frame XPLDE { light TRGREN_X4 }
+	frame XPLDF { light TRGREN_X4 }
+}
+
+object SeekerCyborgGrenadeITYTD
+{
+	frame CYP2A { light CYBGREN2 }
+	frame CYP2B { light CYBGREN2 }
+	frame CYP2C { light CYBGREN2 }
+	frame XPLDA { light TRGREN_X1 }
+    frame XPLDB { light TRGREN_X2 }
+	frame XPLDC { light TRGREN_X3 }
+    frame XPLDD { light TRGREN_X4 }
+    frame XPLDE { light TRGREN_X4 }
+	frame XPLDF { light TRGREN_X4 }
+}
+
+object SeekerCyborgGrenadeHNTR
+{
+	frame CYP2A { light CYBGREN2 }
+	frame CYP2B { light CYBGREN2 }
+	frame CYP2C { light CYBGREN2 }
+	frame XPLDA { light TRGREN_X1 }
+    frame XPLDB { light TRGREN_X2 }
+	frame XPLDC { light TRGREN_X3 }
+    frame XPLDD { light TRGREN_X4 }
+    frame XPLDE { light TRGREN_X4 }
+	frame XPLDF { light TRGREN_X4 }
+}
+
+object SeekerCyborgGrenadeUV
+{
+	frame CYP2A { light CYBGREN2 }
+	frame CYP2B { light CYBGREN2 }
+	frame CYP2C { light CYBGREN2 }
+	frame XPLDA { light TRGREN_X1 }
+    frame XPLDB { light TRGREN_X2 }
+	frame XPLDC { light TRGREN_X3 }
+    frame XPLDD { light TRGREN_X4 }
+    frame XPLDE { light TRGREN_X4 }
+	frame XPLDF { light TRGREN_X4 }
+}
+
+object SeekerCyborgGrenadeNightmare
+{
+	frame CYP2A { light CYBGREN2 }
+	frame CYP2B { light CYBGREN2 }
+	frame CYP2C { light CYBGREN2 }
+	frame XPLDA { light TRGREN_X1 }
+    frame XPLDB { light TRGREN_X2 }
+	frame XPLDC { light TRGREN_X3 }
+    frame XPLDD { light TRGREN_X4 }
+    frame XPLDE { light TRGREN_X4 }
+	frame XPLDF { light TRGREN_X4 }
+}
+
+object NewEnforcerShot
+{
+    frame PLAS { light M2ENSHOT }
+    frame PHITA { light M2ENS_X1 }
+    frame PHITB { light M2ENS_X2 }
+    frame PHITC { light M2ENS_X3 }
+    frame PHITD { light M2ENS_X4 }
+}
+
+object NewEnforcerShotCoop
+{
+    frame PLAS { light M2ENSHOT }
+    frame PHITA { light M2ENS_X1 }
+    frame PHITB { light M2ENS_X2 }
+    frame PHITC { light M2ENS_X3 }
+    frame PHITD { light M2ENS_X4 }
+}
+
+object EnforcerShotEnemy
+{
+    frame PLAS { light M2ENSHOT }
+    frame PHITA { light M2ENS_X1 }
+    frame PHITB { light M2ENS_X2 }
+    frame PHITC { light M2ENS_X3 }
+    frame PHITD { light M2ENS_X4 }
+}
+
+object EnforcerShotEnemyITYTD
+{
+    frame PLAS { light M2ENSHOT }
+    frame PHITA { light M2ENS_X1 }
+    frame PHITB { light M2ENS_X2 }
+    frame PHITC { light M2ENS_X3 }
+    frame PHITD { light M2ENS_X4 }
+}
+
+object EnforcerShotEnemyHNTR
+{
+    frame PLAS { light M2ENSHOT }
+    frame PHITA { light M2ENS_X1 }
+    frame PHITB { light M2ENS_X2 }
+    frame PHITC { light M2ENS_X3 }
+    frame PHITD { light M2ENS_X4 }
+}
+
+object EnforcerShotEnemyUV
+{
+    frame PLAS { light M2ENSHOT }
+    frame PHITA { light M2ENS_X1 }
+    frame PHITB { light M2ENS_X2 }
+    frame PHITC { light M2ENS_X3 }
+    frame PHITD { light M2ENS_X4 }
+}
+
+object EnforcerShotEnemyNightmare
+{
+    frame PLAS { light M2ENSHOT }
+    frame PHITA { light M2ENS_X1 }
+    frame PHITB { light M2ENS_X2 }
+    frame PHITC { light M2ENS_X3 }
+    frame PHITD { light M2ENS_X4 }
+}

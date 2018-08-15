@@ -8,11 +8,8 @@ ACTOR HereticImp3 : HereticImp2
 		Spawn:
 			IMPX A 0
 			IMPX A 1 A_JumpIfInventory("AlreadySpawned",1,"Super::Spawn")
-			IMPX A 1 ACS_ExecuteAlways(668,0,1,0)
+			IMPX A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,1,0)
 			IMPX A 0 A_GiveInventory("AlreadySpawned",1)
-			IMPX A 0 A_JumpIfInventory("InvisibleToken",1,2)
-			IMPX A 0 A_Jump(256,2)
-			IMPX A 0 A_ChangeFlag("STEALTH",1)
 			IMPX A 0
 			Goto "Super::Spawn"
 		Death:
@@ -98,11 +95,8 @@ ACTOR HereticImpLeader3 : HereticImpLeader2
 		Spawn:
 			IMPX A 0
 			IMPX A 1 A_JumpIfInventory("AlreadySpawned",1,"Super::Spawn")
-			IMPX A 1 ACS_ExecuteAlways(668,0,1,0)
+			IMPX A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,1,0)
 			IMPX A 0 A_GiveInventory("AlreadySpawned",1)
-			IMPX A 0 A_JumpIfInventory("InvisibleToken",1,2)
-			IMPX A 0 A_Jump(256,2)
-			IMPX A 0 A_ChangeFlag("STEALTH",1)
 			IMPX A 0
 			Goto "Super::Spawn"
 		Death:
@@ -196,11 +190,8 @@ ACTOR Wizard3 : Wizard2
 		Spawn:
 			WZRD A 0
 			WZRD A 1 A_JumpIfInventory("AlreadySpawned",1,"Super::Spawn")
-			WZRD A 1 ACS_ExecuteAlways(668,0,1,0)
+			WZRD A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,1,0)
 			WZRD A 0 A_GiveInventory("AlreadySpawned",1)
-			WZRD A 0 A_JumpIfInventory("InvisibleToken",1,2)
-			WZRD A 0 A_Jump(256,2)
-			WZRD A 0 A_ChangeFlag("STEALTH",1)
 			WZRD A 0
 			Goto "Super::Spawn"
 	}
@@ -215,11 +206,8 @@ ACTOR Sorcerer5 : Sorcerer3 replaces Sorcerer3
 		Spawn:
 			SRCR A 0
 			SRCR A 1 A_JumpIfInventory("AlreadySpawned",1,"Super::Spawn")
-			SRCR A 1 ACS_ExecuteAlways(668,0,1,0)
+			SRCR A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,1,0)
 			SRCR A 0 A_GiveInventory("AlreadySpawned",1)
-			SRCR A 0 A_JumpIfInventory("InvisibleToken",1,2)
-			SRCR A 0 A_Jump(256,2)
-			SRCR A 0 A_ChangeFlag("STEALTH",1)
 			SRCR A 0
 			Goto "Super::Spawn"
 	  Death.DukeDamage:
@@ -310,22 +298,16 @@ ACTOR Sorcerer6 : Sorcerer4 replaces Sorcerer4
 		Spawn:
 			SOR2 A 0
 			SOR2 A 1 A_JumpIfInventory("AlreadySpawned",1,"Super::Spawn")
-			SOR2 A 1 ACS_ExecuteAlways(668,0,1,0)
+			SOR2 A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,1,0)
 			SOR2 A 0 A_GiveInventory("AlreadySpawned",1)
-			SOR2 A 0 A_JumpIfInventory("InvisibleToken",1,2)
-			SOR2 A 0 A_Jump(256,2)
-			SOR2 A 0 A_ChangeFlag("STEALTH",1)
 			SOR2 A 0
 			Goto "Super::Spawn"
 		Rise:
 			SOR2 A 0
 			SOR2 A 1 A_TakeInventory("AlreadySpawned",1)
 			SOR2 A 1 A_JumpIfInventory("AlreadySpawned",1,"Super::Rise")
-			SOR2 A 1 ACS_ExecuteAlways(668,0,1,0)
+			SOR2 A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,1,0)
 			SOR2 A 0 A_GiveInventory("AlreadySpawned",1)
-			SOR2 A 0 A_JumpIfInventory("InvisibleToken",1,2)
-			SOR2 A 0 A_Jump(256,2)
-			SOR2 A 0 A_ChangeFlag("STEALTH",1)
 			SOR2 A 0
 			Goto "Super::Rise"
 		Death.DukeDamage:
@@ -379,11 +361,8 @@ ACTOR Mummy3 : Mummy2
 		Spawn:
 			MUMM A 0
 			MUMM A 1 A_JumpIfInventory("AlreadySpawned",1,"Super::Spawn")
-			MUMM A 1 ACS_ExecuteAlways(668,0,1,0)
+			MUMM A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,1,0)
 			MUMM A 0 A_GiveInventory("AlreadySpawned",1)
-			MUMM A 0 A_JumpIfInventory("InvisibleToken",1,2)
-			MUMM A 0 A_Jump(256,2)
-			MUMM A 0 A_ChangeFlag("STEALTH",1)
 			MUMM A 0
 			Goto "Super::Spawn"
 	}
@@ -398,11 +377,8 @@ ACTOR MummyGhost3 : MummyGhost2
 		Spawn:
 			MUMM A 0
 			MUMM A 1 A_JumpIfInventory("AlreadySpawned",1,"Super::Spawn")
-			MUMM A 1 ACS_ExecuteAlways(668,0,1,0)
+			MUMM A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,1,0)
 			MUMM A 0 A_GiveInventory("AlreadySpawned",1)
-			MUMM A 0 A_JumpIfInventory("InvisibleToken",1,2)
-			MUMM A 0 A_Jump(256,2)
-			MUMM A 0 A_ChangeFlag("STEALTH",1)
 			MUMM A 0
 			Goto "Super::Spawn"
 	}
@@ -417,11 +393,8 @@ ACTOR MummyLeader3 : MummyLeader2
 		Spawn:
 			MUMM A 0
 			MUMM A 1 A_JumpIfInventory("AlreadySpawned",1,"Super::Spawn")
-			MUMM A 1 ACS_ExecuteAlways(668,0,1,0)
+			MUMM A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,1,0)
 			MUMM A 0 A_GiveInventory("AlreadySpawned",1)
-			MUMM A 0 A_JumpIfInventory("InvisibleToken",1,2)
-			MUMM A 0 A_Jump(256,2)
-			MUMM A 0 A_ChangeFlag("STEALTH",1)
 			MUMM A 0
 			Goto "Super::Spawn"
 	}
@@ -436,11 +409,8 @@ ACTOR MummyLeaderGhost3 : MummyLeaderGhost2
 		Spawn:
 			MUMM A 0
 			MUMM A 1 A_JumpIfInventory("AlreadySpawned",1,"Super::Spawn")
-			MUMM A 1 ACS_ExecuteAlways(668,0,1,0)
+			MUMM A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,1,0)
 			MUMM A 0 A_GiveInventory("AlreadySpawned",1)
-			MUMM A 0 A_JumpIfInventory("InvisibleToken",1,2)
-			MUMM A 0 A_Jump(256,2)
-			MUMM A 0 A_ChangeFlag("STEALTH",1)
 			MUMM A 0
 			Goto "Super::Spawn"
 	}
@@ -457,11 +427,8 @@ ACTOR IronLich3 : IronLich2
 		Spawn:
 			LICH A 0
 			LICH A 1 A_JumpIfInventory("AlreadySpawned",1,"Super::Spawn")
-			LICH A 1 ACS_ExecuteAlways(668,0,1,0)
+			LICH A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,1,0)
 			LICH A 0 A_GiveInventory("AlreadySpawned",1)
-			LICH A 0 A_JumpIfInventory("InvisibleToken",1,2)
-			LICH A 0 A_Jump(256,2)
-			LICH A 0 A_ChangeFlag("STEALTH",1)
 			LICH A 0
 			Goto "Super::Spawn"
 	}
@@ -478,11 +445,8 @@ ACTOR Minotaur3 : Minotaur2
 		Spawn:
 			MNTR A 0
 			MNTR A 1 A_JumpIfInventory("AlreadySpawned",1,"Super::Spawn")
-			MNTR A 1 ACS_ExecuteAlways(668,0,1,0)
+			MNTR A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,1,0)
 			MNTR A 0 A_GiveInventory("AlreadySpawned",1)
-			MNTR A 0 A_JumpIfInventory("InvisibleToken",1,2)
-			MNTR A 0 A_Jump(256,2)
-			MNTR A 0 A_ChangeFlag("STEALTH",1)
 			MNTR A 0
 			Goto "Super::Spawn"
 		Death.DukeDamage:
@@ -651,11 +615,8 @@ ACTOR Snake3 : Snake2
 		Spawn:
 			SNKE A 0
 			SNKE A 1 A_JumpIfInventory("AlreadySpawned",1,"Super::Spawn")
-			SNKE A 1 ACS_ExecuteAlways(668,0,1,0)
+			SNKE A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,1,0)
 			SNKE A 0 A_GiveInventory("AlreadySpawned",1)
-			SNKE A 0 A_JumpIfInventory("InvisibleToken",1,2)
-			SNKE A 0 A_Jump(256,2)
-			SNKE A 0 A_ChangeFlag("STEALTH",1)
 			SNKE A 0
 			Goto "Super::Spawn"
 		Death:
@@ -756,11 +717,8 @@ ACTOR Knight3 : Knight2
 		Spawn:
 			KNIG A 0
 			KNIG A 1 A_JumpIfInventory("AlreadySpawned",1,"Super::Spawn")
-			KNIG A 1 ACS_ExecuteAlways(668,0,1,0)
+			KNIG A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,1,0)
 			KNIG A 0 A_GiveInventory("AlreadySpawned",1)
-			KNIG A 0 A_JumpIfInventory("InvisibleToken",1,2)
-			KNIG A 0 A_Jump(256,2)
-			KNIG A 0 A_ChangeFlag("STEALTH",1)
 			KNIG A 0
 			Goto "Super::Spawn"
 	}
@@ -775,11 +733,8 @@ ACTOR KnightGhost3 : KnightGhost2
 		Spawn:
 			KNIG A 0
 			KNIG A 1 A_JumpIfInventory("AlreadySpawned",1,"Super::Spawn")
-			KNIG A 1 ACS_ExecuteAlways(668,0,1,0)
+			KNIG A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,1,0)
 			KNIG A 0 A_GiveInventory("AlreadySpawned",1)
-			KNIG A 0 A_JumpIfInventory("InvisibleToken",1,2)
-			KNIG A 0 A_Jump(256,2)
-			KNIG A 0 A_ChangeFlag("STEALTH",1)
 			KNIG A 0
 			Goto "Super::Spawn"
 	}
@@ -794,11 +749,8 @@ ACTOR Beast3 : Beast2
 		Spawn:
 			BEAS A 0
 			BEAS A 1 A_JumpIfInventory("AlreadySpawned",1,"Super::Spawn")
-			BEAS A 1 ACS_ExecuteAlways(668,0,1,0)
+			BEAS A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,1,0)
 			BEAS A 0 A_GiveInventory("AlreadySpawned",1)
-			BEAS A 0 A_JumpIfInventory("InvisibleToken",1,2)
-			BEAS A 0 A_Jump(256,2)
-			BEAS A 0 A_ChangeFlag("STEALTH",1)
 			BEAS A 0
 			Goto "Super::Spawn"
 		Death:
@@ -987,11 +939,8 @@ ACTOR Clink3 : Clink2
 		Spawn:
 			CLNK A 0
 			CLNK A 1 A_JumpIfInventory("AlreadySpawned",1,"Super::Spawn")
-			CLNK A 1 ACS_ExecuteAlways(668,0,1,0)
+			CLNK A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,1,0)
 			CLNK A 0 A_GiveInventory("AlreadySpawned",1)
-			CLNK A 0 A_JumpIfInventory("InvisibleToken",1,2)
-			CLNK A 0 A_Jump(256,2)
-			CLNK A 0 A_ChangeFlag("STEALTH",1)
 			CLNK A 0
 			Goto "Super::Spawn"
 	}

@@ -3,11 +3,37 @@
 ACTOR Bishop3 : Bishop2 
 {
 	Dropitem "DefaultPinataPop"
+	States
+	{
+		Spawn:
+			BISH A 0
+			BISH A 1 A_JumpIfInventory("AlreadySpawned",1,"Super::Spawn")
+			BISH A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,1,0)
+			BISH A 0 A_GiveInventory("AlreadySpawned",1)
+			BISH A 0 A_JumpIfInventory("InvisibleToken",1,2)
+			BISH A 0 A_Jump(256,2)
+			BISH A 0 A_ChangeFlag("STEALTH",1)
+			BISH A 0
+			Goto "Super::Spawn"
+	}
 }
 
 ACTOR Centaur3 : Centaur2 
 {
 	Dropitem "DefaultPinataPop"
+	States
+	{
+		Spawn:
+			CENT A 0
+			CENT A 1 A_JumpIfInventory("AlreadySpawned",1,"Super::Spawn")
+			CENT A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,1,0)
+			CENT A 0 A_GiveInventory("AlreadySpawned",1)
+			CENT A 0 A_JumpIfInventory("InvisibleToken",1,2)
+			CENT A 0 A_Jump(256,2)
+			CENT A 0 A_ChangeFlag("STEALTH",1)
+			CENT A 0
+			Goto "Super::Spawn"
+	}
 }
 
 ACTOR CentaurLeader3 : CentaurLeader2 
@@ -15,6 +41,16 @@ ACTOR CentaurLeader3 : CentaurLeader2
 	Dropitem "DefaultPinataPop"	
 	States
 	{
+		Spawn:
+			CENT A 0
+			CENT A 1 A_JumpIfInventory("AlreadySpawned",1,"Super::Spawn")
+			CENT A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,1,0)
+			CENT A 0 A_GiveInventory("AlreadySpawned",1)
+			CENT A 0 A_JumpIfInventory("InvisibleToken",1,2)
+			CENT A 0 A_Jump(256,2)
+			CENT A 0 A_ChangeFlag("STEALTH",1)
+			CENT A 0
+			Goto "Super::Spawn"
 		Death:
         TNT1 A 0 A_GiveToTarget("KillCount",1)
         TNT1 A 0 ACS_ExecuteAlways(SAMSARA_CLIENT_DECORATE,0,11)
@@ -191,6 +227,16 @@ ACTOR Demon1C : Demon1B
 	Dropitem "DefaultPinataPop"
 	States
 	{
+		Spawn:
+			DEMN A 0
+			DEMN A 1 A_JumpIfInventory("AlreadySpawned",1,"Super::Spawn")
+			DEMN A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,1,0)
+			DEMN A 0 A_GiveInventory("AlreadySpawned",1)
+			DEMN A 0 A_JumpIfInventory("InvisibleToken",1,2)
+			DEMN A 0 A_Jump(256,2)
+			DEMN A 0 A_ChangeFlag("STEALTH",1)
+			DEMN A 0
+			Goto "Super::Spawn"
 		Death:
         TNT1 A 0 A_GiveToTarget("KillCount",1)
         TNT1 A 0 ACS_ExecuteAlways(SAMSARA_CLIENT_DECORATE,0,11)
@@ -352,6 +398,16 @@ ACTOR Demon2C : Demon2B
 	Dropitem "DefaultPinataPop"
 	States
 	{
+		Spawn:
+			DEM2 A 0
+			DEM2 A 1 A_JumpIfInventory("AlreadySpawned",1,"Super::Spawn")
+			DEM2 A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,1,0)
+			DEM2 A 0 A_GiveInventory("AlreadySpawned",1)
+			DEM2 A 0 A_JumpIfInventory("InvisibleToken",1,2)
+			DEM2 A 0 A_Jump(256,2)
+			DEM2 A 0 A_ChangeFlag("STEALTH",1)
+			DEM2 A 0
+			Goto "Super::Spawn"
 		Death:
         TNT1 A 0 A_GiveToTarget("KillCount",1)
         TNT1 A 0 ACS_ExecuteAlways(SAMSARA_CLIENT_DECORATE,0,11)
@@ -511,11 +567,37 @@ ACTOR Demon2C : Demon2B
 ACTOR Ettin3 : Ettin2
 {
 	Dropitem "DefaultPinataPop"
+	States
+	{
+		Spawn:
+			ETTN A 0
+			ETTN A 1 A_JumpIfInventory("AlreadySpawned",1,"Super::Spawn")
+			ETTN A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,1,0)
+			ETTN A 0 A_GiveInventory("AlreadySpawned",1)
+			ETTN A 0 A_JumpIfInventory("InvisibleToken",1,2)
+			ETTN A 0 A_Jump(256,2)
+			ETTN A 0 A_ChangeFlag("STEALTH",1)
+			ETTN A 0
+			Goto "Super::Spawn"
+	}
 }
 
 ACTOR FireDemon3 : FireDemon2 
 {
 	Dropitem "DefaultPinataPop"
+	States
+	{
+		Spawn:
+			FDMN A 0
+			FDMN A 1 A_JumpIfInventory("AlreadySpawned",1,"Super::Spawn")
+			FDMN A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,1,0)
+			FDMN A 0 A_GiveInventory("AlreadySpawned",1)
+			FDMN A 0 A_JumpIfInventory("InvisibleToken",1,2)
+			FDMN A 0 A_Jump(256,2)
+			FDMN A 0 A_ChangeFlag("STEALTH",1)
+			FDMN A 0
+			Goto "Super::Spawn"
+	}
 }
 
 ACTOR IceGuy3 : IceGuy2 
@@ -523,6 +605,16 @@ ACTOR IceGuy3 : IceGuy2
 	Dropitem "DefaultPinataPop"
 	States
 	{
+		Spawn:
+			ICEY A 0
+			ICEY A 1 A_JumpIfInventory("AlreadySpawned",1,"Super::Spawn")
+			ICEY A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,1,0)
+			ICEY A 0 A_GiveInventory("AlreadySpawned",1)
+			ICEY A 0 A_JumpIfInventory("InvisibleToken",1,2)
+			ICEY A 0 A_Jump(256,2)
+			ICEY A 0 A_ChangeFlag("STEALTH",1)
+			ICEY A 0
+			Goto "Super::Spawn"
 	  Death:
       XDeath:
         TNT1 A 0 A_GiveToTarget("KillCount",1)
@@ -572,27 +664,92 @@ ACTOR IceGuy3 : IceGuy2
 ACTOR Serpent3 : Serpent2 
 {
 	Dropitem "DefaultPinataPop"
+	States
+	{
+		Spawn:
+			SSPT A 0
+			SSPT A 1 A_JumpIfInventory("AlreadySpawned",1,"Super::Spawn")
+			SSPT A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,1,0)
+			SSPT A 0 A_GiveInventory("AlreadySpawned",1)
+			SSPT A 0 A_JumpIfInventory("InvisibleToken",1,2)
+			SSPT A 0 A_Jump(256,2)
+			SSPT A 0 A_ChangeFlag("STEALTH",1)
+			SSPT A 0
+			Goto "Super::Spawn"
+	}
 }
 
 ACTOR SerpentLeader3 : SerpentLeader2 
 {
 	Dropitem "DefaultPinataPop"
+	States
+	{
+		Spawn:
+			SSPT A 0
+			SSPT A 1 A_JumpIfInventory("AlreadySpawned",1,"Super::Spawn")
+			SSPT A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,1,0)
+			SSPT A 0 A_GiveInventory("AlreadySpawned",1)
+			SSPT A 0 A_JumpIfInventory("InvisibleToken",1,2)
+			SSPT A 0 A_Jump(256,2)
+			SSPT A 0 A_ChangeFlag("STEALTH",1)
+			SSPT A 0
+			Goto "Super::Spawn"
+	}
 }
 
 ACTOR Wraith3 : Wraith2
 {
 	Dropitem "DefaultPinataPop"
+	States
+	{
+		Spawn:
+			WRTH A 0
+			WRTH A 1 A_JumpIfInventory("AlreadySpawned",1,"Super::Spawn")
+			WRTH A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,1,0)
+			WRTH A 0 A_GiveInventory("AlreadySpawned",1)
+			WRTH A 0 A_JumpIfInventory("InvisibleToken",1,2)
+			WRTH A 0 A_Jump(256,2)
+			WRTH A 0 A_ChangeFlag("STEALTH",1)
+			WRTH A 0
+			Goto "Super::Spawn"
+	}
 }
 
 ACTOR WraithBuried3 : WraithBuried2
 {
 	Dropitem "DefaultPinataPop"
+	States
+	{
+		Spawn:
+			WRTH A 0
+			WRTH A 1 A_JumpIfInventory("AlreadySpawned",1,"Super::Spawn")
+			WRTH A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,1,0)
+			WRTH A 0 A_GiveInventory("AlreadySpawned",1)
+			WRTH A 0 A_JumpIfInventory("InvisibleToken",1,2)
+			WRTH A 0 A_Jump(256,2)
+			WRTH A 0 A_ChangeFlag("STEALTH",1)
+			WRTH A 0
+			Goto "Super::Spawn"
+	}
 }
 
 ACTOR Dragon3 : Dragon2 
 {
 	Dropitem "DefaultPinataPop"
 	Dropitem "DefaultPinataPop"
+	States
+	{
+		Spawn:
+			DRAG A 0
+			DRAG A 1 A_JumpIfInventory("AlreadySpawned",1,"Super::Spawn")
+			DRAG A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,1,0)
+			DRAG A 0 A_GiveInventory("AlreadySpawned",1)
+			DRAG A 0 A_JumpIfInventory("InvisibleToken",1,2)
+			DRAG A 0 A_Jump(256,2)
+			DRAG A 0 A_ChangeFlag("STEALTH",1)
+			DRAG A 0
+			Goto "Super::Spawn"
+	}
 }
 
 ACTOR ClericBoss3 : ClericBoss2 
@@ -601,6 +758,16 @@ ACTOR ClericBoss3 : ClericBoss2
 	Dropitem "DefaultPinataPop"
 	States
 	{
+		Spawn:
+			CLBS A 0
+			CLBS A 1 A_JumpIfInventory("AlreadySpawned",1,"Super::Spawn")
+			CLBS A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,1,0)
+			CLBS A 0 A_GiveInventory("AlreadySpawned",1)
+			CLBS A 0 A_JumpIfInventory("InvisibleToken",1,2)
+			CLBS A 0 A_Jump(256,2)
+			CLBS A 0 A_ChangeFlag("STEALTH",1)
+			CLBS A 0
+			Goto "Super::Spawn"
 	  Death.DukeDamage:
       Death.MightyBoot:
       Death.DukeExplosive:
@@ -784,6 +951,16 @@ ACTOR FighterBoss3 : FighterBoss2
 	Dropitem "DefaultPinataPop"
     States
     {
+		Spawn:
+			PLAF A 0
+			PLAF A 1 A_JumpIfInventory("AlreadySpawned",1,"Super::Spawn")
+			PLAF A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,1,0)
+			PLAF A 0 A_GiveInventory("AlreadySpawned",1)
+			PLAF A 0 A_JumpIfInventory("InvisibleToken",1,2)
+			PLAF A 0 A_Jump(256,2)
+			PLAF A 0 A_ChangeFlag("STEALTH",1)
+			PLAF A 0
+			Goto "Super::Spawn"
 	  Death.DukeDamage:
       Death.MightyBoot:
       Death.DukeExplosive:
@@ -980,6 +1157,16 @@ ACTOR MageBoss3 : MageBoss2
 	Dropitem "DefaultPinataPop"
 	States
 	{
+		Spawn:
+			MAGE A 0
+			MAGE A 1 A_JumpIfInventory("AlreadySpawned",1,"Super::Spawn")
+			MAGE A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,1,0)
+			MAGE A 0 A_GiveInventory("AlreadySpawned",1)
+			MAGE A 0 A_JumpIfInventory("InvisibleToken",1,2)
+			MAGE A 0 A_Jump(256,2)
+			MAGE A 0 A_ChangeFlag("STEALTH",1)
+			MAGE A 0
+			Goto "Super::Spawn"
 	  Death.DukeDamage:
       Death.MightyBoot:
       Death.DukeExplosive:
@@ -1154,6 +1341,16 @@ ACTOR Heresiarch3 : Heresiarch2
 	Dropitem "DefaultPinataPop"
 	States
 	{
+		Spawn:
+			SORC A 0
+			SORC A 1 A_JumpIfInventory("AlreadySpawned",1,"Super::Spawn")
+			SORC A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,1,0)
+			SORC A 0 A_GiveInventory("AlreadySpawned",1)
+			SORC A 0 A_JumpIfInventory("InvisibleToken",1,2)
+			SORC A 0 A_Jump(256,2)
+			SORC A 0 A_ChangeFlag("STEALTH",1)
+			SORC A 0
+			Goto "Super::Spawn"
 		Death.DukeDamage:
 		Death.MightyBoot:
 		Death.DukeExplosive:
@@ -1268,10 +1465,21 @@ ACTOR SorcFX32 : SorcFX3 replaces SorcFX3
 
 ACTOR Korax3 : Korax2 
 {
+	Health 5000
 	Dropitem "DefaultPinataPop"
 	Dropitem "DefaultPinataPop"
 	States
 	{
+		Spawn:
+			KORX A 0
+			KORX A 1 A_JumpIfInventory("AlreadySpawned",1,"Super::Spawn")
+			KORX A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,1,0)
+			KORX A 0 A_GiveInventory("AlreadySpawned",1)
+			KORX A 0 A_JumpIfInventory("InvisibleToken",1,2)
+			KORX A 0 A_Jump(256,2)
+			KORX A 0 A_ChangeFlag("STEALTH",1)
+			KORX A 0
+			Goto "Super::Spawn"
 		Command:
 			KORX E 1 Bright
 			Goto Attack

@@ -38,11 +38,8 @@ ACTOR SewageFlickta
 		Spawn:
 			FLIK A 0
 			FLIK A 1 A_JumpIfInventory("AlreadySpawned",1,2)
-			FLIK A 1 ACS_ExecuteAlways(668,0,1,0)
+			FLIK A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,1,0)
 			FLIK A 0 A_GiveInventory("AlreadySpawned",1)
-			FLIK A 0 A_JumpIfInventory("InvisibleToken",1,2)
-			FLIK A 0 A_Jump(256,2)
-			FLIK A 0 A_ChangeFlag("STEALTH",1)
 			FLIK A 0 A_JumpIfInventory("DifficultyToken",4,"SpawnNightmare")
 			FLIK A 0 A_JumpIfInventory("DifficultyToken",3,"SpawnUV")
 			FLIK A 0 A_JumpIfInventory("DifficultyToken",2,"SpawnHMP")
@@ -120,24 +117,28 @@ ACTOR SewageFlickta
 			Goto See
 		MeleeITYTD:
 			TNT1 A 0 A_GiveInventory("AttackFrequency",210)
+			TNT1 A 0 A_JumpIfInventory("NoPainToken",0,2)
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			FLIK F 12 A_PlaySound("flickta/melee")
 			FLIK G 12 A_CustomMeleeAttack((random(20,25)),"flickta/hit",0)
 			Goto See
 		MeleeHNTR:
 			TNT1 A 0 A_GiveInventory("AttackFrequency",140)
+			TNT1 A 0 A_JumpIfInventory("NoPainToken",0,2)
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			FLIK F 12 A_PlaySound("flickta/melee")
 			FLIK G 12 A_CustomMeleeAttack((random(20,25)),"flickta/hit",0)
 			Goto See
 		MeleeHMP:
 			TNT1 A 0 A_GiveInventory("AttackFrequency",70)
+			TNT1 A 0 A_JumpIfInventory("NoPainToken",0,2)
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			FLIK F 12 A_PlaySound("flickta/melee")
 			FLIK G 12 A_CustomMeleeAttack((random(20,25)),"flickta/hit",0)
 			Goto See
 		MeleeUV:
 			TNT1 A 0 A_GiveInventory("AttackFrequency",35)
+			TNT1 A 0 A_JumpIfInventory("NoPainToken",0,2)
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			FLIK F 12 A_PlaySound("flickta/melee")
 			FLIK G 12 A_CustomMeleeAttack((random(20,25)),"flickta/hit",0)
@@ -156,24 +157,28 @@ ACTOR SewageFlickta
 			TNT1 A 0 A_JumpIfInventory("DifficultyToken",1,"MissileHNTR")
 		MissileITYTD:
 			TNT1 A 0 A_GiveInventory("AttackFrequency",210)
+			TNT1 A 0 A_JumpIfInventory("NoPainToken",0,2)
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			FLIK F 12 A_PlaySound("flickta/rock")
 			FLIK G 12 A_CustomMissile("FlicktaProjectileITYTD", 45, 0, Random(-1.5,1.5),0, Random(-1.5,1.5))
 			Goto See
 		MissileHNTR:
 			TNT1 A 0 A_GiveInventory("AttackFrequency",140)
+			TNT1 A 0 A_JumpIfInventory("NoPainToken",0,2)
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			FLIK F 12 A_PlaySound("flickta/rock")
 			FLIK G 12 A_CustomMissile("FlicktaProjectileHNTR", 45, 0, Random(-1.5,1.5),0, Random(-1.5,1.5))
 			Goto See
 		MissileHMP:
 			TNT1 A 0 A_GiveInventory("AttackFrequency",70)
+			TNT1 A 0 A_JumpIfInventory("NoPainToken",0,2)
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			FLIK F 12 A_PlaySound("flickta/rock")
 			FLIK G 12 A_CustomMissile("FlicktaProjectile", 45, 0, Random(-1.5,1.5),0, Random(-1.5,1.5))
 			Goto See
 		MissileUV:
 			TNT1 A 0 A_GiveInventory("AttackFrequency",35)
+			TNT1 A 0 A_JumpIfInventory("NoPainToken",0,2)
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			FLIK F 12 A_PlaySound("flickta/rock")
 			FLIK G 12 A_CustomMissile("FlicktaProjectileUV", 45, 0, Random(-1.5,1.5),0, Random(-1.5,1.5))

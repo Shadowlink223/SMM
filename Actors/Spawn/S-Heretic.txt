@@ -2,38 +2,988 @@
 // HERETIC
 //==============================================================================
 
-ACTOR HereticImpReplacer : RandomSpawner replaces HereticImp {
-	dropitem "LostSoul2" 255 1
-	dropitem "HereticImp3" 255 1
-	dropitem "Bishop2" 255 1
-	dropitem "FlemMine2" 255 1
+ACTOR HereticImpSpawnerCoop replaces HereticImp
+{
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 5 ACS_NamedExecuteAlways("SMMSpawningScript",0,3,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,2)
+		Deciding:
+			TNT1 A 1
+			Loop
+		SetDoom:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDoom")
+			TNT1 A 1 A_SpawnItemEx("LostSoul3",0,0,0,0,0,0,0,288)
+			Stop
+		SetHeretic:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHeretic")
+			TNT1 A 1 A_SpawnItemEx("HereticImp3",0,0,0,0,0,0,0,288)
+			Stop
+		SetHexen:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen")
+			TNT1 A 1 A_SpawnItemEx("FireDemon3Doom",0,0,0,0,0,0,0,288)
+			Stop
+		SetChex:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyChex")
+			TNT1 A 1 A_SpawnItemEx("FlemMine2",0,0,0,0,0,0,0,288)
+			Stop
+		SetWolf3D:
+		SODM1:
+		SODM2:
+			TNT1 A 1 A_SpawnItemEx("WolfSpectre",0,0,0,0,0,0,0,288)
+			Stop
+		SetDuke3D:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDuke3D")
+			TNT1 A 1 A_SpawnItemEx("SentryDrone",0,0,0,0,0,0,0,288)
+			Stop
+		SetMarathon:
+			TNT1 A 1 A_SpawnItemEx("DroneMinorSpawner",0,0,0,0,0,0,0,288)
+			Stop
+		SetQuake:
+			TNT1 A 1 A_SpawnItemEx("QScrag",0,0,0,0,0,0,0,288)
+			Stop
+		SetNull:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNull")
+			TNT1 A 1 A_SpawnItemEx("EvilOttoWeaker",0,0,0,0,0,0,0,288)
+			Stop
+		MultiplyDoom:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiLostSoul3",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDoom")
+			Stop
+		MultiplyHeretic:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiHereticImp3",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHeretic")
+			Stop
+		MultiplyHexen:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiFireDemon3Doom",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen")
+			Stop
+		MultiplyChex:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiFlemMine2",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyChex")
+			Stop
+		MultiplyWolf3D:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiSODBat",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWolf3D")
+			Stop
+		MultiplyDuke3D:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiSentryDrone",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDuke3D")
+			Stop
+		MultiplyNull:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiEvilOttoWeaker",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNull")
+			Stop
+	}
 }
 
-ACTOR HereticImpLeaderReplacer : RandomSpawner replaces HereticImpLeader {
-	dropitem "LostSoul2" 255 1
-	dropitem "HereticImpLeader3" 255 1
-	dropitem "FireDemon2" 255 1
-	dropitem "FlemMine2" 255 1
+ACTOR HereticImpLeaderSpawnerCoop replaces HereticImpLeader
+{
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 5 ACS_NamedExecuteAlways("SMMSpawningScript",0,3,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,2)
+		Deciding:
+			TNT1 A 1
+			Loop
+		SetDoom:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDoom")
+			TNT1 A 1 A_SpawnItemEx("LostSoul3",0,0,0,0,0,0,0,288)
+			Stop
+		SetHeretic:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHeretic")
+			TNT1 A 1 A_SpawnItemEx("HereticImpLeader3",0,0,0,0,0,0,0,288)
+			Stop
+		SetHexen:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen")
+			TNT1 A 1 A_SpawnItemEx("FireDemon3Doom",0,0,0,0,0,0,0,288)
+			Stop
+		SetChex:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyChex")
+			TNT1 A 1 A_SpawnItemEx("FlemMine2",0,0,0,0,0,0,0,288)
+			Stop
+		SetWolf3D:
+		SODM1:
+		SODM2:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWolfAlt")
+			TNT1 A 1 A_SpawnItemEx("SODBat",0,0,0,0,0,0,0,288)
+			Stop
+		SetDuke3D:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDuke3D")
+			TNT1 A 1 A_SpawnItemEx("SentryDrone",0,0,0,0,0,0,0,288)
+			Stop
+		SetMarathon:
+			TNT1 A 1 A_SpawnItemEx("DroneMajorSpawner",0,0,0,0,0,0,0,288)
+			Stop
+		SetQuake:
+			TNT1 A 1 A_SpawnItemEx("QScrag",0,0,0,0,0,0,0,288)
+			Stop
+		SetNull:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNull")
+			TNT1 A 1 A_SpawnItemEx("EvilOttoWeaker",0,0,0,0,0,0,0,288)
+			Stop
+		MultiplyDoom:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiLostSoul3",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDoom")
+			Stop
+		MultiplyHeretic:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiHereticImp3",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHeretic")
+			Stop
+		MultiplyHexen:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiFireDemon3Doom",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen")
+			Stop
+		MultiplyChex:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiFlemMine2",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyChex")
+			Stop
+		MultiplyWolf3D:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiSODBat",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWolf3D")
+			Stop
+		MultiplyDuke3D:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiSentryDrone",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDuke3D")
+			Stop
+		MultiplyNull:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiEvilOttoWeaker",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNull")
+			Stop
+	}
 }
 
-ACTOR WizardReplacer : RandomSpawner replaces Wizard {
-	dropitem "Cacodemon3" 255 2
-	dropitem "Wizard3" 255 2
-	dropitem "Wraith2" 255 2
-	dropitem "SuperCycloptis2" 255 2
-	dropitem "FakeHitler" 255 2
+ACTOR WizardSpawnerCoop replaces Wizard 
+{
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 5 ACS_NamedExecuteAlways("SMMSpawningScript",0,3,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,2)
+		Deciding:
+			TNT1 A 1
+			Loop
+		SetDoom:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDoom")
+			TNT1 A 1 A_SpawnItemEx("Cacodemon3",0,0,0,0,0,0,0,288)
+			Stop
+		SetHeretic:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHeretic")
+			TNT1 A 1 A_SpawnItemEx("Wizard3",0,0,0,0,0,0,0,288)
+			Stop
+		SetHexen:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen")
+			TNT1 A 1 A_SpawnItemEx("Wraith3Doom",0,0,0,0,0,0,0,288)
+			Stop
+		SetChex:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyChex")
+			TNT1 A 1 A_SpawnItemEx("SuperCycloptis2",0,0,0,0,0,0,0,288)
+			Stop
+		SetWolf3D:
+		SODM1:
+		SODM2:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWolf3D")
+			TNT1 A 1 A_SpawnItemEx("FakeHitler",0,0,0,0,0,0,0,288)
+			Stop
+		SetDuke3D:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDuke3D")
+			TNT1 A 1 A_SpawnItemEx("Octabrain",0,0,0,0,0,0,0,288)
+			Stop
+		SetMarathon:
+			TNT1 A 1 A_SpawnItemEx("SphtMinorSpawner",0,0,0,0,0,0,0,288)
+			Stop
+		SetQuake:
+			TNT1 A 1 A_SpawnItemEx("QWrath",0,0,0,0,0,0,0,288)
+			Stop
+		SetNull:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNull")
+			TNT1 A 1 A_SpawnItemEx("EvilOttoWeak",0,0,0,0,0,0,0,288)
+			Stop
+		MultiplyDoom:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiCacodemon3",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDoom")
+			Stop
+		MultiplyHeretic:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiWizard3",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHeretic")
+			Stop
+		MultiplyHexen:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiWraith3Doom",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen")
+			Stop
+		MultiplyChex:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiSuperCycloptis2",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyChex")
+			Stop
+		MultiplyWolf3D:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiFakeHitler",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWolf3D")
+			Stop
+		MultiplyDuke3D:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiOctabrain",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDuke3D")
+			Stop
+		MultiplyNull:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiEvilOttoWeak",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNull")
+			Stop
+	}
 }
 
-ACTOR MummyReplacer : RandomSpawner replaces Mummy {
-	dropitem "Zombieman3" 255 2
-	dropitem "DoomImp3" 255 2
-	dropitem "Mummy3" 255 2
-	dropitem "Ettin2" 255 2
-	dropitem "FlemoidusCommonus3" 255 2
-	dropitem "WolfGuard" 255 2
+ACTOR MummySpawnerCoop replaces Mummy
+{
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 5 ACS_NamedExecuteAlways("SMMSpawningScript",0,3,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,2)
+		Deciding:
+			TNT1 A 1
+			Loop
+		SetDoom:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDoom")
+			TNT1 A 1 A_SpawnItemEx("DoomImp3",0,0,0,0,0,0,0,288)
+			Stop
+		SetHeretic:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHeretic")
+			TNT1 A 1 A_SpawnItemEx("Mummy3",0,0,0,0,0,0,0,288)
+			Stop
+		SetHexen:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen")
+			TNT1 A 1 A_SpawnItemEx("Ettin3",0,0,0,0,0,0,0,288)
+			Stop
+		SetChex:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyChex")
+			TNT1 A 1 A_SpawnItemEx("NewArmoredFlemoidusBipedicus",0,0,0,0,0,0,0,288)
+			Stop
+		SetWolf3D:
+			TNT1 A 0 A_Jump(256,"Wolf1","Wolf2")
+			SODM1:
+				TNT1 A 0 A_Jump(256,"Wolf1")
+			SODM2:
+				TNT1 A 0 A_Jump(256,"Wolf2")
+			Wolf1:
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWolf1")
+				TNT1 A 1 A_SpawnItemEx("WolfOfficer",0,0,0,0,0,0,0,288)
+				Stop
+			Wolf2:
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWolf2")
+				TNT1 A 1 A_SpawnItemEx("SODOfficer",0,0,0,0,0,0,0,288)
+				Stop
+		SetDuke3D:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDuke3D")
+			TNT1 A 1 A_SpawnItemEx("AssaultCaptain",0,0,0,0,0,0,0,288)
+			Stop
+		SetMarathon:
+			TNT1 A 1 A_JumpIf(ACS_NamedExecuteWithResult("SMMCVarCheck",7) == 0, 5)
+			TNT1 A 1 A_Jump(180,4)
+			TNT1 A 1 A_Jump(180,3)
+			TNT1 A 1 A_Jump(180,2)
+			TNT1 A 1 A_SpawnItemEx("LavaFlicktaSpawner",0,0,0,0,0,0,0,288)
+			Stop
+			TNT1 A 1 A_SpawnItemEx("SewageFlicktaSpawner",0,0,0,0,0,0,0,288)
+			Stop
+		SetQuake:
+			TNT1 A 1 A_SpawnItemEx("QEnforcer",0,0,0,0,0,0,0,288)
+			Stop
+		SetNull:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNull")
+			TNT1 A 1 A_SpawnItemEx("BerzerkRobotRed",0,0,0,0,0,0,0,288)
+			Stop
+		MultiplyDoom:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiDoomImp3",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDoom")
+			Stop
+		MultiplyHeretic:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiMummy3",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHeretic")
+			Stop
+		MultiplyHexen:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiEttin3",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen")
+			Stop
+		MultiplyChex:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiNewArmoredFlemoidusBipedicus",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyChex")
+			Stop
+		MultiplyWolf1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiWolfOfficer",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWolf1")
+			Stop
+		MultiplyWolf2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiSODOfficer",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWolf2")
+			Stop
+		MultiplyDuke3D:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiAssaultCaptain",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDuke3D")
+			Stop
+		MultiplyNull:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiBerzerkRobotRed",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNull")
+			Stop
+	}
 }
 
-ACTOR MummyGhostReplacer : RandomSpawner replaces MummyGhost {
+ACTOR MummyLeaderSpawnerCoop replaces MummyLeader
+{
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 5 ACS_NamedExecuteAlways("SMMSpawningScript",0,3,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,2)
+		Deciding:
+			TNT1 A 1
+			Loop
+		SetDoom:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDoom")
+			TNT1 A 1 A_SpawnItemEx("DoomImp3",0,0,0,0,0,0,0,288)
+			Stop
+		SetHeretic:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHeretic")
+			TNT1 A 1 A_SpawnItemEx("MummyLeader3",0,0,0,0,0,0,0,288)
+			Stop
+		SetHexen:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen")
+			TNT1 A 1 A_SpawnItemEx("Bishop3",0,0,0,0,0,0,0,288)
+			Stop
+		SetChex:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyChex")
+			TNT1 A 1 A_SpawnItemEx("NewArmoredFlemoidusBipedicus",0,0,0,0,0,0,0,288)
+			Stop
+		SetWolf3D:
+			TNT1 A 0 A_Jump(256,"Wolf1","Wolf2")
+			SODM1:
+				TNT1 A 0 A_Jump(256,"Wolf1")
+			SODM2:
+				TNT1 A 0 A_Jump(256,"Wolf2")
+			Wolf1:
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWolf1")
+				TNT1 A 1 A_SpawnItemEx("WolfOfficer",0,0,0,0,0,0,0,288)
+				Stop
+			Wolf2:
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWolf2")
+				TNT1 A 1 A_SpawnItemEx("SODOfficer",0,0,0,0,0,0,0,288)
+				Stop
+		SetDuke3D:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDuke3D")
+			TNT1 A 1 A_SpawnItemEx("AssaultCaptain",0,0,0,0,0,0,0,288)
+			Stop
+		SetMarathon:
+			TNT1 A 1 A_JumpIf(ACS_NamedExecuteWithResult("SMMCVarCheck",7) == 0, 5)
+			TNT1 A 1 A_Jump(180,4)
+			TNT1 A 1 A_Jump(180,3)
+			TNT1 A 1 A_Jump(180,2)
+			TNT1 A 1 A_SpawnItemEx("LavaFlicktaSpawner",0,0,0,0,0,0,0,288)
+			Stop
+			TNT1 A 1 A_SpawnItemEx("SewageFlicktaSpawner",0,0,0,0,0,0,0,288)
+			Stop
+		SetQuake:
+			TNT1 A 1 A_SpawnItemEx("QEnforcer",0,0,0,0,0,0,0,288)
+			Stop
+		SetNull:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNull")
+			TNT1 A 1 A_SpawnItemEx("BerzerkRobotRed",0,0,0,0,0,0,0,288)
+			Stop
+		MultiplyDoom:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiDoomImp3",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDoom")
+			Stop
+		MultiplyHeretic:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiMummyLeader3",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHeretic")
+			Stop
+		MultiplyHexen:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiBishop3",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen")
+			Stop
+		MultiplyChex:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiNewArmoredFlemoidusBipedicus",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyChex")
+			Stop
+		MultiplyWolf1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiWolfOfficer",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWolf1")
+			Stop
+		MultiplyWolf2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiSODOfficer",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWolf2")
+			Stop
+		MultiplyDuke3D:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiAssaultCaptain",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDuke3D")
+			Stop
+		MultiplyNull:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiBerzerkRobotRed",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNull")
+			Stop
+	}
+}
+
+ACTOR IronLichSpawnerCoop replaces IronLich 
+{
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 5 ACS_NamedExecuteAlways("SMMSpawningScript",0,3,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,2)
+		Deciding:
+			TNT1 A 1
+			Loop
+		SetDoom:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDoom")
+			TNT1 A 1 A_SpawnItemEx("Archvile3",0,0,0,0,0,0,0,288)
+			Stop
+		SetHeretic:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHeretic")
+			TNT1 A 1 A_SpawnItemEx("IronLich3",0,0,0,0,0,0,0,288)
+			Stop
+		SetHexen:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen")
+			TNT1 A 1 A_SpawnItemEx("WraithBuried3",0,0,0,0,0,0,0,288)
+			Stop
+		SetChex:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyChex")
+			TNT1 A 1 A_SpawnItemEx("NewFlemoidusMaximusArch",0,0,0,0,0,0,0,288)
+			Stop
+		SetWolf3D:
+			TNT1 A 0 A_Jump(256,"Wolf1","Wolf2")
+			SODM1:
+				TNT1 A 0 A_Jump(256,"Wolf1")
+			SODM2:
+				TNT1 A 0 A_Jump(256,"Wolf2")
+			Wolf1:
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWolf1")
+				TNT1 A 1 A_SpawnItemEx("TransGrosse",0,0,0,0,0,0,0,288)
+				Stop
+			Wolf2:
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWolf2")
+				TNT1 A 1 A_SpawnItemEx("SubmarineWilly",0,0,0,0,0,0,0,288)
+				Stop
+		SetDuke3D:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDuke3D")
+			TNT1 A 1 A_SpawnItemEx("PigCopTankArch",0,0,0,0,0,0,0,288)
+			Stop
+		SetMarathon:
+			TNT1 A 1 A_SpawnItemEx("M2EnforcerMajorSpawner",0,0,0,0,0,0,0,288)
+			Stop
+		SetQuake:
+			TNT1 A 1 A_SpawnItemEx("Shambler",0,0,0,0,0,0,0,288)
+			Stop
+		SetNull:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNull")
+			TNT1 A 1 A_SpawnItemEx("BerzerkRobotGreen",0,0,0,0,0,0,0,288)
+			Stop
+		MultiplyDoom:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiArchVile3",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDoom")
+			Stop
+		MultiplyHeretic:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiIronLich3",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHeretic")
+			Stop
+		MultiplyHexen:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiWraithBuried3",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen")
+			Stop
+		MultiplyChex:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiNewFlemoidusMaximusArch",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyChex")
+			Stop
+		MultiplyWolf1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiTransGrosse",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWolf1")
+			Stop
+		MultiplyWolf2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiSubmarineWilly",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWolf2")
+			Stop
+		MultiplyDuke3D:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiPigCopTankArch",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDuke3D")
+			Stop
+		MultiplyNull:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiBerzerkRobotGreen",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNull")
+			Stop
+	}
+}
+
+ACTOR MinotaurSpawnerCoop replaces Minotaur
+{
+	Health 0x7fffffff
+	Height 0
+	Radius 0
+	MONSTER
+	-COUNTKILL
+	-SOLID
+	+NOCLIP
+	+NOTDMATCH
+	+BOSSDEATH
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 5 ACS_NamedExecuteAlways("SMMSpawningScript",0,3,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,2)
+		BossWait:
+			TNT1 A 1
+			Loop
+		SetDoom:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDoom")
+			TNT1 A 1 A_SpawnItemEx("Cyberdemon3",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		SetHeretic:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHeretic")
+			TNT1 A 1 A_SpawnItemEx("Minotaur3",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		SetHexen:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen")
+			TNT1 A 1 A_SpawnItemEx("Heresiarch3",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		SetChex:
+			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SMMCVarCheck",6) == 1, "SetChex_2")
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyChex1")
+			TNT1 A 1 A_SpawnItemEx("OldSnotfolus",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		SetChex_2:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyChex2")
+			TNT1 A 1 A_SpawnItemEx("NewSnotfolus",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		SetWolf3D:
+			TNT1 A 0 A_Jump(256,"Wolf1","Wolf2","Wolf3")
+			SODM1:
+				TNT1 A 0 A_Jump(256,"Wolf1","Wolf2")
+			SODM2:
+				TNT1 A 0 A_Jump(256,"Wolf1","Wolf3")
+			Wolf1:
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWolf1")
+				TNT1 A 1 A_SpawnItemEx("DoctorSchabbs",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+				Goto BossWait
+			Wolf2:
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWolf2")
+				TNT1 A 1 A_SpawnItemEx("AngelofDeath",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+				Goto BossWait
+			Wolf3:
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWolf3")
+				TNT1 A 1 A_SpawnItemEx("DevilIncarnate",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+				Goto BossWait
+		SetDuke3D:
+			TNT1 A 0 A_Jump(256,"Duke1","Duke2")
+			Duke1:
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDuke1")
+				TNT1 A 1 A_SpawnItemEx("OverlordDoom",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+				Goto BossWait
+			Duke2:
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDuke2")
+				TNT1 A 1 A_SpawnItemEx("CycloidEmperorDoom",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+				Goto BossWait
+		SetMarathon:
+			TNT1 A 1 A_SpawnItemEx("JuggernautMajorSpawner",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		SetQuake:
+			TNT1 A 1 A_SpawnItemEx("Cyberdemon3",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		SetNull:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNull")
+			TNT1 A 1 A_SpawnItemEx("EvilOtto",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		MultiplyDoom:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiCyberdemon3",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyDoom_2
+		MultiplyDoom_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiCyberdemon3",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDoom_2")
+			Goto BossWait
+		MultiplyHeretic:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiMinotaur3",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyHeretic_2
+		MultiplyHeretic_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiMinotaur3",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHeretic_2")
+			Goto BossWait
+		MultiplyHexen:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiHeresiarch3",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyHexen_2
+		MultiplyHexen_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiHeresiarch3",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen_2")
+			Goto BossWait
+		MultiplyChex1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiOldSnotfolus",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyChex1_2
+		MultiplyChex1_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiOldSnotfolus",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyChex1_2")
+			Goto BossWait
+		MultiplyChex2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiNewSnotfolus",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyChex2_2
+		MultiplyChex2_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiNewSnotfolus",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyChex2_2")
+			Goto BossWait
+		MultiplyWolf1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiDoctorSchabbs",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyWolf1_2
+		MultiplyWolf1_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiDoctorSchabbs",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWolf1_2")
+			Goto BossWait
+		MultiplyWolf2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiAngelofDeath",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyWolf2_2
+		MultiplyWolf2_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiAngelofDeath",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWolf2_2")
+			Goto BossWait
+		MultiplyWolf3:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiDevilIncarnate",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyWolf3_2
+		MultiplyWolf3_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiDevilIncarnate",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWolf3_2")
+			Goto BossWait
+		MultiplyDuke1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiOverlordDoom",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyDuke1_2
+		MultiplyDuke1_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiOverlordDoom",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDuke1_2")
+			Goto BossWait
+		MultiplyDuke2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiCycloidEmperorDoom",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyDuke2_2
+		MultiplyDuke2_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiCycloidEmperorDoom",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDuke2_2")
+			Goto BossWait
+		MultiplyNull:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiEvilOtto",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyNull_2
+		MultiplyNull_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiEvilOtto",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNull_2")
+			Goto BossWait
+		Death:
+			TNT1 A 1
+			TNT1 A 1 A_BossDeath
+			Stop
+	}
+}
+
+/*ACTOR SpiderMastermindSpawnerCoop replaces SpiderMastermind
+{
+	Health 0x7fffffff
+	Height 0
+	Radius 0
+	MONSTER
+	-COUNTKILL
+	-SOLID
+	+NOCLIP
+	+NOTDMATCH
+	+BOSSDEATH
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 5 ACS_NamedExecuteAlways("SMMSpawningScript",0,3,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,2)
+		BossWait:
+			TNT1 A 1
+			Loop
+		SetDoom:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDoom")
+			TNT1 A 1 A_SpawnItemEx("SpiderMastermind3",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		SetHeretic:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHeretic")
+			TNT1 A 1 A_SpawnItemEx("Sorcerer5",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		SetHexen:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen")
+			TNT1 A 1 A_SpawnItemEx("Korax3Doom",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		SetChex:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyChex")
+			TNT1 A 1 A_SpawnItemEx("Flembomination2",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		SetWolf3D:
+			TNT1 A 0 A_Jump(256,"Wolf1","Wolf2","Wolf3","Wolf4","Wolf5","Wolf6","Wolf7","Wolf8")
+			SODM1:
+				TNT1 A 0 A_Jump(256,"Wolf1","Wolf2","Wolf3","Wolf4","Wolf5")
+			SODM2:
+				TNT1 A 0 A_Jump(256,"Wolf1","Wolf5","Wolf6","Wolf7","Wolf8")
+			Wolf1:
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWolf1")
+				TNT1 A 1 A_SpawnItemEx("GeneralFettgesicht",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+				Goto BossWait
+			Wolf2:
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWolf2")
+				TNT1 A 1 A_SpawnItemEx("BarnacleWilhelm",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+				Goto BossWait
+			Wolf3:
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWolf3")
+				TNT1 A 1 A_SpawnItemEx("UberMutant",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+				Goto BossWait
+			Wolf4:
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWolf4")
+				TNT1 A 1 A_SpawnItemEx("WDeathKnight",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+				Goto BossWait
+			Wolf5:
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWolf5")
+				TNT1 A 1 A_SpawnItemEx("MechaHitler",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+				Goto BossWait
+			Wolf6:
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWolf6")
+				TNT1 A 1 A_SpawnItemEx("Robot",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+				Goto BossWait
+			Wolf7:
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWolf7")
+				TNT1 A 1 A_SpawnItemEx("ProfessorQuarkblitz",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+				Goto BossWait
+			Wolf8:
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWolf8")
+				TNT1 A 1 A_SpawnItemEx("TheAxe",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+				Goto BossWait
+		SetDuke3D:
+			TNT1 A 0 A_Jump(256,"Duke1","Duke2")
+			Duke1:
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDuke1")
+				TNT1 A 1 A_SpawnItemEx("BattlelordDoom",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+				Goto BossWait
+			Duke2:
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDuke2")
+				TNT1 A 1 A_SpawnItemEx("AlienQueenDoom",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+				Goto BossWait
+		SetMarathon:
+			TNT1 A 1 A_SpawnItemEx("M1JuggernautSpawner",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		SetQuake:
+			TNT1 A 1 A_SpawnItemEx("SpiderMastermind3",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		SetNull:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNull")
+			TNT1 A 1 A_SpawnItemEx("EvilOtto",0,0,0,0,0,0,0,288)
+			Goto BossWait
+		MultiplyDoom:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiSpiderMastermind3",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyDoom_2
+		MultiplyDoom_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiSpiderMastermind3",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDoom_2")
+			Goto BossWait
+		MultiplyHeretic:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiSorcerer5",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyHeretic_2
+		MultiplyHeretic_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiSorcerer5",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHeretic_2")
+			Goto BossWait
+		MultiplyHexen:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiKorax3Doom",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyHexen_2
+		MultiplyHexen_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiKorax3Doom",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen_2")
+			Goto BossWait
+		MultiplyChex:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiFlembomination2",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyChex_2
+		MultiplyChex_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiFlembomination2",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyChex_2")
+			Goto BossWait
+		MultiplyWolf1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiGeneralFettgesicht",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyWolf1_2
+		MultiplyWolf1_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiGeneralFettgesicht",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWolf1_2")
+			Goto BossWait
+		MultiplyWolf2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiBarnacleWilhelm",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyWolf2_2
+		MultiplyWolf2_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiBarnacleWilhelm",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWolf2_2")
+			Goto BossWait
+		MultiplyWolf3:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiUbermutant",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyWolf3_2
+		MultiplyWolf3_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiUbermutant",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWolf3_2")
+			Goto BossWait
+		MultiplyWolf4:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiWDeathKnight",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyWolf4_2
+		MultiplyWolf4_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiWDeathKnight",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWolf4_2")
+			Goto BossWait
+		MultiplyWolf5:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiMechaHitler",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyWolf5_2
+		MultiplyWolf5_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiMechaHitler",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWolf5_2")
+			Goto BossWait
+		MultiplyWolf6:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiRobot",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyWolf6_2
+		MultiplyWolf6_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiRobot",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWolf6_2")
+			Goto BossWait
+		MultiplyWolf7:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiProfessorQuarkblitz",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyWolf7_2
+		MultiplyWolf7_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiProfessorQuarkblitz",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWolf7_2")
+			Goto BossWait
+		MultiplyWolf8:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiTheAxe",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyWolf8_2
+		MultiplyWolf8_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiTheAxe",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWolf8_2")
+			Goto BossWait
+		MultiplyDuke1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiBattlelordDoom",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyDuke1_2
+		MultiplyDuke1_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiBattlelordDoom",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDuke1_2")
+			Goto BossWait
+		MultiplyDuke2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiAlienQueenDoom",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyDuke2_2
+		MultiplyDuke2_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiAlienQueenDoom",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDuke2_2")
+			Goto BossWait
+		MultiplyNull:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiEvilOtto",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto MultiplyNull_2
+		MultiplyNull_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiEvilOtto",0,0,0,random(-1,1),random(-1,1),0,0,288)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNull_2")
+			Goto BossWait
+		Death:
+			TNT1 A 1
+			TNT1 A 1 A_BossDeath
+			Stop
+	}
+}*/
+
+/*ACTOR MummyGhostReplacer : RandomSpawner replaces MummyGhost {
 	dropitem "Spectre3" 255 6
 	dropitem "KnightGhost3" 255 2
 	dropitem "MummyGhost3" 255 2
@@ -41,14 +991,6 @@ ACTOR MummyGhostReplacer : RandomSpawner replaces MummyGhost {
 	dropitem "FlemoidusCycloptisCommonus2" 255 3
 	dropitem "Larva2" 255 3
 	dropitem "WolfDog" 255 6
-}
-
-ACTOR MummyLeaderReplacer : RandomSpawner replaces MummyLeader {
-	dropitem "ShotGunGuy3" 255 2
-	dropitem "MummyLeader3" 255 2
-	dropitem "Serpent2" 255 2
-	dropitem "FlemoidusBipedicus3" 255 2
-	dropitem "WolfOfficer" 255 2
 }
 
 ACTOR MummyLeaderGhostReplacer : RandomSpawner replaces MummyLeaderGhost {
@@ -150,4 +1092,4 @@ ACTOR ChickenReplacer : RandomSpawner replaces Chicken {
 	dropitem "Chicken2" 255 2
 	dropitem "Pig2" 255 2
 	dropitem "FlemMine2" 255 2
-}
+}*/

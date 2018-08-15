@@ -945,6 +945,8 @@ rott/ricochet3			rottric3
 /*
 /***************************************************************************/
 
+marathon/teleportin		marateli
+marathon/teleportout	maratelo
 marathon/splash			maraspla
 m2enforcer/sight		pfhoensi
 m2enforcer/shoot		mtalnsht
@@ -999,6 +1001,119 @@ cyborg/pain				cyborhit
 cyborg/death			cybordie
 cyborggrenade/bounce	cybprbou
 cyborggrenade/explode	cybprexp
+
+/* *************************************************************************/
+/*
+/* QUAKE SOUNDS
+/*
+/***************************************************************************/
+
+quake/gib				sounds/ranger/udeath.ogg
+
+$random qenforcer/sight 		{ qenforcer/sight1  qenforcer/sight2  qenforcer/sight3 }
+qenforcer/sight1		qensigh1
+qenforcer/sight2		qensigh2
+qenforcer/sight3		qensigh3
+qenforcer/sight4		qensigh4
+
+$random qenforcer/pain 		{ qenforcer/pain1  qenforcer/pain2 }
+qenforcer/pain1			qenpain1
+qenforcer/pain2			qenpain2
+qenforcer/active		qenfidle
+qenforcer/laserdeath	qenpstop
+qenforcer/fire			qenshoot
+qenforcer/death			qendeath
+
+qgrunt/pain1			qgrpain1
+qgrunt/pain2			qgrpain2
+qgrunt/sight			qgrsight
+qgrunt/active			qgrfidle
+qgrunt/fire				qgrshoot
+qgrunt/death			qgrdeath
+
+vore/sight				voresite
+vore/attack				voreattk
+vore/pain				vorepain
+vore/death				voredeth
+vore/active				voreidle
+
+shambler/sight			shamsite
+shambler/melee			shamatk1
+shambler/attack			shamatk2
+shambler/boom			shamboom
+shambler/pain			shampain
+shambler/death			shamdeth
+shambler/active			shamidle
+shambler/smack			shamsmck
+
+ogre/sight				ogresite
+ogre/attack				ogresawa
+ogre/pain				ogrepain
+ogre/death				ogredeth
+$random ogre/active 	{ ogre/active1  ogre/active2 }
+ogre/active1			ogreidl1
+ogre/active2			ogreidl2
+ogre/drag				ogredrag
+
+rottweiler/sight		qdogsite
+rottweiler/attack		qdogattk
+rottweiler/pain			qdogpain
+rottweiler/death		qdogdeth
+rottweiler/active		qdogidle
+
+fiend/sight				qfndsite
+fiend/attack			qfndattk
+fiend/pain				qfndpain
+fiend/death				qfnddeth
+fiend/active			qfndidle
+fiend/leap				qfndleap
+
+centroid/pain			qcenpain
+centroid/death			qcendeth
+centroid/sight			qcensite
+centroid/active			qcenidle
+centroid/attack			qcenattk
+centroid/death			qcendeth
+centroid/walk			qcenwalk
+
+wrath/sight				qwthsite
+wrath/attack			qwthattk
+wrath/pain				qwthpain
+wrath/death				qwthdeth
+
+scrag/sight				scrgsite
+scrag/attack			scrgattk
+scrag/pain				scrgpain
+scrag/death				scrgdeth
+$random scrag/active 	{ scrag/active1  scrag/active2 }
+scrag/active1			scrgidl1
+scrag/active2			scrgidl2
+
+qknight/sight			qknisite
+qknight/attack1			qkniatk1
+qknight/attack2			qkniatk2
+qknight/pain			qknipain
+qknight/death			qknideth
+qknight/active			qkniidle
+
+$random armagon/sight 	{ armagon/sight1  armagon/sight2 }
+armagon/sight1			qarmsit1
+armagon/sight2			qarmsit2
+armagon/idle			qarmidle
+$random armagon/active 	{ armagon/active1  armagon/active2 armagon/active3 armagon/active4 }
+armagon/active1			qarmidl1
+armagon/active2			qarmidl2
+armagon/active3			qarmidl3
+armagon/active4			qarmidl4
+armagon/servo			qarmserv
+armagon/footfall		qarmfoot
+armagon/pain			qarmpain
+armagon/repel			qarmrepl
+armagon/death			qarmdeth
+armagon/explode			qarmexpl
+
+
+
 
 /* *************************************************************************/
 /*

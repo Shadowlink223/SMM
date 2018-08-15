@@ -1,0 +1,238 @@
+ACTOR QEnforcerLaser
+{
+	Radius 6
+	Height 8
+	Speed 20
+	Damage (15)
+	PROJECTILE
+	Decal bulletchip
+	Scale 0.5
+	SeeSound "qenforcer/fire"
+	DeathSound "qenforcer/laserdeath"
+	States
+	{
+		Spawn:
+			QENL A 5 Bright
+			Loop
+		Death:
+			TNT1 A 1
+			Stop
+			
+	}
+}
+
+ACTOR QArmagonLaser
+{
+	Radius 7
+	Height 9
+	Speed 20
+	Damage (18)
+	PROJECTILE
+	Decal bulletchip
+	Scale 0.5
+	SeeSound "quakeweps/lasershot"
+	DeathSound "qenforcer/laserdeath"
+	States
+	{
+		Spawn:
+			QARL A 5 Bright
+			Loop
+		Death:
+			TNT1 A 1
+			Stop
+			
+	}
+}
+
+ACTOR QArmagonRocket : QuakeRocket
+{
+	States
+	{
+		Death:
+			DMSL B 0 A_Explode(53,128,0)
+			TNT1 A 0 A_ChangeFlag("FORCERADIUSDMG",1)
+			TNT1 A 0 A_Explode(52,128)
+			TNT1 A 1 A_SpawnItemEx("QuakeExplosion")
+			Stop
+	}
+}
+
+ACTOR QExplosion
+{
+	+NOGRAVITY
+	+NOBLOCKMAP
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			QXPL A 4 A_PlaySound("armagon/explode")
+			QXPL BCDEF 4
+		Death:
+			TNT1 A 1
+			Stop
+	}
+}
+
+ACTOR ScragProjectile
+{
+	Radius 6
+	Height 8
+	Speed 15
+	Damage (9)
+	PROJECTILE
+	Decal bulletchip
+	Scale 0.5
+	//SeeSound "qenforcer/fire"
+	//DeathSound "qenforcer/laserdeath"
+	States
+	{
+		Spawn:
+			QSCP A 5 Bright
+			Loop
+		Death:
+			TNT1 A 1
+			Stop
+			
+	}
+}
+
+ACTOR VoreTracer
+{
+	Radius 8
+	Height 5
+	Speed 10
+	Scale 0.5
+	PROJECTILE
+	+SEEKERMISSILE
+	DeathSound "quakeweps/explode"
+	States
+	{
+		Spawn:
+			VORP ABCDEFGH 2 A_SeekerMissile(20,32,SMF_PRECISE)
+			Loop
+		Death:
+			TNT1 A 0 A_Explode(40,96,1,0)
+			TNT1 A 1 A_SpawnItemEx("QuakeExplosion")
+			QEXP ABCDEF 4 Bright
+			Stop
+	}
+}
+
+ACTOR WrathTracer : VoreTracer
+{
+	Speed 20
+	States
+	{
+		Death:
+			TNT1 A 0 A_Explode(6,96,1,0,96)
+			TNT1 A 1 A_SpawnItemEx("QuakeExplosion")
+			QEXP ABCDEF 4 Bright
+			Stop
+	}
+}
+
+ACTOR CentroidNail : QuakeNail { Damage (random(1,12)) }
+
+ACTOR QuakeShellBackpack : Ammo2Small
+{
+	Inventory.PickupMessage "Picked up 5 rounds of Ammo 2."
+	Scale 0.5
+	States
+	{
+		Spawn:
+			QBPK ABCDEFGHIJKLMNOPQRSTUVWX 5
+			Loop
+		Pickup:
+			TNT1 A 0 A_JumpIfInventory("HexenClass", 1, "PickupHexen")
+			TNT1 A 0 A_JumpIfInventory("WolfenClass", 1, "PickupWolfen")
+			TNT1 A 0 A_JumpIfInventory("MarathonClass", 0, "PickupMarathon")
+			//TNT1 A 0 A_JumpIfInventory("Shell", 0, "PickupFail")
+			TNT1 A 0 A_GiveInventory("Shell", 5)
+			Stop
+		PickupFail:
+			QBPK A 1
+			fail
+		PickupWolfen:
+			//TNT1 A 0 A_JumpIfInventory("Clip", 0, "PickupFail")
+			TNT1 A 0 A_GiveInventory("Clip", 25)
+			Stop
+		PickupHexen:
+			//TNT1 A 0 A_JumpIfInventory("Clip", 0, "PickupFail")
+			TNT1 A 0 A_GiveInventory("Clip", 12)
+			Stop
+		PickupMarathon:
+			//TNT1 A 0 A_JumpIfInventory("Shell", 0, "PickupFail")
+			TNT1 A 0 A_SetBlend("Green", 0.3, 3)
+			TNT1 A 0 A_GiveInventory("Shell", 5)
+			Stop
+	}
+}
+
+ACTOR QuakeCellBackpack : Ammo4Small
+{
+	Inventory.PickupMessage "Picked up 5 rounds of Ammo 4."
+	Scale 0.5
+	States
+	{
+		Spawn:
+			QBPK ABCDEFGHIJKLMNOPQRSTUVWX 5
+			Loop
+		Pickup:
+			//TNT1 A 0 A_JumpIfInventory("Cell", 0, "PickupFail")
+			TNT1 A 0 A_JumpIfInventory("MarathonClass", 0, "PickupMarathon")
+			TNT1 A 0 A_GiveInventory("Cell", 5)
+			Stop
+		PickupFail:
+			QBPK A 1
+			fail
+		PickupMarathon:
+			TNT1 A 0 A_SetBlend("Green", 0.3, 3)
+			TNT1 A 1 A_GiveInventory("Cell", 5)
+			Stop
+	}
+}
+
+ACTOR QuakeRocketBackpack : Ammo3Small
+{
+	Scale 0.5
+	States
+	{
+		Spawn:
+			QBPK ABCDEFGHIJKLMNOPQRSTUVWX 5
+			Loop
+		Pickup:
+			TNT1 A 0 A_JumpIfInventory("HexenClass", 1, "PickupHexen")
+			TNT1 A 0 A_JumpIfInventory("MarathonClass", 1, "PickupMarathon")
+			TNT1 A 0 A_JumpIfInventory("QuakeClass", 1, "PickupQuake")
+			TNT1 A 0 A_GiveInventory("RocketAmmo", 2)
+			Stop
+		PickupHexen:
+			//TNT1 A 0 A_JumpIfInventory("Cell", 0, "PickupFail")
+			TNT1 A 0 A_GiveInventory("Cell", 10)
+			Stop
+		PickupMarathon:
+			//TNT1 A 0 A_JumpIfInventory("RocketAmmo", 0, "PickupFail")
+			TNT1 A 0 A_GiveInventory("RocketAmmo", 2)
+			TNT1 A 0 A_SetBlend("Green", 0.3, 3)
+			Stop
+		PickupQuake:
+			TNT1 A 0 A_GiveInventory("RocketAmmo", 2)
+			TNT1 A 0
+			Stop
+		PickupFail:
+			QBPK A 1
+			Fail
+	}
+}
+
+ACTOR OgreGrenade : QuakeGrenade
+{
+	+FORCERADIUSDMG
+	States
+	{
+		Death:
+        MISL B 0 A_Explode(40,96,0)
+        TNT1 A 1 A_SpawnItemEx("QuakeExplosion")
+        stop
+	}
+}

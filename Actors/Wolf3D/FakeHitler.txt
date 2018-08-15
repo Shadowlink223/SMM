@@ -5,12 +5,12 @@ ACTOR FakeHitler
 	Height 50
 	Mass 400
 	Speed 6
-	PainChance 0
 	Scale 1.1
 	MONSTER
 	+FLOORCLIP
     +NOTDMATCH
     +NOICEDEATH
+	+NOPAIN
     +THRUGHOST
 	+MISSILEMORE
 	+FLOAT
@@ -34,11 +34,8 @@ ACTOR FakeHitler
 		Spawn:
 			WFAH A 0
 			WFAH A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
-			WFAH A 1 ACS_ExecuteAlways(668,0,1,0)
+			WFAH A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,1,0)
 			WFAH A 0 A_GiveInventory("AlreadySpawned",1)
-			WFAH A 0 A_JumpIfInventory("InvisibleToken",1,2)
-			WFAH A 0 A_Jump(256,2)
-			WFAH A 0 A_ChangeFlag("STEALTH",1)
 		Spawn2:
 			WFAH AAABBCCCDD 2 A_Look
 			Loop
@@ -46,8 +43,7 @@ ACTOR FakeHitler
 			WFAH AAABBCCCDD 2 A_Chase
 			Loop
 		Missile:
-			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,1) == 1, "Missile2")
-			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SMMCVarCheck",1) == 1, "Missile2")
 			TNT1 A 0 A_FaceTarget
 			TNT1 A 0 A_PlaySound("fakehitler/fire", CHAN_WEAPON)
 			WFAH E 3 Bright A_CustomMissile("FakeHitlerBall",32,0,0,8)
@@ -74,8 +70,7 @@ ACTOR FakeHitler
 			WFAH E 3 Bright A_CustomMissile("FakeHitlerBall",32,0,0,8)
 			Goto See
 		Missile2:
-			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,1) == 0, "Missile")
-			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SMMCVarCheck",1) == 0, "Missile")
 			TNT1 A 0 A_FaceTarget
 			TNT1 A 0 A_PlaySound("fakehitler/fire", CHAN_WEAPON)
 			WFAH E 3 Bright A_CustomMissile("FakeHitlerBallFast",32,0,0,8)
@@ -100,10 +95,6 @@ ACTOR FakeHitler
 			TNT1 A 0 A_FaceTarget
 			TNT1 A 0 A_PlaySound("fakehitler/fire", CHAN_WEAPON)
 			WFAH E 3 Bright A_CustomMissile("FakeHitlerBallFast",32,0,0,8)
-			Goto See
-		Pain:
-			WFAH D 3
-			WFAH D 3 A_Pain
 			Goto See
 		Pain.MightyBoot:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)

@@ -1,6 +1,7 @@
 ACTOR MultiplyToken : Inventory { Inventory.MaxAmount 12 }
-ACTOR InvisibleToken : Inventory { Inventory.MaxAmount 1 }
+ACTOR AssholeToken : Inventory { Inventory.MaxAmount 1 }
 ACTOR DifficultyToken : Inventory { Inventory.MaxAmount 4 }
+ACTOR NoPainToken : Inventory { Inventory.MaxAmount 1 }
 ACTOR AlreadySpawned : Inventory { Inventory.MaxAmount 1 }
 
 ACTOR PinataDrop : RandomSpawner
@@ -28,24 +29,24 @@ ACTOR PinataDrop : RandomSpawner
 	dropitem "MegaPack" 255 8
 	dropitem "SamsaraSlotFiveDrop" 255 4
 	dropitem "InvulnPowerup" 255 4
-	dropitem "ProsperityRune2" 255 4
-	dropitem "HasteRune2" 255 4
+	/*dropitem "ProsperityRune2" 255 4
+	dropitem "HasteRune2" 255 4*/
 	dropitem "BioSuit" 255 2
 	dropitem "SamsaraSlotSixDrop" 255 2
-	dropitem "StrengthRune2" 255 2
+	/*dropitem "StrengthRune2" 255 2
 	dropitem "RageRune2" 255 2
 	dropitem "ResistanceRune2" 255 2
-	dropitem "ReflectionRune2" 255 2
+	dropitem "ReflectionRune2" 255 2*/
 	dropitem "SamsaraUniquePickup" 255 2
 	dropitem "SamsaraSlotSevenDrop" 255 1
-	dropitem "SpreadRune2" 255 1
+	/*dropitem "SpreadRune2" 255 1
 	dropitem "DrainRune2" 255 1
 	dropitem "RegenerationRune2" 255 1
-	dropitem "HighJumpRune2" 255 1
+	dropitem "HighJumpRune2" 255 1*/
 	dropitem "HeXenBeaconItem" 255 1
 }
 
-ACTOR StrengthRune2 : StrengthRune { -NOGRAVITY }
+/*ACTOR StrengthRune2 : StrengthRune { -NOGRAVITY }
 ACTOR RageRune2 : RageRune { -NOGRAVITY }
 ACTOR DrainRune2 : DrainRune { -NOGRAVITY }
 ACTOR SpreadRune2 : SpreadRune { -NOGRAVITY }
@@ -54,7 +55,7 @@ ACTOR RegenerationRune2 : RegenerationRune { -NOGRAVITY }
 ACTOR ProsperityRune2 : ProsperityRune { -NOGRAVITY }
 ACTOR ReflectionRune2 : ReflectionRune { -NOGRAVITY }
 ACTOR HighJumpRune2 : HighJumpRune { -NOGRAVITY }
-ACTOR HasteRune2 : HasteRune { -NOGRAVITY }
+ACTOR HasteRune2 : HasteRune { -NOGRAVITY }*/
 
 ACTOR DefaultPinataPop
 {
@@ -67,7 +68,7 @@ ACTOR DefaultPinataPop
 			Goto Death
 		Death:
 			TNT1 A 0
-			TNT1 A 1 A_JumpIf(ACS_ExecuteWithResult(680,5) == 0, "Death2")
+			TNT1 A 1 A_JumpIf(ACS_NamedExecuteWithResult("SMMCVarCheck",5) == 0, "Death2")
 			TNT1 AAAAA 0 A_SpawnItemEx("DefaultPinataPop2",0,0,0,random(-10,10),random(-10,10),random(-10,10),0,32)
 			Stop
 		Death2:
@@ -91,6 +92,48 @@ ACTOR DefaultPinataPop2
 			Stop
 	}
 }
+
+ACTOR AspirinEffect : CustomInventory
+{
+	-COUNTITEM
+	+INVENTORY.ALWAYSPICKUP
+	Inventory.PickupMessage ""
+	Inventory.PickupSound ""
+	States
+	{
+		Spawn:
+			TNT1 A 0 
+			TNT1 A 1
+			Stop
+		Pickup:
+			TNT1 A 0 
+			TNT1 A 1 A_ChangeFlag("NOPAIN",1)
+			Stop
+	}
+}
+
+ACTOR InvisibleToken : CustomInventory
+{
+	-COUNTITEM
+	+INVENTORY.ALWAYSPICKUP
+	Inventory.PickupMessage ""
+	Inventory.PickupSound ""
+	States
+	{
+		Spawn:
+			TNT1 A 0 
+			TNT1 A 1
+			Stop
+		Pickup:
+			TNT1 A 0 
+			TNT1 A 1 A_ChangeFlag("STEALTH",1)
+			Stop
+	}
+}
+
+//Monsters die when they are killed
+
+//ACTOR DoomMDWTAK
 
 //Modified Duke gibs
 

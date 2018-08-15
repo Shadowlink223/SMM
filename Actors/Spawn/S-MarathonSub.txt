@@ -11,8 +11,8 @@ ACTOR FighterMinorSpawner
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 5 ACS_ExecuteAlways(668,0,3,0)
-			TNT1 A 1 ACS_ExecuteAlways(671,0)
+			TNT1 A 5 ACS_NamedExecuteAlways("SMMSpawningScript",0,3,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -115,8 +115,8 @@ ACTOR FighterMajorSpawner
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 5 ACS_ExecuteAlways(668,0,3,0)
-			TNT1 A 1 ACS_ExecuteAlways(671,0)
+			TNT1 A 5 ACS_NamedExecuteAlways("SMMSpawningScript",0,3,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -234,8 +234,8 @@ ACTOR ProjectileFighterMinorSpawner
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 5 ACS_ExecuteAlways(668,0,3,0)
-			TNT1 A 1 ACS_ExecuteAlways(671,0)
+			TNT1 A 5 ACS_NamedExecuteAlways("SMMSpawningScript",0,3,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -338,8 +338,8 @@ ACTOR ProjectileFighterMajorSpawner
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 5 ACS_ExecuteAlways(668,0,3,0)
-			TNT1 A 1 ACS_ExecuteAlways(671,0)
+			TNT1 A 5 ACS_NamedExecuteAlways("SMMSpawningScript",0,3,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -457,8 +457,8 @@ ACTOR TrooperMinorSpawner
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 5 ACS_ExecuteAlways(668,0,3,0)
-			TNT1 A 1 ACS_ExecuteAlways(671,0)
+			TNT1 A 5 ACS_NamedExecuteAlways("SMMSpawningScript",0,3,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -561,8 +561,8 @@ ACTOR TrooperMajorSpawner
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 5 ACS_ExecuteAlways(668,0,3,0)
-			TNT1 A 1 ACS_ExecuteAlways(671,0)
+			TNT1 A 5 ACS_NamedExecuteAlways("SMMSpawningScript",0,3,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -680,8 +680,8 @@ ACTOR SewageFlicktaSpawner
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 5 ACS_ExecuteAlways(668,0,3,0)
-			TNT1 A 1 ACS_ExecuteAlways(671,0)
+			TNT1 A 5 ACS_NamedExecuteAlways("SMMSpawningScript",0,3,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -769,8 +769,8 @@ ACTOR WaterFlicktaSpawner
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 5 ACS_ExecuteAlways(668,0,3,0)
-			TNT1 A 1 ACS_ExecuteAlways(671,0)
+			TNT1 A 5 ACS_NamedExecuteAlways("SMMSpawningScript",0,3,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -858,8 +858,8 @@ ACTOR LavaFlicktaSpawner
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 5 ACS_ExecuteAlways(668,0,3,0)
-			TNT1 A 1 ACS_ExecuteAlways(671,0)
+			TNT1 A 5 ACS_NamedExecuteAlways("SMMSpawningScript",0,3,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -947,8 +947,8 @@ ACTOR DroneMinorSpawner
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 5 ACS_ExecuteAlways(668,0,3,0)
-			TNT1 A 1 ACS_ExecuteAlways(671,0)
+			TNT1 A 5 ACS_NamedExecuteAlways("SMMSpawningScript",0,3,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -1051,8 +1051,8 @@ ACTOR DroneMajorSpawner
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 5 ACS_ExecuteAlways(668,0,3,0)
-			TNT1 A 1 ACS_ExecuteAlways(671,0)
+			TNT1 A 5 ACS_NamedExecuteAlways("SMMSpawningScript",0,3,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -1170,8 +1170,8 @@ ACTOR M1EnforcerMinorSpawner
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 5 ACS_ExecuteAlways(668,0,3,0)
-			TNT1 A 1 ACS_ExecuteAlways(671,0)
+			TNT1 A 5 ACS_NamedExecuteAlways("SMMSpawningScript",0,3,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -1274,8 +1274,8 @@ ACTOR M1EnforcerMajorSpawner
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 5 ACS_ExecuteAlways(668,0,3,0)
-			TNT1 A 1 ACS_ExecuteAlways(671,0)
+			TNT1 A 5 ACS_NamedExecuteAlways("SMMSpawningScript",0,3,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -1393,8 +1393,8 @@ ACTOR M2EnforcerMinorSpawner
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 5 ACS_ExecuteAlways(668,0,3,0)
-			TNT1 A 1 ACS_ExecuteAlways(671,0)
+			TNT1 A 5 ACS_NamedExecuteAlways("SMMSpawningScript",0,3,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -1513,8 +1513,8 @@ ACTOR M2EnforcerMajorSpawner
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 5 ACS_ExecuteAlways(668,0,3,0)
-			TNT1 A 1 ACS_ExecuteAlways(671,0)
+			TNT1 A 5 ACS_NamedExecuteAlways("SMMSpawningScript",0,3,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -1650,8 +1650,8 @@ ACTOR CyborgMinorSpawner
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 5 ACS_ExecuteAlways(668,0,3,0)
-			TNT1 A 1 ACS_ExecuteAlways(671,0)
+			TNT1 A 5 ACS_NamedExecuteAlways("SMMSpawningScript",0,3,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -1770,8 +1770,8 @@ ACTOR CyborgMajorSpawner
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 5 ACS_ExecuteAlways(668,0,3,0)
-			TNT1 A 1 ACS_ExecuteAlways(671,0)
+			TNT1 A 5 ACS_NamedExecuteAlways("SMMSpawningScript",0,3,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -1907,8 +1907,8 @@ ACTOR FlameCyborgMinorSpawner
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 5 ACS_ExecuteAlways(668,0,3,0)
-			TNT1 A 1 ACS_ExecuteAlways(671,0)
+			TNT1 A 5 ACS_NamedExecuteAlways("SMMSpawningScript",0,3,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -2027,8 +2027,8 @@ ACTOR FlameCyborgMajorSpawner
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 5 ACS_ExecuteAlways(668,0,3,0)
-			TNT1 A 1 ACS_ExecuteAlways(671,0)
+			TNT1 A 5 ACS_NamedExecuteAlways("SMMSpawningScript",0,3,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -2164,8 +2164,8 @@ ACTOR MotherofAllCyborgsSpawner
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 5 ACS_ExecuteAlways(668,0,3,0)
-			TNT1 A 1 ACS_ExecuteAlways(671,0)
+			TNT1 A 5 ACS_NamedExecuteAlways("SMMSpawningScript",0,3,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -2267,8 +2267,8 @@ ACTOR HunterMinorSpawner
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 5 ACS_ExecuteAlways(668,0,3,0)
-			TNT1 A 1 ACS_ExecuteAlways(671,0)
+			TNT1 A 5 ACS_NamedExecuteAlways("SMMSpawningScript",0,3,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -2387,8 +2387,8 @@ ACTOR HunterMajorSpawner
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 5 ACS_ExecuteAlways(668,0,3,0)
-			TNT1 A 1 ACS_ExecuteAlways(671,0)
+			TNT1 A 5 ACS_NamedExecuteAlways("SMMSpawningScript",0,3,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -2524,8 +2524,8 @@ ACTOR MotherofAllHuntersSpawner
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 5 ACS_ExecuteAlways(668,0,3,0)
-			TNT1 A 1 ACS_ExecuteAlways(671,0)
+			TNT1 A 5 ACS_NamedExecuteAlways("SMMSpawningScript",0,3,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -2627,8 +2627,8 @@ ACTOR M1JuggernautSpawner
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 5 ACS_ExecuteAlways(668,0,3,0)
-			TNT1 A 1 ACS_ExecuteAlways(671,0)
+			TNT1 A 5 ACS_NamedExecuteAlways("SMMSpawningScript",0,3,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -2730,8 +2730,8 @@ ACTOR JuggernautMinorSpawner
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 5 ACS_ExecuteAlways(668,0,3,0)
-			TNT1 A 1 ACS_ExecuteAlways(671,0)
+			TNT1 A 5 ACS_NamedExecuteAlways("SMMSpawningScript",0,3,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -2850,8 +2850,8 @@ ACTOR JuggernautMajorSpawner
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 5 ACS_ExecuteAlways(668,0,3,0)
-			TNT1 A 1 ACS_ExecuteAlways(671,0)
+			TNT1 A 5 ACS_NamedExecuteAlways("SMMSpawningScript",0,3,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -2987,8 +2987,8 @@ ACTOR SphtMinorSpawner
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 5 ACS_ExecuteAlways(668,0,3,0)
-			TNT1 A 1 ACS_ExecuteAlways(671,0)
+			TNT1 A 5 ACS_NamedExecuteAlways("SMMSpawningScript",0,3,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -3091,8 +3091,8 @@ ACTOR SphtMajorSpawner
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 5 ACS_ExecuteAlways(668,0,3,0)
-			TNT1 A 1 ACS_ExecuteAlways(671,0)
+			TNT1 A 5 ACS_NamedExecuteAlways("SMMSpawningScript",0,3,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -3210,8 +3210,8 @@ ACTOR SphtKrMinorSpawner
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 5 ACS_ExecuteAlways(668,0,3,0)
-			TNT1 A 1 ACS_ExecuteAlways(671,0)
+			TNT1 A 5 ACS_NamedExecuteAlways("SMMSpawningScript",0,3,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -3314,8 +3314,8 @@ ACTOR SphtKrMajorSpawner
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 5 ACS_ExecuteAlways(668,0,3,0)
-			TNT1 A 1 ACS_ExecuteAlways(671,0)
+			TNT1 A 5 ACS_NamedExecuteAlways("SMMSpawningScript",0,3,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -3431,7 +3431,7 @@ ACTOR FighterMinorSpawnerInv : FighterMinorSpawner
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 1 ACS_ExecuteAlways(671,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -3446,7 +3446,7 @@ ACTOR FighterMajorSpawnerInv : FighterMajorSpawner
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 1 ACS_ExecuteAlways(671,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -3461,7 +3461,7 @@ ACTOR ProjectileFighterMinorSpawnerInv : ProjectileFighterMinorSpawner
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 1 ACS_ExecuteAlways(671,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -3476,7 +3476,7 @@ ACTOR ProjectileFighterMajorSpawnerInv : ProjectileFighterMajorSpawner
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 1 ACS_ExecuteAlways(671,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -3491,7 +3491,7 @@ ACTOR TrooperMinorSpawnerInv : TrooperMinorSpawner
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 1 ACS_ExecuteAlways(671,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -3506,7 +3506,7 @@ ACTOR TrooperMajorSpawnerInv : TrooperMajorSpawner
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 1 ACS_ExecuteAlways(671,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -3521,7 +3521,7 @@ ACTOR SewageFlicktaSpawnerInv : SewageFlicktaSpawner
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 1 ACS_ExecuteAlways(671,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -3536,7 +3536,7 @@ ACTOR WaterFlicktaSpawnerInv : WaterFlicktaSpawner
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 1 ACS_ExecuteAlways(671,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -3551,7 +3551,7 @@ ACTOR LavaFlicktaSpawnerInv : LavaFlicktaSpawner
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 1 ACS_ExecuteAlways(671,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -3566,7 +3566,7 @@ ACTOR DroneMinorSpawnerInv : DroneMinorSpawner
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 1 ACS_ExecuteAlways(671,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -3581,7 +3581,7 @@ ACTOR DroneMajorSpawnerInv : DroneMajorSpawner
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 1 ACS_ExecuteAlways(671,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -3596,7 +3596,7 @@ ACTOR M1EnforcerMinorSpawnerInv : M1EnforcerMinorSpawner
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 1 ACS_ExecuteAlways(671,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -3611,7 +3611,7 @@ ACTOR M1EnforcerMajorSpawnerInv : M1EnforcerMajorSpawner
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 1 ACS_ExecuteAlways(671,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -3626,7 +3626,7 @@ ACTOR M2EnforcerMinorSpawnerInv : M2EnforcerMinorSpawner
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 1 ACS_ExecuteAlways(671,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -3644,7 +3644,7 @@ ACTOR M2EnforcerMajorSpawnerInv : M2EnforcerMajorSpawner
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 1 ACS_ExecuteAlways(671,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -3662,7 +3662,7 @@ ACTOR CyborgMinorSpawnerInv : CyborgMinorSpawner
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 1 ACS_ExecuteAlways(671,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -3680,7 +3680,7 @@ ACTOR CyborgMajorSpawnerInv : CyborgMajorSpawner
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 1 ACS_ExecuteAlways(671,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -3698,7 +3698,7 @@ ACTOR FlameCyborgMinorSpawnerInv : FlameCyborgMinorSpawner
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 1 ACS_ExecuteAlways(671,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -3716,7 +3716,7 @@ ACTOR FlameCyborgMajorSpawnerInv : FlameCyborgMajorSpawner
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 1 ACS_ExecuteAlways(671,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -3734,7 +3734,7 @@ ACTOR MotherofAllCyborgsSpawnerInv : MotherofAllCyborgsSpawner
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 1 ACS_ExecuteAlways(671,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -3752,7 +3752,7 @@ ACTOR HunterMinorSpawnerInv : HunterMinorSpawner
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 1 ACS_ExecuteAlways(671,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -3770,7 +3770,7 @@ ACTOR HunterMajorSpawnerInv : HunterMajorSpawner
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 1 ACS_ExecuteAlways(671,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -3788,7 +3788,7 @@ ACTOR MotherofAllHuntersSpawnerInv : MotherofAllHuntersSpawner
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 1 ACS_ExecuteAlways(671,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -3806,7 +3806,7 @@ ACTOR M1JuggernautSpawnerInv : M1JuggernautSpawner
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 1 ACS_ExecuteAlways(671,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -3824,7 +3824,7 @@ ACTOR JuggernautMinorSpawnerInv : JuggernautMinorSpawner
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 1 ACS_ExecuteAlways(671,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -3842,7 +3842,7 @@ ACTOR JuggernautMajorSpawnerInv : JuggernautMajorSpawner
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 1 ACS_ExecuteAlways(671,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -3860,7 +3860,7 @@ ACTOR SphtMinorSpawnerInv : SphtMinorSpawner
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 1 ACS_ExecuteAlways(671,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -3875,7 +3875,7 @@ ACTOR SphtMajorSpawnerInv : SphtMajorSpawner
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 1 ACS_ExecuteAlways(671,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -3890,7 +3890,7 @@ ACTOR SphtKrMinorSpawnerInv : SphtKrMinorSpawner
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 1 ACS_ExecuteAlways(671,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -3905,7 +3905,7 @@ ACTOR SphtKrMajorSpawnerInv : SphtKrMajorSpawner
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 1 ACS_ExecuteAlways(671,0)
+			TNT1 A 1 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
 			Loop

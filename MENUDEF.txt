@@ -1,0 +1,112 @@
+OptionMenu "OptionsMenu"
+{
+	Title "$OPTMNU_TITLE"
+	Submenu "Customize Controls",		"CustomizeControls"
+	Submenu "Mouse options",			"MouseOptions"
+	Submenu "Joystick options",			"JoystickOptions"
+	StaticText " "
+	Submenu "Samsara Clientside Options",           "SamsaraClientOptions"
+	Submenu "Samsara Serverside Options",           "SamsaraServerSideOptions"
+	StaticText " "
+	Submenu "Monster Mixer Options",	"SMMOptions"
+	StaticText " "
+	Submenu "Player Setup",				"PlayerMenu"
+	Submenu "Gameplay Options",			"GameplayOptions"
+	Submenu "Compatibility Options",	"CompatibilityOptions"
+	Submenu "Automap Options",			"AutomapOptions"
+	Submenu "HUD Options",				"HUDOptions"
+	Submenu "Miscellaneous Options",	"MiscOptions"
+	Submenu "Sound Options",			"SoundOptions"
+	Submenu "Display Options",			"VideoOptions"
+	Submenu "Set video mode",			"VideoModeMenu"
+	StaticText " "
+	SafeCommand "Reset to defaults",	"reset2defaults"
+	SafeCommand	"Reset to last saved",	"reset2saved"
+	Command "Go to console",			"menuconsole"
+}
+     
+OptionMenu "SMMOptions"
+{
+	Title "MONSTER MIXER OPTIONS"
+	Option "Reset All Settings",					"mm_init", "OnOff"
+	StaticText		""
+	StaticText      							"Set Toggles", 1	     
+	Option "Doom",									"mm_doom", "OnOff"
+	Option "Heretic",								"mm_heretic", "OnOff"
+	Option "Hexen",									"mm_hexen", "OnOff"
+	Option "Chex Quest",							"mm_chex", "OnOff"
+	Option "Wolfenstein 3D",						"mm_wolf3d", "OnOff"
+	Option "Duke Nukem 3D",							"mm_duke3d", "OnOff"
+	Option "Marathon",								"mm_marathon", "OnOff"
+	Option "Quake",									"mm_quake", "OnOff"
+	StaticText      ""
+	StaticText      							"Set Ban Toggles", 1
+	Option "Doom",									"mm_bandoom", "OnOff"
+	Option "Heretic",								"mm_banheretic", "OnOff"
+	Option "Hexen",									"mm_banhexen", "OnOff"
+	Option "Chex",									"mm_banchex", "OnOff"
+	Option "Wolf3D",								"mm_banwolf3d", "OnOff"
+	Option "Duke3D",								"mm_banduke3d", "OnOff"
+	Option "Marathon",								"mm_banmarathon", "OnOff"
+	Option "Quake",									"mm_banquake", "OnOff"
+	StaticText      ""
+	StaticText      							"Mode Options", 1
+	Slider "Monster Multiplier",					"mm_multiply", 0, 12, 1
+	Option "Random Cycle",							"mm_randomcycle", "RndmCycle"
+	Option "Pinata Party",							"mm_pinataparty", "OnOff"
+	Option "Invisible Monsters",					"mm_invisiblemode", "OnOff"
+	Option "No Pain",								"mm_nopain", "OnOff"
+	StaticText      ""
+	StaticText      							"Chex Quest Set Options", 1
+	Option "Old or New",							"mm_newchex", "NuChex"
+	StaticText      ""
+	StaticText      							"Wolf 3D Set Options", 1
+	Option "Skin Type",								"mm_wolfmode", "Wolf3DSkin"
+	Option "Quick Boss Death",						"mm_wolffastdeath", "OnOff"
+	Option "Fake Hitler Fireball Speed",			"mm_fakehitlerfire", "FHSpeed"
+	Option "Enable Gun Bats",						"mm_nobats", "OnOff"
+	Option "Permanent Spectre Death",				"mm_specpermdeath", "OnOff"
+	StaticText      ""
+	StaticText      							"Marathon Set Options", 1
+	Option "Skill Override",						"mm_skilloverride", "DiffOverride"
+	Option "Rare Monster Spawns",					"mm_rarespawns", "OnOff"
+	Option "Full Radius Damage Explosions",			"mm_fullradiusdmg", "OnOff"
+	Option "Teleporting Pfhor",						"mm_maratele", "OnOff"
+}
+
+OptionValue DiffOverride
+{
+	0, "Kindergarten"
+	1, "Easy"
+	2, "Normal"
+	3, "Major Damage"
+	4, "Total Carnage"
+	5, "Off"
+}
+
+OptionValue RndmCycle
+{
+	0, "Off"
+	1, "1 Set"
+	2, "2 Sets"
+	3, "3 Sets"
+}
+
+OptionValue Wolf3DSkin
+{
+	0, "Wolfenstein 3D"
+	1, "Spear of Destiny M2/M3"
+	2, "Both"
+}
+
+OptionValue FHSpeed
+{
+	0, "Slow"
+	1, "Fast"
+}
+
+OptionValue NuChex
+{
+	0, "Vanilla Style"
+	1, "Samsara Style"
+}

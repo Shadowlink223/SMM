@@ -34,11 +34,8 @@ ACTOR AssaultEnforcer
 		Spawn:
 			ASEN A 0
 			ASEN A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
-			ASEN A 1 ACS_ExecuteAlways(668,0,1,0)
+			ASEN A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,1,0)
 			ASEN A 0 A_GiveInventory("AlreadySpawned",1)
-			ASEN A 0 A_JumpIfInventory("InvisibleToken",1,2)
-			ASEN A 0 A_Jump(256,2)
-			ASEN A 0 A_ChangeFlag("STEALTH",1)
 		Spawn2:
 			ASEN A 1 A_Look
 			Loop
@@ -100,6 +97,7 @@ ACTOR AssaultEnforcer
 			TNT1 A 0 A_SpawnItemEX ("EnforcerTurd", 0 , -30, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
 			goto See
 		Missile:
+			TNT1 A 0 A_JumpIfInventory("NoPainToken",0,2)
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			ASEN E 2 A_FaceTarget
 			ASEN F 2 Bright A_CustomBulletAttack(12,10,1,5,"DukeBulletPuff",0,CBAF_NORANDOM)

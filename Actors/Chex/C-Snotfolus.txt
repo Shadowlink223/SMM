@@ -12,11 +12,8 @@ actor NewSnotfolus : Snotfolus
 		Spawn:
 			CYBC A 0
 			CYBC A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
-			CYBC A 1 ACS_ExecuteAlways(668,0,1,0)
+			CYBC A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,1,0)
 			CYBC A 0 A_GiveInventory("AlreadySpawned",1)
-			CYBC A 0 A_JumpIfInventory("InvisibleToken",1,2)
-			CYBC A 0 A_Jump(256,2)
-			CYBC A 0 A_ChangeFlag("STEALTH",1)
       Spawn2:
         TNT1 A 0 A_SetTranslucent(0,0)
         TNT1 A 80
@@ -247,11 +244,8 @@ ACTOR OldSnotfolus : NewSnotfolus
 		Spawn:
 			CYBC A 0
 			CYBC A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
-			CYBC A 1 ACS_ExecuteAlways(668,0,1,0)
+			CYBC A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,1,0)
 			CYBC A 0 A_GiveInventory("AlreadySpawned",1)
-			CYBC A 0 A_JumpIfInventory("InvisibleToken",1,2)
-			CYBC A 0 A_Jump(256,2)
-			CYBC A 0 A_ChangeFlag("STEALTH",1)
 		Spawn2:
 			CYBC A 1
 			Goto Idle

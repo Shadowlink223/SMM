@@ -1,0 +1,1 @@
+#include "gldefs/smm-marathon.txt"

@@ -4,7 +4,7 @@ ACTOR MultiAmmo1Small : Ammo1Small replaces Clip
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 6 ACS_ExecuteAlways(668,0,3,1)
+			TNT1 A 6 ACS_NamedExecuteAlways("SMMSpawningScript",0,3,1)
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyAmmo")
 			Goto "Super::Spawn"
@@ -22,7 +22,7 @@ ACTOR MultiAmmo1Big : Ammo1Big replaces ClipBox
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 6 ACS_ExecuteAlways(668,0,3,1)
+			TNT1 A 6 ACS_NamedExecuteAlways("SMMSpawningScript",0,3,1)
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyAmmo")
 			Goto "Super::Spawn"
@@ -40,7 +40,7 @@ ACTOR MultiAmmo2Small : Ammo2Small replaces Shell
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 6 ACS_ExecuteAlways(668,0,3,1)
+			TNT1 A 6 ACS_NamedExecuteAlways("SMMSpawningScript",0,3,1)
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyAmmo")
 			Goto "Super::Spawn"
@@ -58,7 +58,7 @@ ACTOR MultiAmmo2Big : Ammo2Big replaces ShellBox
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 6 ACS_ExecuteAlways(668,0,3,1)
+			TNT1 A 6 ACS_NamedExecuteAlways("SMMSpawningScript",0,3,1)
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyAmmo")
 			Goto "Super::Spawn"
@@ -76,7 +76,7 @@ ACTOR MultiAmmo3Small : Ammo3Small replaces RocketAmmo
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 6 ACS_ExecuteAlways(668,0,3,1)
+			TNT1 A 6 ACS_NamedExecuteAlways("SMMSpawningScript",0,3,1)
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyAmmo")
 			Goto "Super::Spawn"
@@ -94,7 +94,7 @@ ACTOR MultiAmmo3Big : Ammo3Big replaces RocketBox
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 6 ACS_ExecuteAlways(668,0,3,1)
+			TNT1 A 6 ACS_NamedExecuteAlways("SMMSpawningScript",0,3,1)
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyAmmo")
 			Goto "Super::Spawn"
@@ -112,7 +112,7 @@ ACTOR MultiAmmo4Small : Ammo4Small replaces Cell
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 6 ACS_ExecuteAlways(668,0,3,1)
+			TNT1 A 6 ACS_NamedExecuteAlways("SMMSpawningScript",0,3,1)
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyAmmo")
 			Goto "Super::Spawn"
@@ -130,7 +130,7 @@ ACTOR MultiAmmo4Big : Ammo4Big replaces CellPack
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 6 ACS_ExecuteAlways(668,0,3,1)
+			TNT1 A 6 ACS_NamedExecuteAlways("SMMSpawningScript",0,3,1)
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyAmmo")
 			Goto "Super::Spawn"

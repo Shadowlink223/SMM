@@ -11,11 +11,8 @@ actor SuperCycloptis2 : SuperCycloptis replaces SuperCycloptis
 		Spawn:
 			SCYC A 0
 			SCYC A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
-			SCYC A 1 ACS_ExecuteAlways(668,0,1,0)
+			SCYC A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,1,0)
 			SCYC A 0 A_GiveInventory("AlreadySpawned",1)
-			SCYC A 0 A_JumpIfInventory("InvisibleToken",1,2)
-			SCYC A 0 A_Jump(256,2)
-			SCYC A 0 A_ChangeFlag("STEALTH",1)
       Spawn2:
         SCYC A 10 A_Look
         Loop
@@ -25,6 +22,7 @@ actor SuperCycloptis2 : SuperCycloptis replaces SuperCycloptis
         Loop
 
       Missile:
+		TNT1 A 0 A_JumpIfInventory("NoPainToken",0,2)
         TNT1 A 0 A_ChangeFlag("NOPAIN",0)
         SCYC B 5 A_FaceTarget
         SCYC C 5 A_FaceTarget
@@ -128,6 +126,7 @@ ACTOR YellowCycloptis : SuperCycloptis2
 	States
 	{
 		Missile:
+		TNT1 A 0 A_JumpIfInventory("NoPainToken",0,2)
         TNT1 A 0 A_ChangeFlag("NOPAIN",0)
         SCYC B 5 A_FaceTarget
         SCYC C 5 A_FaceTarget
@@ -144,6 +143,7 @@ ACTOR DarkCycloptis : SuperCycloptis2
 	States
 	{
 		Missile:
+		TNT1 A 0 A_JumpIfInventory("NoPainToken",0,2)
         TNT1 A 0 A_ChangeFlag("NOPAIN",0)
         SCYC BC 5 A_FaceTarget
         SCYC D 5 A_CustomComboAttack("DarkCycloptisBall", 32, random[SCYCattack](1,6)*10, "", "flem")

@@ -1,1 +1,144 @@
-//
+ACTOR Shambler
+{
+	Health 10660
+	Radius 24
+	Height 64
+	Speed 12
+	Mass 0x7FFFFFFF
+	PainChance 30
+	Scale 0.5
+	WoundHealth 10060
+	MeleeRange 70
+	MONSTER
+	+FLOORCLIP
+    +NOTDMATCH
+    +THRUGHOST
+	+MISSILEMORE
+	SeeSound "shambler/sight"
+	PainSound "shambler/pain"
+	DeathSound "shambler/death"
+	ActiveSound "shambler/active"
+	Dropitem "DefaultPinataPop"
+	Obituary "%o was smashed by a Shambler."
+    DamageFactor "Mace", 1.1
+    DamageFactor "DragonClaw", 1.5
+	DamageFactor "Explosive", 0.5
+	DamageFactor "DukeExplosive", 0.5
+	DamageFactor "FireExplosive", 0.5
+    PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
+	States
+	{
+		Spawn:
+			QSH1 A 0
+			QSH1 A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+			QSH1 A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,1,0)
+			QSH1 A 0 A_GiveInventory("AlreadySpawned",1)
+		Spawn2:
+			TNT1 A 0
+			TNT1 A 0 A_Jump(32,"Walk")
+		Stand:
+			QSH1 ABCDEFGHIJKLMNOPQ 3 A_Look
+			Loop
+		Walk:
+			QSH1 RSTUVWXYZ 5 A_Wander
+			QSH2 ABC 5 A_Look
+			Loop
+		See:
+			QSH2 DEFGHI 3 A_Chase
+			Loop
+		Melee:
+			TNT1 A 0 A_Jump(256,"SwingL","SwingR","Smash")
+		SwingL:
+			TNT1 A 0
+			TNT1 A 0 A_PlaySound("shambler/melee",CHAN_VOICE)
+			QSH2 JKLMNO 3 A_FaceTarget
+			QSH2 P 3 A_CustomMeleeAttack(60,"shambler/smack")
+			QSH2 QR 3
+			Goto See
+		SwingR:
+			TNT1 A 0
+			TNT1 A 0 A_PlaySound("shambler/melee",CHAN_VOICE)
+			QSH2 STUVWX 3 A_FaceTarget
+			QSH2 Y 3 A_CustomMeleeAttack(60,"shambler/smack")
+			QSH2 Z 3
+			QSH3 A 3
+			Goto See
+		Smash:
+			TNT1 A 0
+			TNT1 A 0 A_PlaySound("shambler/melee",CHAN_VOICE)
+			QSH3 BCDEFGHI 3 A_FaceTarget
+			QSH3 J 3 A_CustomMeleeAttack(120,"shambler/smack")
+			QSH3 KLM 3
+			Goto See
+		Missile:
+			TNT1 A 0
+			TNT1 A 0 A_PlaySound("shambler/attack",CHAN_WEAPON)
+			QSH3 NOPQR 4 A_FaceTarget
+			TNT1 A 0 A_PlaySound("shambler/boom",CHAN_WEAPON)
+			QSH3 STU 4 A_CustomBulletAttack(0,0,1,10,"QuakeBulletPuff",512,CBAF_NORANDOM)
+			QSH3 VWXY 4
+			Goto See
+		Pain:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_Pain
+			QSH3 Z 3
+			QSH4 ABCDE 3
+			TNT1 A 0 A_JumpIfInventory("NoPainToken",0,2)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0
+			Goto See
+		Wound:
+			QSH4 F 1 A_JumpIfHealthLower(10000,2)
+			TNT1 A 0 A_Die
+			TNT1 A 0 A_Die("QuakeGib")
+			Goto Death
+		Death:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 A_Scream
+			QSH4 FGHIJKLMNOP 3
+			TNT1 A 0 A_NoBlocking
+			QSH4 P -1 A_KillMaster
+			Stop
+		Death.QuakeGib:
+		XDeath:
+			TNT1 A 1 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 DamageThing(20000)
+			TNT1 A 0 A_PlaySound("quake/gib", CHAN_VOICE)
+			TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("Blood", 0, 0, random(8, 56), random(-4, 4), 0, random(0, 6))
+			TNT1 AA 0 A_SpawnItemEx("QuakeSmallGibDropper",0,0,random(20,40),0,0,0,0,1)
+			TNT1 A 0 A_KillMaster
+			Stop
+	}
+}
+
+ACTOR ATShambler
+{
+	Scale 0.5
+	States
+	{
+		Spawn:
+			QSH1 ABCDEFGHIJKLMNOPQ 4
+			TNT1 A 10
+			QSH1 RSTUVWXYZ 4
+			QSH2 ABC 4
+			TNT1 A 10
+			QSH2 DEFGHI 4
+			TNT1 A 10
+			QSH2 JKLMNOPQR 4
+			TNT1 A 10
+			QSH2 STUVWXYZ 4
+			QSH3 A 4
+			TNT1 A 10
+			QSH3 BCDEFGHIJKLM 4
+			TNT1 A 10
+			QSH3 NOPQRSTUVWXY 4
+			TNT1 A 10
+			QSH3 Z 4
+			QSH4 ABCDE 4
+			TNT1 A 10
+			QSH4 FGHIJKLMNOP 4
+			TNT1 A 10
+			Loop
+	}
+}

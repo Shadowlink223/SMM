@@ -29,11 +29,8 @@ ACTOR SODDog
 		Spawn:
 			SDOG A 0
 			SDOG A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
-			SDOG A 1 ACS_ExecuteAlways(668,0,1,0)
+			SDOG A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,1,0)
 			SDOG A 0 A_GiveInventory("AlreadySpawned",1)
-			SDOG A 0 A_JumpIfInventory("InvisibleToken",1,2)
-			SDOG A 0 A_Jump(256,2)
-			SDOG A 0 A_ChangeFlag("STEALTH",1)
 		Spawn2:
 			SDOG A 0 A_Look
 			SDOG A 2 A_Wander
@@ -60,6 +57,7 @@ ACTOR SODDog
 			SDOG AAABBCCCDD 2 A_Chase
 			Loop
 		Melee:
+			TNT1 A 0 A_JumpIfInventory("NoPainToken",0,2)
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			SDOG E 5 A_FaceTarget
 			SDOG F 6 A_FaceTarget

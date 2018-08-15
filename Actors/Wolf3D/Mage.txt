@@ -29,11 +29,8 @@ ACTOR Mage
 		Spawn:
 			C3DM A 0
 			C3DM A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
-			C3DM A 1 ACS_ExecuteAlways(668,0,1,0)
+			C3DM A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,1,0)
 			C3DM A 0 A_GiveInventory("AlreadySpawned",1)
-			C3DM A 0 A_JumpIfInventory("InvisibleToken",1,2)
-			C3DM A 0 A_Jump(256,2)
-			C3DM A 0 A_ChangeFlag("STEALTH",1)
 		Spawn2:
 			C3DM A 2 A_Look
 			Loop
@@ -41,6 +38,7 @@ ACTOR Mage
 			C3DM AAAAAABBBBBB 2 A_Chase
 			Loop
 		Missile:
+			TNT1 A 0 A_JumpIfInventory("NoPainToken",0,2)
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			C3DM DDDD 2 Bright A_FaceTarget
 			C3DM D 15 Bright A_CustomMissile("MageBall",32,0,0,8)

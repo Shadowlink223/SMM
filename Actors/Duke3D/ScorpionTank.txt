@@ -29,11 +29,8 @@ ACTOR ScorpionTank
 		Spawn:
 			PIGS A 0
 			PIGS A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
-			PIGS A 1 ACS_ExecuteAlways(668,0,1,0)
+			PIGS A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,1,0)
 			PIGS A 0 A_GiveInventory("AlreadySpawned",1)
-			PIGS A 0 A_JumpIfInventory("InvisibleToken",1,2)
-			PIGS A 0 A_Jump(256,2)
-			PIGS A 0 A_ChangeFlag("STEALTH",1)
 		Spawn2:
 			PIGS A 1 A_Look
 			Loop
@@ -42,13 +39,12 @@ ACTOR ScorpionTank
 			PIGS AAAAAAAAAAAAAAA 3 A_Chase
 			Loop
 		Missile:
-			TNT1 A 0 A_JumpIfInventory("TankMissileToken", 11, "MissileEnd")
+			TNT1 A 0 A_JumpIfInventory("TankMissileToken", 10, "MissileEnd")
 			TNT1 A 0 A_GiveInventory ("TankMissileToken",1)
 			PIGS A 2 A_FaceTarget(22)
-			PIGS A 2 Bright A_CustomMissile("TrooperLaser",24,22,0,CMF_CHECKTARGETDEAD,0)
 			TNT1 A 0 A_PlaySound("assaultcapt/fire", CHAN_WEAPON)
-			PIGS A 4 Bright A_CustomMissile("TrooperLaser",24,-22,0,CMF_CHECKTARGETDEAD,0)
-			TNT1 A 0 A_PlaySound("assaultcapt/fire", CHAN_WEAPON)
+			PIGS A 0 Bright A_CustomMissile("TrooperLaser",24,22,-2,CMF_CHECKTARGETDEAD,0)
+			PIGS A 6 Bright A_CustomMissile("TrooperLaser",24,-22,2,CMF_CHECKTARGETDEAD,0)
 			Loop
 		MissileEnd:
 			TNT1 A 0 A_TakeInventory ("TankMissileToken", 11)

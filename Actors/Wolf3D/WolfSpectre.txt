@@ -31,11 +31,8 @@ ACTOR WolfSpectre
 		Spawn:
 			WSPE A 0
 			WSPE A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
-			WSPE A 1 ACS_ExecuteAlways(668,0,1,0)
+			WSPE A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,1,0)
 			WSPE A 0 A_GiveInventory("AlreadySpawned",1)
-			WSPE A 0 A_JumpIfInventory("InvisibleToken",1,2)
-			WSPE A 0 A_Jump(256,2)
-			WSPE A 0 A_ChangeFlag("STEALTH",1)
 		Spawn2:
 			WSPE ABCD 5 A_Look
 			loop
@@ -66,7 +63,7 @@ ACTOR WolfSpectre
 			goto Death
 		Death:
 		XDeath:
-			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,11) == 0, "Dormant")
+			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SMMCVarCheck",11) == 0, "Dormant")
 			TNT1 A 0 A_GiveToTarget("KillCount",1)
 			WSPE E 5 A_Scream
 			WSPE FG 5 A_NoBlocking
@@ -106,23 +103,6 @@ ACTOR WolfSpectre
 			WSPE A 3 A_SetTranslucent(0.2,0)
 			WSPE A 3 A_SetTranslucent(0.1,0)
 			TNT1 A 1 A_SetTranslucent(1,0)
-			TNT1 A -1
-			stop
-		Death.DukeIce:
-			TNT1 A 0 A_PlaySound("duke/enemyfreeze")
-			TNT1 A 0 A_GiveInventory("FreezethrowerWeakness")
-			TNT1 A 0 A_Jump(218,"Ice")
-			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
-		Ice:
-		Death.HexenIce:
-		Death.Ice:
-			TNT1 A 0 A_GiveToTarget("KillCount",1)
-			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
-			TNT1 A 0 A_NoBlocking
-			WSPE A 0 A_GenericFreezeDeath
-			WSPE A 70 A_UnsetSolid
-			WSPE A 0 A_IceGuyDie
-			WSPE A 1 A_IceGuyDie
 			TNT1 A -1
 			stop
 	}

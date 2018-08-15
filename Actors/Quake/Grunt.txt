@@ -1,1 +1,143 @@
-//
+ACTOR QGrunt
+{
+	Health 10065
+	Radius 16
+	Height 56
+	Speed 10
+	Mass 0x7FFFFFFF
+	PainChance 255
+	Scale 0.5
+	WoundHealth 10035
+	MONSTER
+	+FLOORCLIP
+    +NOTDMATCH
+    +THRUGHOST
+	+MISSILEMORE
+	+MISSILEEVENMORE
+	DropItem "QuakeShellBackpack"
+	DropItem "DefaultPinataPop"
+	SeeSound "qgrunt/sight"
+	PainSound "qgrunt/pain2"
+	DeathSound "qgrunt/death"
+	ActiveSound "qgrunt/active"
+	AttackSound "qgrunt/fire"
+	Obituary "%o was shot by a Grunt."
+    DamageFactor "Mace", 1.1
+    DamageFactor "DragonClaw", 1.5
+    PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
+	States
+	{
+		Spawn:
+			QGR1 A 0
+			QGR1 A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+			QGR1 A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,1,0)
+			QGR1 A 0 A_GiveInventory("AlreadySpawned",1)
+		Spawn2:
+			TNT1 A 0
+			TNT1 A 0 A_Jump(32,"Prowl")
+		Stand:
+			QGR1 ABCDEFGH 3 A_Look
+			Loop
+		Prowl:
+			TNT1 A 0
+			QGR1 I 6 A_Stop
+			QGR1 JKLMNOPQ 6 A_Look
+			QGR1 RST 6 A_Wander
+			QGR1 U 6 A_Stop
+			QGR1 VWXYZ 6 A_Look
+			QGR2 ABC 6 A_Look
+			QGR2 DEF 6 A_Wander
+			Loop
+		See:
+			QGR2 GHIJKLMN 4 A_Chase
+			Loop
+		Pain:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_Jump(96,"PainB","PainC")
+			TNT1 A 0 A_PlaySound("qgrunt/pain1", CHAN_VOICE)
+			QGR3 IJKLMN 3
+			TNT1 A 0 A_JumpIfInventory("NoPainToken",0,2)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0
+			Goto See
+		PainB:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_Pain
+			QGR3 OPQRSTUVWXYZ 3
+			QGR4 AB 3
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			Goto See
+		PainC:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_Pain
+			QGR4 CDEFGHIJKLMNO 3
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			Goto See
+		Missile:
+			QGR2 OPQR 4 A_FaceTarget
+			QGR2 S 4 Bright A_CustomBulletAttack(8,8,4,4,"QuakeBulletPuff",0,CBAF_NORANDOM)
+			QGR2 TUVW 4
+			Goto See
+		Wound:
+			QGR4 P 1 A_JumpIfHealthLower(10000,2)
+			TNT1 A 0 A_Die
+			TNT1 A 0 A_Die("QuakeGib")
+			Goto Death
+		Wound.ZorchPistol:
+		Wound.Zorch:
+		Wound.ZorchKamikaze:
+		Wound.PhasingZorch:
+		Wound.ZorchSpectral:
+			QGR3 L 1 A_Die("Zorch")
+			Goto Death
+		Death:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 A_Jump(128,"DeathC")
+			TNT1 A 0 A_Scream
+			TNT1 A 0 A_NoBlocking
+			QGR4 PQRSTUVWXY 3
+			QGR4 Y -1
+			Stop
+		DeathC:
+			TNT1 A 0 A_Scream
+			TNT1 A 0 A_NoBlocking
+			QGR4 Z 3 
+			QGR5 ABCDEFGHIJ 3
+			QGR5 J -1
+			Stop
+		Death.ZorchPistol:
+		Death.Zorch:
+		Death.ZorchKamikaze:
+		Death.PhasingZorch:
+		Death.ZorchSpectral:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			QGR3 L 0 A_Stop
+			TNT1 A 0 A_ChangeFlag("DONTGIB",1)
+			TNT1 A 0 A_PlaySoundEx("chex/zorch","soundslot5",0,0)
+			QGR3 L 3 A_SpawnItem("ZorchEffectSmall")
+			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
+			QGR3 L 3 A_SetTranslucent(0.9,0)
+			QGR3 L 0 A_Scream
+			QGR3 L 3 A_SetTranslucent(0.8,0)
+			QGR3 L 0 A_NoBlocking
+			QGR3 L 3 A_SetTranslucent(0.7,0)
+			QGR3 L 3 A_SetTranslucent(0.6,0)
+			QGR3 L 3 A_SetTranslucent(0.5,0)
+			QGR3 L 3 A_SetTranslucent(0.4,0)
+			QGR3 L 3 A_SetTranslucent(0.3,0)
+			QGR3 L 3 A_SetTranslucent(0.2,0)
+			QGR3 L 3 A_SetTranslucent(0.1,0)
+			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A -1
+			stop
+		Death.QuakeGib:
+		XDeath:
+			TNT1 A 1 A_GiveToTarget("KillCount",1)
+			TNT1 A 0
+			TNT1 A 0 A_PlaySound("quake/gib", CHAN_VOICE)
+			TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("Blood", 0, 0, random(8, 56), random(-4, 4), 0, random(0, 6))
+			TNT1 A 0 A_SpawnItemEx("QuakeSmallGibDropper",0,0,random(20,40),0,0,0,0,1)
+			Stop
+	}
+}

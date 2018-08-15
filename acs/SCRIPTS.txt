@@ -1,7 +1,7 @@
 #library "SMMACS"
 #include "zcommon.acs"
 
-int SMMCVARINFO = 
+/*int SMMCVARINFO = 
 "\n\
 \n\
 Samsara Monster Mixer adds some of its own console variables to pick from.\n\
@@ -49,13 +49,13 @@ Tweaks:\n\
 - Wolfenstein SS now drops a weapon when killed. (Slot 2 for BJ, slot 4 for the rest)\n\
 - Added two new puffs for the High Guard and M1 Juggernaut.\n\
 - All CVARs now use the prefix mm_ instead of smm_\n\
-- Removed the Centaur Leader from the Spectre slot in favor of a normal Centaur";
+- Removed the Centaur Leader from the Spectre slot in favor of a normal Centaur";*/
 
 global int 2:alreadyshowedbs;
 global int 3:randomallclear;
 global int 4:lastchosen;
 
-Script 667 OPEN 
+Script "SMMInit" OPEN //667
 {
 	randomallclear = 0;
 	if (!GetCVar("mm_init"))
@@ -67,6 +67,7 @@ Script 667 OPEN
 		SetCVar("mm_wolf3d", true);
 		SetCVar("mm_duke3d", true);
 		SetCVar("mm_marathon", false);
+		SetCVar("mm_quake", true);
 		SetCVar("mm_wolfmode", 2);
 		SetCVar("mm_fakehitlerfire", false);
 		SetCVar("mm_wolffastdeath", false);
@@ -79,6 +80,7 @@ Script 667 OPEN
 		SetCVar("mm_banwolf3d", false);
 		SetCVar("mm_banduke3d", false);
 		SetCVar("mm_banmarathon", true);
+		SetCVar("mm_banquake", false);
 		SetCVar("mm_multiply", 0);
 		SetCVar("mm_newchex", false);
 		SetCVar("mm_pinataparty", false);
@@ -87,12 +89,13 @@ Script 667 OPEN
 		SetCVar("mm_invisiblemode", false);
 		SetCVar("mm_nobats", false);
 		SetCVar("mm_specpermdeath", false);
-		
+		SetCVar("mm_nopain", false);
+		SetCVar("mm_monstersdiewhentheyarekilled", false);
 		SetCVar("mm_init", true);
 	}
-	ACS_Execute(669, 0, 0, 0, 0);
+	ACS_NamedExecute("RandomCycle", 0, 0, 0, 0);
 	
-	if (alreadyshowedbs == 0)
+	/*if (alreadyshowedbs == 0)
 	{
 		if (GameType() == GAME_TITLE_MAP) { }
 		if (Singleplayer() == 1)
@@ -107,10 +110,10 @@ Script 667 OPEN
 		else { 	Delay(2); Log(s:SMMCVARINFO); }
 		
 		alreadyshowedbs = 1;
-	}
+	}*/
 }
 
-Script 668 (int spawncode, int override)
+Script "SMMSpawningScript" (int spawncode, int override) //668
 {
 	int setselect;
 	int multitoken;
@@ -135,10 +138,17 @@ Script 668 (int spawncode, int override)
 			SetActorProperty(0,APROP_Alpha,0);
 		}
 		else { }
+		
+		if(GetCVar("mm_nopain") == 1)
+		{
+			GiveInventory("NoPainToken",1);
+			GiveInventory("AspirinEffect",1);
+		}
+		else { }
 		terminate;
 
 		case 2:
-		if(!GetCvar("mm_doom")&&!GetCvar("mm_heretic")&&!GetCvar("mm_hexen")&&!GetCvar("mm_chex")&&!GetCvar("mm_wolf3d")&&!GetCvar("mm_duke3d")&&!GetCvar("mm_marathon")/*&&!GetCvar("mm_quake*/) 
+		if(!GetCvar("mm_doom")&&!GetCvar("mm_heretic")&&!GetCvar("mm_hexen")&&!GetCvar("mm_chex")&&!GetCvar("mm_wolf3d")&&!GetCvar("mm_duke3d")&&!GetCvar("mm_marathon")&&!GetCvar("mm_quake")) 
 		{
 			SetActorState(0,"SetNull",true);
 			terminate;
@@ -150,7 +160,7 @@ Script 668 (int spawncode, int override)
 				until (randomallclear == 1) { Delay(5); }
 			}
 			
-			setselect = random(1,7);
+			setselect = random(1,8);
 			if(setselect == 1)
 			{
 				if(GetCvar("mm_doom"))
@@ -227,7 +237,7 @@ Script 668 (int spawncode, int override)
 				}
 				else{restart;}
 			}
-/*			if(setselect == 8)
+			if(setselect == 8)
 			{
 				if(GetCvar("mm_quake"))
 				{
@@ -235,7 +245,7 @@ Script 668 (int spawncode, int override)
 					terminate;
 				}
 				else{restart;}
-			}*/
+			}
 				
 		}
 		break;
@@ -255,7 +265,7 @@ Script 668 (int spawncode, int override)
 	}
 }
 
-Script 669 (void)
+Script "RandomCycle" (void) //669
 {
 	int selectloop;	
 	int randomvalue;
@@ -272,10 +282,11 @@ Script 669 (void)
 		SetCVar("mm_wolf3d", false);
 		SetCVar("mm_duke3d", false);
 		SetCVar("mm_marathon", false);
+		SetCVar("mm_quake", false);
 		
 		While (selectloop < randomvalue)
 		{
-			randnum = random(1,7);
+			randnum = random(1,8);
 			
 			if (randnum == 1)
 			{
@@ -312,6 +323,11 @@ Script 669 (void)
 				if(GetCVar("mm_marathon")||GetCVar("mm_banmarathon")||lastchosen == 7) { }
 				else { SetCVar("mm_marathon", true); selectloop++; lastchosen = 7; }
 			}
+			if (randnum == 8)
+			{
+				if(GetCVar("mm_quake")||GetCVar("mm_banquake")||lastchosen == 8) { }
+				else { SetCVar("mm_quake", true); selectloop++; lastchosen = 8; }
+			}
 		}
 		randomallclear = 1;
 	}
@@ -321,7 +337,7 @@ Script 669 (void)
 	}
 }
 
-Script 670 OPEN
+/*Script "" OPEN						INVASION IS DIE
 {
 	While(GetCvar("invasion") > 0)
 	{
@@ -332,12 +348,12 @@ Script 670 OPEN
 		ACS_Execute(669, 0, 0, 0, 0);
 		Delay(350);
 	}
-}
+}*/
 
-Script 671 (void)
+Script "MarathonSkillCheck" (void) //671
 {
 	int checkskill;
-	checkskill = ACS_ExecuteWithResult (680, 3, 0, 0, 0);
+	checkskill = ACS_NamedExecuteWithResult ("SMMCVarCheck", 3, 0, 0);
 	if (checkskill == 0)
 	{
 		SetActorState(0,"Kindergarten",true);
@@ -365,12 +381,16 @@ Script 671 (void)
 	}
 }
 
-/*Script 672 (void)
+Script "MarathonTeleport" (void)
 {
+	if(GetCVar("mm_maratele") == 1)
+	{
+		GiveInventory("TeleportIn", 1);
+	}
+	else { terminate; }
+}
 
-}*/
-
-Script 680 (int pick)
+Script "SMMCVarCheck" (int pick) //680
 {
 	int response;
 

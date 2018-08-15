@@ -12,11 +12,8 @@ actor NewLarva : Larva
 		Spawn:
 			LRVA A 0
 			LRVA A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
-			LRVA A 1 ACS_ExecuteAlways(668,0,1,0)
+			LRVA A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,1,0)
 			LRVA A 0 A_GiveInventory("AlreadySpawned",1)
-			LRVA A 0 A_JumpIfInventory("InvisibleToken",1,2)
-			LRVA A 0 A_Jump(256,2)
-			LRVA A 0 A_ChangeFlag("STEALTH",1)
       Spawn2:
         LRVA AB 10 A_Look
         Loop
@@ -26,6 +23,7 @@ actor NewLarva : Larva
         Loop
 
       Melee: // Previously 8 frames each
+		TNT1 A 0 A_JumpIfInventory("NoPainToken",0,2)
         TNT1 A 0 A_ChangeFlag("NOPAIN",0)
         LRVA CD 6 A_FaceTarget
         LRVA E 6 A_CustomMeleeAttack(random[SARCattack](1,10)*4, "", "", "Flem")
@@ -124,6 +122,7 @@ ACTOR OldLarva : NewLarva
 	States
 	{
 		Melee:
+		TNT1 A 0 A_JumpIfInventory("NoPainToken",0,2)
         TNT1 A 0 A_ChangeFlag("NOPAIN",0)
         LRVA CD 8 A_FaceTarget
         LRVA E 8 A_CustomMeleeAttack(random[SARCattack](1,10)*4, "", "", "Flem")

@@ -1,1 +1,192 @@
-//
+ACTOR QOgre
+{
+	Health 10280
+	Radius 16
+	Height 56
+	Speed 15
+	Mass 0x7FFFFFFF
+	PainChance 30
+	Scale 0.5
+	WoundHealth 10080
+	MeleeRange 64
+	MONSTER
+	+FLOORCLIP
+    +NOTDMATCH
+    +THRUGHOST
+	+MISSILEMORE
+	+MISSILEEVENMORE
+	SeeSound "ogre/sight"
+	PainSound "ogre/pain"
+	DeathSound "ogre/death"
+	ActiveSound "ogre/active"
+	Dropitem "DefaultPinataPop"
+	DropItem "QuakeRocketBackpack"
+	Obituary "%o was destroyed by an Ogre."
+    DamageFactor "Mace", 1.1
+    DamageFactor "DragonClaw", 1.5
+    PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
+	States
+	{
+		Spawn:
+			QOG1 A 0
+			QOG1 A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+			QOG1 A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,1,0)
+			QOG1 A 0 A_GiveInventory("AlreadySpawned",1)
+		Spawn2:
+			TNT1 A 0
+			TNT1 A 0 A_Jump(32,"Walk")
+		Stand:
+			QOG1 ABCDEFGHI 3 A_Look
+			Loop
+		Walk:
+			TNT1 A 0
+			QOG1 J 6 A_Stop
+			QOG1 KLMNOPQR 6 A_Look
+			QOG1 STU 6 A_Wander
+			QOG1 V 6 A_Stop
+			QOG1 WXY 6 A_Look
+			Loop
+		See:
+			QOG1 Z 4 A_Chase
+			QOG2 ABCDEFG 4 A_Chase
+			Loop
+		Melee:
+			TNT1 A 0 A_Jump(128,"Smash")
+		Swing:
+			TNT1 A 0 A_PlaySound("ogre/attack", CHAN_WEAPON)
+			QOG2 HIJK 3 A_FaceTarget
+			QOG2 L 3 A_CustomMeleeAttack(random(4,12))
+			QOG2 M 3 A_FaceTarget
+			QOG2 N 3 A_CustomMeleeAttack(random(4,12))
+			QOG2 O 3 A_FaceTarget
+			QOG2 P 3 A_CustomMeleeAttack(random(4,12))
+			QOG2 Q 3 A_FaceTarget
+			QOG2 R 3 A_CustomMeleeAttack(random(4,12))
+			QOG2 S 3 A_FaceTarget
+			QOG2 T 3 A_CustomMeleeAttack(random(4,12))
+			QOG2 U 3 A_FaceTarget
+			Goto See
+		Smash:
+			TNT1 A 0 A_PlaySound("ogre/attack", CHAN_WEAPON)
+			QOG2 VWXYZ 3 A_FaceTarget
+			QOG3 AB 3 A_FaceTarget
+			QOG3 C 3 A_CustomMeleeAttack(random(4,12))
+			QOG3 D 3 A_FaceTarget
+			QOG3 E 3 A_CustomMeleeAttack(random(4,12))
+			QOG3 F 3 A_FaceTarget
+			QOG3 G 3 A_CustomMeleeAttack(random(4,12))
+			QOG3 H 3 A_FaceTarget
+			QOG3 I 3 A_CustomMeleeAttack(random(4,12))
+			Goto See
+		Missile:
+			QOG3 JKL 4 A_FaceTarget
+			TNT1 A 0 A_PlaySound("quakeweps/glfire", CHAN_WEAPON)
+			QOG3 M 4 A_CustomMissile("OgreGrenade",40,-18,0,CMF_AIMDIRECTION,8)
+			QOG3 NO 4
+			Goto See
+		Pain:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_Jump(96,"PainB","PainC","PainD","PainE")
+			QOG3 PQRST 3
+			TNT1 A 0 A_JumpIfInventory("NoPainToken",0,2)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0
+			Goto See
+		PainB:
+			QOG3 UVW 3
+			TNT1 A 0 A_JumpIfInventory("NoPainToken",0,2)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0
+			Goto See
+		PainC:
+			QOG3 XYZ 3
+			QOG4 ABC 3
+			TNT1 A 0 A_JumpIfInventory("NoPainToken",0,2)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0
+			Goto See
+		PainD:
+			QOG4 DEFGHIJKLMNOPQRS 3
+			TNT1 A 0 A_JumpIfInventory("NoPainToken",0,2)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0 
+			Goto See
+		PainE:
+			QOG4 TUVWXYZ 3
+			QOG5 ABCDEFGH 3
+			TNT1 A 0 A_JumpIfInventory("NoPainToken",0,2)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0
+			Goto See
+		Wound:
+			QOG5 I 1 A_JumpIfHealthLower(10000,2)
+			TNT1 A 0 A_Die
+			TNT1 A 0 A_Die("QuakeGib")
+			Goto Death
+		Death:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 A_Jump(128,"BDeath")
+			TNT1 A 0 A_Scream
+			TNT1 A 0 A_NoBlocking
+			QOG5 IJKLMNOPQRSTUV 3
+			QOG5 V -1
+			Stop
+		BDeath:
+			TNT1 A 0 A_Scream
+			TNT1 A 0 A_NoBlocking
+			QOG5 WXYZ 3
+			QOG6 ABCDEF 3
+			QOG6 F -1
+			Stop
+		Death.QuakeGib:
+		XDeath:
+			TNT1 A 1 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 DamageThing(20000)
+			TNT1 A 0 A_PlaySound("quake/gib", CHAN_VOICE)
+			TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("Blood", 0, 0, random(8, 56), random(-4, 4), 0, random(0, 6))
+			TNT1 A 0 A_SpawnItemEx("QuakeSmallGibDropper",0,0,random(20,40),0,0,0,0,1)
+			Stop
+	}
+}
+
+ACTOR ATOgre
+{
+	Scale 0.5
+	States
+	{
+		Spawn:
+			QOG1 ABCDEFGHI 4
+			TNT1 A 10
+			QOG1 JKLMNOPQRSTUVWXY 4
+			TNT1 A 10
+			QOG1 Z 4
+			QOG2 ABCDEFG 4
+			TNT1 A 10
+			QOG2 HIJKLMNOPQRSTU 4
+			TNT1 A 10
+			QOG2 VWXYZ 4
+			QOG3 ABCDEFGHI 4
+			TNT1 A 10
+			QOG3 JKLMNO 4
+			TNT1 A 10
+			QOG3 PQRST 4
+			TNT1 A 10
+			QOG3 UVW 4
+			TNT1 A 10
+			QOG3 XYZ 4
+			QOG4 ABC 4
+			TNT1 A 10
+			QOG4 DEFGHIJKLMNOPQRS 4
+			TNT1 A 10
+			QOG4 TUVWXYZ 4
+			QOG5 ABCDEFGH 4
+			TNT1 A 10
+			QOG5 IJKLMNOPQRSTUV 4
+			TNT1 A 10
+			QOG5 WXYZ 4
+			QOG6 ABCDEF 4
+			TNT1 A 10
+			Loop
+	}
+}
