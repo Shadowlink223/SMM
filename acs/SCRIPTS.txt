@@ -145,6 +145,12 @@ Script "SMMSpawningScript" (int spawncode, int override) //668
 			GiveInventory("AspirinEffect",1);
 		}
 		else { }
+		
+		if(GetCVar("mm_nopatrol") == 1)
+		{
+			GiveInventory("NoPatrolToken",1);
+		}
+		else { }
 		terminate;
 
 		case 2:

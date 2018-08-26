@@ -3,6 +3,7 @@ ACTOR AssholeToken : Inventory { Inventory.MaxAmount 1 }
 ACTOR DifficultyToken : Inventory { Inventory.MaxAmount 4 }
 ACTOR NoPainToken : Inventory { Inventory.MaxAmount 1 }
 ACTOR AlreadySpawned : Inventory { Inventory.MaxAmount 1 }
+ACTOR NoPatrolToken : Inventory { Inventory.MaxAmount 1 }
 
 ACTOR PinataDrop : RandomSpawner
 {

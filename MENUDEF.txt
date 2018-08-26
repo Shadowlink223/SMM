@@ -72,6 +72,9 @@ OptionMenu "SMMOptions"
 	Option "Rare Monster Spawns",					"mm_rarespawns", "OnOff"
 	Option "Full Radius Damage Explosions",			"mm_fullradiusdmg", "OnOff"
 	Option "Teleporting Pfhor",						"mm_maratele", "OnOff"
+	StaticText      ""
+	StaticText      							"Quake Set Options", 1
+	Option "Disable Patrolling",					"mm_nopatrol", "OnOff"
 }
 
 OptionValue DiffOverride
