@@ -3,9 +3,9 @@ ACTOR QWrath
 	Health 400
 	Radius 20
 	Height 56
-	Speed 4
+	Speed 8
 	Mass 0x7FFFFFFF
-	PainChance 240
+	PainChance 15
 	Scale 0.5
 	MONSTER
 	+FLOORCLIP
@@ -23,6 +23,7 @@ ACTOR QWrath
     DamageFactor "DragonClaw", 1.5
     PainChance "MightyBoot", 255
 	PainChance "MarathonStun", 255
+	BloodType "QuakeBlood"
 	States
 	{
 		Spawn:
@@ -38,23 +39,73 @@ ACTOR QWrath
 			Loop
 		Missile:
 			TNT1 A 0 A_Jump(128,"AttackB","AttackC")
-			QWH1 M 2 A_PlaySound("wrath/attack",2)
-			QWH1 NOPQRSTUVW 2 A_FaceTarget
-			QWH1 X 2 A_CustomMissile("WrathTracer",32)
-			QWH1 YZ 2
+			QWH1 M 3 A_PlaySound("wrath/attack",2)
+			TNT1 A 0 A_Chase(0,0)
+			QWH1 N 4 A_FaceTarget
+			TNT1 A 0 A_Chase(0,0)
+			QWH1 O 3 A_FaceTarget
+			TNT1 A 0 A_Chase(0,0)
+			QWH1 P 4 A_FaceTarget
+			TNT1 A 0 A_Chase(0,0)
+			QWH1 Q 3 A_FaceTarget
+			TNT1 A 0 A_Chase(0,0)
+			QWH1 R 4 A_FaceTarget
+			TNT1 A 0 A_Chase(0,0)
+			QWH1 S 3 A_FaceTarget
+			TNT1 A 0 A_Chase(0,0)
+			QWH1 T 4 A_FaceTarget
+			TNT1 A 0 A_Chase(0,0)
+			QWH1 U 3 A_FaceTarget
+			TNT1 A 0 A_Chase(0,0)
+			QWH1 V 4 A_FaceTarget
+			TNT1 A 0 A_Chase(0,0)
+			QWH1 W 3 A_CustomMissile("WrathTracer",32)
+			QWH1 X 4 A_Chase
+			QWH1 Y 3 A_Chase
+			QWH1 Z 4 A_Chase
 			Goto See
 		AttackB:
-			QWH2 A 2 A_PlaySound("wrath/attack",2)
-			QWH2 BCDEF 2 A_FaceTarget
-			QWH2 G 2 A_CustomMissile("WrathTracer",32)
-			QWH2 HIJKLM 2
+			QWH2 A 3 A_PlaySound("wrath/attack",2)
+			TNT1 A 0 A_Chase(0,0)
+			QWH2 B 4 A_FaceTarget
+			TNT1 A 0 A_Chase(0,0)
+			QWH2 C 3 A_FaceTarget
+			TNT1 A 0 A_Chase(0,0)
+ 			QWH2 D 4 A_FaceTarget
+			TNT1 A 0 A_Chase(0,0)
+			QWH2 E 3 A_FaceTarget
+			TNT1 A 0 A_Chase(0,0)
+			QWH2 F 4 A_CustomMissile("WrathTracer",32)
+			QWH2 G 3 A_Chase(0,0)
+			QWH2 H 4 A_Chase(0,0)
+			QWH2 I 3 A_Chase(0,0)
+			QWH2 J 4 A_Chase(0,0)
+			QWH2 K 3 A_Chase(0,0)
+			QWH2 L 4 A_Chase(0,0)
+			QWH2 M 3 A_Chase(0,0)
 			Goto See
 		AttackC:
-			QWH2 N 2 A_PlaySound("wrath/attack",2)
-			QWH2 OPQRSTU 2 A_FaceTarget
-			QWH2 V 2 A_CustomMissile("WrathTracer",32)
-			QWH2 WXYZ 2
-			QWH3 AB 2
+			QWH2 N 3 A_PlaySound("wrath/attack",2)
+			TNT1 A 0 A_Chase(0,0)
+			QWH2 O 4 A_FaceTarget
+			TNT1 A 0 A_Chase(0,0)
+			QWH2 P 3 A_FaceTarget
+			TNT1 A 0 A_Chase(0,0)
+			QWH2 Q 4 A_FaceTarget
+			TNT1 A 0 A_Chase(0,0)
+			QWH2 R 3 A_FaceTarget
+			TNT1 A 0 A_Chase(0,0)
+			QWH2 S 4 A_FaceTarget
+			TNT1 A 0 A_Chase(0,0)
+			QWH2 T 3 A_CustomMissile("WrathTracer",32)
+			QWH2 U 4 A_Chase(0,0)
+			QWH2 V 3 A_Chase(0,0)
+			QWH2 W 4 A_Chase(0,0)
+			QWH2 X 3 A_Chase(0,0)
+			QWH2 Y 4 A_Chase(0,0)
+			QWH2 Z 3 A_Chase(0,0)
+			QWH3 A 4 A_Chase(0,0)
+			QWH3 B 3 A_Chase(0,0)
 			Goto See
 		Pain:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
@@ -75,12 +126,64 @@ ACTOR QWrath
 		Death:
 			TNT1 A 0 A_GiveToTarget("KillCount",1)
 			TNT1 A 0 A_Scream
-			QWH3 TUVWXYZ 3
-			QWH4 ABCDEFGH 3
-			TNT1 A 0 A_SpawnItemEx("QuakeExplosion")
+			QWH3 UVWXZ 3
+			QWH4 BDFH 3
+			TNT1 A 0 A_StopSound(CHAN_VOICE)
+			TNT1 A 0 A_SpawnItemEx("WrathExplosion",0,0,40)
 			TNT1 A 0 A_Explode(60,96)
 			TNT1 A 0 A_NoBlocking
 			TNT1 A -1
 			Stop
+		Death.ZorchPistol:
+		Death.Zorch:
+		Death.ZorchKamikaze:
+		Death.PhasingZorch:
+		Death.ZorchSpectral:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			QWH3 F 0 A_Stop
+			TNT1 A 0 A_ChangeFlag("DONTGIB",1)
+			TNT1 A 0 A_PlaySoundEx("chex/zorch","soundslot5",0,0)
+			QWH3 F 3 A_SpawnItem("ZorchEffectBig")
+			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
+			QWH3 F 3 A_SetTranslucent(0.9,0)
+			QWH3 F 0 A_Scream
+			QWH3 F 3 A_SetTranslucent(0.8,0)
+			QWH3 F 0 A_NoBlocking
+			QWH3 F 3 A_SetTranslucent(0.7,0)
+			QWH3 F 3 A_SetTranslucent(0.6,0)
+			QWH3 F 3 A_SetTranslucent(0.5,0)
+			QWH3 F 3 A_SetTranslucent(0.4,0)
+			QWH3 F 3 A_SetTranslucent(0.3,0)
+			QWH3 F 3 A_SetTranslucent(0.2,0)
+			QWH3 F 3 A_SetTranslucent(0.1,0)
+			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A -1
+			stop
+	}
+}
+
+ACTOR ATWrath
+{
+	Scale 0.5
+	States
+	{
+		Spawn:
+			QWH1 ABCDEFGHIJKL 4
+			TNT1 A 10
+			QWH1 MNOPQRSTUVWXYZ 4
+			TNT1 A 10
+			QWH2 ABCDEFGHIJKLM 4
+			TNT1 A 10
+			QWH2 NOPQRSTUVWXYZ 4
+			QWH3 AB 4
+			TNT1 A 10
+			QWH3 CDEFGH 4
+			TNT1 A 10
+			QWH3 IJKLMNOPQRS 4
+			TNT1 A 10
+			QWH3 TUVWXYZ 3
+			QWH4 ABCDEFGH 3
+			TNT1 A 10
+			Loop
 	}
 }

@@ -75,6 +75,7 @@ OptionMenu "SMMOptions"
 	StaticText      ""
 	StaticText      							"Quake Set Options", 1
 	Option "Disable Patrolling",					"mm_nopatrol", "OnOff"
+	Option "Use Doom Gibbing System",				"mm_qdoomgib", "OnOff"
 }
 
 OptionValue DiffOverride

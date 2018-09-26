@@ -119,7 +119,9 @@
 #include "actors/Quake/Wrath.txt"
 #include "actors/Quake/Scrag.txt"
 #include "actors/Quake/Knight.txt"
+#include "actors/Quake/QDeathKnight.txt"
 #include "actors/Quake/Armagon.txt"
+#include "actors/Quake/QuakesGuardian.txt"
 
 #include "actors/Spawn/S-MarathonSub.txt"
 #include "actors/Spawn/S-Doom.txt"

@@ -26,6 +26,7 @@ ACTOR QGrunt
     DamageFactor "DragonClaw", 1.5
     PainChance "MightyBoot", 255
 	PainChance "MarathonStun", 255
+	BloodType "QuakeBlood"
 	States
 	{
 		Spawn:
@@ -55,25 +56,22 @@ ACTOR QGrunt
 			Loop
 		Pain:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-			TNT1 A 0 A_Jump(96,"PainB","PainC")
+			TNT1 A 0 A_Jump(102,"PainB","PainC")
+			TNT1 A 0 ACS_NamedExecuteAlways("QuakePainCooldown",0,21)
 			TNT1 A 0 A_PlaySound("qgrunt/pain1", CHAN_VOICE)
 			QGR3 IJKLMN 3
-			TNT1 A 0 A_JumpIfInventory("NoPainToken",0,2)
-			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			TNT1 A 0
 			Goto See
 		PainB:
-			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 ACS_NamedExecuteAlways("QuakePainCooldown",0,39)
 			TNT1 A 0 A_Pain
 			QGR3 OPQRSTUVWXYZ 3
 			QGR4 AB 3
-			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			Goto See
 		PainC:
-			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 ACS_NamedExecuteAlways("QuakePainCooldown",0,39)
 			TNT1 A 0 A_Pain
 			QGR4 CDEFGHIJKLMNO 3
-			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			Goto See
 		Missile:
 			QGR2 OPQR 4 A_FaceTarget
@@ -137,10 +135,38 @@ ACTOR QGrunt
 			TNT1 A 1 A_GiveToTarget("KillCount",1)
 			TNT1 A 0
 			TNT1 A 0 A_PlaySound("quake/gib", CHAN_VOICE)
-			TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("Blood", 0, 0, random(8, 56), random(-4, 4), 0, random(0, 6))
-			TNT1 A 0 A_SpawnItemEx("QuakeSmallGibDropper",0,0,random(20,40),0,0,0,0,1)
+			TNT1 A 0 A_SpawnItemEx("GruntHead",0,0,0,random(-8,8),0,0,random(1,359),1)
+			TNT1 A 0 A_SpawnItemEx("QuakeGibDropper",0,0,random(20,40),0,0,0,0,1)
 			Stop
+		Raise:
+			TNT1 A 0 A_JumpIfInventory("EnemyZorched",1,"ZorchRaise")
+			QGR4 YXWVUTSRQP 3
+			Goto See
+		ZorchRaise:
+			TNT1 A 1 A_UnsetShootable
+			TNT1 A 1 A_SpawnItem("SpawnFire2")
+			TNT1 A 0 A_PlaySound("archvile/resummon")
+			TNT1 A 1 A_TakeInventory("EnemyZorched",1)
+			TNT1 A 0 A_SetTranslucent(0.1,0)
+			QGR1 A 3 A_SetTranslucent(0.2,0)
+			QGR1 A 3 A_SetTranslucent(0.3,0)
+			QGR1 A 3 A_SetTranslucent(0.4,0)
+			QGR1 A 3 A_SetTranslucent(0.5,0)
+			QGR1 A 3 A_SetTranslucent(0.6,0)
+			QGR1 A 3 A_SetTranslucent(0.7,0)
+			QGR1 A 3 A_SetTranslucent(0.8,0)
+			QGR1 A 3 A_SetTranslucent(0.9,0)
+			QGR1 A 3 A_SetTranslucent(1,0)
+			QGR1 A 1 A_SetShootable
+			Goto See
 	}
+}
+
+Actor QGruntDG : QGrunt
+{
+	Health 30
+	GibHealth 35
+	WoundHealth -10000
 }
 
 ACTOR ATGrunt

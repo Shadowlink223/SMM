@@ -1,1 +1,256 @@
-//
+ACTOR QDeathKnight
+{
+	Health 10290
+	Radius 24
+	Height 64
+	Speed 12
+	Mass 0x7FFFFFFF
+	PainChance 0
+	Scale 0.5
+	WoundHealth 10040
+	//MeleeRange 70
+	MONSTER
+	+FLOORCLIP
+    +NOTDMATCH
+    +THRUGHOST
+	+MISSILEMORE
+	SeeSound "qdeathknight/sight"
+	PainSound "qdeathknight/pain"
+	DeathSound "qdeathknight/death"
+	ActiveSound "qdeathknight/active"
+	Dropitem "DefaultPinataPop"
+	Obituary "%o was slain by a Death Knight"
+    DamageFactor "Mace", 1.1
+    DamageFactor "DragonClaw", 1.5
+	DamageFactor "Explosive", 0.5
+	DamageFactor "DukeExplosive", 0.5
+	DamageFactor "FireExplosive", 0.5
+    PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
+	BloodType "QuakeBlood"
+	States
+	{
+		Spawn:
+			QDK1 A 0
+			QDK1 A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+			QDK1 A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,1,0)
+			QDK1 A 0 ACS_NamedExecuteAlways("DKnightPain",0)
+			QDK1 A 0 A_GiveInventory("AlreadySpawned",1)
+		Spawn2:
+			TNT1 A 0
+			TNT1 A 0 A_JumpIfInventory("NoPatrolToken",1,"Stand")
+			TNT1 A 0 A_Jump(32,"Walk")
+		Stand:
+			QDK1 ABCDEFGHI 3 A_Look
+			Loop
+		Walk:
+			QDK1 JKLM 5 A_Wander
+			QDK1 NOPQ 5 A_Look
+			QDK1 RSTU 5 A_Wander
+			QDK1 VWXY 5 A_Look
+			QDK1 Z 5 A_Wander
+			QDK2 ABC 5 A_Wander
+			Loop
+		See:
+			QDK2 DEFGHIJK 3 A_Chase
+			Loop
+		Melee:
+			TNT1 A 0 A_Jump(128,"MeleeB","MeleeC","MeleeD")
+			QDK2 L 3 A_PlaySound("qdeathknight/attack", 5)
+			QDK2 MNOPQRSTUVWXYZ 3 A_CustomMeleeAttack(random(1,9))
+			QDK3 A 3
+			Goto See
+		MeleeB:
+			TNT1 A 0 A_PlaySound("qdeathknight/attack", 5)
+			QDK3 BCDEFGHIJK 3 A_CustomMeleeAttack(random(1,9))
+			Goto See
+		MeleeC:
+			TNT1 A 0 A_PlaySound("qdeathknight/attack", 5)
+			QDK3 LMNOPQRSTUV 3 A_CustomMeleeAttack(random(1,9))
+			Goto See
+		MeleeD:
+			TNT1 A 0 A_PlaySound("qdeathknight/attack", 5)
+			QDK3 WXYZ 3 A_CustomMeleeAttack(random(1,9))
+			QDK4 ABCDEFGHIJKLMNOPQR 3 A_CustomMeleeAttack(random(1,9))
+			Goto See
+		Missile:
+			QDK4 STUV 3 A_FaceTarget
+			QDK4 W 3 A_CustomMissile("DeathKnightSpike",32,10,-10)
+			QDK4 X 3 A_CustomMissile("DeathKnightSpike",32,5,-5)
+			QDK4 Y 3 A_CustomMissile("DeathKnightSpike",32,0,0)
+			QDK4 Z 3 A_CustomMissile("DeathKnightSpike",32,-5,5)
+			QDK5 A 3 A_CustomMissile("DeathKnightSpike",32,-10,10)
+			QDK5 B 3 A_CustomMissile("DeathKnightSpike",32,-15,15)
+			QDK5 C 3 A_FaceTarget
+			Goto See
+		Pain:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_Pain
+			QDK5 DEFGH 3
+			TNT1 A 0 A_JumpIfInventory("NoPainToken",0,2)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0
+			Goto See
+		Wound:
+			QDK5 I 1 A_JumpIfHealthLower(10000,2)
+			TNT1 A 0 A_Die
+			TNT1 A 0 A_Die("QuakeGib")
+			Goto Death
+		Wound.ZorchPistol:
+		Wound.Zorch:
+		Wound.ZorchKamikaze:
+		Wound.PhasingZorch:
+		Wound.ZorchSpectral:
+			QDK5 D 1 A_Die("Zorch")
+			Goto Death
+		Death:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 A_Scream
+			TNT1 A 0 A_Jump(128,"DeathB")
+			QDK5 IJKLMNOPQRST 3
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_KillMaster
+			QDK5 T -1
+			Stop
+		DeathB:
+			TNT1 A 0 A_Scream
+			TNT1 A 0 A_Jump(128,"DeathB")
+			QDK5 UVWXYZ 3
+			QDK6 ABC 3
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_KillMaster
+			QDK6 C -1
+			Stop
+		Death.ZorchPistol:
+		Death.Zorch:
+		Death.ZorchKamikaze:
+		Death.PhasingZorch:
+		Death.ZorchSpectral:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			QDK5 D 0 A_Stop
+			TNT1 A 0 A_ChangeFlag("DONTGIB",1)
+			TNT1 A 0 A_PlaySoundEx("chex/zorch","soundslot5",0,0)
+			QDK5 D 3 A_SpawnItem("ZorchEffectSmall")
+			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
+			QDK5 D 3 A_SetTranslucent(0.9,0)
+			QDK5 D 0 A_Scream
+			QDK5 D 3 A_SetTranslucent(0.8,0)
+			QDK5 D 0 A_NoBlocking
+			QDK5 D 3 A_SetTranslucent(0.7,0)
+			QDK5 D 3 A_SetTranslucent(0.6,0)
+			QDK5 D 3 A_SetTranslucent(0.5,0)
+			QDK5 D 3 A_SetTranslucent(0.4,0)
+			QDK5 D 3 A_SetTranslucent(0.3,0)
+			QDK5 D 3 A_SetTranslucent(0.2,0)
+			QDK5 D 3 A_SetTranslucent(0.1,0)
+			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A 0 A_KillMaster
+			TNT1 A -1
+			stop
+		Death.QuakeGib:
+		XDeath:
+			TNT1 A 1 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 DamageThing(20000)
+			TNT1 A 0 A_PlaySound("quake/gib", CHAN_VOICE)
+			TNT1 A 0 A_SpawnItemEx("DeathKnightHead",0,0,0,random(-8,8),0,0,random(1,359),1)
+			TNT1 AA 0 A_SpawnItemEx("QuakeGibDropper",0,0,random(20,40),0,0,0,0,1)
+			TNT1 A 0 A_KillMaster
+			Stop
+		Raise:
+			TNT1 A 0 A_JumpIfInventory("EnemyZorched",1,"ZorchRaise")
+			QDK5 TSRQPONMLKJI 3
+			Goto See
+		ZorchRaise:
+			TNT1 A 1 A_UnsetShootable
+			TNT1 A 1 A_SpawnItem("SpawnFire2")
+			TNT1 A 0 A_PlaySound("archvile/resummon")
+			TNT1 A 1 A_TakeInventory("EnemyZorched",1)
+			TNT1 A 0 A_SetTranslucent(0.1,0)
+			QDK1 A 3 A_SetTranslucent(0.2,0)
+			QDK1 A 3 A_SetTranslucent(0.3,0)
+			QDK1 A 3 A_SetTranslucent(0.4,0)
+			QDK1 A 3 A_SetTranslucent(0.5,0)
+			QDK1 A 3 A_SetTranslucent(0.6,0)
+			QDK1 A 3 A_SetTranslucent(0.7,0)
+			QDK1 A 3 A_SetTranslucent(0.8,0)
+			QDK1 A 3 A_SetTranslucent(0.9,0)
+			QDK1 A 3 A_SetTranslucent(1,0)
+			QDK1 A 1 A_SetShootable
+			Goto See
+	}
+}
+
+Actor QDeathKnightDG : QDeathKnight
+{
+	Health 250
+	GibHealth 40
+	WoundHealth -10000
+}
+
+ACTOR ATDeathKnight
+{
+	MONSTER
+	Radius 24
+	Height 64
+	Health 0x7FFFFFFF
+	Mass 0x7FFFFFFF
+	PainChance 255
+	Scale 0.5
+	States
+	{
+		Spawn:
+		See:
+			QDK1 ABCDEFGHI 4
+			Loop
+		Pain:
+			TNT1 A 1 A_GiveInventory("AttackFrequency",1)
+			TNT1 A 1 A_JumpIfInventory("AttackFrequency",11,"State11")
+			TNT1 A 1 A_JumpIfInventory("AttackFrequency",10,"State10")
+			TNT1 A 1 A_JumpIfInventory("AttackFrequency",9,"State9")
+			TNT1 A 1 A_JumpIfInventory("AttackFrequency",8,"State8")
+			TNT1 A 1 A_JumpIfInventory("AttackFrequency",7,"State7")
+			TNT1 A 1 A_JumpIfInventory("AttackFrequency",6,"State6")
+			TNT1 A 1 A_JumpIfInventory("AttackFrequency",5,"State5")
+			TNT1 A 1 A_JumpIfInventory("AttackFrequency",4,"State4")
+			TNT1 A 1 A_JumpIfInventory("AttackFrequency",3,"State3")
+			TNT1 A 1 A_JumpIfInventory("AttackFrequency",2,"State2")
+			TNT1 A 1 A_TakeInventory("AttackFrequency",15)
+			TNT1 A 1
+			Loop
+		State2:
+			QDK1 JKLMNOPQRSTUVWXYZ 4
+			QDK2 ABC 4
+			Loop
+		State3:
+			QDK2 DEFGHIJK 4
+			Loop
+		State4:
+			QDK2 LMNOPQRSTUVWXYZ 4
+			QDK3 A 4
+			Loop
+		State5:
+			QDK3 BCDEFGHIJK 4
+			Loop
+		State6:
+			QDK3 LMNOPQRSTUV 4
+			Loop
+		State7:
+			QDK3 WXYZ 4
+			QDK4 ABCDEFGHIJKLMNOPQR 4
+			Loop
+		State8:
+			QDK4 STUVWXYZ 4
+			QDK5 ABC 4
+			Loop
+		State9:
+			QDK5 DEFGH 4
+			Loop
+		State10:
+			QDK5 IJKLMNOPQRST 4
+			Loop
+		State11:
+			QDK5 UVWXYZ 4
+			QDK6 ABC 4
+			Loop
+	}
+}

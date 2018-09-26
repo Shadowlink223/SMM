@@ -91,6 +91,8 @@ Script "SMMInit" OPEN //667
 		SetCVar("mm_specpermdeath", false);
 		SetCVar("mm_nopain", false);
 		SetCVar("mm_monstersdiewhentheyarekilled", false);
+		SetCVar("mm_nopatrol", false);
+		SetCVar("mm_qdoomgib", false);
 		SetCVar("mm_init", true);
 	}
 	ACS_NamedExecute("RandomCycle", 0, 0, 0, 0);
@@ -396,6 +398,109 @@ Script "MarathonTeleport" (void)
 	else { terminate; }
 }
 
+Script "QuakePainCooldown" (int cdlength)
+{
+	GiveInventory("PainCooldown",cdlength);
+	While (CheckInventory("PainCooldown") > 0)
+	{
+		TakeInventory("PainCooldown",1);
+		Delay(1);
+	}
+	if(GetCVar("mm_nopain") == 0)
+	{
+		GiveInventory("RevAspirinEffect",1);
+	}
+	else { terminate; }
+}
+
+Script "ArmagonPain" (void)
+{
+	int oldarma;
+	int newarma;
+	int diffarma;
+	While(GetActorProperty(0,APROP_Health) > 0)
+	{
+		newarma = GetActorProperty(0,APROP_Health);
+		diffarma = oldarma - newarma;
+		if(diffarma >= 25)
+		{
+			PlaySound(0,"armagon/pain",CHAN_VOICE);
+			Delay(140);
+		}
+		oldarma = GetActorProperty(0,APROP_Health);
+		Delay(1);
+	}
+}
+
+Script "ShamblerPain" (void)
+{
+	int oldsham;
+	int newsham;
+	int diffsham;
+	While(GetActorProperty(0,APROP_Health) > 0)
+	{
+		newsham = GetActorProperty(0,APROP_Health);
+		diffsham = oldsham - newsham;
+		if(oldsham > newsham && CheckFlag(0,"NOPAIN") == 0)
+		{
+			if (random(0,40) * 10 < diffsham)
+			{
+				SetActorState(0,"Pain",true);
+				Delay(70);
+			}
+			else { PlaySound(0,"shambler/pain",CHAN_VOICE); }
+		}
+		oldsham = GetActorProperty(0,APROP_Health);
+		Delay(1);
+	}
+}
+
+Script "FiendPain" (void)
+{
+	int oldfiend;
+	int newfiend;
+	int difffiend;
+	While(GetActorProperty(0,APROP_Health) > 0)
+	{
+		newfiend = GetActorProperty(0,APROP_Health);
+		difffiend = oldfiend - newfiend;
+		if(oldfiend > newfiend && CheckFlag(0,"NOPAIN") == 0)
+		{
+			if (random(0,20) * 10 < difffiend)
+			{
+				SetActorState(0,"Pain",true);
+				Delay(35);
+			}
+			else { PlaySound(0,"fiend/pain",CHAN_VOICE); Delay(35); }
+		}
+		oldfiend = GetActorProperty(0,APROP_Health);
+		Delay(1);
+	}
+}
+
+Script "DKnightPain" (void)
+{
+	int olddtkn;
+	int newdtkn;
+	int diffdtkn;
+	While(GetActorProperty(0,APROP_Health) > 0)
+	{
+		newdtkn = GetActorProperty(0,APROP_Health);
+		diffdtkn = olddtkn - newdtkn;
+		if(olddtkn > newdtkn && CheckFlag(0,"NOPAIN") == 0)
+		{
+			if (random(0,3) * 10 < diffdtkn)
+			{
+				SetActorState(0,"Pain",true);
+				Delay(35);
+			}
+			else { PlaySound(0,"qdeathknight/pain",CHAN_VOICE); Delay(35); }
+		}
+		olddtkn = GetActorProperty(0,APROP_Health);
+		Delay(1);
+	}
+}
+
 Script "SMMCVarCheck" (int pick) //680
 {
 	int response;
@@ -451,6 +556,10 @@ Script "SMMCVarCheck" (int pick) //680
 		
 		case 11:
 		response = GetCvar("mm_specpermdeath");
+		break;
+		
+		case 12:
+		response = GetCvar("mm_qdoomgib");
 		break;
 	}
 	SetResultValue(response);

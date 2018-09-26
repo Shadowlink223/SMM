@@ -51,7 +51,11 @@ ACTOR ZombiemanSpawnerCoop replaces Zombieman
 			TNT1 A 1 A_SpawnItemEx("ProjectileFighterMinorSpawner",0,0,0,0,0,0,0,288)
 			Stop
 		SetQuake:
+			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SMMCVarCheck",12) == 1, "SetQuakeDG")
 			TNT1 A 1 A_SpawnItemEx("QGrunt",0,0,0,0,0,0,0,288)
+			Stop
+		SetQuakeDG:
+			TNT1 A 1 A_SpawnItemEx("QGruntDG",0,0,0,0,0,0,0,288)
 			Stop
 		SetNull:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNull")
@@ -149,7 +153,11 @@ ACTOR ShotgunGuySpawnerCoop replaces ShotgunGuy
 			TNT1 A 1 A_SpawnItemEx("ProjectileFighterMinorSpawner",0,0,0,0,0,0,0,288)
 			Stop
 		SetQuake:
+			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SMMCVarCheck",12) == 1, "SetQuakeDG")
 			TNT1 A 1 A_SpawnItemEx("QGrunt",0,0,0,0,0,0,0,288)
+			Stop
+		SetQuakeDG:
+			TNT1 A 1 A_SpawnItemEx("QGruntDG",0,0,0,0,0,0,0,288)
 			Stop
 		SetNull:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNull")
@@ -253,7 +261,11 @@ ACTOR DoomImpSpawnerCoop replaces DoomImp
 			TNT1 A 1 A_SpawnItemEx("SewageFlicktaSpawner",0,0,0,0,0,0,0,288)
 			Stop
 		SetQuake:
+			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SMMCVarCheck",12) == 1, "SetQuakeDG")
 			TNT1 A 1 A_SpawnItemEx("QEnforcer",0,0,0,0,0,0,0,288)
+			Stop
+		SetQuakeDG:
+			TNT1 A 1 A_SpawnItemEx("QEnforcerDG",0,0,0,0,0,0,0,288)
 			Stop
 		SetNull:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNull")
@@ -356,7 +368,11 @@ ACTOR ChaingunGuySpawnerCoop replaces ChaingunGuy
 				TNT1 A 1 A_SpawnItemEx("TrooperMinorSpawner",0,0,0,0,0,0,0,288)
 				Stop
 		SetQuake:
+			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SMMCVarCheck",12) == 1, "SetQuakeDG")
 			TNT1 A 1 A_SpawnItemEx("QOgre",0,0,0,0,0,0,0,288)
+			Stop
+		SetQuakeDG:
+			TNT1 A 1 A_SpawnItemEx("QOgreDG",0,0,0,0,0,0,0,288)
 			Stop
 		SetNull:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNull")
@@ -454,7 +470,11 @@ ACTOR DemonSpawnerCoop replaces Demon
 			TNT1 A 1 A_SpawnItemEx("FighterMajorSpawner",0,0,0,0,0,0,0,288)
 			Stop
 		SetQuake:
+			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SMMCVarCheck",12) == 1, "SetQuakeDG")
 			TNT1 A 1 A_SpawnItemEx("Rottweiler",0,0,0,0,0,0,0,288)
+			Stop
+		SetQuakeDG:
+			TNT1 A 1 A_SpawnItemEx("RottweilerDG",0,0,0,0,0,0,0,288)
 			Stop
 		SetNull:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNull")
@@ -568,7 +588,11 @@ ACTOR SpectreSpawnerCoop replaces Spectre
 			TNT1 A 1 A_SpawnItemEx("WaterFlicktaSpawner",0,0,0,0,0,0,0,288)
 			Stop
 		SetQuake:
+			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SMMCVarCheck",12) == 1, "SetQuakeDG")
 			TNT1 A 1 A_SpawnItemEx("QKnight",0,0,0,0,0,0,0,288)
+			Stop
+		SetQuakeDG:
+			TNT1 A 1 A_SpawnItemEx("QKnightDG",0,0,0,0,0,0,0,288)
 			Stop
 		SetNull:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNull")
@@ -673,7 +697,11 @@ ACTOR HellKnightSpawnerCoop replaces HellKnight
 			TNT1 A 1 A_SpawnItemEx("HunterMinorSpawner",0,0,0,0,0,0,0,288)
 			Stop
 		SetQuake:
+			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SMMCVarCheck",12) == 1, "SetQuakeDG")
 			TNT1 A 1 A_SpawnItemEx("Fiend",0,0,0,0,0,0,0,288)
+			Stop
+		SetQuakeDG:
+			TNT1 A 1 A_SpawnItemEx("FiendDG",0,0,0,0,0,0,0,288)
 			Stop
 		SetNull:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNull")
@@ -779,7 +807,11 @@ ACTOR BaronOfHellSpawnerCoop replaces BaronOfHell
 			TNT1 A 1 A_SpawnItemEx("HunterMajorSpawner",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
 			Goto Bosswait
 		SetQuake:
+			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SMMCVarCheck",12) == 1, "SetQuakeDG")
 			TNT1 A 1 A_SpawnItemEx("Shambler",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		SetQuakeDG:
+			TNT1 A 1 A_SpawnItemEx("ShamblerDG",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
 			Goto BossWait
 		SetNull:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNull")
@@ -914,7 +946,11 @@ ACTOR ArachnotronSpawnerCoop replaces Arachnotron
 			TNT1 A 1 A_SpawnItemEx("M2EnforcerMajorSpawner",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
 			Goto BossWait
 		SetQuake:
+			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SMMCVarCheck",12) == 1, "SetQuakeDG")
 			TNT1 A 1 A_SpawnItemEx("Centroid",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		SetQuakeDG:
+			TNT1 A 1 A_SpawnItemEx("CentroidDG",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
 			Goto BossWait
 		SetNull:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNull")
@@ -1046,7 +1082,11 @@ ACTOR FatsoSpawnerCoop replaces Fatso
 			TNT1 A 1 A_SpawnItemEx("CyborgMajorSpawner",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
 			Goto BossWait
 		SetQuake:
-			TNT1 A 1 A_SpawnItemEx("Fatso3",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SMMCVarCheck",12) == 1, "SetQuakeDG")
+			TNT1 A 1 A_SpawnItemEx("QDeathKnight",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
+		SetQuakeDG:
+			TNT1 A 1 A_SpawnItemEx("QDeathKnightDG",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
 			Goto BossWait
 		SetNull:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNull")
@@ -1175,7 +1215,11 @@ ACTOR LostSoulSpawnerCoop replaces LostSoul
 			TNT1 A 1 A_SpawnItemEx("DroneMajorSpawner",0,0,0,0,0,0,0,288)
 			Stop
 		SetQuake:
+			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SMMCVarCheck",12) == 1, "SetQuakeDG")
 			TNT1 A 1 A_SpawnItemEx("QScrag",0,0,0,0,0,0,0,288)
+			Stop
+		SetQuakeDG:
+			TNT1 A 1 A_SpawnItemEx("QScragDG",0,0,0,0,0,0,0,288)
 			Stop
 		SetNull:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNull")
@@ -1435,7 +1479,11 @@ ACTOR RevenantSpawnerCoop replaces Revenant
 			TNT1 A 1 A_SpawnItemEx("FlameCyborgMinorSpawner",0,0,0,0,0,0,0,288)
 			Stop
 		SetQuake:
+			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SMMCVarCheck",12) == 1, "SetQuakeDG")
 			TNT1 A 1 A_SpawnItemEx("QVore",0,0,0,0,0,0,0,288)
+			Stop
+		SetQuakeDG:
+			TNT1 A 1 A_SpawnItemEx("QVoreDG",0,0,0,0,0,0,0,288)
 			Stop
 		SetNull:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNull")
@@ -1528,7 +1576,11 @@ ACTOR ArchvileSpawnerCoop replaces Archvile
 			TNT1 A 1 A_SpawnItemEx("M2EnforcerMajorSpawner",0,0,0,0,0,0,0,288)
 			Stop
 		SetQuake:
+			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SMMCVarCheck",12) == 1, "SetQuakeDG")
 			TNT1 A 1 A_SpawnItemEx("Shambler",0,0,0,0,0,0,0,288)
+			Stop
+		SetQuakeDG:
+			TNT1 A 1 A_SpawnItemEx("ShamblerDG",0,0,0,0,0,0,0,288)
 			Stop
 		SetNull:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNull")
@@ -1850,7 +1902,7 @@ ACTOR SpiderMastermindSpawnerCoop replaces SpiderMastermind
 			TNT1 A 1 A_SpawnItemEx("M1JuggernautSpawner",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
 			Goto BossWait
 		SetQuake:
-			TNT1 A 1 A_SpawnItemEx("SpiderMastermind3",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			TNT1 A 1 A_SpawnItemEx("QuakesGuardian",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
 			Goto BossWait
 		SetNull:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNull")

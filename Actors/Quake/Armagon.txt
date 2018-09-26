@@ -7,7 +7,7 @@ ACTOR QArmagon
 	Mass 0x7FFFFFFF
 	PainChance 0
 	Scale 0.5
-	MeleeRange 64
+	MeleeRange 96
 	MONSTER
 	+BOSS
 	+FLOORCLIP
@@ -24,12 +24,14 @@ ACTOR QArmagon
     DamageFactor "Mace", 1.1
     DamageFactor "DragonClaw", 1.5
 	DamageFactor "MarathonFusion", 2.0
+	BloodType "QuakeBlood"
 	States
 	{
 		Spawn:
 			QAR1 A 0
 			QAR1 A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 			QAR1 A 1 ACS_NamedExecuteAlways("SMMSpawningScript",0,1,0)
+			QAR1 A 0 ACS_NamedExecuteAlways("ArmagonPain",0)
 			QAR1 A 0 A_GiveInventory("AlreadySpawned",1)
 		Spawn2:
 			QAR1 ABCDEFGHIJKLMNOPQRST 7 A_Look
@@ -51,11 +53,15 @@ ACTOR QArmagon
 			QAR2 E 4 A_Chase
 			QAR2 F 3 A_Chase
 			Loop
-		//Melee:
+		Melee:
+			QAR1 A 10
+			QAR1 A 10 A_SpawnItem("ArmagonRepel")
+			QAR1 A 0 A_Jump(256,"MultiRocket","MultiLaser")
 		Missile:
 			TNT1 A 0 A_Jump(128,"LaserWalk")
 			TNT1 A 0 A_Jump(96,"MultiRocket")
-			QAR2 G 4 A_Chase(0,0)
+			QAR2 G 2 A_Chase(0,0)
+			QAR2 G 2 A_PlaySound("armagon/footfall")
 			TNT1 A 0 A_Facetarget
 			QAR2 H 4 A_Chase(0,0)
 			TNT1 A 0 A_Facetarget
@@ -193,5 +199,27 @@ ACTOR QArmagon
 			TNT1 A 30
 			TNT1 A -1 A_KillMaster
 			stop
+	}
+}
+
+ACTOR ATArmagon
+{
+	Scale 0.5
+	States
+	{
+		Spawn:
+			QAR1 ABCDEFGHIJKLMNOPQRST 4
+			TNT1 A 10
+			QAR1 UVWXYZ 4
+			QAR2 ABCDEF 4
+			TNT1 A 10
+			QAR2 GHIJKLMNOPQRS 4
+			TNT1 A 10
+			QAR2 TUVWXYZ 4
+			QAR3 ABCBCBCDE 4
+			TNT1 A 10
+			QAR3 FGHIJKLMNOPQR 4
+			TNT1 A 10
+			Loop
 	}
 }

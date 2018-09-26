@@ -4,6 +4,7 @@ ACTOR DifficultyToken : Inventory { Inventory.MaxAmount 4 }
 ACTOR NoPainToken : Inventory { Inventory.MaxAmount 1 }
 ACTOR AlreadySpawned : Inventory { Inventory.MaxAmount 1 }
 ACTOR NoPatrolToken : Inventory { Inventory.MaxAmount 1 }
+ACTOR PainCooldown : Inventory { Inventory.MaxAmount 0x7FFFFFFF }
 
 ACTOR PinataDrop : RandomSpawner
 {
@@ -109,6 +110,25 @@ ACTOR AspirinEffect : CustomInventory
 		Pickup:
 			TNT1 A 0 
 			TNT1 A 1 A_ChangeFlag("NOPAIN",1)
+			Stop
+	}
+}
+
+ACTOR RevAspirinEffect : CustomInventory
+{
+	-COUNTITEM
+	+INVENTORY.ALWAYSPICKUP
+	Inventory.PickupMessage ""
+	Inventory.PickupSound ""
+	States
+	{
+		Spawn:
+			TNT1 A 0 
+			TNT1 A 1
+			Stop
+		Pickup:
+			TNT1 A 0 
+			TNT1 A 1 A_ChangeFlag("NOPAIN",0)
 			Stop
 	}
 }

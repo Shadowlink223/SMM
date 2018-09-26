@@ -5,7 +5,7 @@ ACTOR QScrag
 	Height 56
 	Speed 15
 	Mass 0x7FFFFFFF
-	PainChance 128
+	PainChance 255
 	Scale 0.5
 	WoundHealth 10040
 	MONSTER
@@ -26,6 +26,7 @@ ACTOR QScrag
     DamageFactor "DragonClaw", 1.5
     PainChance "MightyBoot", 255
 	PainChance "MarathonStun", 255
+	BloodType "QuakeBlood"
 	States
 	{
 		Spawn:
@@ -59,6 +60,13 @@ ACTOR QScrag
 			TNT1 A 0 A_Die
 			TNT1 A 0 A_Die("QuakeGib")
 			Goto Death
+		Wound.ZorchPistol:
+		Wound.Zorch:
+		Wound.ZorchKamikaze:
+		Wound.PhasingZorch:
+		Wound.ZorchSpectral:
+			QGR3 L 1 A_Die("Zorch")
+			Goto Death
 		Death:
 			TNT1 A 0 A_GiveToTarget("KillCount",1)
 			TNT1 A 0 A_Scream
@@ -67,13 +75,89 @@ ACTOR QScrag
 			QSC3 AB 3
 			QSC3 B -1
 			Stop
+		Death.ZorchPistol:
+		Death.Zorch:
+		Death.ZorchKamikaze:
+		Death.PhasingZorch:
+		Death.ZorchSpectral:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			QSC2 R 0 A_Stop
+			TNT1 A 0 A_ChangeFlag("DONTGIB",1)
+			TNT1 A 0 A_PlaySoundEx("chex/zorch","soundslot5",0,0)
+			QSC2 R 3 A_SpawnItem("ZorchEffectSmall")
+			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
+			QSC2 R 3 A_SetTranslucent(0.9,0)
+			QSC2 R 0 A_Scream
+			QSC2 R 3 A_SetTranslucent(0.8,0)
+			QSC2 R 0 A_NoBlocking
+			QSC2 R 3 A_SetTranslucent(0.7,0)
+			QSC2 R 3 A_SetTranslucent(0.6,0)
+			QSC2 R 3 A_SetTranslucent(0.5,0)
+			QSC2 R 3 A_SetTranslucent(0.4,0)
+			QSC2 R 3 A_SetTranslucent(0.3,0)
+			QSC2 R 3 A_SetTranslucent(0.2,0)
+			QSC2 R 3 A_SetTranslucent(0.1,0)
+			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A -1
+			stop
 		Death.QuakeGib:
 		XDeath:
 			TNT1 A 1 A_GiveToTarget("KillCount",1)
 			TNT1 A 0 DamageThing(20000)
 			TNT1 A 0 A_PlaySound("quake/gib", CHAN_VOICE)
-			TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("Blood", 0, 0, random(8, 56), random(-4, 4), 0, random(0, 6))
-			TNT1 A 0 A_SpawnItemEx("QuakeSmallGibDropper",0,0,random(20,40),0,0,0,0,1)
+			TNT1 A 0 A_SpawnItemEx("ScragHead",0,0,0,random(-8,8),0,0,random(1,359),1)
+			TNT1 A 0 A_SpawnItemEx("QuakeGibDropper",0,0,random(20,40),0,0,0,0,1)
 			Stop
+		Raise:
+			TNT1 A 0 A_JumpIfInventory("EnemyZorched",1,"ZorchRaise")
+			QSC3 BA 3
+			QSC2 ZYXWVU 3
+			Goto See
+		ZorchRaise:
+			TNT1 A 1 A_UnsetShootable
+			TNT1 A 1 A_SpawnItem("SpawnFire2")
+			TNT1 A 0 A_PlaySound("archvile/resummon")
+			TNT1 A 1 A_TakeInventory("EnemyZorched",1)
+			TNT1 A 0 A_SetTranslucent(0.1,0)
+			QSC1 A 3 A_SetTranslucent(0.2,0)
+			QSC1 A 3 A_SetTranslucent(0.3,0)
+			QSC1 A 3 A_SetTranslucent(0.4,0)
+			QSC1 A 3 A_SetTranslucent(0.5,0)
+			QSC1 A 3 A_SetTranslucent(0.6,0)
+			QSC1 A 3 A_SetTranslucent(0.7,0)
+			QSC1 A 3 A_SetTranslucent(0.8,0)
+			QSC1 A 3 A_SetTranslucent(0.9,0)
+			QSC1 A 3 A_SetTranslucent(1,0)
+			QSC1 A 1 A_SetShootable
+			Goto See
+	}
+}
+
+Actor QScragDG : QScrag
+{
+	Health 80
+	GibHealth 40
+	WoundHealth -10000
+}
+
+ACTOR ATScrag
+{
+	Scale 0.5
+	States
+	{
+		Spawn:
+			QSC1 ABCDEFGHIJKLMNO 4
+			TNT1 A 10
+			QSC1 PQRSTUVWXYZ 4
+			QSC2 ABC 4
+			TNT1 A 10
+			QSC2 DEFGDEFG 4
+			TNT1 A 10
+			QSC2 QRST 4
+			TNT1 A 10
+			QSC2 UVWXYZ 4
+			QSC3 AB 4
+			TNT1 A 10
+			Loop
 	}
 }

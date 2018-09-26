@@ -5,7 +5,7 @@ ACTOR Centroid
 	Height 64
 	Speed 15
 	Mass 0x7FFFFFFF
-	PainChance 100
+	PainChance 20
 	Scale 0.5
 	WoundHealth 10015
 	MONSTER
@@ -15,7 +15,7 @@ ACTOR Centroid
 	+MISSILEMORE
 	SeeSound "centroid/sight"
 	PainSound "centroid/pain"
-	DeathSound "centroi/death"
+	DeathSound "centroid/death"
 	ActiveSound "centroid/active"
 	Dropitem "DefaultPinataPop"
 	Obituary "%o was blasted by a Enforcer."
@@ -23,6 +23,7 @@ ACTOR Centroid
     DamageFactor "DragonClaw", 1.5
     PainChance "MightyBoot", 255
 	PainChance "MarathonStun", 255
+	BloodType "QuakeBlood"
 	States
 	{
 		Spawn:
@@ -83,9 +84,9 @@ ACTOR Centroid
 			QCT1 T 4 A_CustomMissile("CentroidNail",15,-20)
 			Goto See
 		Melee:
-			QCT1 UVWXYZ 4
-			QCT2 A 4 A_CustomMeleeAttack(90,"centroid/attack","")
-			QCT2 BCDE 4
+			QCT1 UVWXYZ 4 A_FaceTarget
+			QCT2 A 4 A_CustomMeleeAttack(90,"shambler/smack","centroid/attack")
+			QCT2 BCDE 4 A_FaceTarget
 			Goto See
 		Pain:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
@@ -100,6 +101,13 @@ ACTOR Centroid
 			TNT1 A 0 A_Die
 			TNT1 A 0 A_Die("QuakeGib")
 			Goto Death
+		Wound.ZorchPistol:
+		Wound.Zorch:
+		Wound.ZorchKamikaze:
+		Wound.PhasingZorch:
+		Wound.ZorchSpectral:
+			QGR3 L 1 A_Die("Zorch")
+			Goto Death
 		Death:
 			TNT1 A 0 A_GiveToTarget("KillCount",1)
 			TNT1 A 0 A_Scream
@@ -107,14 +115,90 @@ ACTOR Centroid
 			QCT2 KLMNO 3
 			QCT2 O -1 A_KillMaster
 			Stop
+		Death.ZorchPistol:
+		Death.Zorch:
+		Death.ZorchKamikaze:
+		Death.PhasingZorch:
+		Death.ZorchSpectral:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			QCT2 F 0 A_Stop
+			TNT1 A 0 A_ChangeFlag("DONTGIB",1)
+			TNT1 A 0 A_PlaySoundEx("chex/zorch","soundslot5",0,0)
+			QCT2 F 3 A_SpawnItem("ZorchEffectWide")
+			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
+			QCT2 F 3 A_SetTranslucent(0.9,0)
+			QCT2 F 0 A_Scream
+			QCT2 F 3 A_SetTranslucent(0.8,0)
+			QCT2 F 0 A_NoBlocking
+			QCT2 F 3 A_SetTranslucent(0.7,0)
+			QCT2 F 3 A_SetTranslucent(0.6,0)
+			QCT2 F 3 A_SetTranslucent(0.5,0)
+			QCT2 F 3 A_SetTranslucent(0.4,0)
+			QCT2 F 3 A_SetTranslucent(0.3,0)
+			QCT2 F 3 A_SetTranslucent(0.2,0)
+			QCT2 F 3 A_SetTranslucent(0.1,0)
+			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A -1
+			stop
 		Death.QuakeGib:
 		XDeath:
 			TNT1 A 1 A_GiveToTarget("KillCount",1)
 			TNT1 A 0 DamageThing(20000)
 			TNT1 A 0 A_PlaySound("quake/gib", CHAN_VOICE)
-			TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("Blood", 0, 0, random(8, 56), random(-4, 4), 0, random(0, 6))
-			TNT1 A 0 A_SpawnItemEx("QuakeSmallGibDropper",0,0,random(20,40),0,0,0,0,1)
+			TNT1 A 0 A_SpawnItemEx("CentroidHead",0,0,0,random(-8,8),0,0,random(1,359),1)
+			TNT1 A 0 A_SpawnItemEx("QuakeGibDropper",0,0,random(20,40),0,0,0,0,1)
 			TNT1 A 0 A_KillMaster
 			Stop
+		Raise:
+			TNT1 A 0 A_JumpIfInventory("EnemyZorched",1,"ZorchRaise")
+			QCT2 ONMLK 3
+			Goto See
+		ZorchRaise:
+			TNT1 A 1 A_UnsetShootable
+			TNT1 A 1 A_SpawnItem("SpawnFire2")
+			TNT1 A 0 A_PlaySound("archvile/resummon")
+			TNT1 A 1 A_TakeInventory("EnemyZorched",1)
+			TNT1 A 0 A_SetTranslucent(0.1,0)
+			QCT1 A 3 A_SetTranslucent(0.2,0)
+			QCT1 A 3 A_SetTranslucent(0.3,0)
+			QCT1 A 3 A_SetTranslucent(0.4,0)
+			QCT1 A 3 A_SetTranslucent(0.5,0)
+			QCT1 A 3 A_SetTranslucent(0.6,0)
+			QCT1 A 3 A_SetTranslucent(0.7,0)
+			QCT1 A 3 A_SetTranslucent(0.8,0)
+			QCT1 A 3 A_SetTranslucent(0.9,0)
+			QCT1 A 3 A_SetTranslucent(1,0)
+			QCT1 A 1 A_SetShootable
+			Goto See
+	}
+}
+
+Actor CentroidDG : Centroid
+{
+	Health 300
+	GibHealth 15
+	WoundHealth -10000
+}
+
+ACTOR ATCentroid
+{
+	Scale 0.5
+	States
+	{
+		Spawn:
+			QCT1 ABCDEFGHIJKL 4
+			TNT1 A 10
+			QCT1 MNOPQR 4
+			TNT1 A 10
+			QCT1 STSTSTST 4
+			TNT1 A 10
+			QCT1 UVWXYZ 4
+			QCT2 ABCDE 4
+			TNT1 A 10
+			QCT2 FGHIJ 4
+			TNT1 A 10
+			QCT2 KLMNO 4
+			TNT1 A 10
+			Loop
 	}
 }
