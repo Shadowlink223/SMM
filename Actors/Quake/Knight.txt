@@ -40,7 +40,15 @@ ACTOR QKnight
 			TNT1 A 0 A_JumpIfInventory("NoPatrolToken",1,"Stand")
 			TNT1 A 0 A_Jump(32,"Walk")
 		Stand:
-			QKN1 ABCDEFGHI 3 A_Look
+			QKN1 A 3 A_Look
+			QKN1 B 4 A_Look
+			QKN1 C 3 A_Look
+			QKN1 D 4 A_Look
+			QKN1 E 3 A_Look
+			QKN1 F 4 A_Look
+			QKN1 G 3 A_Look
+			QKN1 H 4 A_Look
+			QKN1 I 3 A_Look
 			Loop
 		Walk:
 			QKN1 JKLM 5 A_Wander
@@ -51,72 +59,84 @@ ACTOR QKnight
 		See:
 			QKN1 X 3 A_Chase
 			TNT1 A 0 A_JumpIfCloser(80,"Melee")
-			QKN1 Y 3 A_Chase
+			QKN1 Y 4 A_Chase
 			TNT1 A 0 A_JumpIfCloser(80,"Melee")
 			QKN1 Z 3 A_Chase
 			TNT1 A 0 A_JumpIfCloser(80,"Melee")
-			QKN2 A 3 A_Chase
+			QKN2 A 4 A_Chase
 			TNT1 A 0 A_JumpIfCloser(80,"Melee")
 			QKN2 B 3 A_Chase
 			TNT1 A 0 A_JumpIfCloser(80,"Melee")
-			QKN2 C 3 A_Chase
+			QKN2 C 4 A_Chase
 			TNT1 A 0 A_JumpIfCloser(80,"Melee")
 			QKN2 D 3 A_Chase
 			TNT1 A 0 A_JumpIfCloser(80,"Melee")
-			QKN2 E 3 A_Chase
+			QKN2 E 4 A_Chase
 			TNT1 A 0 A_JumpIfCloser(80,"Melee")
 			Loop
 		Melee:
 			TNT1 A 0 A_JumpIfCloser(50,"MeleeB")
-			QKN2 G 3 A_PlaySound("qknight/attack1", 5)
+			QKN2 F 4 A_PlaySound("qknight/attack1", 5)
+			TNT1 A 0 A_FaceTarget
+			QKN2 G 3 A_Recoil(-2)
+			TNT1 A 0 A_FaceTarget
+			QKN2 H 4 A_Recoil(-2)
+			TNT1 A 0 A_FaceTarget
+			QKN2 I 3 A_Recoil(-2)
 			TNT1 A 0 A_FaceTarget
 			TNT1 A 0 A_Recoil(-2)
-			QKN2 G 3 A_CustomMeleeAttack(random(1,9))
-			TNT1 A 0 A_FaceTarget
-			TNT1 A 0 A_Recoil(-2)
-			QKN2 H 3 A_CustomMeleeAttack(random(1,9))
-			TNT1 A 0 A_FaceTarget
-			TNT1 A 0 A_Recoil(-2)
-			QKN2 I 3 A_CustomMeleeAttack(random(1,9))
-			TNT1 A 0 A_FaceTarget
-			TNT1 A 0 A_Recoil(-2)
-			QKN2 J 3 A_CustomMeleeAttack(random(1,9))
+			QKN2 J 4 A_CustomMeleeAttack(random(1,9))
 			TNT1 A 0 A_FaceTarget
 			TNT1 A 0 A_Recoil(-2)
 			QKN2 K 3 A_CustomMeleeAttack(random(1,9))
 			TNT1 A 0 A_FaceTarget
 			TNT1 A 0 A_Recoil(-2)
-			QKN2 L 3 A_CustomMeleeAttack(random(1,9))
+			QKN2 L 4 A_CustomMeleeAttack(random(1,9))
 			TNT1 A 0 A_FaceTarget
 			TNT1 A 0 A_Recoil(-2)
 			QKN2 M 3 A_CustomMeleeAttack(random(1,9))
 			TNT1 A 0 A_FaceTarget
 			TNT1 A 0 A_Recoil(-2)
-			QKN2 N 3 A_CustomMeleeAttack(random(1,9))
+			QKN2 N 4 A_CustomMeleeAttack(random(1,9))
 			TNT1 A 0 A_FaceTarget
 			TNT1 A 0 A_Recoil(-2)
-			QKN2 O 3 A_CustomMeleeAttack(random(1,9))
-			TNT1 A 0 A_FaceTarget
+			QKN2 O 3 A_FaceTarget
 			TNT1 A 0 A_Recoil(-2)
-			QKN2 P 3 A_Chase(0,0)
+			QKN2 P 4 A_FaceTarget
 			TNT1 A 0
 			Goto See
 		MeleeB:
-			QKN2 Q 3 A_PlaySound("qknight/attack1", 5)
-			QKN2 RSTUV 3 A_FaceTarget
-			QKN2 WXYZ 3 A_CustomMeleeAttack(random(1,9))
+			QKN2 Q 4 A_PlaySound("qknight/attack1", 5)
+			QKN2 R 3 A_FaceTarget
+			QKN2 S 4 A_FaceTarget
+			QKN2 T 3 A_FaceTarget
+			QKN2 U 4 A_FaceTarget
+			QKN2 V 3 A_CustomMeleeAttack(random(1,9))
+			QKN2 W 4 A_CustomMeleeAttack(random(1,9))
+			QKN2 X 3 A_CustomMeleeAttack(random(1,9))
+			QKN2 Y 4 A_FaceTarget
+			QKN2 Z 3 A_FaceTarget
 			Goto See
 		Pain:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
 			TNT1 A 0 ACS_NamedExecuteAlways("QuakePainCooldown",0,35)
 			TNT1 A 0 A_Jump(38,"PainB")
 			TNT1 A 0 A_Pain
-			QKN3 ABC 3
+			QKN3 A 4
+			QKN3 BC 3
 			TNT1 A 0
 			Goto See
 		PainB:
 			TNT1 A 0 A_Pain
-			QKN3 DEFGHIJKLMN 3
+			QKN3 D 4
+			QKN3 E 3
+			QKN3 F 4
+			QKN3 GH 3
+			QKN3 IJ 4
+			QKN3 K 3
+			QKN3 L 4
+			QKN3 M 3
+			QKN3 N 4
 			TNT1 A 0
 			Goto See
 		Wound:
@@ -135,15 +155,26 @@ ACTOR QKnight
 			TNT1 A 0 A_GiveToTarget("KillCount",1)
 			TNT1 A 0 A_Scream
 			TNT1 A 0 A_Jump(128,"DeathB")
-			QKN3 OPQRSTUVWX 3
+			QKN3 O 4
+			QKN3 PQ 3
+			QKN3 R 4
+			QKN3 S 3
+			QKN3 TU 4
+			QKN3 VW 3
 			TNT1 A 0 A_NoBlocking
 			QKN3 X -1
 			Stop
 		DeathB:
 			TNT1 A 0 A_Scream
-			TNT1 A 0 A_Jump(128,"DeathB")
 			QKN3 YZ 3
-			QKN4 ABCDEFGHI 3
+			QKN4 A 4
+			QKN4 B 3
+			QKN4 C 4
+			QKN4 D 3
+			QKN4 E 4
+			QKN4 F 3
+			QKN4 G 4
+			QKN4 H 3
 			TNT1 A 0 A_NoBlocking
 			QKN4 I -1
 			Stop

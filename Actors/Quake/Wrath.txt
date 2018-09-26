@@ -116,7 +116,6 @@ ACTOR QWrath
 			TNT1 A 0
 			Goto See
 		PainB:
-			TNT1 A 0 ACS_NamedExecuteAlways("QuakePainCooldown",0,105)
 			TNT1 A 0 A_Pain
 			QWH3 IJKLMNOPQRS 4
 			TNT1 A 0

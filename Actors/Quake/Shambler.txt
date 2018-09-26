@@ -41,7 +41,18 @@ ACTOR Shambler
 			TNT1 A 0 A_JumpIfInventory("NoPatrolToken",1,"Stand")
 			TNT1 A 0 A_Jump(32,"Walk")
 		Stand:
-			QSH1 ABCDEFGHIJKLMNOPQ 3 A_Look
+			QSH1 AB 4 A_Look
+			QSH1 CD 3 A_Look
+			QSH1 E 4 A_Look
+			QSH1 F 3 A_Look
+			QSH1 G 4 A_Look
+			QSH1 H 3 A_Look
+			QSH1 IJ 4 A_Look
+			QSH1 KL 3 A_Look
+			QSH1 M 4 A_Look
+			QSH1 N 3 A_Look
+			QSH1 OP 4 A_Look
+			QSH1 Q 3 A_Look
 			Loop
 		Walk:
 			QSH1 RSTUVWXYZ 5 A_Wander
