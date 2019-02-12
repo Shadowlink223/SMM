@@ -712,6 +712,27 @@ ACTOR TrooperGrenadeHNTR : TrooperGrenade { Speed 9.775 }
 ACTOR TrooperGrenadeUV : TrooperGrenade { Speed 11.75 }
 ACTOR TrooperGrenadeNightmare : TrooperGrenade { Speed 12.998 }
 
+ACTOR SkitterBall
+{
+	Radius 6
+	Height 8
+	Speed 13.05
+	Scale 0.49
+	Damage (random (15, 20))
+	PROJECTILE
+	SeeSound "skitter/fire"
+	DeathSound "skitproj/explode"
+	States 
+	{
+		Spawn:
+			SKTP AB 4
+			Loop
+		Death:
+			TNT1 A 1
+			Stop
+	}
+}
+
 
 ACTOR NewDukeGibs1_Pfhor : NewDukeGibs1 //Thanks to PresidentPeople for the pretty yellow gibs
 {

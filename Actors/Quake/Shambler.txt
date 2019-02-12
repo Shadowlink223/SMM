@@ -14,6 +14,7 @@ ACTOR Shambler
     +NOTDMATCH
     +THRUGHOST
 	+MISSILEMORE
+	+QUICKTORETALIATE
 	SeeSound "shambler/sight"
 	PainSound "shambler/pain"
 	DeathSound "shambler/death"
@@ -55,8 +56,19 @@ ACTOR Shambler
 			QSH1 Q 3 A_Look
 			Loop
 		Walk:
-			QSH1 RSTUVWXYZ 5 A_Wander
-			QSH2 ABC 5 A_Look
+			QSH1 R 3 A_Look
+			QSH1 S 4 A_Wander
+			QSH1 T 3 A_Look
+			QSH1 U 4 A_Wander
+			QSH1 V 3 A_Look
+			QSH1 W 4 A_Wander
+			QSH1 X 3 A_Look
+			QSH1 Y 4 A_Wander
+			QSH1 Z 3 A_Look
+			QSH2 A 4 A_Look
+			QSH2 B 3 A_Wander
+			QSH2 C 4 A_Look
+			TNT1 A 0 A_Wander
 			Loop
 		See:
 			QSH2 D 3 A_Chase
@@ -114,9 +126,11 @@ ACTOR Shambler
 			QSH3 QQ 2 Bright A_FaceTarget 
 			QSH3 R 4 A_FaceTarget
 			TNT1 A 0 A_PlaySound("shambler/boom",CHAN_WEAPON)
-			TNT1 A 0 A_CustomMissile("ShamblerBeamSpawner",48)
+			TNT1 A 0 A_CustomMissile("ShamblerBolt",80)
 			QSH3 S 3 A_CustomBulletAttack(0,0,1,10,0,512,CBAF_NORANDOM)
+			TNT1 A 0 A_CustomMissile("ShamblerBolt",80)
 			QSH3 V 4 A_CustomBulletAttack(0,0,1,10,0,512,CBAF_NORANDOM)
+			TNT1 A 0 A_CustomMissile("ShamblerBolt",80)
 			QSH3 W 3 A_CustomBulletAttack(0,0,1,10,0,512,CBAF_NORANDOM)
 			QSH3 X 4
 			QSH3 Y 3
@@ -130,18 +144,77 @@ ACTOR Shambler
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			TNT1 A 0
 			Goto See
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 ACS_NamedExecuteAlways("QuakePainCooldown",0,21)
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			QSH4 A 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			QSH4 A 16 A_Pain
+			Goto See
+		Pain.MarathonStun:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 ACS_NamedExecuteAlways("QuakePainCooldown",0,105)
+			TNT1 A 0 A_GiveInventory("NothingSpeed")
+			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			QSH4 A 5 A_FaceTarget
+			TNT1 A 0 A_Gravity
+			QSH4 A 30 A_Pain
+			QSH4 A 70
+			Goto See
+		Wound.MightyBoot:
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_Jump(64,"Wound")
+			TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
 		Wound:
 			QSH4 F 1 A_JumpIfHealthLower(10000,2)
 			TNT1 A 0 A_Die
 			TNT1 A 0 A_Die("QuakeGib")
+			Goto Death
+		Wound.DukeDamage:
+		Wound.DukePistol:
+			QSH4 F 1 A_JumpIfHealthLower(10000,4)
+			TNT1 A 0 A_Jump(218,2)
+			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
+			TNT1 A 0 A_Die
+			TNT1 A 0 A_Jump(96,2)
+			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
+			TNT1 A 0 A_Die("QuakeGib")
+			Goto Death
+		Wound.DukeExplosive:
+			QSH4 F 1 A_JumpIfHealthLower(10057,2)
+			TNT1 A 0 A_Die
+			TNT1 A 0 A_Die("QuakeGibDuke")
 			Goto Death
 		Wound.ZorchPistol:
 		Wound.Zorch:
 		Wound.ZorchKamikaze:
 		Wound.PhasingZorch:
 		Wound.ZorchSpectral:
-			QGR3 L 1 A_Die("Zorch")
+			QSH4 A 1 A_Die("Zorch")
 			Goto Death
+		Wound.DukeIce:
+			TNT1 A 0 A_Jump(218,2)
+			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
+			TNT1 A 0
+		Wound.HexenIce:
+		Wound.Ice:
+			QSH4 A 1 A_Die("Ice")
+			Goto Ice
+		Death.DukeDamage:
+		Death.DukePistol:
+			TNT1 A 0 A_Jump(218,"Death")
+			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
+			Goto Death
+		Death.MightyBoot:
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_Jump(64,"Death")
+			TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
+			Goto Death
+		Death.DukeExplosive:
+			TNT1 A 0 A_JumpIfHealthLower(-3,"DukeGibStart")
+		Death.Massacre:
 		Death:
 			TNT1 A 0 A_GiveToTarget("KillCount",1)
 			TNT1 A 0 A_Scream
@@ -180,13 +253,41 @@ ACTOR Shambler
 			TNT1 A 1 A_SetTranslucent(1,0)
 			TNT1 A -1
 			stop
+		Death.DukeIce:
+			TNT1 A 0 A_PlaySound("duke/enemyfreeze")
+			TNT1 A 0 A_GiveInventory("FreezethrowerWeakness")
+			TNT1 A 0 A_Jump(218,"Ice")
+			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
+		Ice:
+		Death.HexenIce:
+		Death.Ice:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
+			QSH4 A 0 A_GenericFreezeDeath
+			QSH4 A 70 A_UnsetSolid
+			QSH4 A 0 A_IceGuyDie
+			QSH4 A 1 A_IceGuyDie
+			TNT1 A -1
+			stop
+		Death.QuakeGibDuke:
+		DukeGibStart:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_SpawnDebris("DukeGibs1")
+			TNT1 A 0 A_SpawnDebris("DukeGibs2")
+			TNT1 A 0 A_SpawnDebris("DukeGibs3")
+			TNT1 A 0 A_SpawnDebris("DukeGibs4")
+			TNT1 A 0 A_SpawnDebris("DukeGibs5")
+			TNT1 A 0 A_SpawnDebris("DukeGibs6")
+			TNT1 A 0 A_PlaySound("duke/enemygib",5)
+			TNT1 A 0 A_Jump(96,"XDeath")
+			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
 		Death.QuakeGib:
 		XDeath:
 			TNT1 A 1 A_GiveToTarget("KillCount",1)
 			TNT1 A 0 DamageThing(20000)
-			TNT1 A 0 A_PlaySound("quake/gib", CHAN_VOICE)
 			TNT1 A 0 A_SpawnItemEx("ShamblerHead",0,0,0,random(-8,8),0,0,random(1,359),1)
-			TNT1 AA 0 A_SpawnItemEx("QuakeGibDropper",0,0,random(20,40),0,0,0,0,1)
+			TNT1 A 0 A_SpawnItemEx("QuakeGibDropper",0,0,random(20,40),0,0,0,0,1)
+			TNT1 A 1 A_PlaySound("quake/gib", CHAN_VOICE)
 			TNT1 A 0 A_KillMaster
 			Stop
 		Raise:

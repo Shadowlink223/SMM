@@ -15,14 +15,17 @@ ACTOR QArmagon
     +THRUGHOST
 	+MISSILEMORE
 	+MISSILEEVENMORE
+	+QUICKTORETALIATE
 	SeeSound "armagon/sight"
 	PainSound "armagon/pain"
 	DeathSound "armagon/death"
 	ActiveSound "armagon/active"
 	Dropitem "DefaultPinataPop"
 	Obituary "%o was outgunned by Armagon"
-    DamageFactor "Mace", 1.1
-    DamageFactor "DragonClaw", 1.5
+    DamageFactor "CorvusCrossbow", 1.15
+    DamageFactor "DragonClaw", 1.6
+    DamageFactor "WMCNade", 0.75
+	DamageFactor "CorvusHellstaffTomed", 0.2
 	DamageFactor "MarathonFusion", 2.0
 	BloodType "QuakeBlood"
 	States
@@ -37,19 +40,24 @@ ACTOR QArmagon
 			QAR1 ABCDEFGHIJKLMNOPQRST 7 A_Look
 			Loop
 		See:
-			QAR1 U 2 A_Chase
-			QAR1 U 2 A_PlaySound("armagon/footfall")
-			QAR1 VW 3 A_Chase
-			QAR1 X 4 A_Chase
+			TNT1 A 0 A_JumpIfInventory("DukeBossSee",1,"See2")
+			TNT1 A 0 A_GiveInventory("DukeBossSee",1)
+			TNT1 A 0 A_GiveToTarget("DukeBossSightTaunt")
+		See2:
+			QAR1 U 4 A_Chase
+			QAR1 V 3 A_Chase
 			TNT1 A 0 A_PlaySound("armagon/servo",5)
+			QAR1 W 3 A_Chase
+			QAR1 X 4 A_Chase
+			TNT1 A 0 A_PlaySound("armagon/footfall")
 			QAR1 Y 4 A_Chase
 			QAR1 Z 3 A_Chase
-			QAR2 A 2 A_Chase
-			QAR2 A 1 A_PlaySound("armagon/footfall")
+			QAR2 A 3 A_Chase
 			QAR2 B 4 A_Chase
+			TNT1 A 0 A_PlaySound("armagon/servo",5)
 			QAR2 C 3 A_Chase
 			QAR2 D 4 A_Chase
-			TNT1 A 0 A_PlaySound("armagon/servo",5)
+			TNT1 A 0 A_PlaySound("armagon/footfall")
 			QAR2 E 4 A_Chase
 			QAR2 F 3 A_Chase
 			Loop
@@ -60,29 +68,32 @@ ACTOR QArmagon
 		Missile:
 			TNT1 A 0 A_Jump(128,"LaserWalk")
 			TNT1 A 0 A_Jump(96,"MultiRocket")
-			QAR2 G 2 A_Chase(0,0)
-			QAR2 G 2 A_PlaySound("armagon/footfall")
+			QAR2 G 4 A_Chase(0,0)
 			TNT1 A 0 A_Facetarget
+			TNT1 A 0 A_PlaySound("armagon/servo",5)
 			QAR2 H 4 A_Chase(0,0)
 			TNT1 A 0 A_Facetarget
 			QAR2 I 4 A_Chase(0,0)
 			TNT1 A 0 A_Facetarget
+			TNT1 A 0 A_PlaySound("armagon/footfall")
 			QAR2 J 4 A_Chase(0,0)
 			TNT1 A 0 A_Facetarget
 			QAR2 K 4 A_Chase(0,0)
 			TNT1 A 0 A_Facetarget
-			QAR2 L 4 A_CustomMissile("QArmagonRocket",80,30)
 			TNT1 A 0 A_PlaySound("quakeweps/rlfire", CHAN_WEAPON)
+			QAR2 L 4 A_CustomMissile("QArmagonRocket",80,30)
 			QAR2 M 4 A_Chase(0,0)
 			TNT1 A 0 A_Facetarget
+			TNT1 A 0 A_PlaySound("armagon/servo",5)
 			QAR2 N 4 A_Chase(0,0)
 			TNT1 A 0 A_Facetarget
 			QAR2 O 4 A_Chase(0,0)
 			TNT1 A 0 A_Facetarget
+			TNT1 A 0 A_PlaySound("armagon/footfall")
 			QAR2 P 4 A_Chase(0,0)
 			TNT1 A 0 A_Facetarget
-			QAR2 Q 4 A_CustomMissile("QArmagonRocket",80,-30)
 			TNT1 A 0 A_PlaySound("quakeweps/rlfire", CHAN_WEAPON)
+			QAR2 Q 4 A_CustomMissile("QArmagonRocket",80,-30)
 			QAR2 R 4 A_Chase(0,0)
 			TNT1 A 0 A_Facetarget
 			QAR2 S 4 A_Chase(0,0)
@@ -92,10 +103,12 @@ ACTOR QArmagon
 			TNT1 A 0 A_Jump(96,"MultiLaser")
 			QAR2 G 4 A_Chase(0,0)
 			TNT1 A 0 A_Facetarget
+			TNT1 A 0 A_PlaySound("armagon/servo",5)
 			QAR2 H 4 A_Chase(0,0)
 			TNT1 A 0 A_Facetarget
 			QAR2 I 4 A_Chase(0,0)
 			TNT1 A 0 A_Facetarget
+			TNT1 A 0 A_PlaySound("armagon/footfall")
 			QAR2 J 4 A_Chase(0,0)
 			TNT1 A 0 A_Facetarget
 			QAR2 K 4 A_Chase(0,0)
@@ -103,10 +116,12 @@ ACTOR QArmagon
 			QAR2 L 4 A_CustomMissile("QArmagonLaser",80,30)
 			QAR2 M 4 A_Chase(0,0)
 			TNT1 A 0 A_Facetarget
+			TNT1 A 0 A_PlaySound("armagon/servo",5)
 			QAR2 N 4 A_Chase(0,0)
 			TNT1 A 0 A_Facetarget
 			QAR2 O 4 A_Chase(0,0)
 			TNT1 A 0 A_Facetarget
+			TNT1 A 0 A_PlaySound("armagon/footfall")
 			QAR2 P 4 A_Chase(0,0)
 			TNT1 A 0 A_Facetarget
 			QAR2 Q 4 A_CustomMissile("QArmagonLaser",80,-30)
@@ -157,19 +172,74 @@ ACTOR QArmagon
 			TNT1 A 0 A_CustomMissile("QArmagonLaser",80,-30)
 			QAR3 CDE 3 A_FaceTarget
 			Goto See
+		Death.DukeDamage:
+		Death.MightyBoot:
+		Death.DukeExplosive:
+		Death.DukeIce:
+		Death.DukePistol:
+			TNT1 A 0 A_GiveToTarget("DukeBossKillTaunt",1)
 		Death:
 			TNT1 A 0 A_GiveToTarget("KillCount",1)
 			TNT1 A 0 A_Scream
 			TNT1 A 0 A_NoBlocking
 			QAR3 F 7
-			TNT1 A 0 A_SpawnItemEx("QExplosion", 10, 10, 40)
+			TNT1 A 0 A_SpawnItemEx("QExplosion", 15, 10, 42)
 			QAR3 G 4
-			TNT1 A 0 A_SpawnItemEx("QExplosion", 10, -15, 45)
+			TNT1 A 0 A_SpawnItemEx("QExplosion", 15, -10, 50)
 			QAR3 G 3
-			QAR3 HIJ 7
-			QAR3 K 70
-			QAR3 LMNOP 7
-			QAR3 Q 1
+			QAR3 HI 7
+			QAR3 J 7 A_SpawnItemEx("QExplosion", 15, 25, 110)
+			QAR3 K 3
+			QAR3 K 11 A_SpawnItemEx("QExplosion", 15, -25, 65)
+			QAR3 K 10 A_SpawnItemEx("QExplosion", -5, 30, 30)
+			QAR3 K 11 A_SpawnItemEx("QExplosion", 15, 30, 65)
+			QAR3 K 11 A_SpawnItemEx("QExplosion", 15, 40, 70)
+			QAR3 K 10 A_SpawnItemEx("QExplosion", -50, -15, 115)
+			QAR3 K 10 A_SpawnItemEx("QExplosion", 15, 30, 45)
+			QAR3 K 4  A_SpawnItemEx("QExplosion", 25, -40, 30)
+			QAR3 L 5
+			QAR3 L 2 A_SpawnItemEx("QExplosion", -5, -40, 35)
+			QAR3 M 7
+			QAR3 N 3
+			QAR3 N 4 A_SpawnItemEx("QExplosion", 15, -10, 55)
+			QAR3 O 7
+			QAR3 P 7  A_SpawnItemEx("QExplosion", 25, 10, 30)
+			QAR3 Q 1 A_SpawnItemEx("QExplosion", 0, -15, 120)
+			QAR3 R 3 A_SpawnItemEX("ArmaBody",5,5,40)
+			TNT1 A 0 A_SpawnItemEx("QExplosion", -10, 15, 105)
+			QAR3 R 4 A_SpawnItemEx("QExplosion", 15, -10, 105)
+			QAR3 R 3 A_SpawnItemEx("QExplosion", -5, 18, 90)
+			QAR3 R 4 A_SpawnItemEx("QExplosion", 0, 0, 120)
+			TNT1 A 0 A_SpawnItemEx("QExplosion", 15, 5, 110)
+			QAR3 R 4 A_SpawnItemEx("QExplosion", 15, 40, 125)
+			QAR3 R 3 A_SpawnItemEx("QExplosion", 15, -10, 110)
+			QAR3 R 3 A_SpawnItemEx("QExplosion", 15, -20, 115)
+			QAR3 R 4 A_SpawnItemEx("QExplosion", 30, 30, 45)
+			QAR3 R 3 A_SpawnItemEx("QExplosion", random(-30,30), random(-30,30), random(90,120))
+			QAR3 R 4 A_SpawnItemEx("QExplosion", random(-30,30), random(-30,30), random(90,120))
+			TNT1 A 0 A_SpawnItemEx("QExplosion", random(-30,30), random(-30,30), random(90,120))
+			QAR3 R 3 A_SpawnItemEx("QExplosion", random(-30,30), random(-30,30), random(90,120))
+			QAR3 R 4 A_SpawnItemEx("QExplosion", random(-30,30), random(-30,30), random(90,120))
+			QAR3 R 4 A_SpawnItemEx("QExplosion", random(-30,30), random(-30,30), random(90,120))
+			QAR3 R 3 A_SpawnItemEx("QExplosion", random(-30,30), random(-30,30), random(90,120))
+			QAR3 R 3 A_SpawnItemEx("QExplosion", random(-30,30), random(-30,30), random(90,120))
+			QAR3 R 4 A_SpawnItemEx("QExplosion", random(-30,30), random(-30,30), random(90,120))
+			QAR3 R 3 A_SpawnItemEx("QExplosion", random(-30,30), random(-30,30), random(90,120))
+			QAR3 R 4 A_SpawnItemEx("QExplosion", random(-30,30), random(-30,30), random(90,120))
+			QAR3 R 4 A_SpawnItemEx("QExplosion", random(-30,30), random(-30,30), random(90,120))
+			QAR3 R 3 A_SpawnItemEx("QExplosion", random(-30,30), random(-30,30), random(90,120))
+			QAR3 R 3 A_SpawnItemEx("QExplosion", random(-30,30), random(-30,30), random(90,120))
+			QAR3 R 4 A_SpawnItemEx("QExplosion", random(-30,30), random(-30,30), random(90,120))
+			QAR3 R 3 A_SpawnItemEx("QExplosion", random(-30,30), random(-30,30), random(90,120))
+			QAR3 R 4 A_SpawnItemEx("QExplosion", random(-30,30), random(-30,30), random(90,120))
+			QAR3 R 3 A_SpawnItemEx("QExplosion", random(-30,30), random(-30,30), random(90,120))
+			QAR3 R 4 A_SpawnItemEx("QExplosion", random(-30,30), random(-30,30), random(90,120))
+			QAR3 R 4 A_SpawnItemEx("QExplosion", random(-30,30), random(-30,30), random(90,120))
+			QAR3 R 3 A_SpawnItemEx("QExplosion", random(-30,30), random(-30,30), random(90,120))
+			QAR3 R 3 A_SpawnItemEx("QExplosion", random(-30,30), random(-30,30), random(90,120))
+			QAR3 R 4 A_SpawnItemEx("QExplosion", random(-30,30), random(-30,30), random(90,120))
+			QAR3 R 4 A_SpawnItemEx("QExplosion", random(-30,30), random(-30,30), random(90,120))
+			QAR3 R 126
 			TNT1 A 0 A_KillMaster
 			QAR3 R -1
 			Stop
@@ -198,6 +268,11 @@ ACTOR QArmagon
 			TNT1 A 1 A_SetTranslucent(1,0)
 			TNT1 A 30
 			TNT1 A -1 A_KillMaster
+			stop
+		Death.Massacre:
+			TNT1 A 0 A_SpawnItemEx("QExplosion", 0, 0, 60)
+			QAR3 R 30
+			QAR3 R -1 A_KillMaster
 			stop
 	}
 }

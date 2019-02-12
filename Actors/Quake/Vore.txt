@@ -14,12 +14,13 @@ ACTOR QVore
     +THRUGHOST
 	+MISSILEMORE
 	+MISSILEEVENMORE
+	+QUICKTORETALIATE
 	SeeSound "vore/sight"
 	PainSound "vore/pain"
 	DeathSound "vore/death"
 	ActiveSound "vore/active"
 	Dropitem "DefaultPinataPop"
-	Obituary "%o was exploded by a Vore."
+	Obituary "%o was exploded by a Vore"
     DamageFactor "Mace", 1.1
     DamageFactor "DragonClaw", 1.5
     PainChance "MightyBoot", 255
@@ -36,40 +37,119 @@ ACTOR QVore
 			QVO1 A 4 A_Look
 			Loop
 		See:
-			QVO1 ABCDEFGHIJKL 4 A_Chase
+			QVO1 A 3 A_Chase
+			QVO1 B 4 A_Chase
+			QVO1 C 3 A_Chase
+			QVO1 DE 4 A_Chase
+			QVO1 FG 3 A_Chase
+			QVO1 H 4 A_Chase
+			QVO1 I 3 A_Chase
+			QVO1 JK 4 A_Chase
+			QVO1 L 3 A_Chase
 			Loop
 		Pain:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
 			TNT1 A 0 ACS_NamedExecuteAlways("QuakePainCooldown",0,105)
 			TNT1 A 0 A_Pain
-			QVO1 XYZ 4
-			QVO2 AB 4
-			//TNT1 A 0 A_JumpIfInventory("NoPainToken",0,2)
-			//TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			QVO1 XY 3
+			QVO1 Z 4
+			QVO2 A 4
+			QVO2 B 3
 			TNT1 A 0
+			Goto See
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 ACS_NamedExecuteAlways("QuakePainCooldown",0,21)
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			QVO1 X 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			QVO1 X 16 A_Pain
+			Goto See
+		Pain.MarathonStun:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 ACS_NamedExecuteAlways("QuakePainCooldown",0,105)
+			TNT1 A 0 A_GiveInventory("NothingSpeed")
+			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			QVO1 X 5 A_FaceTarget
+			TNT1 A 0 A_Gravity
+			QVO1 X 30 A_Pain
+			QVO1 X 70
 			Goto See
 		Missile:
 			QVO1 M 3 A_PlaySound("vore/attack",2)
-			QVO1 NOPQRST 3 A_FaceTarget
+			QVO1 N 4 A_FaceTarget
+			QVO1 O 3 A_FaceTarget
+			QVO1 P 4 A_FaceTarget
+			QVO1 Q 3 A_FaceTarget
+			QVO1 R 4 A_FaceTarget
+			QVO1 S 3 A_FaceTarget
+			QVO1 T 4 A_FaceTarget
 			QVO1 U 3 A_CustomMissile("VoreTracer",32)
-			QVO1 VW 3
+			QVO1 V 4
+			QVO1 W 3
 			Goto See
+		Wound.MightyBoot:
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_Jump(64,"Wound")
+			TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
 		Wound:
 			QVO2 C 1 A_JumpIfHealthLower(10000,2)
 			TNT1 A 0 A_Die
 			TNT1 A 0 A_Die("QuakeGib")
+			Goto Death
+		Wound.DukeDamage:
+		Wound.DukePistol:
+			QVO2 C 1 A_JumpIfHealthLower(10000,4)
+			TNT1 A 0 A_Jump(218,2)
+			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
+			TNT1 A 0 A_Die
+			TNT1 A 0 A_Jump(96,2)
+			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
+			TNT1 A 0 A_Die("QuakeGib")
+			Goto Death
+		Wound.DukeExplosive:
+			QVO2 C 1 A_JumpIfHealthLower(10087,2)
+			TNT1 A 0 A_Die
+			TNT1 A 0 A_Die("QuakeGibDuke")
 			Goto Death
 		Wound.ZorchPistol:
 		Wound.Zorch:
 		Wound.ZorchKamikaze:
 		Wound.PhasingZorch:
 		Wound.ZorchSpectral:
-			QGR3 L 1 A_Die("Zorch")
+			QVO1 X 1 A_Die("Zorch")
 			Goto Death
+		Wound.DukeIce:
+			TNT1 A 0 A_Jump(218,2)
+			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
+			TNT1 A 0
+		Wound.HexenIce:
+		Wound.Ice:
+			QVO1 X 1 A_Die("Ice")
+			Goto Ice
+		Death.DukeDamage:
+		Death.DukePistol:
+			TNT1 A 0 A_Jump(218,"Death")
+			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
+			Goto Death
+		Death.MightyBoot:
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_Jump(64,"Death")
+			TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
+			Goto Death
+		Death.DukeExplosive:
+			TNT1 A 0 A_JumpIfHealthLower(-3,"DukeGibStart")
+		Death.Massacre:
 		Death:
 			TNT1 A 0 A_GiveToTarget("KillCount",1)
 			TNT1 A 0 A_Scream
-			QVO2 CDEFGHI 3
+			QVO2 C 4
+			QVO2 D 3
+			QVO2 E 4
+			QVO2 F 3
+			QVO2 G 4
+			QVO2 H 3
 			TNT1 A 0 A_NoBlocking
 			QVO2 I -1
 			Stop
@@ -98,13 +178,41 @@ ACTOR QVore
 			TNT1 A 1 A_SetTranslucent(1,0)
 			TNT1 A -1
 			stop
+		Death.DukeIce:
+			TNT1 A 0 A_PlaySound("duke/enemyfreeze")
+			TNT1 A 0 A_GiveInventory("FreezethrowerWeakness")
+			TNT1 A 0 A_Jump(218,"Ice")
+			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
+		Ice:
+		Death.HexenIce:
+		Death.Ice:
+			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
+			QVO1 X 0 A_GenericFreezeDeath
+			QVO1 X 70 A_UnsetSolid
+			QVO1 X 0 A_IceGuyDie
+			QVO1 X 1 A_IceGuyDie
+			TNT1 A -1
+			stop
+		Death.QuakeGibDuke:
+		DukeGibStart:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_SpawnDebris("DukeGibs1")
+			TNT1 A 0 A_SpawnDebris("DukeGibs2")
+			TNT1 A 0 A_SpawnDebris("DukeGibs3")
+			TNT1 A 0 A_SpawnDebris("DukeGibs4")
+			TNT1 A 0 A_SpawnDebris("DukeGibs5")
+			TNT1 A 0 A_SpawnDebris("DukeGibs6")
+			TNT1 A 0 A_PlaySound("duke/enemygib",5)
+			TNT1 A 0 A_Jump(96,"XDeath")
+			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
 		Death.QuakeGib:
 		XDeath:
 			TNT1 A 1 A_GiveToTarget("KillCount",1)
-			TNT1 A 0 DamageThing(20000)
-			TNT1 A 0 A_PlaySound("quake/gib", CHAN_VOICE)
+			TNT1 A 0
 			TNT1 A 0 A_SpawnItemEx("VoreHead",0,0,0,random(-8,8),0,0,random(1,359),1)
 			TNT1 A 0 A_SpawnItemEx("QuakeGibDropper",0,0,random(20,40),0,0,0,0,1)
+			TNT1 A 1 A_PlaySound("quake/gib", CHAN_VOICE)
 			Stop
 		Raise:
 			TNT1 A 0 A_JumpIfInventory("EnemyZorched",1,"ZorchRaise")

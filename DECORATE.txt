@@ -106,6 +106,7 @@
 #include "actors/Marathon/M-MotherofAllCyborgs.txt"
 #include "actors/Marathon/M-TrooperMinor.txt"
 #include "actors/Marathon/M-TrooperMajor.txt"
+#include "actors/Marathon/Skitter.txt"
 
 #include "actors/Quake/Q-Misc.txt"
 #include "actors/Quake/Grunt.txt"

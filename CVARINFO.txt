@@ -36,7 +36,11 @@ server bool mm_specpermdeath = false;
 server bool mm_maratele = true;
 server bool mm_monstersdiewhentheyarekilled = false;
 server bool mm_nopain = false;
-server bool mm_nopatrol = false;
+server bool mm_nopatrol = true;
 server bool mm_qdoomgib = false;
 //server bool mm_dropdefault = false;
 //server bool mm_assholemode = false;
+
+//WOW A CLIENTSIDE CVAR
+
+user int mm_cl_particlelimit = -1;

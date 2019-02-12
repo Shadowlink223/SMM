@@ -2095,7 +2095,7 @@ ACTOR WolfensteinSSSpawnerCoop replaces WolfensteinSS
 			TNT1 A 1 A_SpawnItemEx("HighGuard",0,0,0,0,0,0,0,288)
 			Stop
 		SetMarathon:
-			TNT1 A 1 A_SpawnItemEx("Nazi3",0,0,0,0,0,0,0,288)
+			TNT1 A 1 A_SpawnItemEx("Skitter",0,0,0,0,0,0,0,288)
 			Stop
 		SetQuake:
 			TNT1 A 1 A_SpawnItemEx("ChaingunGuy3",0,0,0,0,0,0,0,288)

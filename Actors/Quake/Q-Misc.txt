@@ -69,7 +69,7 @@ ACTOR QArmagonRocket : QuakeRocket
 			DMSL B 0 A_Explode(53,128,0)
 			TNT1 A 0 A_ChangeFlag("FORCERADIUSDMG",1)
 			TNT1 A 0 A_Explode(52,128)
-			TNT1 A 1 A_SpawnItemEx("QuakeExplosion")
+			TNT1 A 1 A_SpawnItemEx("QuakeExplosion2")
 			Stop
 	}
 }
@@ -87,7 +87,8 @@ ACTOR DeathKnightSpike
 	States
 	{
 		Spawn:
-			QDKP A 5 Bright
+			QDKP A 1 Bright A_SpawnItemEx("DKSpikeParticle",0,0,0,0,0.5,0)
+			TNT1 A 0 A_SpawnItemEx("DKSpikeParticle",0,0,0,0,-0.5,0)
 			Loop
 		Death:
 			TNT1 A 1
@@ -126,6 +127,24 @@ ACTOR QExplosion
 	}
 }
 
+Actor QuakeExplosion2 : QuakeExplosion
+{
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+    +FORCEXYBILLBOARD
+    
+    RenderStyle Add
+    
+    States
+    {
+      Spawn:
+        QEXP A 0 bright
+        QEXP A 0 ACS_ExecuteWithResult(SAMSARA_DECORATE, 8)
+		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SMMCVarCheckCS",1) == 0, "Death")
+        Goto SpawnLoop
+	}
+}
+
 Actor WrathExplosion
 {
     +NOINTERACTION
@@ -139,11 +158,12 @@ Actor WrathExplosion
       Spawn:
         TNT1 A 0 bright
         TNT1 A 0 ACS_ExecuteWithResult(SAMSARA_DECORATE, 8)
-        goto SpawnLoop
+		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SMMCVarCheckCS",1) == 0, "Death")
+        Goto SpawnLoop
 
       SpawnLoop:
         TNT1 A 0 A_JumpIfInventory("QuakeExplosionCounter", 1, 1)
-        goto Death
+        Goto Death
         TNT1 A 0 A_CustomMissile("WrathExplosionParticle",  0, 0, random(-180, 180), 2, random(-180, 180))
         TNT1 A 0 A_CustomMissile("WrathExplosionParticle2", 0, 0, random(-180, 180), 2, random(-180, 180))
         TNT1 A 0 A_CustomMissile("WrathExplosionParticle3", 0, 0, random(-180, 180), 2, random(-180, 180))
@@ -152,7 +172,7 @@ Actor WrathExplosion
         
       Death:
         TNT1 A 1 A_PlaySound("quakeweps/explode", CHAN_AUTO, 0.5)
-        stop
+        Stop
     }
 }
 
@@ -168,20 +188,23 @@ Actor WrathExplosionParticle
     +FORCEXYBILLBOARD
     
     Scale 0.225
-    Renderstyle Add
-    Alpha 0.7
     
     States
     {
       Spawn:
-        QPRT B 0 bright
-        QPRT B 0 ACS_ExecuteAlways(586, 0, 0, random(90, 110), 0)
-        QPRT BC 0 A_Jump(128, "SpawnLoop")
-        goto SpawnLoop
+        QPRT A 0 bright
+		//TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SMMCVarCheckCS",1) == 0, "Death")
+        QPRT A 0 ACS_ExecuteAlways(586, 0, 0, random(90, 110), 0)
+        QPRT ABC 0 A_Jump(128, "SpawnLoop")
+        Goto SpawnLoop
         
       SpawnLoop:
-        "####" # 2 bright A_FadeOut(0.05)
-        loop
+        "####" # 40 bright //A_FadeOut(0.05)
+        Goto Death
+	
+		Death:
+			TNT1 A 1
+			Stop
     }
 }
 
@@ -193,8 +216,8 @@ Actor WrathExplosionParticle2 : WrathExplosionParticle
     States
     {
       SpawnLoop:
-        "####" # 2 bright A_FadeOut(0.1)
-        loop
+        "####" # 20 bright //A_FadeOut(0.1)
+        Goto Death
     }
 }
 
@@ -206,8 +229,8 @@ Actor WrathExplosionParticle3 : WrathExplosionParticle
     States
     {
       SpawnLoop:
-        "####" # 2 bright A_FadeOut(0.04)
-        loop
+        "####" # 50 bright //A_FadeOut(0.04)
+        Goto Death
     }
 }
 
@@ -219,8 +242,8 @@ Actor WrathExplosionParticle4 : WrathExplosionParticle
     States
     {
       SpawnLoop:
-        "####" # 2 bright A_FadeOut(0.05)
-        loop
+        "####" # 40 bright //A_FadeOut(0.05)
+        Goto Death
     }
 }
 
@@ -238,12 +261,12 @@ ACTOR ScragProjectile
 	States
 	{
 		Spawn:
-			QSCP A 5 Bright
+			QSCP A 1 Bright A_SpawnItemEx("ScragParticle",0,0,0,0,0.5,0)
+			TNT1 A 0 A_SpawnItemEx("ScragParticle",0,0,0,0,-0.5,0)
 			Loop
 		Death:
 			TNT1 A 1
 			Stop
-			
 	}
 }
 
@@ -251,7 +274,7 @@ ACTOR VoreTracer
 {
 	Radius 8
 	Height 5
-	Speed 10
+	Speed 15
 	Scale 0.5
 	PROJECTILE
 	+SEEKERMISSILE
@@ -259,6 +282,9 @@ ACTOR VoreTracer
 	States
 	{
 		Spawn:
+			TNT1 A 0
+			VORP GHABCDEFGH 2 A_SpawnItem("VoreTracerParticles")
+		Spawn2:
 			VORP A 2 A_SeekerMissile(20,32,SMF_PRECISE)
 			TNT1 A 0 A_SpawnItem("VoreTracerParticles")
 			VORP B 2 A_SeekerMissile(20,32,SMF_PRECISE)
@@ -278,7 +304,7 @@ ACTOR VoreTracer
 			Loop
 		Death:
 			TNT1 A 0 A_Explode(40,96,1,0)
-			TNT1 A 1 A_SpawnItemEx("QuakeExplosion")
+			TNT1 A 1 A_SpawnItemEx("QuakeExplosion2")
 			QEXP ABCDEF 4 Bright
 			Stop
 	}
@@ -290,10 +316,11 @@ ACTOR VoreTracerParticles
 	States
 	{
 		Spawn:
-			TNT1 AA 0 A_SpawnItemEx("VoreTracerParticle1",random(-5,5),random(-5,5),random(-5,5),0,0,0)
-			TNT1 AA 0 A_SpawnItemEx("VoreTracerParticle2",random(-5,5),random(-5,5),random(-5,5),0,0,0)
-			TNT1 AA 0 A_SpawnItemEx("VoreTracerParticle3",random(-5,5),random(-5,5),random(-5,5),0,0,0)
-			TNT1 AA 0 A_SpawnItemEx("VoreTracerParticle4",random(-5,5),random(-5,5),random(-5,5),0,0,0)
+			TNT1 A 0 A_SpawnItemEx("VoreTracerParticle1",random(-5,5),random(-5,5),random(-5,5),0,0,0)
+			TNT1 A 0 A_SpawnItemEx("VoreTracerParticle2",random(-5,5),random(-5,5),random(-5,5),0,0,0)
+			TNT1 A 0 A_SpawnItemEx("VoreTracerParticle3",random(-5,5),random(-5,5),random(-5,5),0,0,0)
+			TNT1 A 0 A_SpawnItemEx("VoreTracerParticle4",random(-5,5),random(-5,5),random(-5,5),0,0,0)
+			TNT1 A 1
 			Stop
 	}
 }
@@ -309,62 +336,146 @@ ACTOR VoreTracerParticle1
 	States
 	{
 		Spawn:
+			TNT1 A 0
+			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SMMCVarCheckCS",1) == 0, "Death")
 			QPRT R 2
 			TNT1 A 0 A_Jump(128,"Spawn")
-			QPRT R 20
+			QPRT R 10
+			Goto Death
+		Death:
+			TNT1 A 1
 			Stop
 	}
 }
-ACTOR VoreTracerParticle2
+ACTOR VoreTracerParticle2 : VoreTracerParticle1
 {
-	Radius 0
-    Height 0
-	Scale 0.225
-	+NOINTERACTION
-    +CLIENTSIDEONLY
-    +FORCEXYBILLBOARD
 	States
 	{
 		Spawn:
+			TNT1 A 0
+			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SMMCVarCheckCS",1) == 0, "Death")
 			QPRT S 2
 			TNT1 A 0 A_Jump(128,"Spawn")
-			QPRT S 20
+			QPRT S 10
+			Goto Death
+		Death:
+			TNT1 A 1
 			Stop
 	}
 }
-ACTOR VoreTracerParticle3
+ACTOR VoreTracerParticle3 : VoreTracerParticle1
 {
-	Radius 0
-    Height 0
-	Scale 0.225
-	+NOINTERACTION
-    +CLIENTSIDEONLY
-    +FORCEXYBILLBOARD
 	States
 	{
 		Spawn:
+			TNT1 A 0
+			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SMMCVarCheckCS",1) == 0, "Death")
 			QPRT T 2
 			TNT1 A 0 A_Jump(128,"Spawn")
-			QPRT T 20
+			QPRT T 10
+			Goto Death
+		Death:
+			TNT1 A 1
 			Stop
 	}
 }
-ACTOR VoreTracerParticle4
+ACTOR VoreTracerParticle4 : VoreTracerParticle1
 {
-	Radius 0
-    Height 0
-	Scale 0.225
-	+NOINTERACTION
-    +CLIENTSIDEONLY
-    +FORCEXYBILLBOARD
 	States
 	{
 		Spawn:
+			TNT1 A 0
+			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SMMCVarCheckCS",1) == 0, "Death")
 			QPRT U 2
 			TNT1 A 0 A_Jump(128,"Spawn")
-			QPRT U 20
+			QPRT U 10
+			Goto Death
+		Death:
+			TNT1 A 1
 			Stop
-			
+	}
+}
+
+ACTOR DKSpikeParticle : VoreTracerParticle1
+{
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SMMCVarCheckCS",1) == 0, "Death")
+			QPRT P 1 Bright
+			QPRT Q 1 Bright
+			QPRT P 1 Bright
+			QPRT Q 1 Bright
+			QPRT P 1 Bright
+			QPRT Q 1 Bright
+			QPRT P 1 Bright
+			QPRT Q 1 Bright
+			QPRT P 1 Bright
+			QPRT Q 1 Bright
+			QPRT P 1 Bright
+			QPRT Q 1 Bright
+			QPRT P 1 Bright
+			QPRT Q 1 Bright
+			QPRT P 1 Bright
+			QPRT Q 1 Bright
+			QPRT P 1 Bright
+			QPRT Q 1 Bright
+			QPRT P 1 Bright
+			QPRT Q 1 Bright
+			QPRT P 1 Bright
+			QPRT Q 1 Bright
+			QPRT P 1 Bright
+			QPRT Q 1 Bright
+			QPRT P 1 Bright
+			QPRT Q 1 Bright
+			QPRT P 1 Bright
+			QPRT Q 1 Bright
+			QPRT P 1 Bright
+			QPRT Q 1 Bright
+			QPRT P 1 Bright
+			QPRT Q 1 Bright
+			QPRT P 1 Bright
+			QPRT Q 1 Bright
+			QPRT P 1 Bright
+			QPRT Q 1 Bright
+			QPRT P 1 Bright
+			Goto Death
+		Death:
+			TNT1 A 1
+			Stop
+	}
+}
+
+ACTOR ScragParticle : VoreTracerParticle1
+{
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SMMCVarCheckCS",1) == 0, "Death")
+			QPRT N 2 Bright
+			QPRT O 2 Bright
+			QPRT N 2 Bright
+			QPRT O 2 Bright
+			QPRT N 2 Bright
+			QPRT O 2 Bright
+			QPRT N 2 Bright
+			QPRT O 2 Bright
+			QPRT N 2 Bright
+			QPRT O 2 Bright
+			QPRT N 2 Bright
+			QPRT O 2 Bright
+			QPRT N 2 Bright
+			QPRT O 2 Bright
+			QPRT N 2 Bright
+			QPRT O 2 Bright
+			QPRT N 2 Bright
+			QPRT O 2 Bright
+			Goto Death
+		Death:
+			TNT1 A 1
+			Stop
 	}
 }
 
@@ -378,7 +489,7 @@ ACTOR WrathTracer : VoreTracer
 			Loop
 		Death:
 			TNT1 A 0 A_Explode(6,96,1,0,96)
-			TNT1 A 1 A_SpawnItemEx("QuakeExplosion")
+			TNT1 A 1 A_SpawnItemEx("QuakeExplosion2")
 			QEXP ABCDEF 4 Bright
 			Stop
 	}
@@ -485,73 +596,117 @@ ACTOR OgreGrenade : QuakeGrenade
 	{
 		Death:
 			MISL B 0 A_Explode(40,96,0)
-			TNT1 A 1 A_SpawnItemEx("QuakeExplosion")
+			TNT1 A 1 A_SpawnItemEx("QuakeExplosion2")
 			Stop
 	}
 }
 
-Actor ShamblerBeam
+ACTOR ShamblerBolt : MageWandMissile
 {
-	+ALWAYSPUFF
-    +BLOODLESSIMPACT
-    +NOINTERACTION
-    +CLIENTSIDEONLY
-    +NOTIMEFREEZE
-    +NOPAIN
-    VSpeed 0
-
-    Scale 0.225
-	States
+	Speed 140
+	Radius 3
+	Height 8
+	Damage 0
+	Alpha 0.8
+	SeeSound ""
+	MissileType "ThunderTrail"
+	+CLIENTSIDEONLY
+	+THRUACTORS
+	-CANNOTPUSH
+	-NODAMAGETHRUST
+	states
 	{
-		Spawn:
-        TNT1 A 0 A_CustomBulletAttack(0, 0, 1, 0, "LGBeam", 0, 16)
-        TNT1 A 0 A_CustomBulletAttack(0, 0, 1, 0, "LGBeam", 0, 32)
-        TNT1 A 0 A_CustomBulletAttack(0, 0, 1, 0, "LGBeam", 0, 48)
-        TNT1 A 0 A_CustomBulletAttack(0, 0, 1, 0, "LGBeam", 0, 64)
-        TNT1 A 0 A_CustomBulletAttack(0, 0, 1, 0, "LGBeam", 0, 80)
-        TNT1 A 0 A_CustomBulletAttack(0, 0, 1, 0, "LGBeam", 0, 96)
-        TNT1 A 0 A_CustomBulletAttack(0, 0, 1, 0, "LGBeam", 0, 112)
-        TNT1 A 0 A_CustomBulletAttack(0, 0, 1, 0, "LGBeam", 0, 128)
-        TNT1 A 0 A_CustomBulletAttack(0, 0, 1, 0, "LGBeam", 0, 144)
-        TNT1 A 0 A_CustomBulletAttack(0, 0, 1, 0, "LGBeam", 0, 160)
-        TNT1 A 0 A_CustomBulletAttack(0, 0, 1, 0, "LGBeam", 0, 176)
-        TNT1 A 0 A_CustomBulletAttack(0, 0, 1, 0, "LGBeam", 0, 192)
-        TNT1 A 0 A_CustomBulletAttack(0, 0, 1, 0, "LGBeam", 0, 208)
-        TNT1 A 0 A_CustomBulletAttack(0, 0, 1, 0, "LGBeam", 0, 224)
-        TNT1 A 0 A_CustomBulletAttack(0, 0, 1, 0, "LGBeam", 0, 240)
-        TNT1 A 0 A_CustomBulletAttack(0, 0, 1, 0, "LGBeam", 0, 256)
-        TNT1 A 0 A_CustomBulletAttack(0, 0, 1, 0, "LGBeam", 0, 272)
-        TNT1 A 0 A_CustomBulletAttack(0, 0, 1, 0, "LGBeam", 0, 288)
-        TNT1 A 0 A_CustomBulletAttack(0, 0, 1, 0, "LGBeam", 0, 304)
-        TNT1 A 0 A_CustomBulletAttack(0, 0, 1, 0, "LGBeam", 0, 320)
-        TNT1 A 0 A_CustomBulletAttack(0, 0, 1, 0, "LGBeam", 0, 336)
-        TNT1 A 0 A_CustomBulletAttack(0, 0, 1, 0, "LGBeam", 0, 352)
-        TNT1 A 0 A_CustomBulletAttack(0, 0, 1, 0, "LGBeam", 0, 368)
-        TNT1 A 0 A_CustomBulletAttack(0, 0, 1, 0, "LGBeam", 0, 384)
-        TNT1 A 0 A_CustomBulletAttack(0, 0, 1, 0, "LGBeam", 0, 400)
-        TNT1 A 0 A_CustomBulletAttack(0, 0, 1, 0, "LGBeam", 0, 416)
-        TNT1 A 0 A_CustomBulletAttack(0, 0, 1, 0, "LGBeam", 0, 432)
-        TNT1 A 0 A_CustomBulletAttack(0, 0, 1, 0, "LGBeam", 0, 448)
-        TNT1 A 0 A_CustomBulletAttack(0, 0, 1, 0, "LGBeam", 0, 464)
-        TNT1 A 0 A_CustomBulletAttack(0, 0, 1, 0, "LGBeam", 0, 480)
-        TNT1 A 1 A_CustomBulletAttack(0, 0, 1, 0, "LGBeam", 0, 496)
-		Stop
-	}
+	Spawn:
+		TNT1 A 2
+		Goto Death
+	Death:
+		TNT1 A 2 bright
+		stop
+  }
 }
 
-Actor ShamblerBeamSpawner
+ACTOR ThunderTrail : MageWandSmoke
 {
-	+BLOODLESSIMPACT
-    +NOINTERACTION
-    +CLIENTSIDEONLY
-    +NOTIMEFREEZE
-    +NOPAIN
-    VSpeed 0
+	RenderStyle Add
+	Scale 0.4
+	+CLIENTSIDEONLY
+	States
+	{
+	Spawn:
+		DPLE ABCDEABC 1//BOLT ABCDABCD 1
+		stop
+  }
+}
+
+ACTOR ArmaBody
+{
+	Height 55
+	Radius 40
+	Scale 0.5
+	//Projectile
+    -NOGRAVITY
+    -NOBLOCKMAP
+    -NOLIFTDROP
+    -SOLID
+    +DROPOFF
+    +THRUACTORS
+	+CLIENTSIDEONLY
 	States
 	{
 		Spawn:
-			TNT1 A 0
-			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItem("ShamblerBeam")
+			TNT1 A 0 
+			QAR3 S 6
+			QAR3 S 1 A_SpawnItemEx("QuakeGib1",0,0,0,random(5,15),0,random(5,15),random(1,359),1)
+			TNT1 A 0 A_SpawnItemEx("QuakeGib2",0,0,0,random(5,15),0,random(5,15),random(1,359),1)
+			TNT1 A 0 A_SpawnItemEx("QuakeGibTorso",0,0,0,random(5,15),0,random(5,15),random(1,359),1)
+		Spawn2:
+			QAR3 T 7 A_SpawnItemEx("QuakeGib1",0,0,0,random(5,15),0,random(5,15),random(1,359),1)
+			TNT1 A 0 A_SpawnItemEx("QuakeGib2",0,0,0,random(5,15),0,random(5,15),random(1,359),1)
+			TNT1 A 0 A_SpawnItemEx("QuakeGibTorso",0,0,0,random(5,15),0,random(5,15),random(1,359),1)
+			QAR3 T 8 A_SpawnItemEx("QuakeGib1",0,0,0,random(5,15),0,random(5,15),random(1,359),1)
+			TNT1 A 0 A_SpawnItemEx("QuakeGib2",0,0,0,random(5,15),0,random(5,15),random(1,359),1)
+			TNT1 A 0 A_SpawnItemEx("QuakeGibTorso",0,0,0,random(5,15),0,random(5,15),random(1,359),1)
+			QAR3 T 6 A_SpawnItemEx("QuakeGib1",0,0,0,random(5,15),0,random(5,15),random(1,359),1)
+			TNT1 A 0 A_SpawnItemEx("QuakeGib2",0,0,0,random(5,15),0,random(5,15),random(1,359),1)
+			TNT1 A 0 A_SpawnItemEx("QuakeGibTorso",0,0,0,random(5,15),0,random(5,15),random(1,359),1)
+			QAR3 T 7 A_SpawnItemEx("QuakeGib1",0,0,0,random(5,15),0,random(5,15),random(1,359),1)
+			TNT1 A 0 A_SpawnItemEx("QuakeGib2",0,0,0,random(5,15),0,random(5,15),random(1,359),1)
+			TNT1 A 0 A_SpawnItemEx("QuakeGibTorso",0,0,0,random(5,15),0,random(5,15),random(1,359),1)
+			QAR3 T 7 A_SpawnItemEx("QuakeGib1",0,0,0,random(5,15),0,random(5,15),random(1,359),1)
+			TNT1 A 0 A_SpawnItemEx("QuakeGib2",0,0,0,random(5,15),0,random(5,15),random(1,359),1)
+			TNT1 A 0 A_SpawnItemEx("QuakeGibTorso",0,0,0,random(5,15),0,random(5,15),random(1,359),1)
+			QAR3 T 7 A_SpawnItemEx("QuakeGib1",0,0,0,random(5,15),0,random(5,15),random(1,359),1)
+			TNT1 A 0 A_SpawnItemEx("QuakeGib2",0,0,0,random(5,15),0,random(5,15),random(1,359),1)
+			TNT1 A 0 A_SpawnItemEx("QuakeGibTorso",0,0,0,random(5,15),0,random(5,15),random(1,359),1)
+			QAR3 T 7 A_SpawnItemEx("QuakeGib1",0,0,0,random(5,15),0,random(5,15),random(1,359),1)
+			TNT1 A 0 A_SpawnItemEx("QuakeGib2",0,0,0,random(5,15),0,random(5,15),random(1,359),1)
+			TNT1 A 0 A_SpawnItemEx("QuakeGibTorso",0,0,0,random(5,15),0,random(5,15),random(1,359),1)
+			QAR3 T 7 A_SpawnItemEx("QuakeGib1",0,0,0,random(5,15),0,random(5,15),random(1,359),1)
+			TNT1 A 0 A_SpawnItemEx("QuakeGib2",0,0,0,random(5,15),0,random(5,15),random(1,359),1)
+			TNT1 A 0 A_SpawnItemEx("QuakeGibTorso",0,0,0,random(5,15),0,random(5,15),random(1,359),1)
+			QAR3 T 7 A_SpawnItemEx("QuakeGib1",0,0,0,random(5,15),0,random(5,15),random(1,359),1)
+			TNT1 A 0 A_SpawnItemEx("QuakeGib2",0,0,0,random(5,15),0,random(5,15),random(1,359),1)
+			TNT1 A 0 A_SpawnItemEx("QuakeGibTorso",0,0,0,random(5,15),0,random(5,15),random(1,359),1)
+			QAR3 T 6 A_SpawnItemEx("QuakeGib1",0,0,0,random(5,15),0,random(5,15),random(1,359),1)
+			TNT1 A 0 A_SpawnItemEx("QuakeGib2",0,0,0,random(5,15),0,random(5,15),random(1,359),1)
+			TNT1 A 0 A_SpawnItemEx("QuakeGibTorso",0,0,0,random(5,15),0,random(5,15),random(1,359),1)
+			QAR3 T 8 A_SpawnItemEx("QuakeGib1",0,0,0,random(5,15),0,random(5,15),random(1,359),1)
+			TNT1 A 0 A_SpawnItemEx("QuakeGib2",0,0,0,random(5,15),0,random(5,15),random(1,359),1)
+			TNT1 A 0 A_SpawnItemEx("QuakeGibTorso",0,0,0,random(5,15),0,random(5,15),random(1,359),1)
+			QAR3 T 10
+			TNT1 A 0 A_SpawnItemEx("QuakeGib1",-10,0,0,random(10,20),0,random(20,30),random(1,359),1)
+			TNT1 A 0 A_SpawnItemEx("QuakeGib2",-10,0,0,random(10,20),0,random(20,30),random(1,359),1)
+			TNT1 A 0 A_SpawnItemEx("QuakeGibTorso",-10,0,0,random(10,20),0,random(20,30),random(1,359),1)
+			TNT1 A 0 A_SpawnItemEx("QuakeGib1",10,0,0,random(10,20),0,random(20,30),random(1,359),1)
+			TNT1 A 0 A_SpawnItemEx("QuakeGib2",10,0,0,random(10,20),0,random(20,30),random(1,359),1)
+			TNT1 A 0 A_SpawnItemEx("QuakeGibTorso",10,0,0,random(10,20),0,random(20,30),random(1,359),1)
+			TNT1 A 0 A_SpawnItemEx("QuakeGib1",-20,0,30,random(10,20),0,random(20,30),random(1,359),1)
+			TNT1 A 0 A_SpawnItemEx("QuakeGib2",-20,0,30,random(10,20),0,random(20,30),random(1,359),1)
+			TNT1 A 0 A_SpawnItemEx("QuakeGibTorso",-20,0,30,random(10,20),0,random(20,30),random(1,359),1)
+			TNT1 A 0 A_SpawnItemEx("QuakeGib1",20,0,30,random(10,20),0,random(20,30),random(1,359),1)
+			TNT1 A 0 A_SpawnItemEx("QuakeGib2",20,0,30,random(10,20),0,random(20,30),random(1,359),1)
+			TNT1 A 0 A_SpawnItemEx("QuakeGibTorso",20,0,30,random(10,20),0,random(20,30),random(1,359),1)
+			TNT1 A 0 A_SpawnItemEx("QExplosion",0,0,0)
 			Stop
 	}
 }
@@ -586,14 +741,14 @@ Actor QuakeGibBlood : QuakeBlood
 		Spawn:
 			TNT1 A 0
 			TNT1 A 0 A_SpawnItemEx("Switchable_FlyingBlood",0,0,0,random(-350,350)/100.00,random(-350,350)/100.00,random(500,1000)/100.00,random(-180,180),32)
-			TNT1 AA 0 A_SpawnItemEx("QuakeGibBloodParticle1",random(-10,10),random(-10,10),random(-6,4),0,0,random(-10,1)/10)
-			TNT1 AA 0 A_SpawnItemEx("QuakeGibBloodParticle2",random(-10,10),random(-10,10),random(-6,4),0,0,random(-10,1)/10)
-			TNT1 AA 0 A_SpawnItemEx("QuakeGibBloodParticle3",random(-10,10),random(-10,10),random(-6,4),0,0,random(-10,1)/10)
-			TNT1 AA 0 A_SpawnItemEx("QuakeGibBloodParticle4",random(-10,10),random(-10,10),random(-6,4),0,0,random(-10,1)/10)
-			TNT1 AA 0 A_SpawnItemEx("QuakeGibBloodParticle5",random(-10,10),random(-10,10),random(-6,4),0,0,random(-10,1)/10)
-			TNT1 A 0 A_SpawnItemEx("QuakeGibBloodParticle6",random(-10,10),random(-10,10),random(-6,4),0,0,random(-10,1)/10)
-			TNT1 A 0 A_SpawnItemEx("QuakeGibBloodParticle7",random(-10,10),random(-10,10),random(-6,4),0,0,random(-10,1)/10)
-			TNT1 A 0 A_SpawnItemEx("QuakeGibBloodParticle8",random(-10,10),random(-10,10),random(-6,4),0,0,random(-10,1)/10)
+			TNT1 AA 0 A_SpawnItemEx("QuakeGibBloodParticle1",random(-1,1)*2, random(-1,1)*2, random(-1,1)*2,0,0,random(-10,1)/10)
+			TNT1 AA 0 A_SpawnItemEx("QuakeGibBloodParticle2",random(-1,1)*2, random(-1,1)*2, random(-1,1)*2,0,0,random(-10,1)/10)
+			TNT1 AA 0 A_SpawnItemEx("QuakeGibBloodParticle3",random(-1,1)*2, random(-1,1)*2, random(-1,1)*2,0,0,random(-10,1)/10)
+			TNT1 AA 0 A_SpawnItemEx("QuakeGibBloodParticle4",random(-1,1)*2, random(-1,1)*2, random(-1,1)*2,0,0,random(-10,1)/10)
+			TNT1 AA 0 A_SpawnItemEx("QuakeGibBloodParticle5",random(-1,1)*2, random(-1,1)*2, random(-1,1)*2,0,0,random(-10,1)/10)
+			TNT1 A 0 A_SpawnItemEx("QuakeGibBloodParticle6",random(-1,1)*2, random(-1,1)*2, random(-1,1)*2,0,0,random(-10,1)/10)
+			TNT1 A 0 A_SpawnItemEx("QuakeGibBloodParticle7",random(-1,1)*2, random(-1,1)*2, random(-1,1)*2,0,0,random(-10,1)/10)
+			TNT1 A 0 A_SpawnItemEx("QuakeGibBloodParticle8",random(-1,1)*2, random(-1,1)*2, random(-1,1)*2,0,0,random(-10,1)/10)
 			TNT1 A 1
 			Stop
 	}
@@ -604,9 +759,14 @@ Actor QuakeBloodParticle1 : QuakeBulletPuff2
 	States
 	{
 		Spawn:
+			TNT1 A 0
+			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SMMCVarCheckCS",1) == 0, "Death")
 			QPRT F 2 A_Gravity
 			TNT1 A 0 A_Jump(128,"Spawn")
 			QPRT F 5 
+			Goto Death
+		Death:
+			TNT1 A 1
 			Stop
 	}
 }
@@ -616,9 +776,14 @@ Actor QuakeBloodParticle2 : QuakeBloodParticle1
 	States
 	{
 		Spawn:
+			TNT1 A 0
+			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SMMCVarCheckCS",1) == 0, "Death")
 			QPRT G 2 A_Gravity
 			TNT1 A 0 A_Jump(128,"Spawn")
 			QPRT G 5
+			Goto Death
+		Death:
+			TNT1 A 1
 			Stop
 	}
 }
@@ -628,9 +793,14 @@ Actor QuakeBloodParticle3 : QuakeBloodParticle1
 	States
 	{
 		Spawn:
+			TNT1 A 0
+			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SMMCVarCheckCS",1) == 0, "Death")
 			QPRT H 2 A_Gravity
 			TNT1 A 0 A_Jump(128,"Spawn")
 			QPRT H 5
+			Goto Death
+		Death:
+			TNT1 A 1
 			Stop
 	}
 }
@@ -640,9 +810,14 @@ Actor QuakeBloodParticle4 : QuakeBloodParticle1
 	States
 	{
 		Spawn:
+			TNT1 A 0
+			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SMMCVarCheckCS",1) == 0, "Death")
 			QPRT I 2 A_Gravity
 			TNT1 A 0 A_Jump(128,"Spawn")
 			QPRT I 5
+			Goto Death
+		Death:
+			TNT1 A 1
 			Stop
 	}
 }
@@ -652,9 +827,14 @@ Actor QuakeBloodParticle5 : QuakeBloodParticle1
 	States
 	{
 		Spawn:
+			TNT1 A 0
+			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SMMCVarCheckCS",1) == 0, "Death")
 			QPRT J 2 A_Gravity
 			TNT1 A 0 A_Jump(128,"Spawn")
 			QPRT J 5
+			Goto Death
+		Death:
+			TNT1 A 1
 			Stop
 	}
 }
@@ -664,9 +844,14 @@ Actor QuakeBloodParticle6 : QuakeBloodParticle1
 	States
 	{
 		Spawn:
+			TNT1 A 0
+			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SMMCVarCheckCS",1) == 0, "Death")
 			QPRT K 2 A_Gravity
 			TNT1 A 0 A_Jump(128,"Spawn")
 			QPRT K 5
+			Goto Death
+		Death:
+			TNT1 A 1
 			Stop
 	}
 }
@@ -676,9 +861,14 @@ Actor QuakeBloodParticle7 : QuakeBloodParticle1
 	States
 	{
 		Spawn:
+			TNT1 A 0
+			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SMMCVarCheckCS",1) == 0, "Death")
 			QPRT L 2 A_Gravity
 			TNT1 A 0 A_Jump(128,"Spawn")
 			QPRT L 5
+			Goto Death
+		Death:
+			TNT1 A 1
 			Stop
 	}
 }
@@ -688,9 +878,14 @@ Actor QuakeBloodParticle8 : QuakeBloodParticle1
 	States
 	{
 		Spawn:
+			TNT1 A 0
+			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SMMCVarCheckCS",1) == 0, "Death")
 			QPRT M 2 A_Gravity
 			TNT1 A 0 A_Jump(128,"Spawn")
 			QPRT M 5
+			Goto Death
+		Death:
+			TNT1 A 1
 			Stop
 	}
 }
@@ -702,9 +897,14 @@ Actor QuakeGibBloodParticle1 : QuakeBloodParticle1
 	States
 	{
 		Spawn:
+			TNT1 A 0
+			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SMMCVarCheckCS",1) == 0, "Death")
 			QPRT F 2
 			TNT1 A 0 A_Jump(128,"Spawn")
 			QPRT F 105 A_ChangeVelocity(0,0,-1,CVF_REPLACE)
+			Goto Death
+		Death:
+			TNT1 A 1
 			Stop
 	}
 }
@@ -714,9 +914,14 @@ Actor QuakeGibBloodParticle2 : QuakeGibBloodParticle1
 	States
 	{
 		Spawn:
+			TNT1 A 0
+			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SMMCVarCheckCS",1) == 0, "Death")
 			QPRT G 2
 			TNT1 A 0 A_Jump(128,"Spawn")
 			QPRT G 105 A_ChangeVelocity(0,0,-1,CVF_REPLACE)
+			Goto Death
+		Death:
+			TNT1 A 1
 			Stop
 	}
 }
@@ -726,9 +931,14 @@ Actor QuakeGibBloodParticle3 : QuakeGibBloodParticle1
 	States
 	{
 		Spawn:
+			TNT1 A 0
+			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SMMCVarCheckCS",1) == 0, "Death")
 			QPRT H 2
 			TNT1 A 0 A_Jump(128,"Spawn")
 			QPRT H 105 A_ChangeVelocity(0,0,-1,CVF_REPLACE)
+			Goto Death
+		Death:
+			TNT1 A 1
 			Stop
 	}
 }
@@ -738,9 +948,14 @@ Actor QuakeGibBloodParticle4 : QuakeGibBloodParticle1
 	States
 	{
 		Spawn:
+			TNT1 A 0
+			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SMMCVarCheckCS",1) == 0, "Death")
 			QPRT I 2
 			TNT1 A 0 A_Jump(128,"Spawn")
 			QPRT I 105 A_ChangeVelocity(0,0,-1,CVF_REPLACE)
+			Goto Death
+		Death:
+			TNT1 A 1
 			Stop
 	}
 }
@@ -750,9 +965,14 @@ Actor QuakeGibBloodParticle5 : QuakeGibBloodParticle1
 	States
 	{
 		Spawn:
+			TNT1 A 0
+			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SMMCVarCheckCS",1) == 0, "Death")
 			QPRT J 2
 			TNT1 A 0 A_Jump(128,"Spawn")
 			QPRT J 105 A_ChangeVelocity(0,0,-1,CVF_REPLACE)
+			Goto Death
+		Death:
+			TNT1 A 1
 			Stop
 	}
 }
@@ -762,9 +982,14 @@ Actor QuakeGibBloodParticle6 : QuakeGibBloodParticle1
 	States
 	{
 		Spawn:
+			TNT1 A 0
+			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SMMCVarCheckCS",1) == 0, "Death")
 			QPRT K 2
 			TNT1 A 0 A_Jump(128,"Spawn")
 			QPRT K 105 A_ChangeVelocity(0,0,-1,CVF_REPLACE)
+			Goto Death
+		Death:
+			TNT1 A 1
 			Stop
 	}
 }
@@ -775,9 +1000,14 @@ Actor QuakeGibBloodParticle7 : QuakeGibBloodParticle1
 	States
 	{
 		Spawn:
+			TNT1 A 0
+			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SMMCVarCheckCS",1) == 0, "Death")
 			QPRT L 2
 			TNT1 A 0 A_Jump(128,"Spawn")
 			QPRT L 105 A_ChangeVelocity(0,0,-1,CVF_REPLACE)
+			Goto Death
+		Death:
+			TNT1 A 1
 			Stop
 	}
 }
@@ -787,9 +1017,14 @@ Actor QuakeGibBloodParticle8 : QuakeGibBloodParticle1
 	States
 	{
 		Spawn:
+			TNT1 A 0
+			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SMMCVarCheckCS",1) == 0, "Death")
 			QPRT M 2
 			TNT1 A 0 A_Jump(128,"Spawn")
 			QPRT M 105 A_ChangeVelocity(0,0,-1,CVF_REPLACE)
+			Goto Death
+		Death:
+			TNT1 A 1
 			Stop
 	}
 }
@@ -826,6 +1061,7 @@ Actor QuakeGib1
     +THRUACTORS
     Speed 8
     Scale 0.5
+	Gravity 0.8
     +CLIENTSIDEONLY
     States
     {
@@ -852,7 +1088,7 @@ Actor QuakeGibTorso : QuakeGib1
       Spawn:
         TNT1 A 0
         TNT1 A 1 ThrustThingZ(0,random(2,50),0,1)
-        QGBC AABBCCDDEEFF 2 A_SpawnItemEx("QuakeGibBlood",0,0,0,0,0,0,0,1,128)
+        QGBC AABBCCDDEEFFAABBCCDDEEFFAABB 2 A_SpawnItemEx("QuakeGibBlood",0,0,0,0,0,0,0,1,128)
         Goto Death
         
       Death:
@@ -872,7 +1108,7 @@ Actor QuakeGib2 : QuakeGib1
       Spawn:
         TNT1 A 0
         TNT1 A 1 ThrustThingZ(0,random(2,60),0,1)
-        QGBD AABBCCDDEE 2 A_SpawnItemEx("QuakeGibBlood",0,0,0,0,0,0,0,1)
+        QGBD AABBCCDDEEFFAABBCCDDEEFFAABB 2 A_SpawnItemEx("QuakeGibBlood",0,0,0,0,0,0,0,1)
         Goto Death
         
       Death:

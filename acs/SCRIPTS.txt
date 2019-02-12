@@ -54,6 +54,7 @@ Tweaks:\n\
 global int 2:alreadyshowedbs;
 global int 3:randomallclear;
 global int 4:lastchosen;
+global int 5:activeparticles;
 
 Script "SMMInit" OPEN //667
 {
@@ -93,6 +94,7 @@ Script "SMMInit" OPEN //667
 		SetCVar("mm_monstersdiewhentheyarekilled", false);
 		SetCVar("mm_nopatrol", false);
 		SetCVar("mm_qdoomgib", false);
+		SetUserCVar(ConsolePlayerNumber(),"mm_cl_particlelimit", -1);
 		SetCVar("mm_init", true);
 	}
 	ACS_NamedExecute("RandomCycle", 0, 0, 0, 0);
@@ -425,7 +427,7 @@ Script "ArmagonPain" (void)
 		if(diffarma >= 25)
 		{
 			PlaySound(0,"armagon/pain",CHAN_VOICE);
-			Delay(140);
+			Delay(70);
 		}
 		oldarma = GetActorProperty(0,APROP_Health);
 		Delay(1);
@@ -483,15 +485,18 @@ Script "DKnightPain" (void)
 	int olddtkn;
 	int newdtkn;
 	int diffdtkn;
+	int dtkntic;
 	While(GetActorProperty(0,APROP_Health) > 0)
 	{
+		dtkntic++;
 		newdtkn = GetActorProperty(0,APROP_Health);
 		diffdtkn = olddtkn - newdtkn;
 		if(olddtkn > newdtkn && CheckFlag(0,"NOPAIN") == 0)
 		{
-			if (random(0,3) * 10 < diffdtkn)
+			if (random(0,3) * 10 < diffdtkn || dtkntic >= 175)
 			{
 				SetActorState(0,"Pain",true);
+				dtkntic = 0;
 				Delay(35);
 			}
 			else { PlaySound(0,"qdeathknight/pain",CHAN_VOICE); Delay(35); }
@@ -499,6 +504,106 @@ Script "DKnightPain" (void)
 		olddtkn = GetActorProperty(0,APROP_Health);
 		Delay(1);
 	}
+}
+
+Script "ScragPain" (void)
+{
+	int oldscr;
+	int newscr;
+	int diffscr;
+	While(GetActorProperty(0,APROP_Health) > 0)
+	{
+		newscr = GetActorProperty(0,APROP_Health);
+		diffscr = oldscr - newscr;
+		if(oldscr > newscr && CheckFlag(0,"NOPAIN") == 0)
+		{
+			if (random(0,7) * 10 < diffscr)
+			{
+				SetActorState(0,"Pain",true);
+			}
+			else { PlaySound(0,"scrag/pain",CHAN_VOICE); }
+		}
+		oldscr = GetActorProperty(0,APROP_Health);
+		Delay(1);
+	}
+}
+
+Script "CentroidPain" (void)
+{
+	int oldctrd;
+	int newctrd;
+	int diffctrd;
+	While(GetActorProperty(0,APROP_Health) > 0)
+	{
+		newctrd = GetActorProperty(0,APROP_Health);
+		diffctrd = oldctrd - newctrd;
+		if(oldctrd > newctrd && CheckFlag(0,"NOPAIN") == 0)
+		{
+			if (random(0,5) * 10 < diffctrd)
+			{
+				SetActorState(0,"Pain",true);
+				Delay(70);
+			}
+		}
+		oldctrd = GetActorProperty(0,APROP_Health);
+		Delay(1);
+	}
+}
+
+Script "WrathPain" (void)
+{
+	int oldwrth;
+	int newwrth;
+	While(GetActorProperty(0,APROP_Health) > 0)
+	{
+		newwrth = GetActorProperty(0,APROP_Health);
+		if(oldwrth > newwrth && CheckFlag(0,"NOPAIN") == 0)
+		{
+			if (random(0,100) < 7)
+			{
+				SetActorState(0,"Pain",true);
+				Delay(105);
+			}
+			else { Delay(18); }
+		}
+		oldwrth = GetActorProperty(0,APROP_Health);
+		Delay(1);
+	}
+}
+
+Script "ParticleTracker" OPEN clientside
+{
+	activeparticles = ThingCountName("WrathExplosionParticle",0) 
+	+ ThingCountName("WrathExplosionParticle2",0)
+	+ ThingCountName("WrathExplosionParticle3",0)
+	+ ThingCountName("WrathExplosionParticle4",0)
+	+ ThingCountName("VoreTracerParticle1",0)
+	+ ThingCountName("VoreTracerParticle2",0)
+	+ ThingCountName("VoreTracerParticle3",0)
+	+ ThingCountName("VoreTracerParticle4",0)
+	+ ThingCountName("DKSpikeParticle",0) 
+	+ ThingCountName("ScragParticle",0) 
+	+ ThingCountName("QuakeBloodParticle1",0) 
+	+ ThingCountName("QuakeBloodParticle2",0) 
+	+ ThingCountName("QuakeBloodParticle3",0) 
+	+ ThingCountName("QuakeBloodParticle4",0) 
+	+ ThingCountName("QuakeBloodParticle5",0) 
+	+ ThingCountName("QuakeBloodParticle6",0) 
+	+ ThingCountName("QuakeBloodParticle7",0) 
+	+ ThingCountName("QuakeBloodParticle8",0) 
+	+ ThingCountName("QuakeGibBloodParticle1",0) 
+	+ ThingCountName("QuakeGibBloodParticle2",0) 
+	+ ThingCountName("QuakeGibBloodParticle3",0) 
+	+ ThingCountName("QuakeGibBloodParticle4",0) 
+	+ ThingCountName("QuakeGibBloodParticle5",0) 
+	+ ThingCountName("QuakeGibBloodParticle6",0) 
+	+ ThingCountName("QuakeGibBloodParticle7",0)
+	+ ThingCountName("QuakeGibBloodParticle8",0)
+	+ ThingCountName("QuakeExplosionParticle",0)
+	+ ThingCountName("QuakeExplosionParticle2",0)
+	+ ThingCountName("QuakeExplosionParticle3",0);
+	Delay(1);
+	restart;
 }
 
 Script "SMMCVarCheck" (int pick) //680
@@ -561,6 +666,34 @@ Script "SMMCVarCheck" (int pick) //680
 		case 12:
 		response = GetCvar("mm_qdoomgib");
 		break;
+	}
+	SetResultValue(response);
+}
+
+Script "SMMCVarCheckCS" (int pick2) clientside
+{
+	int response;
+
+	Switch (pick2)
+	{
+		case 1:
+		//activeparticles = ThingCountName("WrathExplosionParticle",0) + ThingCountName("WrathExplosionParticle2",0) + ThingCountName("WrathExplosionParticle3",0) + ThingCountName("WrathExplosionParticle4",0);
+		if(GetUserCVar(ConsolePlayerNumber(),"mm_cl_particlelimit") > activeparticles || GetUserCVar(ConsolePlayerNumber(),"mm_cl_particlelimit") == -1)
+		{
+			response = 1;
+		}
+		else
+		{
+			response = 0;
+		}
+		break;
+		
+		case 2:
+		if(GetUserCVar(ConsolePlayerNumber(),"mm_cl_particlelimit") > activeparticles || GetUserCVar(ConsolePlayerNumber(),"mm_cl_particlelimit") == -1)
+		{ TakeInventory("QuakeExplosionCounter", 1); }
+		else { TakeInventory("QuakeExplosionCounter", 100); }
+        response = CheckInventory("QuakeExplosionCounter");
+        break;
 	}
 	SetResultValue(response);
 }
