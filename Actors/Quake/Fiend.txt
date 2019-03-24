@@ -4,7 +4,6 @@ ACTOR Fiend
 	Radius 24
 	Height 64
 	Speed 12
-	Damage (Random(40,50))
 	Mass 0x7FFFFFFF
 	PainChance 0
 	Scale 0.5
@@ -65,7 +64,7 @@ ACTOR Fiend
 			QFI1 T 4 A_Look
 			Loop
 		See:
-			TNT1 A 0 A_JumpIfInventory("QFiendLeapCounter",1,"Fall")
+			TNT1 A 0 A_TakeInventory("FrameTicCounter",100)
 			QFI1 VW 4 A_Chase
 			QFI1 X 3 A_Chase
 			QFI1 Y 4 A_Chase
@@ -86,30 +85,64 @@ ACTOR Fiend
 			QFI2 P 3 A_FaceTarget
 			Goto See
 		Missile:
-			TNT1 A 0 A_GiveInventory("QFiendLeapCounter",1)
 			TNT1 A 0 A_PlaySound("fiend/leap")
 			QFI2 Q 4
 			QFI2 R 3
 			QFI2 S 4 A_FaceTarget
-			QFI2 T 3 A_SkullAttack(0)
-			QFI2 T 0 ThrustThingZ(0,35,0,0)
-			//TNT1 A 0 ThrustThing(angle*256/360,30,0,0)
+			//QFI2 T 3 A_SkullAttack(0)
+			QFI2 T 3 ThrustThingZ(0,35,0,0)
+			TNT1 A 0 ThrustThing(angle*256/360,25,0,0)
 			Goto Fall
 		Fall:
-			QFI2 U 4
-			QFI2 V 3
-			QFI2 W 4
-			QFI2 X 3
-			QFI2 Y 4
+			TNT1 A 0 A_JumpIfInventory("FrameTicCounter",4,"Fall2")
+			TNT1 A 0 A_GiveInventory("FrameTicCounter",1)
+			TNT1 A 0 A_JumpIfInventory("HitTarget",1,2)
+			TNT1 A 0 A_SpawnItemEx("LeapDamage",35,0,5,20,0,0,0,0,0)
+			QFI2 U 1
+			Loop
+		Fall2:
+			TNT1 A 0 A_JumpIfInventory("FrameTicCounter",7,"Fall3")
+			TNT1 A 0 A_GiveInventory("FrameTicCounter",1)
+			TNT1 A 0 A_JumpIfInventory("HitTarget",1,2)
+			TNT1 A 0 A_SpawnItemEx("LeapDamage",35,0,5,20,0,0,0,0,0)
+			QFI2 V 1
+			Loop
+		Fall3:
+			TNT1 A 0 A_JumpIfInventory("FrameTicCounter",11,"Fall4")
+			TNT1 A 0 A_GiveInventory("FrameTicCounter",1)
+			TNT1 A 0 A_JumpIfInventory("HitTarget",1,2)
+			TNT1 A 0 A_SpawnItemEx("LeapDamage",35,0,5,20,0,0,0,0,0)
+			QFI2 W 1
+			Loop
+		Fall4:
+			TNT1 A 0 A_JumpIfInventory("FrameTicCounter",14,"Fall5")
+			TNT1 A 0 A_GiveInventory("FrameTicCounter",1)
+			TNT1 A 0 A_JumpIfInventory("HitTarget",1,2)
+			TNT1 A 0 A_SpawnItemEx("LeapDamage",35,0,5,20,0,0,0,0,0)
+			QFI2 X 1
+			Loop
+		Fall5:
+			TNT1 A 0 A_JumpIfInventory("FrameTicCounter",18,"Fall6")
+			TNT1 A 0 A_GiveInventory("FrameTicCounter",1)
+			TNT1 A 0 A_JumpIfInventory("HitTarget",1,2)
+			TNT1 A 0 A_SpawnItemEx("LeapDamage",35,0,5,20,0,0,0,0,0)
+			QFI2 Y 1
+			Loop
+		Fall6:
+			TNT1 A 0 A_JumpIfInventory("HitTarget",1,2)
+			TNT1 A 0 A_SpawnItemEx("LeapDamage",35,0,5,20,0,0,0,0,0)
 			QFI2 Z 3 A_CheckFloor("Land")
-			Goto Fall+3
+			Loop
 		Land:
-			TNT1 A 0 A_TakeInventory("QFiendLeapCounter",1)
+			TNT1 A 0 A_TakeInventory("FrameTicCounter",100)
+			TNT1 A 0 A_TakeInventory("HitTarget",1)
 			TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
-			QFI3 A 4
+			QFI3 A 4 A_PlaySound("quake/land") 
 			QFI3 B 3
 			Goto See
 		Pain:
+			TNT1 A 0 A_TakeInventory("FrameTicCounter",100)
+			TNT1 A 0 A_TakeInventory("HitTarget",1)
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
 			TNT1 A 0 A_Pain
 			QFI3 C 4
@@ -122,6 +155,8 @@ ACTOR Fiend
 			TNT1 A 0
 			Goto See
 		Pain.MightyBoot:
+			TNT1 A 0 A_TakeInventory("FrameTicCounter",100)
+			TNT1 A 0 A_TakeInventory("HitTarget",1)
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
 			TNT1 A 0 ACS_NamedExecuteAlways("QuakePainCooldown",0,21)
 			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
@@ -130,6 +165,8 @@ ACTOR Fiend
 			QFI3 C 16 A_Pain
 			Goto See
 		Pain.MarathonStun:
+			TNT1 A 0 A_TakeInventory("FrameTicCounter",100)
+			TNT1 A 0 A_TakeInventory("HitTarget",1)
 			TNT1 A 0 A_Stop
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
 			TNT1 A 0 ACS_NamedExecuteAlways("QuakePainCooldown",0,105)
@@ -194,6 +231,8 @@ ACTOR Fiend
 		Death.Massacre:
 		Death:
 			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 A_TakeInventory("FrameTicCounter",100)
+			TNT1 A 0 A_TakeInventory("HitTarget",1)
 			TNT1 A 0 A_Scream
 			QFI3 I 4
 			QFI3 J 3
@@ -211,6 +250,8 @@ ACTOR Fiend
 		Death.PhasingZorch:
 		Death.ZorchSpectral:
 			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 A_TakeInventory("FrameTicCounter",100)
+			TNT1 A 0 A_TakeInventory("HitTarget",1)
 			QFI3 C 0 A_Stop
 			TNT1 A 0 A_ChangeFlag("DONTGIB",1)
 			TNT1 A 0 A_PlaySoundEx("chex/zorch","soundslot5",0,0)
@@ -239,6 +280,8 @@ ACTOR Fiend
 		Death.HexenIce:
 		Death.Ice:
 			TNT1 A 0 A_GiveToTarget("KillCount",1)
+			TNT1 A 0 A_TakeInventory("FrameTicCounter",100)
+			TNT1 A 0 A_TakeInventory("HitTarget",1)
 			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
 			QFI3 C 0 A_GenericFreezeDeath
 			QFI3 C 70 A_UnsetSolid
@@ -298,7 +341,33 @@ Actor FiendDG : Fiend
 	WoundHealth -10000
 }
 
-Actor QFiendLeapCounter: CustomInventory { Inventory.MaxAmount 1 }
+ACTOR LeapDamage
+{
+	
+	PROJECTILE
+	+NOTIMEFREEZE
+	+FORCEXYBILLBOARD	
+	+LOOKALLAROUND
+	+THRUSPECIES
+	Radius 2
+	Speed 30
+	Damage (Random(40,50))
+	Scale 1
+	States
+	{
+		Spawn:
+			TNT1 A 1
+			Stop
+		Xdeath:
+			TNT1 A 0 A_GiveToTarget ("HitTarget")
+			Stop
+		Death:
+		Crash:
+			Stop
+	}
+}
+
+ACTOR HitTarget : inventory { inventory.maxamount 1 }
 
 ACTOR ATFiend
 {
